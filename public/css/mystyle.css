@@ -1,0 +1,69 @@
+#bar{
+    color: rgb(255, 131, 0)
+}
+.filter_count
+{
+    display: none;
+}
+.card{
+    border: 1px solid rgba(218, 210, 210, 0.39);
+    width: 97%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 0.75rem;
+}
+.img-holder{
+    text-align: center;
+}
+.img-holder img{
+    height: 15rem;
+    vertical-align: middle;
+}
+.description
+{
+    color: black;
+    font-size:1.4rem;
+    text-align: center;
+    line-height: 1.5;
+}
+.info-wine{
+    border:1px solid #dadada;
+    color: rgb(56, 11, 125);
+    font-size: 1.3em;
+    line-height: 1.5;
+}
+.pagination {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    text-decoration: none;
+}
+.page-item:last-child .page-link {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
