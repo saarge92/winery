@@ -1,6 +1,6 @@
 <v-layout row wrap>
     <v-flex xs12 sm12 md12>
-        <form class="" action="{{route('search')}}" method="post">
+        <form class="" action="{{route('search')}}" method="GET">
             <v-layout row>
                 <v-flex xs10 offset-md2 md10 sm10>
                     <input type="text" name="wine_name" id="wine_name" label="Поиск вина" class="input">

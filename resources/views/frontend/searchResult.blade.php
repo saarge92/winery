@@ -8,7 +8,7 @@
         @include('frontend.partials.listVines')
         <div class="row">
             <div class="col col-md-12">
-                {{$pag_links->appends($_GET)->links()}}
+                {{-- {{$pag_links->appends($_GET)->links()}} --}}
             </div>
         </div>
     </div>

@@ -10,16 +10,19 @@ $(document).ready(() => {
                 data: {
                     wine_name: query
                 },
-                success: (list) => {
-                    $('#wineList').css('display','block');
+                success: (list) => {    
                     if (list.wines.length != 0)
                     {
+                        $('#wineList').css('display','block');
                         $("#wineList ul").empty();
                         $.each(list.wines,(index,wine)=>{
                             $('#wineList ul').append($("<li><a href='"
                                 +"viewWine/" +wine.id+ "'>"+wine.name_rus+ "</a>"+
                             "</li>"));
                         })
+                    }
+                    else{
+                        $('#wineList').css('display','none');
                     }
                 },
                 error: (error) => {
