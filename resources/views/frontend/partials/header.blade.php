@@ -15,12 +15,12 @@
     <v-toolbar-side-icon @click.native.stop="sideNav=!sideNav" class="white--text hidden-sm-and-up">
     </v-toolbar-side-icon>
     <v-toolbar-title>
-        <span id="bar">BAR</span><span id="house">HOUSE</span>
+        <a id="logo" href="{{route('home')}}"><span id="bar">BAR</span><span id="house">HOUSE</span></a>
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat href="{{route('home').'#vines'}}" class="white--text">
+        <v-btn flat href="{{route('home').'#vines'}}" data-scroll-time = "1.25" class="white--text">
         <i class="fas fa-wine-bottle"></i>Вино
-        </v-btn>
+    </v-btn>
     </v-toolbar-items>
 </v-toolbar>

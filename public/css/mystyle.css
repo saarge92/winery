@@ -1,36 +1,46 @@
-#bar{
+#bar {
     color: rgb(255, 131, 0)
 }
-.filter_count
-{
+
+.filter_count {
     display: none;
 }
-.card{
+
+.card {
     border: 1px solid rgba(218, 210, 210, 0.39);
-    width: 97%;
     height: auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 0.75rem;
+    background-color:white;
 }
-.img-holder{
+
+.img-holder {
     text-align: center;
 }
-.img-holder img{
+
+.img-holder img {
     height: 15rem;
     vertical-align: middle;
 }
-.description
-{
+
+.description {
     color: black;
-    font-size:1.4rem;
+    font-size: 1.4rem;
     text-align: center;
     line-height: 1.5;
 }
-.info-wine{
-    border:1px solid #dadada;
+
+.info-wine {
     color: rgb(56, 11, 125);
-    font-size: 1.3em;
+    font-size: 14px;
     line-height: 1.5;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    border-top: 1px solid rgb(150, 150, 150);
+    font-weight: bold;
+}
+.view_button
+{
+    text-align: center;
 }
 .pagination {
     display: -ms-flexbox;
@@ -39,6 +49,7 @@
     list-style: none;
     border-radius: .25rem;
 }
+
 .page-item.disabled .page-link {
     color: #6c757d;
     pointer-events: none;
@@ -46,24 +57,48 @@
     background-color: #fff;
     border-color: #dee2e6;
 }
+
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #ff7715;
 }
+
 .page-link {
     position: relative;
     display: block;
     padding: .5rem .75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #007bff;
+    color: black;
     background-color: #fff;
     border: 1px solid #dee2e6;
     text-decoration: none;
 }
+
 .page-item:last-child .page-link {
     border-top-right-radius: .25rem;
     border-bottom-right-radius: .25rem;
+}
+.filter-groups{
+    font-size:1.4em;
+    line-height: 1.5;
+}
+
+#vines{
+    background-color:#f8f8f8;
+}
+.filter-block
+{
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: white;
+}
+.param-holder
+{
+    cursor: pointer;
+}
+#logo{
+    text-decoration: none;
+    color: white;
 }
