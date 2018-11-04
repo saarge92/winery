@@ -1,7 +1,7 @@
 <div class="filter-block">
     <form action="{{route('home')}}#vines" id="filter_form" method="GET">
         <div class="filter-groups">
-            <v-layout row="" wrap="">
+            <v-layout column>
                 <v-flex md12="">
                     <h4 style="text-align: center;">
                         Фильтры
@@ -9,7 +9,7 @@
                     </h4>
                 </v-flex>
             </v-layout>
-            <v-layout row="" wrap="">
+            <v-layout column>
                 <v-flex md12="">
                     <div @click="priceNav=!priceNav" class="param-holder">
                         <i class="fas fa-plus" v-show="priceNav==false">
@@ -22,12 +22,10 @@
             </v-layout>
             <div v-show="priceNav==true">
                 Мин.цена
-                <v-text-field id="price_min" name="price_min" single-line="" solo="" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : $min_price}}">
-                </v-text-field>
+                  <input type="number" class="priceSlider input" class="priceSlider" id="price_min" name="price_min" single-line="" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : $min_price}}">
                 Макс.Цена
-                <v-text-field id="price_min" name="price_max" single-line="" solo="" type="number" value="{{isset($params['price_max']) ? $params['price_max'] : $max_price}}">
-                </v-text-field>
-                <div id="slider"></div>
+                <input type="number" class="priceSlider input" id="price_max" name="price_max" single-line=""type="number" value="{{isset($params['price_max']) ? $params['price_max'] : $max_price}}">
+                <div id="slider_price" class="slider_elements"></div>
             </div>
             <v-layout row="" wrap="">
                 <v-flex md12="">
@@ -42,11 +40,10 @@
             </v-layout>
             <div v-show="volumeNav==true">
                 Мин.объем
-                <v-text-field id="volume_min" name="volume_min" single-line="" solo="" type="number" value="{{isset($params['volume_min']) ? $params['volume_min'] : $volume_min}}">
-                </v-text-field>
+                <input type="number" class="input"  id="volume_min" name="volume_min" value="{{isset($params['volume_min']) ? $params['volume_min'] : $volume_min}}">
                 Макс.объем
-                <v-text-field id="volume_max" name="volume_max" single-line="" solo="" type="number" value="{{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}}">
-                </v-text-field>
+                <input type="number" class="input" id="volume_max" name="volume_max" value="{{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}}">
+                 <div id="volume_slider" class="slider_elements"></div>
             </div>
 
             <v-layout row="" wrap="">
@@ -120,7 +117,7 @@
                     <label>{{$yd->year}}</label> <br>
                 @endforeach
             </div>
-            <div>
+            <div style="text-align:center;">
                 <v-btn class="white--text" color="red darken-4" type="submit">
                     Применить
                 </v-btn>

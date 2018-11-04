@@ -23,4 +23,16 @@
 </div>
 @endsection
 @section('scripts')
+    <script type="text/javascript">
+        var maxPriceEnable = {{$max_price}};
+        var minPriceEnable = {{$min_price}};
+        var current_minPrice = {{isset($params['price_min']) ? $params['price_min'] : $min_price}};
+        var currentMaxPrice = {{isset($params['price_max']) ? $params['price_max'] : $max_price}};
+
+        var maxVolumeEnable = {{$volume_max}};
+        var minVolumeEnable = {{$volume_min}};
+        var current_minVolume = {{isset($params['volume_min']) ? $params['volume_min'] : $volume_min}};
+        var current_maxVolume = {{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}};
+    </script>
+    <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
 @endsection

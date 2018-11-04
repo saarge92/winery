@@ -102,3 +102,18 @@
     text-decoration: none;
     color: white;
 }
+.input{
+    width: 100%;
+    padding: 2px 2px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+}
+.slider_elements
+{
+    margin-bottom: 1rem;
+}
+div.slider_elements .ui-slider-range{
+    background-color: red ;
+}

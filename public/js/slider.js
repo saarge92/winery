@@ -1,18 +1,23 @@
 $(function() {
     $("#slider_price").slider({
-        min: 0,
-        max: 100,
-        step: 1,
-        values: [10, 90],
+        min: minPriceEnable,
+        max: maxPriceEnable,
+        step: 100,
+        values: [current_minPrice, currentMaxPrice],
         slide: function(event, ui) {
-            for (var i = 0; i < ui.values.length; ++i) {
-                $("input.sliderValue[data-index=" + i + "]").val(ui.values[i]);
-            }
+            $('#price_min').val(ui.values[0]);
+            $('#price_max').val(ui.values[1]);
         }
     });
 
-    $("input.sliderValue").change(function() {
-        var $this = $(this);
-        $("#sliders").slider("values", $this.data("index"), $this.val());
+    $("#volume_slider").slider({
+        min: minVolumeEnable,
+        max: maxVolumeEnable,
+        step: 100,
+        values: [current_minVolume, current_maxVolume],
+        slide: function(event, ui) {
+            $('#volume_min').val(ui.values[0]);
+            $('#volume_max').val(ui.values[1]);
+        }
     });
-})
+});
