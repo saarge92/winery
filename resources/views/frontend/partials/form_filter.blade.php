@@ -22,9 +22,9 @@
             </v-layout>
             <div v-show="priceNav==true">
                 Мин.цена
-                  <input type="number" class="priceSlider input" class="priceSlider" id="price_min" name="price_min" single-line="" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : $min_price}}">
+                  <input type="number" class="priceSlider input filter_checked" class="priceSlider" id="price_min" name="price_min" single-line="" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : $min_price}}">
                 Макс.Цена
-                <input type="number" class="priceSlider input" id="price_max" name="price_max" single-line=""type="number" value="{{isset($params['price_max']) ? $params['price_max'] : $max_price}}">
+                <input type="number" class="priceSlider input filter_checked" id="price_max" name="price_max" single-line=""type="number" value="{{isset($params['price_max']) ? $params['price_max'] : $max_price}}">
                 <div id="slider_price" class="slider_elements"></div>
             </div>
             <v-layout row="" wrap="">
@@ -40,9 +40,9 @@
             </v-layout>
             <div v-show="volumeNav==true">
                 Мин.объем
-                <input type="number" class="input"  id="volume_min" name="volume_min" value="{{isset($params['volume_min']) ? $params['volume_min'] : $volume_min}}">
+                <input type="number" class="input filter_checked"  id="volume_min" name="volume_min" value="{{isset($params['volume_min']) ? $params['volume_min'] : $volume_min}}">
                 Макс.объем
-                <input type="number" class="input" id="volume_max" name="volume_max" value="{{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}}">
+                <input type="number" class="input filter_checked" id="volume_max" name="volume_max" value="{{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}}">
                  <div id="volume_slider" class="slider_elements"></div>
             </div>
 
@@ -60,7 +60,7 @@
 
             <div v-show="countryNav==true">
             @foreach ($countries as $country)
-                <input type="checkbox" name="country[]" class="filter_checked"
+                <input  type="checkbox" name="country[]" class="filter_checked"
                 value="{{$country->id}}" {{in_array($country->id, isset($params['country']) ? $params['country'] : []) ? 'checked' : ''}}>
                 <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label> <br>
             @endforeach

@@ -7,6 +7,10 @@ $(function() {
         slide: function(event, ui) {
             $('#price_min').val(ui.values[0]);
             $('#price_max').val(ui.values[1]);
+            setTimeout(()=>{
+                $('#price_min').trigger('change');
+                $('#price_max').trigger('change');
+            },400)
         }
     });
 
@@ -18,6 +22,10 @@ $(function() {
         slide: function(event, ui) {
             $('#volume_min').val(ui.values[0]);
             $('#volume_max').val(ui.values[1]);
+            setTimeout(()=>{
+                $('#volume_min').trigger('change');
+                $('#volume_max').trigger('change');
+            },400)
         }
     });
 });

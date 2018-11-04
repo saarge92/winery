@@ -1,10 +1,11 @@
 $('.filter_checked').change((event) => {
+    console.log($('meta[name="csrf-token"]').attr('content'));
     $.ajax({
         url: '/getCountOfChoice',
         type: 'POST',
         dataType: 'json',
         data: {
-            _token: token,
+            _token: $('meta[name="csrf-token"]').attr('content'),
             params: $('#filter_form').serialize()
         },
         beforeSend: () => {
@@ -18,7 +19,6 @@ $('.filter_checked').change((event) => {
             var parentElement = event.target.parentElement;
             $(parentElement).prepend($('.filter_count'));
             $(this).parent('div').append($('.filter_count'));
-            console.log(message);
         },
         error: () => {
             $('.ajax-loader').css('display', 'none');

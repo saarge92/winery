@@ -2,6 +2,7 @@ $(document).ready(() => {
     $('#wine_name').keyup((event) => {
         var query = event.target.value;
         $("#wineList ul").empty();
+        $('#wineList').css('display','none');
         if (query != '') {
             $.ajax({
                 url: '/autocomplete?',
@@ -10,6 +11,7 @@ $(document).ready(() => {
                     wine_name: query
                 },
                 success: (list) => {
+                    $('#wineList').css('display','block');
                     if (list.wines.length != 0)
                     {
                         $("#wineList ul").empty();
@@ -21,6 +23,7 @@ $(document).ready(() => {
                     }
                 },
                 error: (error) => {
+                     $('#wineList').css('display','none');
                     console.log(error);
                 }
             });

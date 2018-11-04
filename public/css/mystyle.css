@@ -1,35 +1,31 @@
 #bar {
     color: rgb(255, 131, 0)
 }
-
 .filter_count {
     display: none;
+    text-align: center;
+    border: 1px solid #dadada;
 }
-
 .card {
     border: 1px solid rgba(218, 210, 210, 0.39);
     height: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 0.75rem;
-    background-color:white;
+    background-color: white;
 }
-
 .img-holder {
     text-align: center;
 }
-
 .img-holder img {
     height: 15rem;
     vertical-align: middle;
 }
-
 .description {
     color: black;
     font-size: 1.4rem;
     text-align: center;
     line-height: 1.5;
 }
-
 .info-wine {
     color: rgb(56, 11, 125);
     font-size: 14px;
@@ -38,8 +34,7 @@
     border-top: 1px solid rgb(150, 150, 150);
     font-weight: bold;
 }
-.view_button
-{
+.view_button {
     text-align: center;
 }
 .pagination {
@@ -49,7 +44,6 @@
     list-style: none;
     border-radius: .25rem;
 }
-
 .page-item.disabled .page-link {
     color: #6c757d;
     pointer-events: none;
@@ -57,13 +51,11 @@
     background-color: #fff;
     border-color: #dee2e6;
 }
-
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
     background-color: #ff7715;
 }
-
 .page-link {
     position: relative;
     display: block;
@@ -75,45 +67,76 @@
     border: 1px solid #dee2e6;
     text-decoration: none;
 }
-
 .page-item:last-child .page-link {
     border-top-right-radius: .25rem;
     border-bottom-right-radius: .25rem;
 }
-.filter-groups{
-    font-size:1.4em;
+.filter-groups {
+    font-size: 1.4em;
     line-height: 1.5;
 }
-
-#vines{
-    background-color:#f8f8f8;
+#vines {
+    background-color: #f8f8f8;
 }
-.filter-block
-{
+.filter-block {
     border-radius: 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-color: white;
 }
-.param-holder
-{
+.param-holder {
     cursor: pointer;
 }
-#logo{
+#logo {
     text-decoration: none;
     color: white;
 }
-.input{
+.input {
     width: 100%;
+    height: 3rem;
     padding: 2px 2px;
-    margin: 8px 0;
     box-sizing: border-box;
     border: 1px solid #dadada;
     border-radius: 4px;
+    background-color: white;
 }
-.slider_elements
-{
+.slider_elements {
     margin-bottom: 1rem;
 }
-div.slider_elements .ui-slider-range{
-    background-color: red ;
+div.slider_elements .ui-slider-range {
+    background-color: red;
+}
+.ajax-loader {
+    position: fixed;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    padding-top: 300px;
+    vertical-align: middle;
+    color: red;
+    display: none;
+}
+#wineList {
+    display: none;
+    line-height: 1.5;
+}
+#wineList ul {
+    list-style: none;
+    background-color: white;
+    padding: 1%;
+}
+#wineList ul a {
+    text-decoration: none;
+    color: black;
+}
+#wine_name {
+    width: 100%;
+    height: 3rem;
+    padding: 2px 2px;
+    box-sizing: border-box;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    background-color: white;
+    margin-top: 0.5rem;
 }

@@ -1,6 +1,6 @@
 <v-navigation-drawer app temporary v-model="sideNav">
     <v-list>
-        <v-list-tile>
+        <v-list-tile href="{{route('home')}}#vines" @click.native.stop="sideNav=!sideNav">
             <v-list-tile-action>
                 <v-icon class="fas fa-wine-bottle">
                 </v-icon>
@@ -20,7 +20,7 @@
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-xs-only">
         <v-btn flat href="{{route('home').'#vines'}}" data-scroll-time = "1.25" class="white--text">
-        <i class="fas fa-wine-bottle"></i>Вино
-    </v-btn>
+            <i class="fas fa-wine-bottle"></i>Вино
+        </v-btn>
     </v-toolbar-items>
 </v-toolbar>

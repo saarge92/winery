@@ -8,10 +8,11 @@
     @include('frontend.partials.slider')
     @include('frontend.partials.countOfFilter')
 <div id="vines">
+    @include('frontend.partials.loader')
     <v-container>
         @include('frontend.partials.searchWines')
         <v-layout row wrap>
-            <v-flex md2>
+            <v-flex md2 my-2>
                 @include('frontend.partials.form_filter')
             </v-flex>
             <v-flex md10>
@@ -35,4 +36,6 @@
         var current_maxVolume = {{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}};
     </script>
     <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('js/autocompleteWine.js')}}"></script>
 @endsection
