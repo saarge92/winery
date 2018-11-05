@@ -11,6 +11,17 @@
         </v-list-tile>
     </v-list>
 </v-navigation-drawer>
+    <v-layout row wrap class=" contact-block hidden-xs-only">
+        <v-flex md2>
+            <a class="email_info" href="mailto:example@com.ru"> <i class="fas fa-envelope"></i>example@com.ru</a>
+        </v-flex>
+        <v-flex offset-md3 md2>
+            <a class="phone_info" href="tel:+7 999 999 99 99"> <i class="fas fa-phone"></i>+7 999 999 99 99</a>
+        </v-flex>
+        <v-flex offset-md2 md3>
+            <span class="location_info"> <i class="fas fa-map-marker-alt"></i>г.Астрахань ул. Красного знамени 12, 1 этаж</span>
+        </v-flex>
+    </v-layout>
 <v-toolbar color="grey darken-4" class="white--text">
     <v-toolbar-side-icon @click.native.stop="sideNav=!sideNav" class="white--text hidden-sm-and-up">
     </v-toolbar-side-icon>

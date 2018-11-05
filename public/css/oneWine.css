@@ -1,4 +1,6 @@
-
+.image-holder{
+    text-align: center;
+}
 .image-holder img{
     height: 16rem;
 }

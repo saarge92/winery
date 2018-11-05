@@ -1,6 +1,24 @@
 #bar {
     color: rgb(255, 131, 0)
 }
+.contact-block{
+    background-color: #212121;
+    color: white;   
+    padding: 0.5rem;
+    font-size: 1.2em;
+    border-bottom: 1px solid #635d5d;
+}
+.contact-block .email_info
+{
+    color: white;
+    text-decoration: none;
+    margin-left: 40px;
+}
+.contact-block .phone_info
+{
+    color: white;
+    text-decoration: none;
+}
 .filter_count {
     display: none;
     text-align: center;
