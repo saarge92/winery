@@ -6,21 +6,29 @@
             @include('admin.partials.activate_disable_vine')
             <div class="image-holder">
                 <img src="{{$vine->image_src ? Storage::url($vine->image_src) : Storage::url('projectFolders/unknow.png')}}">
+                </img>
             </div>
             <div class="description">
-                {{$vine->name_rus}}
-                {{$vine->color}} {{$vine->sweet}}
-                {{$vine->country}} {{$vine->year}}
-                {{$vine->price}} руб
+                {{$vine->name_rus}},
+                {{$vine->color}} {{$vine->sweet}},
+                {{$vine->country}} {{$vine->year}},
+                <i class="fas fa-wine-bottle">
+                </i>
+                {{$vine->price}} руб,
+                <i class="fas fa-wine-glass">
+                </i>
+                {{$vine->price_cup}} руб,
             </div>
             <div class="button-holder">
-                <a href="{{route('editVine',['id'=>$vine->id])}}" class="text-white btn btn-success">
-                    <i class="fas fa-search-plus"></i> Посмотреть
+                <a class="text-white btn btn-success" href="{{route('editVine',['id'=>$vine->id])}}">
+                    <i class="fas fa-search-plus">
+                    </i>
+                    Посмотреть
                 </a>
             </div>
         </div>
     </div>
-        @endforeach
+    @endforeach
 </div>
 @endforeach
 <div class="row">
