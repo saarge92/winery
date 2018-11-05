@@ -359,10 +359,24 @@ body.sidebar-toggled footer.sticky-footer {
 .error{
     color:  red;
 }
-.inactive{
-
-}
 #main_content
 {
     width: 100%
+}
+.image-holder{
+  text-align: center;
+}
+.image-holder img{
+  height: 10rem;
+}
+.card{
+  border: 1px solid #dadada;
+}
+.description{
+  text-align: center;
+  padding: 1rem;
+}
+.button-holder{
+    text-align: center;
+    padding: 0.5rem;
 }
