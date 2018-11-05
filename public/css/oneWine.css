@@ -1,0 +1,25 @@
+
+.image-holder img{
+    height: 16rem;
+}
+.price-block{
+	text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+    font-size: 2em;
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+}
+.country_info{
+	padding: 1rem;
+    background-color: #f3f3f3;
+    color: black;
+    font-size: 1.5em;
+    line-height: 1.5;
+}
+.info-text{
+	padding: 1rem;
+    color: black;
+    font-size: 1.5em;
+    line-height: 1.5;
+}

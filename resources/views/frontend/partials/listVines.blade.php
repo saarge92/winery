@@ -5,7 +5,7 @@
         <v-flex xs12 md4 sm12 lg4>
             <div class="card my-2 mx-2">
                 <div class="text-md-right text-xs-right text-sm-right">
-                    <i class="fas fa-wine-bottle"></i>{{$vine->volume}}
+                    <i class="fas fa-wine-bottle"></i>{{$vine->volume}} л
                 </div>
                 <div class="img-holder">
                     @if($vine->image_src!=null)
@@ -36,7 +36,11 @@
                     </v-layout>
                 </div>
                 <div class="price">
-                    Цена за <i class="fas fa-wine-bottle"></i> {{$vine->price}}
+                    <i class="fas fa-wine-bottle" style="color:#ec3800;"></i> {{$vine->price}} руб
+                      <i class="fas fa-wine-glass-alt"></i> {{$vine->price_cup}} руб
+                </div>
+                <div class="price">
+
                 </div>
                 <div class="view_button">
                     <v-btn href="{{route('viewWine',['id'=>$vine->id])}}" color="orange darken-3" class="white--text">
