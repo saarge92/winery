@@ -45,6 +45,7 @@
 
     <script src="{{URL::asset('js/fontawesome/all.min.js')}}"></script>
     <script src="{{URL::asset('js/autocompleteWine.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
     @yield('scripts')
 </body>
 
