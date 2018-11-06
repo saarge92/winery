@@ -1,5 +1,4 @@
 $('.filter_checked').change((event) => {
-    console.log($('meta[name="csrf-token"]').attr('content'));
     $.ajax({
         url: '/getCountOfChoice',
         type: 'POST',

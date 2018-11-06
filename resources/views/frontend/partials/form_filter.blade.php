@@ -1,15 +1,15 @@
 <div class="filter-block">
     <form action="{{route('home')}}#vines" id="filter_form" method="GET">
         <div class="filter-groups">
-            <v-layout column>
-                <v-flex md12="">
+            <v-layout row wrap>
+                <v-flex md12>
                     <h4 style="text-align: center;">
                         Фильтры
                         <v-btn href="{{route('home')}}">Очистить</v-btn>
                     </h4>
                 </v-flex>
             </v-layout>
-            <v-layout column>
+            <v-layout row wrap>
                 <v-flex md12="">
                     <div @click="priceNav=!priceNav" class="param-holder">
                         <i class="fas fa-plus" v-show="priceNav==false">
