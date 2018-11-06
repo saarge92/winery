@@ -10,10 +10,10 @@ $(function() {
             setTimeout(()=>{
                 $('#price_min').trigger('change');
                 $('#price_max').trigger('change');
-            },400)
+            },100)
         }
     });
-
+    $('#slider_pricer').draggable();
     $("#volume_slider").slider({
         min: 0,
         max: maxVolumeEnable,
@@ -24,7 +24,7 @@ $(function() {
             setTimeout(()=>{
                 $('#volume_min').trigger('change');
                 $('#volume_max').trigger('change');
-            },400)
+            },100)
         }
     });
 });
