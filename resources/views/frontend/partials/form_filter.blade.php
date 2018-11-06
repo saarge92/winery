@@ -22,7 +22,7 @@
             </v-layout>
             <div v-show="priceNav==true">
                 Мин.цена
-                  <input type="number" class="priceSlider input filter_checked" class="priceSlider" id="price_min" name="price_min" single-line="" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : $min_price}}">
+                  <input type="number" class="priceSlider input filter_checked" class="priceSlider" id="price_min" name="price_min" single-line="" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : 0}}">
                 Макс.Цена
                 <input type="number" class="priceSlider input filter_checked" id="price_max" name="price_max" single-line=""type="number" value="{{isset($params['price_max']) ? $params['price_max'] : $max_price}}">
                 <div id="slider_price" class="slider_elements"></div>
@@ -40,7 +40,7 @@
             </v-layout>
             <div v-show="volumeNav==true">
                 Мин.объем
-                <input type="number" class="input filter_checked"  id="volume_min" name="volume_min" value="{{isset($params['volume_min']) ? $params['volume_min'] : $volume_min}}">
+                <input type="number" class="input filter_checked"  id="volume_min" name="volume_min" value="{{isset($params['volume_min']) ? $params['volume_min'] : 0}}">
                 Макс.объем
                 <input type="number" class="input filter_checked" id="volume_max" name="volume_max" value="{{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}}">
                  <div id="volume_slider" class="slider_elements"></div>

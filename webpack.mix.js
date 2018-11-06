@@ -13,3 +13,15 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
 
+mix.styles([
+	'public/admin/css/bootstrap.min.css',
+	'public/css/fontawesome/all.min.css',
+	'public/admin/css/sb-admin.css'
+	],'public/admin/admin.css').version();
+
+ mix.js([
+ 	'public/admin/js/jquery.min.js',
+ 	'public/admin/js/bootstrap.bundle.min.js',
+ 	'public/admin/js/jquery.easing.min.js',
+ 	'public/admin/js/sb-admin.min.js',
+ ],'public/admin/admin.js').version();

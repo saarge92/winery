@@ -5,7 +5,7 @@
         <v-flex xs12 md4 sm12 lg4>
             <div class="card my-2 mx-2">
                 <div class="text-md-right text-xs-right text-sm-right">
-                    <i class="fas fa-wine-bottle"></i>{{$vine->volume}} л
+                    <i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л
                 </div>
                 <div class="img-holder">
                     @if($vine->image_src!=null)
@@ -18,7 +18,7 @@
                     <p>
                         {{$vine->name_rus}}
                         {{$vine->name_en ? ','.$vine->name_en : ''}},
-                        {{$vine->volume}} л
+                        {{$vine->volume / 1000}} л
                     </p>
                 </div>
                 <div class="info-wine">

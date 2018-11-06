@@ -77,14 +77,14 @@
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-6">
-                        <label>Объем (в литрах)</label>
-                        <input type="number" class="form-control" name="volume"
-                               required="required" value="{{old('volume')}}">
+                        <label>Объем (в мл)</label>
+                        <input type="number" class="int form-control" name="volume"
+                               required="required" value="{{old('volume') ? old('volume') : 750}}">
                     </div>
                     <div class="col-md-6">
                         <label>Крепость %</label>
-                        <input type="number" name="strength"
-                               class="form-control" value="{{old('strength')}}" required="required">
+                        <input type="text" name="strength"
+                               class="decimal form-control" value="{{old('strength')}}" required="required">
                     </div>
                 </div>
             </div>
@@ -92,12 +92,12 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <label>Цена (За бутылку)<i class="fas fa-wine-bottle"></i></label>
-                        <input type="number" class="form-control" name="price_bottle"
+                        <input type="number" class="decimal form-control" name="price_bottle"
                                required="required" value="{{old('price_bottle')}}">
                     </div>
                     <div class="col-md-6">
                         <label>Цена (за бокал)<i class="fas fa-wine-glass"></i></label>
-                        <input type="text" name="price_glass" class="form-control"
+                        <input type="text" name="price_glass" class="decimal form-control"
                                required="required" value="{{old('price_glass')}}">
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <label>Год</label>
-                        <input type="number" class="form-control" name="year"
+                        <input type="number" class="int form-control" name="year"
                                required="required" value="{{old('year')}}">
                     </div>
                     <div class="col-md-6">
@@ -127,4 +127,8 @@
             </button>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{URL::asset('admin/js/int_input.js')}}"></script>
 @endsection

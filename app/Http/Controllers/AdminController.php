@@ -18,7 +18,7 @@ class AdminController extends Controller {
 	use adminVineTrait;
 
 	public function __construct() {
-		$this->middleware('auth');
+		$this->middleware('roles');
 	}
 	public function index() {
 		$vines = vine::paginate(6);

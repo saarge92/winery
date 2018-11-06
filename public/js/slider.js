@@ -15,9 +15,8 @@ $(function() {
     });
 
     $("#volume_slider").slider({
-        min: minVolumeEnable,
+        min: 0,
         max: maxVolumeEnable,
-        step: 100,
         values: [current_minVolume, current_maxVolume],
         slide: function(event, ui) {
             $('#volume_min').val(ui.values[0]);

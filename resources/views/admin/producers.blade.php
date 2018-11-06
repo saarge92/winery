@@ -1,4 +1,5 @@
 @extends('layouts.admin_panel')
+@include('admin.partials.modal')
 @section('title')
 Производители вин
 @endsection
@@ -27,7 +28,7 @@
                 <td>
                     <form action="{{route('dropProducer',['id'=>$producer->id])}}" method="post">
                         {{csrf_field()}}
-                        <button type="submit" name="button"> <i class="fas fa-times"></i> Удалить</button>
+                        <button type="submit" class="delete" name="button"> <i class="fas fa-times"></i> Удалить</button>
                     </form>
                 </td>
             </tr>
@@ -40,4 +41,7 @@
         {{$producers->links()}}
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script src="{{URL::asset('admin/js/forModal.js')}}"></script>
 @endsection

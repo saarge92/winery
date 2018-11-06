@@ -11,13 +11,14 @@
             <div class="description">
                 {{$vine->name_rus}},
                 {{$vine->color}} {{$vine->sweet}},
-                {{$vine->country}} {{$vine->year}},
+                {{$vine->country}} {{$vine->year}} г,
                 <i class="fas fa-wine-bottle">
                 </i>
                 {{$vine->price}} руб,
                 <i class="fas fa-wine-glass">
                 </i>
                 {{$vine->price_cup}} руб,
+                {{$vine->volume / 1000}} л
             </div>
             <div class="button-holder">
                 <a class="text-white btn btn-success" href="{{route('editVine',['id'=>$vine->id])}}">
