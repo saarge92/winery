@@ -15,11 +15,6 @@ $(function() {
             },100)
         }
     });
-<<<<<<< HEAD
-    $('#slider_pricer').draggable();
-=======
-    $("#slider_price").draggable();
->>>>>>> develop
     $("#volume_slider").slider({
         min: 0,
         max: maxVolumeEnable,
