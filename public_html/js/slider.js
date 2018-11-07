@@ -3,6 +3,8 @@ $(function() {
         min: minPriceEnable,
         max: maxPriceEnable,
         step: 100,
+        range: true,
+        orientation: 'horizontal',
         values: [current_minPrice, currentMaxPrice],
         slide: function(event, ui) {
             $('#price_min').val(ui.values[0]);
@@ -13,10 +15,11 @@ $(function() {
             },400)
         }
     });
-
+    $("#slider_price").draggable();
     $("#volume_slider").slider({
         min: 0,
         max: maxVolumeEnable,
+        orientation: 'horizontal',
         values: [current_minVolume, current_maxVolume],
         slide: function(event, ui) {
             $('#volume_min').val(ui.values[0]);
