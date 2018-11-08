@@ -1,127 +1,135 @@
 <div class="filter-block">
     <form action="{{route('home')}}#vines" id="filter_form" method="GET">
         <div class="filter-groups">
-            <v-layout row wrap>
-                <v-flex md12>
+            <div class="row">
+                <div class="col-md-12">
                     <h4 style="text-align: center;">
                         Фильтры
-                        <v-btn href="{{route('home')}}">Очистить</v-btn>
+                        <a class="btn btn-light" href="{{route('home')}}#vines">Очистить</a>
                     </h4>
-                </v-flex>
-            </v-layout>
-            <v-layout row wrap>
-                <v-flex md12="">
-                    <div @click="priceNav=!priceNav" class="param-holder">
-                        <i class="fas fa-plus" v-show="priceNav==false">
-                        </i>
-                        <i class="fas fa-minus" v-show="priceNav==true">
-                        </i>
-                        Цены
-                    </div>
-                </v-flex>
-            </v-layout>
-            <div v-show="priceNav==true">
-                Мин.цена
-                  <input type="number" class="priceSlider input filter_checked" class="priceSlider" id="price_min" name="price_min" single-line="" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : 0}}">
-                Макс.Цена
-                <input type="number" class="priceSlider input filter_checked" id="price_max" name="price_max" single-line=""type="number" value="{{isset($params['price_max']) ? $params['price_max'] : $max_price}}">
-                <div id="slider_price" class="slider_elements"></div>
+                </div>
             </div>
-            <v-layout row="" wrap="">
-                <v-flex md12="">
-                    <div @click="volumeNav=!volumeNav" class="param-holder">
-                        <i class="fas fa-plus" v-show="volumeNav==false">
-                        </i>
-                        <i class="fas fa-minus" v-show="volumeNav==true">
-                        </i>
-                        Объем
-                    </div>
-                </v-flex>
-            </v-layout>
-            <div v-show="volumeNav==true">
-                Мин.объем
-                <input type="number" class="input filter_checked"  id="volume_min" name="volume_min" value="{{isset($params['volume_min']) ? $params['volume_min'] : 0}}">
-                Макс.объем
-                <input type="number" class="input filter_checked" id="volume_max" name="volume_max" value="{{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}}">
-                 <div id="volume_slider" class="slider_elements"></div>
+            <div>
+                Мин.цена
+                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : 0}}">
+                Макс.Цена
+                <input type="number" class="priceSlider form-control filter_checked" id="price_max" name="price_max" type="number" value="{{isset($params['price_max']) ? $params['price_max'] : $max_price}}">
+                <div id="slider_price"></div>
             </div>
 
-            <v-layout row="" wrap="">
-                <v-flex md12="">
-                    <div @click="countryNav=!countryNav" class="param-holder">
-                        <i class="fas fa-plus" v-show="countryNav==false">
-                        </i>
-                        <i class="fas fa-minus" v-show="countryNav==true">
-                        </i>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="param-holder" id="toggle_country">
+                        @if(isset($params['country_visible']))
+                            @if($params['country_visible']== 1)
+                                <i class="fas fa-minus" id="country_icon"></i>
+                            @elseif ($params['country_visible']== 0)
+                                <i class="fas fa-plus" id="country_icon"></i>
+                            @endif
+                        @else
+                            <i class="fas fa-plus" id="country_icon"></i>
+                        @endif
                         Страны
                     </div>
-                </v-flex>
-            </v-layout>
-
-            <div v-show="countryNav==true">
-            @foreach ($countries as $country)
-                <input  type="checkbox" name="country[]" class="filter_checked"
-                value="{{$country->id}}" {{in_array($country->id, isset($params['country']) ? $params['country'] : []) ? 'checked' : ''}}>
-                <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label> <br>
-            @endforeach
+                </div>
             </div>
 
-            <v-layout row="" wrap="">
-                <v-flex md12="">
-                    <div @click="colorNav=!colorNav" class="param-holder">
-                        <i class="fas fa-plus" v-show="colorNav==false"></i>
-                        <i class="fas fa-minus" v-show="colorNav==true"></i>
+            <div style="display: {{isset($params['country_visible']) ? ($params['country_visible'] == '1' ? 'block' : 'none') : 'none'}}"
+                id="country_block">
+                @foreach ($countries as $country)
+                <input type="checkbox" name="country[]" class="filter_checked" value="{{$country->id}}" {{in_array($country->id, isset($params['country']) ? $params['country'] : []) ? 'checked' : ''}}>
+                <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label> <br>
+                @endforeach
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="param-holder" id="toggle_color">
+                        @if(isset($params['color_visible']))
+                            @if($params['color_visible']== 1)
+                                <i class="fas fa-minus" id="color_icon"></i>
+                            @elseif ($params['color_visible']== 0)
+                                <i class="fas fa-plus" id="color_icon"></i>
+                            @endif
+                        @else
+                            <i class="fas fa-plus" id="color_icon"></i>
+                        @endif
                         Цвет
                     </div>
-                </v-flex>
-            </v-layout>
+                </div>
+            </div>
 
-            <div v-show="colorNav==true">
+            <div style="display: {{isset($params['color_visible']) ? ($params['color_visible'] == '1' ? 'block' : 'none') : 'none'}}"
+                id="color_block">
                 @foreach ($colors as $color)
-                    <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked"
-                    {{in_array($color->id,isset($params['color']) ? $params['color'] : []) ? 'checked' : ''}}>
-                    <label for="{{$color->id}}">{{$color->name}}</label> <br>
+                <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked" {{in_array($color->id,isset($params['color']) ? $params['color'] : []) ? 'checked' : ''}}>
+                <label for="{{$color->id}}">{{$color->name}}</label> <br>
                 @endforeach
             </div>
 
-            <v-layout row="" wrap="">
-                <v-flex md12="">
-                    <div @click="sweetNav=!sweetNav" class="param-holder">
-                        <i class="fas fa-plus" v-show="sweetNav==false"></i>
-                        <i class="fas fa-minus" v-show="sweetNav==true"></i>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="param-holder" id="toggle_sweet">
+                        @if(isset($params['sweet_visible']))
+                            @if($params['sweet_visible']== 1)
+                                <i class="fas fa-minus" id="sweet_icon"></i>
+                            @elseif ($params['sweet_visible']== 0)
+                                <i class="fas fa-plus" id="sweet_icon"></i>
+                            @endif
+                        @else
+                            <i class="fas fa-plus" id="sweet_icon"></i>
+                        @endif
                         Сладость
                     </div>
-                </v-flex>
-            </v-layout>
+                </div>
+            </div>
 
-            <div v-show="sweetNav==true">
+            <div style="display: {{isset($params['sweet_visible']) ? ($params['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}"
+                id="sweet_block">
                 @foreach ($sweets as $sweet)
-                    <input type="checkbox" name="sweet[]" class="filter_checked"
-                    value="{{$sweet->id}}" {{in_array($sweet->id,isset($params['sweet'])?$params['sweet'] : []) ? 'checked' : ''}}>
-                    <label for="{{$sweet->id}}">{{$sweet->name}}</label> <br>
+                <input type="checkbox" name="sweet[]" class="filter_checked" value="{{$sweet->id}}" {{in_array($sweet->id,isset($params['sweet'])?$params['sweet'] : []) ? 'checked' : ''}}>
+                <label for="{{$sweet->id}}">{{$sweet->name}}</label> <br>
                 @endforeach
             </div>
-            <v-layout row="" wrap="">
-                <v-flex md12="">
-                    <div @click="yearNav=!yearNav" class="param-holder">
-                        <i class="fas fa-plus" v-show="yearNav==false"></i>
-                        <i class="fas fa-minus" v-show="yearNav==true"></i>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="param-holder" id="toogle_year">
+                        @if(isset($params['year_visible']))
+                            @if($params['year_visible']== 1)
+                                <i class="fas fa-minus" id="year_icon"></i>
+                            @elseif ($params['year_visible']== 0)
+                                <i class="fas fa-plus" id="year_icon"></i>
+                            @endif
+                        @else
+                            <i class="fas fa-plus" id="year_icon"></i>
+                        @endif
                         Год
                     </div>
-                </v-flex>
-            </v-layout>
-            <div v-show="yearNav==true">
+                </div>
+            </div>
+            <div style="display: {{isset($params['year_visible']) ? ($params['year_visible'] == '1' ? 'block' : 'none') : 'none'}}"
+                id="year_block">
                 @foreach ($year_distincts as $yd)
-                    <input type="checkbox" name="years[]" value="{{$yd->year}}" class="filter_checked"
-                    {{in_array($yd->year,isset($params['years']) ? $params['years'] : []) ? 'checked' : ''}}>
-                    <label>{{$yd->year}}</label> <br>
+                <input type="checkbox" name="years[]" value="{{$yd->year}}" class="filter_checked" {{in_array($yd->year,isset($params['years']) ? $params['years'] : []) ? 'checked' : ''}}>
+                <label>{{$yd->year}}</label> <br>
                 @endforeach
             </div>
-            <div style="text-align:center;">
-                <v-btn class="white--text" color="red darken-4" type="submit">
+            <div>
+                Мин.объем
+                <input type="number" class="form-control filter_checked" id="volume_min" name="volume_min" value="{{isset($params['volume_min']) ? $params['volume_min'] : 0}}">
+                Макс.объем
+                <input type="number" class="form-control filter_checked" id="volume_max" name="volume_max" value="{{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}}">
+                <div id="volume_slider" class="slider_elements"></div>
+            </div>
+            <div style="text-align:center;padding:0.5rem;">
+                <button class="btn btn-danger" type="submit">
                     Применить
-                </v-btn>
+                    </btn>
             </div>
         </div>
+        <input type="hidden" name="country_visible" id="country_visible" value="{{isset($params['country_visible']) ? $params['country_visible'] : 0}}">
+        <input type="hidden" name="color_visible" id="color_visible" value="{{isset($params['color_visible']) ? $params['color_visible'] : 0}}">
+        <input type="hidden" name="sweet_visible" id="sweet_visible" value="{{isset($params['sweet_visible']) ? $params['sweet_visible'] : 0}}">
+        <input type="hidden" name="year_visible" id="year_visible" value="{{isset($params['year_visible']) ? $params['year_visible'] : 0}}">
     </form>
 </div>

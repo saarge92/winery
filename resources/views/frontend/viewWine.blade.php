@@ -6,63 +6,64 @@
 
 @section('content')
 @if($vine!=null)
-    <v-container>
-        <v-layout row wrap>
-        	<v-flex md4>
+    <div class="container">
+        <div class="row">
+        	<div class="col-lg-4 col-md-4 col-sm-6">
         		<div class="image-holder">
 					<img src="{{Storage::url($vine->image_src)}}">
         		</div>
-        	</v-flex>
-        	<v-flex md8>
-        		<v-layout row wrap>
-        			<v-flex>
+        	</div>
+        	<div class="col-lg-8 col-md-8 col-sm-6">
+        		<div class="row">
+        			<div>
         				<div class="price-block">
-        				Цена: <i class="fas fa-wine-bottle" style="color:#f1591e;"></i> {{$vine->price}} руб,
-        					<i class="fas fa-wine-glass"></i> {{$vine->price_cup}} руб
+	        				Цена:
+							<i class="fas fa-wine-bottle" style="color:#f1591e;"></i> {{$vine->price}} руб,
+	        				<i class="fas fa-wine-glass"></i> {{$vine->price_cup}} руб
         				</div>
-        			</v-flex>
-        		</v-layout>
-        		<v-layout row wrap class="country_info">
-        			<v-flex md6>Название</v-flex>
-        			<v-flex md6>{{$vine->name_rus}} {{$vine->name_en ? ','.$vine->name_en : ''}}</v-flex>
-        		</v-layout>
-        		<v-layout row wrap class="info-text">
-        			<v-flex md6>Страна</v-flex>
-        			<v-flex md6>{{$vine->country}}</v-flex>
-        		</v-layout>
-        		 <v-layout row wrap class="country_info">
-        			<v-flex md6>Цвет</v-flex>
-        			<v-flex md6>{{$vine->color}}</v-flex>
-        		</v-layout>
-        		<v-layout row wrap class="info-text">
-        			<v-flex md6>Производитель</v-flex>
-        			<v-flex md6>{{$vine->producer}}</v-flex>
-        		</v-layout>
-        		 <v-layout row wrap class="country_info">
-        			<v-flex md6>Сахар</v-flex>
-        			<v-flex md6>{{$vine->sweet}}</v-flex>
-        		</v-layout>
-        		<v-layout row wrap class="info-text">
-        			<v-flex md6>Объем</v-flex>
-        			<v-flex md6>{{$vine->volume}} л</v-flex>
-        		</v-layout>
-        		<v-layout row wrap class="country_info">
-        			<v-flex md6>Год</v-flex>
-        			<v-flex md6>{{$vine->year}}</v-flex>
-        		</v-layout>
-        		<v-layout row wrap class="info-text">
-        			<v-flex md6>Крепость</v-flex>
-        			<v-flex md6>{{$vine->strength}} л</v-flex>
-        		</v-layout>
-        		<v-layout row wrap class="info-text">
-        			<v-flex md6 offset-md4 xs7 offset-xs2>
-        				<v-btn color="indigo darken-4" class="white--text" href="{{URL::previous()}}">
+        			</div>
+        		</div>
+        		<div class="row country_info">
+        			<div clas="col-md-6 col-sm-6">Название</div>
+        			<div class="col-md-6 col-sm-6">{{$vine->name_rus}} {{$vine->name_en ? ','.$vine->name_en : ''}}</div>
+        		</div>
+        		<div class="row info-text">
+        			<div class="col-md-6">Страна</div>
+        			<div class="col-md-6">{{$vine->country}}</div>
+        		</div>
+        		 <div class="row country_info">
+        			<div class="col-md-6">Цвет</div>
+        			<div class="col-md-6">{{$vine->color}}</div>
+        		</div>
+        		<div class="row info-text">
+        			<div class="col-md-6">Производитель</div>
+        			<div class="col-md-6">{{$vine->producer}}</div>
+        		</div>
+        		 <div class="row country_info">
+        			<div class="col-md-6">Сахар</div>
+        			<div class="col-md-6">{{$vine->sweet}}</div>
+        		</div>
+        		<div class="row info-text">
+        			<div class="col-md-6">Объем</div>
+        			<div class="col-md-6">{{$vine->volume}} л</div>
+        		</div>
+        		<div class="row country_info">
+        			<div class="col-md-6">Год</div>
+        			<div class="col-md-6">{{$vine->year}}</div>
+        		</div>
+        		<div class="row info-text">
+        			<div class="col-md-6">Крепость</div>
+        			<div class="col-md-6">{{$vine->strength}} л</div>
+        		</div>
+        		<div class="row info-text">
+        			<div class="col-md6 offset-md-4 col-xs-7 offset-xs2">
+        				<a class="btn btn-primary" href="{{URL::previous()}}">
         					<i class="fas fa-backward"></i> К списку Вин
-        				</v-btn>
-        			</v-flex>
-        		</v-layout>
-        	</v-flex>
-        </v-layout>
-    </v-container>
+        				</a>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+    </div>
 @endif
 @endsection

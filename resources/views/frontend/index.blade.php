@@ -5,37 +5,37 @@
 
 {{-- @include('frontend.partials.loader') --}}
 @section('content')
-    @include('frontend.partials.slider')
-    @include('frontend.partials.countOfFilter')
-<div id="vines">
+@include('frontend.partials.slider')
+@include('frontend.partials.countOfFilter')
+<div>
     @include('frontend.partials.loader')
-    <v-container>
+    <div class="container">
         @include('frontend.partials.searchWines')
-        <v-layout row wrap>
-            <v-flex md2 my-2>
+        <div class="row">
+            <div class="col-lg-3 my-2">
                 @include('frontend.partials.form_filter')
-            </v-flex>
-            <v-flex md10>
+            </div>
+            <div class="col-lg-9">
                 @include('frontend.partials.listVines')
-            </v-flex>
-        </v-layout>
-    </v-container>
+            </div>
+        </div>
+    </div>
 
 </div>
 @endsection
 @section('scripts')
-    <script type="text/javascript">
-        var maxPriceEnable = {{$max_price}};
-        var minPriceEnable = {{$min_price}};
-        var current_minPrice = {{isset($params['price_min']) ? $params['price_min'] : 0}};
-        var currentMaxPrice = {{isset($params['price_max']) ? $params['price_max'] : $max_price}};
+<script type="text/javascript">
+    var maxPriceEnable = {{ $max_price }};
+    var minPriceEnable = {{ $min_price }};
+    var current_minPrice = {{ isset($params['price_min']) ? $params['price_min'] : 0 }};
+    var currentMaxPrice = {{ isset($params['price_max']) ? $params['price_max'] : $max_price }};
 
-        var maxVolumeEnable = {{$volume_max}};
-        var minVolumeEnable = 0;
-        var current_minVolume = {{isset($params['volume_min']) ? $params['volume_min'] : 0}};
-        var current_maxVolume = {{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}};
-    </script>
-    <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
-    <script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
-    <script type="text/javascript" src="{{URL::asset('js/autocompleteWine.js')}}"></script>
+    var maxVolumeEnable = {{ $volume_max }};
+    var minVolumeEnable = 0;
+    var current_minVolume = {{ isset($params['volume_min']) ? $params['volume_min'] : 0 }};
+    var current_maxVolume = {{ isset($params['volume_max']) ? $params['volume_max'] : $volume_max }};
+</script>
+<script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/autocompleteWine.js')}}"></script>
 @endsection

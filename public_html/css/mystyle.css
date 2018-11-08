@@ -1,9 +1,12 @@
+body {
+    background-color: #f8f8f8;
+}
 #bar {
     color: rgb(255, 131, 0)
 }
 .contact-block{
     background-color: #212121;
-    color: white;   
+    color: white;
     padding: 0.6rem;
     font-size: 1.2em;
     border-bottom: 1px solid #635d5d;
@@ -44,6 +47,7 @@
     text-align: center;
     line-height: 1.5;
     overflow: hidden;
+    height: 4rem;
 }
 .info-wine {
     color: rgb(56, 11, 125);
@@ -52,51 +56,18 @@
     border-bottom: 1px solid rgb(150, 150, 150);
     border-top: 1px solid rgb(150, 150, 150);
     font-weight: bold;
+    padding-left:1rem;
 }
 .view_button {
     text-align: center;
+    margin: 1rem;
 }
-.pagination {
-    display: -ms-flexbox;
-    display: flex;
-    padding-left: 0;
-    list-style: none;
-    border-radius: .25rem;
-}
-.page-item.disabled .page-link {
-    color: #6c757d;
-    pointer-events: none;
-    cursor: auto;
-    background-color: #fff;
-    border-color: #dee2e6;
-}
-.page-item.active .page-link {
-    z-index: 1;
-    color: #fff;
-    background-color: #ff7715;
-}
-.page-link {
-    position: relative;
-    display: block;
-    padding: .5rem .75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: black;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    text-decoration: none;
-}
-.page-item:last-child .page-link {
-    border-top-right-radius: .25rem;
-    border-bottom-right-radius: .25rem;
-}
+
 .filter-groups {
     font-size: 1.4em;
     line-height: 1.5;
 }
-#vines {
-    background-color: #f8f8f8;
-}
+
 .filter-block {
     border-radius: 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -121,12 +92,9 @@
 .slider_elements {
     margin-bottom: 1rem;
 }
-div.slider_elements .ui-slider-range {
-    background-color: red;
-}
-.ui-widget-content .ui-state-default { 
-    background: #b71c1c;
-    border-radius: 1rem;
+.slider
+{
+    width: 100% !important;
 }
 .ajax-loader {
     position: fixed;
@@ -153,20 +121,11 @@ div.slider_elements .ui-slider-range {
     text-decoration: none;
     color: black;
 }
-#wine_name {
-    width: 100%;
-    height: 3rem;
-    padding: 2px 2px;
-    box-sizing: border-box;
-    border: 1px solid #dadada;
-    border-radius: 4px;
-    background-color: white;
-    margin-top: 0.5rem;
-}
 .price {
     font-size: 1.3em;
     text-align: center;
     font-weight: bold;
     color: black;
     line-height: 1.5;
+    height: 1.5rem;
 }

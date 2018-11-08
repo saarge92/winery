@@ -9,16 +9,19 @@ use App\Traits\producerTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class ProducerController extends Controller {
+class ProducerController extends Controller
+{
 	use producerTrait;
 	public function getProducers() {
 		$producers = producer::orderby('name', 'asc')->paginate(4);
 		return view('admin.producers', ['producers' => $producers]);
 	}
-	public function startCreateProducer() {
+	public function startCreateProducer()
+	{
 		return view('admin.createProducer');
 	}
-	public function createProducer(ProducerRequest $request) {
+	public function createProducer(ProducerRequest $request)
+	{
 		if ($request->validated()) {
 			$result = $this->addProducer($request);
 			$result == true ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
@@ -27,11 +30,13 @@ class ProducerController extends Controller {
 		}
 		return redirect()->back();
 	}
-	public function startEdit(Request $request, $id) {
+	public function startEdit(Request $request, $id)
+	{
 		$producer = producer::find($id);
 		return view('admin.editProducer', ['producer' => $producer]);
 	}
-	public function editProducer(ProducerRequest $request, $id) {
+	public function editProducer(ProducerRequest $request, $id)
+	{
 		if ($request->validated()) {
 			$result = $this->editProducerPost($request, $id);
 			$result == true ? Session::flash('success', 'Произодитель ' . $request->get('name_producer') . ' успешно обновлено')
@@ -40,7 +45,8 @@ class ProducerController extends Controller {
 		}
 		return redirect('countries');
 	}
-	public function dropProducer(Request $req, $id) {
+	public function dropProducer(Request $req, $id)
+	{
 		$this->deleteProducer($id) == true ? Session::flash('success', 'Производитель успешно успешно')
 		: Session::flash('error', 'Ошибка при удалении');
 		return redirect()->back();

@@ -1,19 +1,19 @@
-<v-layout row wrap>
-    <v-flex xs12 sm12 md12>
+<div class="row mt-2">
+    <div class="col-md-12">
         <form class="" action="{{route('search')}}" method="GET">
-            <v-layout row>
-                <v-flex xs10 offset-md2 md10 sm10>
-                    <input type="text" name="wine_name" id="wine_name" label="Поиск вина" class="input">
+            <div class="row">
+                <div class="col-10 col-md-11 offset-md-0 col-lg-8 offset-lg-3">
+                    <input type="text" name="wine_name" id="wine_name" label="Поиск вина" class="form-control">
                     <div id="wineList">
                         <ul></ul>
                     </div>
-                </v-flex>
-                <v-flex xs2 md1 sm2>
-                    <v-btn type="submit" color="red accent-4" fab small class="white--text">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-danger">
                         <i class="fas fa-search"></i>
-                    </v-btn>
-                </v-flex>
-            </v-layout>
+                    </button>
+                </div>
+            </div>
         </form>
-    </v-flex>
-</v-layout>
+    </div>
+</div>

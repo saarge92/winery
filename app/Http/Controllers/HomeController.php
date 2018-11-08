@@ -11,9 +11,11 @@ use App\vine;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class HomeController extends Controller {
+class HomeController extends Controller
+{
 	use vineTrait;
-	public function index(Request $request) {
+	public function index(Request $request)
+	{
 		$sliders = slider::all();
 		$countries = country::all();
 		$sweets = sweet::all();
@@ -43,18 +45,21 @@ class HomeController extends Controller {
 			'volume_max' => $volume_max,
 		]);
 	}
-	public function getCountOfChoice(Request $request) {
+	public function getCountOfChoice(Request $request)
+	{
 		parse_str($request->get('params'), $filter_array);
 		$count_vines = count($this->filterVines($filter_array)->get());
 		return response()->json(['all' => $count_vines]);
 	}
-	public function autocomplete(Request $request) {
+	public function autocomplete(Request $request)
+	{
 		$name = $request->get('wine_name');
 		$some_wines = vine::where('name_rus', 'LIKE', '%' . $name . '%')
 			->orWhere('name_en', 'LIKE', '%' . $name . '%')->get();
 		return response()->json(['wines' => $some_wines]);
 	}
-	public function getWine(Request $request, $id) {
+	public function getWine(Request $request, $id)
+	{
 		$vine = vine::where('id', $id)->get();
 		if (count($vine) > 0) {
 			$vine = $this->generateListVines($vine)[0];
@@ -62,7 +67,8 @@ class HomeController extends Controller {
 		}
 		return null;
 	}
-	public function search(Request $request) {
+	public function search(Request $request)
+	{
 		$vines = $this->searchSomeWines($request);
 		$vines_for_review = collect($this->generateListVines($vines));
 		return view('frontend.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines]);

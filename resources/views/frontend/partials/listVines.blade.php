@@ -1,9 +1,9 @@
 @if(count($vines_for_review))
 @foreach($vines_for_review->chunk(3) as $vine_chunk)
-    <v-layout row wrap>
-        @foreach($vine_chunk as $vine)
-        <v-flex xs12 md4 sm12 lg4>
-            <div class="card my-2 mx-2">
+    <div class="row" id="vines">
+        @foreach($vine_chunk as $key => $vine)
+        <div class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
+            <div class="card my-2 {{$key % 3 ==  0 ?  '' : 'mx-2' }}">
                 <div class="text-md-right text-xs-right text-sm-right">
                     <i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л
                 </div>
@@ -22,44 +22,42 @@
                     </p>
                 </div>
                 <div class="info-wine">
-                    <v-layout row wrap>
-                        <v-flex md4 class="text-md-left text-sm-left text-xs-left">
+                    <div class="row">
+                        <div class="col-md-4">
                             {{$vine->color}},
                             {{$vine->sweet}}
-                        </v-flex>
-                        <v-flex md4 class="text-md-center text-sm-senter text-xs-center">
+                        </div>
+                        <div class="col-md-4">
                             {{$vine->country}}
-                        </v-flex>
-                        <v-flex md4 class="text-md-right text-sm-right text-xs-right">
+                        </div>
+                        <div class="col-md-4">
                             {{$vine->year}} г
-                        </v-flex>
-                    </v-layout>
+                        </div>
+                    </div>
                 </div>
                 <div class="price">
                     <i class="fas fa-wine-bottle" style="color:#ec3800;"></i> {{$vine->price}} руб
-                      <i class="fas fa-wine-glass-alt"></i> {{$vine->price_cup}} руб
+                    <i class="fas fa-wine-glass-alt"></i> {{$vine->price_cup}} руб
                 </div>
                 <div class="price">
 
                 </div>
                 <div class="view_button">
-                    <v-btn href="{{route('viewWine',['id'=>$vine->id])}}" color="orange darken-3" class="white--text">
+                    <a href="{{route('viewWine',['id'=>$vine->id])}}" target="_blank" class="btn btn-warning">
                         <i class="fas fa-search-plus"></i>Посмотреть
-                    </v-btn>
+                    </a>
                 </div>
             </div>
-        </v-flex>
+        </div>
         @endforeach
-    </v-layout>
+    </div>
     @endforeach
-    <v-container>
-        <v-layout row wrap>
-            <v-flex md12>
-                {{$vines->appends($_GET)->links()}}
-            </v-flex>
+    <div class="row">
+        <div class="col-md12">
+            {{$vines->appends($_GET)->links()}}
+        </div>
 
-        </v-layout>
-    </v-container>
+    </div>
 
     @else
     <p>Вина отсутсвуют по заданным критериям</p>

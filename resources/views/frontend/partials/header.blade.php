@@ -1,37 +1,16 @@
-<v-navigation-drawer app temporary v-model="sideNav">
-    <v-list>
-        <v-list-tile href="{{route('home')}}#vines" @click.native.stop="sideNav=!sideNav">
-            <v-list-tile-action>
-                <v-icon class="fas fa-wine-bottle">
-                </v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-                Вино
-            </v-list-tile-content>
-        </v-list-tile>
-    </v-list>
-</v-navigation-drawer>
-    <v-layout row wrap class=" contact-block hidden-xs-only">
-        <v-flex md2>
-            <a class="email_info" href="mailto:example@com.ru"> <i class="fas fa-envelope"></i>example@com.ru</a>
-        </v-flex>
-        <v-flex offset-md3 md2>
-            <a class="phone_info" href="tel:+7 999 999 99 99"> <i class="fas fa-phone"></i>+7 999 999 99 99</a>
-        </v-flex>
-        <v-flex offset-md2 md3>
-            <span class="location_info"> <i class="fas fa-map-marker-alt"></i>г.Астрахань ул. Красного знамени 12, 1 этаж</span>
-        </v-flex>
-    </v-layout>
-<v-toolbar color="grey darken-4" class="white--text">
-    <v-toolbar-side-icon @click.native.stop="sideNav=!sideNav" class="white--text hidden-sm-and-up">
-    </v-toolbar-side-icon>
-    <v-toolbar-title>
-        <a id="logo" href="{{route('home')}}"><span id="bar">BAR</span><span id="house">HOUSE</span></a>
-    </v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat href="{{route('home').'#vines'}}" data-scroll-time = "1.25" class="white--text">
-            <i class="fas fa-wine-bottle"></i>Вино
-        </v-btn>
-    </v-toolbar-items>
-</v-toolbar>
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{route('home')}}">BARHOUSE</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home')}}#vines"> <i class="fas fa-wine-bottle"></i> Вино</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
