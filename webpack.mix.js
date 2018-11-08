@@ -1,27 +1,36 @@
 let mix = require('laravel-mix');
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
 
-mix.js('resources/assets/js/app.js', 'public/js')
+/*For admin*/
 
 mix.styles([
-	'public/admin/css/bootstrap.min.css',
-	'public/css/fontawesome/all.min.css',
-	'public/admin/css/sb-admin.css'
-	],'public/admin/admin.css').version();
+	'public_html/admin/css/bootstrap.min.css',
+	'public_html/css/fontawesome/all.min.css',
+	'public_html/admin/css/sb-admin.css'
+],'public_html/admin/admin.css');
 
  mix.js([
- 	'public/admin/js/jquery.min.js',
- 	'public/admin/js/bootstrap.bundle.min.js',
- 	'public/admin/js/jquery.easing.min.js',
- 	'public/admin/js/sb-admin.min.js',
- ],'public/admin/admin.js').version();
+ 	'public_html/admin/js/jquery.min.js',
+ 	'public_html/admin/js/bootstrap.bundle.min.js',
+ 	'public_html/admin/js/jquery.easing.min.js',
+ 	'public_html/admin/js/sb-admin.min.js',
+],'public_html/admin/admin.js');
+
+ /*End for admin*/
+
+/*For frontend*/
+ mix.styles([
+	 'public_html/frontend/vendor/bootstrap/css/bootstrap.min.css',
+	 'public_html/frontend/css/modern-business.css',
+	 'public_html/css/fontawesome/all.min.css',
+	 'public_html/frontend/css/bootstrap.slider.min.css',
+	 'public_html/css/mystyle.css',
+ ],'public_html/frontend/frontend.css');
+
+mix.combine([
+	'public_html/frontend/vendor/jquery/jquery.min.js',
+	'public_html/frontend/vendor/bootstrap/js/bootstrap.bundle.min.js',
+	'public_html/js/fontawesome/all.min.js',
+	'public_html/frontend/js/bootstrap.slider.min.js'
+],'public_html/frontend/frontend.js');
+/*End frontend*/
