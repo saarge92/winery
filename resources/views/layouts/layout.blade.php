@@ -8,6 +8,7 @@
     <meta name="description" content="Винная карта BARHOUSE">
     <meta name="author" content="Дурдыев Сердар">
     <meta name="csrf-token" content="{{csrf_token()}}">
+    <link rel="icon" href="{{asset('icons/wine-bottle.png')}}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ elixir('frontend/frontend.css') }}">
     @yield('styles')

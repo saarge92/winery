@@ -4,6 +4,9 @@ body {
 #bar {
     color: rgb(255, 131, 0)
 }
+.nav-link{
+    color:white !important;
+}
 .contact-block{
     background-color: #212121;
     color: white;
@@ -56,7 +59,7 @@ body {
     border-bottom: 1px solid rgb(150, 150, 150);
     border-top: 1px solid rgb(150, 150, 150);
     font-weight: bold;
-    padding-left:1rem;
+    padding-left:0.4rem;
 }
 .view_button {
     text-align: center;

@@ -2,12 +2,14 @@ body {
     padding-top: 54px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
     body {
         padding-top: 56px;
     }
+    .carousel-inner{
+        height: 30rem;
+    }
 }
-
 /* .carousel-item {
   height: 50rem;
   height: auto;
@@ -17,3 +19,9 @@ body {
   -o-background-size: cover;
   background-size: cover;
 } */
+.wrapper {
+  width:100%;
+}
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+    display: block !important;
+}

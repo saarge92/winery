@@ -23,14 +23,14 @@
                 </div>
                 <div class="info-wine">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-4">
                             {{$vine->color}},
                             {{$vine->sweet}}
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-4">
                             {{$vine->country}}
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-4">
                             {{$vine->year}} г
                         </div>
                     </div>
