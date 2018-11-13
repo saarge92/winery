@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('home')}}#vines"> <i class="fas fa-wine-bottle"></i> Вино</a>
+                    <a class="nav-link" href="{{Route::currentRouteName()=='home' ? '#vines' : route('home')}}"> <i class="fas fa-wine-bottle"></i> Вино</a>
                 </li>
             </ul>
         </div>

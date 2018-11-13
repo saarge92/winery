@@ -4,14 +4,14 @@
         @foreach($vine_chunk as $key => $vine)
         <div class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
             <div class="card my-2 {{$key % 3 ==  0 ?  '' : 'mx-2' }}">
-                <div class="text-md-right text-xs-right text-sm-right">
+                <div class="text-right">
                     <i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л
                 </div>
                 <div class="img-holder">
                     @if($vine->image_src!=null)
                         <img src="{{Storage::url($vine->image_src)}}" class="">
                         @else
-                        <img src="{{Storage::url('projectFolders/unknow.png')}}">
+                        <img src="{{Storage::url('projectFolders/unknow.png')}}" class="">
                         @endif
                 </div>
                 <div class="description">
@@ -23,14 +23,14 @@
                 </div>
                 <div class="info-wine">
                     <div class="row">
-                        <div class="col-md-4 col-4">
+                        <div class="text-right">
                             {{$vine->color}},
                             {{$vine->sweet}}
                         </div>
-                        <div class="col-md-4 col-4">
+                        <div class="mx-auto">
                             {{$vine->country}}
                         </div>
-                        <div class="col-md-4 col-4">
+                        <div class="text-right">
                             {{$vine->year}} г
                         </div>
                     </div>

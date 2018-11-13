@@ -48,7 +48,8 @@ trait vineTrait
     public function generateListVines($vines)
     {
         $vines_for_review = array();
-        foreach ($vines as $vine) {
+        foreach ($vines as $vine)
+        {
             $row['id'] = $vine->id;
             $row['name_rus'] = $vine->name_rus;
             $row['name_en'] = $vine->name_en;
@@ -76,11 +77,13 @@ trait vineTrait
         $country_select = isset($params['country']) ? $params['country'] : [];
         $color_select = isset($params['color']) ? $params['color'] : [];
         $sweet_select = isset($params['sweet']) ? $params['sweet'] : [];
-        $year_select = isset($params['years']) ? $params['years'] : [];
         $price_min = isset($params['price_min']) ? $params['price_min'] : null;
         $price_max = isset($params['price_max']) ? $params['price_max'] : null;
-        $volume_min = isset($params['volume_min']) ? $params['volume_min'] :null;
-        $volume_max = isset($params['volume_max']) ? $params['volume_max'] : null;
+        $type_of_wine = isset($params['type_of_wine']) ? $params['type_of_wine'] : [];
+        if(!empty($type_of_wine))
+        {
+            $vines = $vines->where(['id_type'=>$type_of_wine]);
+        }
         if (!empty($country_select)) {
             $vines = $vines->whereIn('country_id', $country_select);
         }

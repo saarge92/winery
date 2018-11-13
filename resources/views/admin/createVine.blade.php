@@ -115,11 +115,20 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <label>Тип вина</label>
+                <select class="form-control" name="type_wine">
+                    @foreach($types_for_wines as $type_w)
+                        <option value="{{$type_w->id}}">{{$type_w->name}}</option>
+                    @endforeach
+                    <option value="" selected>Общий</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label>Содержание вина (необязательно)</label>
                 <textarea class="form-control" name="sort_contain"
                           placeholder="Например Шардоне 80%" value="{{old('sort_contain')}}">
-		</textarea>
+		        </textarea>
             </div>
             {{csrf_field()}}
             <button type="submit" class="text-white btn btn-danger btn-block">

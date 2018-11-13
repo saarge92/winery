@@ -70,6 +70,7 @@ trait adminVineTrait
         $vine->color_id = $request->get('color');
         $vine->sweet_id = $request->get('sweet');
         $vine->producer_id = $request->get('producer');
+        $vine->id_type = $request->get('type_wine');
         return $vine;
     }
 

@@ -8,6 +8,7 @@ use App\slider;
 use App\sweet;
 use App\Traits\vineTrait;
 use App\vine;
+use App\type_of_wine;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -27,8 +28,7 @@ class HomeController extends Controller
 		$vines = $vines->paginate(4);
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
-		$volume_min = vine::min('volume');
-		$volume_max = vine::max('volume');
+		$types_for_wines = type_of_wine::all();
 		//Generate array for review
 		$vines_for_review = $this->generateListVines($vines);
 		return view('frontend.index', ['sliders' => $sliders,
@@ -40,6 +40,7 @@ class HomeController extends Controller
 			'params' => $request->all(),
 			'max_price' => $max_price,
 			'min_price' => $min_price,
+			'type_of_wines' => $types_for_wines
 		]);
 	}
 	public function getCountOfChoice(Request $request)

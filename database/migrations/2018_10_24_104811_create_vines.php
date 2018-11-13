@@ -36,6 +36,7 @@ class CreateVines extends Migration
             $table->integer('producer_id')->unsigned()->nullable();
             $table->string('image_src');
             $table->boolean('is_active')->default(true);
+            $table->integer('id_type')->nullable();
             $table->timestamps();
         });
     }

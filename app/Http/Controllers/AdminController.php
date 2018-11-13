@@ -10,6 +10,7 @@ use App\sweet;
 use App\Traits\adminVineTrait;
 use App\Traits\vineTrait;
 use App\vine;
+use App\type_of_wine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -36,10 +37,12 @@ class AdminController extends Controller
 		$colors = color::all();
 		$producers = producer::all();
 		$sweets = sweet::all();
+		$types_for_wines = type_of_wine::all();
 		return view('admin.createVine', ['countries' => $countries,
 			'colors' => $colors,
 			'producers' => $producers,
 			'sweets' => $sweets,
+			'types_for_wines' => $types_for_wines
 		]);
 	}
 

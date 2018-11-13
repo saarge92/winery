@@ -69,13 +69,13 @@
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_sweet">
                         @if(isset($params['sweet_visible']))
-                            @if($params['sweet_visible']== 1)
-                                <i class="fas fa-minus" id="sweet_icon"></i>
-                                @elseif ($params['sweet_visible']== 0)
-                                    <i class="fas fa-plus" id="sweet_icon"></i>
-                            @endif
-                            @else
-                            <i class="fas fa-plus" id="sweet_icon"></i>
+                        @if($params['sweet_visible']== 1)
+                        <i class="fas fa-minus" id="sweet_icon"></i>
+                        @elseif ($params['sweet_visible']== 0)
+                        <i class="fas fa-plus" id="sweet_icon"></i>
+                        @endif
+                        @else
+                        <i class="fas fa-plus" id="sweet_icon"></i>
                         @endif
                         Сахар
                     </div>
@@ -86,6 +86,11 @@
                 @foreach ($sweets as $sweet)
                 <input type="checkbox" name="sweet[]" class="filter_checked" value="{{$sweet->id}}" {{in_array($sweet->id,isset($params['sweet'])?$params['sweet'] : []) ? 'checked' : ''}}>
                 <label for="{{$sweet->id}}">{{$sweet->name}}</label> <br>
+                @endforeach
+            </div>
+            <div>
+                @foreach ($type_of_wines as $type_w)
+                <a href="{{route('home')}}?type_of_wine={{$type_w->id}}#vines" class="especial_wines">{{$type_w->name}}</a>
                 @endforeach
             </div>
             <div style="text-align:center;padding:0.5rem;">
