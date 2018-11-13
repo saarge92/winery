@@ -37,12 +37,9 @@ class HomeController extends Controller
 			'vines_for_review' => collect($vines_for_review),
 			'colors' => $colors,
 			'sweets' => $sweets,
-			'year_distincts' => $year_distincts,
 			'params' => $request->all(),
 			'max_price' => $max_price,
 			'min_price' => $min_price,
-			'volume_min' => $volume_min,
-			'volume_max' => $volume_max,
 		]);
 	}
 	public function getCountOfChoice(Request $request)

@@ -21,21 +21,20 @@
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_country">
                         @if(isset($params['country_visible']))
-                            @if($params['country_visible']== 1)
-                                <i class="fas fa-minus" id="country_icon"></i>
-                            @elseif ($params['country_visible']== 0)
-                                <i class="fas fa-plus" id="country_icon"></i>
-                            @endif
+                        @if($params['country_visible']== 1)
+                        <i class="fas fa-minus" id="country_icon"></i>
+                        @elseif ($params['country_visible']== 0)
+                        <i class="fas fa-plus" id="country_icon"></i>
+                        @endif
                         @else
-                            <i class="fas fa-plus" id="country_icon"></i>
+                        <i class="fas fa-plus" id="country_icon"></i>
                         @endif
                         Страны
                     </div>
                 </div>
             </div>
 
-            <div style="display: {{isset($params['country_visible']) ? ($params['country_visible'] == '1' ? 'block' : 'none') : 'none'}}"
-                id="country_block">
+            <div style="display: {{isset($params['country_visible']) ? ($params['country_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="country_block">
                 @foreach ($countries as $country)
                 <input type="checkbox" name="country[]" class="filter_checked" value="{{$country->id}}" {{in_array($country->id, isset($params['country']) ? $params['country'] : []) ? 'checked' : ''}}>
                 <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label> <br>
@@ -46,21 +45,20 @@
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_color">
                         @if(isset($params['color_visible']))
-                            @if($params['color_visible']== 1)
-                                <i class="fas fa-minus" id="color_icon"></i>
-                            @elseif ($params['color_visible']== 0)
-                                <i class="fas fa-plus" id="color_icon"></i>
-                            @endif
+                        @if($params['color_visible']== 1)
+                        <i class="fas fa-minus" id="color_icon"></i>
+                        @elseif ($params['color_visible']== 0)
+                        <i class="fas fa-plus" id="color_icon"></i>
+                        @endif
                         @else
-                            <i class="fas fa-plus" id="color_icon"></i>
+                        <i class="fas fa-plus" id="color_icon"></i>
                         @endif
                         Цвет
                     </div>
                 </div>
             </div>
 
-            <div style="display: {{isset($params['color_visible']) ? ($params['color_visible'] == '1' ? 'block' : 'none') : 'none'}}"
-                id="color_block">
+            <div style="display: {{isset($params['color_visible']) ? ($params['color_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="color_block">
                 @foreach ($colors as $color)
                 <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked" {{in_array($color->id,isset($params['color']) ? $params['color'] : []) ? 'checked' : ''}}>
                 <label for="{{$color->id}}">{{$color->name}}</label> <br>
@@ -73,58 +71,27 @@
                         @if(isset($params['sweet_visible']))
                             @if($params['sweet_visible']== 1)
                                 <i class="fas fa-minus" id="sweet_icon"></i>
-                            @elseif ($params['sweet_visible']== 0)
-                                <i class="fas fa-plus" id="sweet_icon"></i>
+                                @elseif ($params['sweet_visible']== 0)
+                                    <i class="fas fa-plus" id="sweet_icon"></i>
                             @endif
-                        @else
+                            @else
                             <i class="fas fa-plus" id="sweet_icon"></i>
                         @endif
-                        Сладость
+                        Сахар
                     </div>
                 </div>
             </div>
 
-            <div style="display: {{isset($params['sweet_visible']) ? ($params['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}"
-                id="sweet_block">
+            <div style="display: {{isset($params['sweet_visible']) ? ($params['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="sweet_block">
                 @foreach ($sweets as $sweet)
                 <input type="checkbox" name="sweet[]" class="filter_checked" value="{{$sweet->id}}" {{in_array($sweet->id,isset($params['sweet'])?$params['sweet'] : []) ? 'checked' : ''}}>
                 <label for="{{$sweet->id}}">{{$sweet->name}}</label> <br>
                 @endforeach
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="param-holder" id="toogle_year">
-                        @if(isset($params['year_visible']))
-                            @if($params['year_visible']== 1)
-                                <i class="fas fa-minus" id="year_icon"></i>
-                            @elseif ($params['year_visible']== 0)
-                                <i class="fas fa-plus" id="year_icon"></i>
-                            @endif
-                        @else
-                            <i class="fas fa-plus" id="year_icon"></i>
-                        @endif
-                        Год
-                    </div>
-                </div>
-            </div>
-            <div style="display: {{isset($params['year_visible']) ? ($params['year_visible'] == '1' ? 'block' : 'none') : 'none'}}"
-                id="year_block">
-                @foreach ($year_distincts as $yd)
-                <input type="checkbox" name="years[]" value="{{$yd->year}}" class="filter_checked" {{in_array($yd->year,isset($params['years']) ? $params['years'] : []) ? 'checked' : ''}}>
-                <label>{{$yd->year}}</label> <br>
-                @endforeach
-            </div>
-            <div>
-                Мин.объем
-                <input type="number" class="form-control filter_checked" id="volume_min" name="volume_min" value="{{isset($params['volume_min']) ? $params['volume_min'] : 0}}">
-                Макс.объем
-                <input type="number" class="form-control filter_checked" id="volume_max" name="volume_max" value="{{isset($params['volume_max']) ? $params['volume_max'] : $volume_max}}">
-                <div id="volume_slider" class="slider_elements"></div>
-            </div>
             <div style="text-align:center;padding:0.5rem;">
                 <button class="btn btn-danger" type="submit">
                     Применить
-                    </btn>
+                </button>
             </div>
         </div>
         <input type="hidden" name="country_visible" id="country_visible" value="{{isset($params['country_visible']) ? $params['country_visible'] : 0}}">

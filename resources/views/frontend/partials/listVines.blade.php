@@ -36,11 +36,11 @@
                     </div>
                 </div>
                 <div class="price">
-                    <i class="fas fa-wine-bottle" style="color:#ec3800;"></i> {{$vine->price}} руб
-                    <i class="fas fa-wine-glass-alt"></i> {{$vine->price_cup}} руб
+                    Цена за бутылку {{$vine->price}} <i class="fas fa-ruble-sign"></i>
                 </div>
-                <div class="price">
 
+                <div class="price">
+                    Цена за бокал : {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
                 </div>
                 <div class="view_button">
                     <a href="{{route('viewWine',['id'=>$vine->id])}}" target="_blank" class="btn btn-warning">

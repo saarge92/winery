@@ -22,31 +22,32 @@
 </head>
 
 <body id="page-top">
-    @include('admin.partials.messages')
-    @include('admin.partials.header')
-    <div id="wrapper">
-        @include('admin.partials.sidebar')
-        <div class="content-wrapper" id="main_content">
-            <div class="container-fluid mt-2">
-                @include('admin.partials.errors')
-                @yield('content')
-            </div>
+@include('admin.partials.messages')
+@include('admin.partials.header')
+<div id="wrapper">
+    @include('admin.partials.sidebar')
+    <div class="content-wrapper" id="main_content">
+        <div class="container-fluid mt-2">
+            @include('admin.partials.errors')
+            @yield('content')
         </div>
     </div>
+</div>
 
-    @include('admin.partials.logout')
+@include('admin.partials.logout')
 
-    <script src="{{URL::asset('admin/js/jquery.min.js')}}"></script>
-    <script src="{{URL::asset('admin/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{URL::asset('admin/js/jquery.min.js')}}"></script>
+<script src="{{URL::asset('admin/js/bootstrap.bundle.min.js')}}"></script>
 
-    <script src="{{URL::asset('admin/js/jquery.easing.min.js')}}"></script>
+<script src="{{URL::asset('admin/js/jquery.easing.min.js')}}"></script>
 
-    <script src="{{URL::asset('admin/js/sb-admin.min.js')}}"></script>
+<script src="{{URL::asset('admin/js/sb-admin.min.js')}}"></script>
 
-    <script src="{{URL::asset('js/fontawesome/all.min.js')}}"></script>
-    <script src="{{URL::asset('js/autocompleteWine.js')}}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
-    @yield('scripts')
+<script src="{{URL::asset('js/fontawesome/all.min.js')}}"></script>
+<script src="{{URL::asset('js/autocompleteWine.js')}}"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
+@yield('scripts')
 </body>
 
 </html>

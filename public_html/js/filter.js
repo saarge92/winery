@@ -71,18 +71,3 @@ $('#toggle_sweet').click(() => {
         $('#sweet_icon').addClass('fas fa-plus');
     }
 });
-
-$('#toogle_year').click(() => {
-    const country_value = $('#year_visible').val();
-    if (country_value == 0) {
-        $('#year_visible').val(1);
-        $('#year_block').css('display', 'block');
-        $('#year_icon').removeClass('fas fa-plus');
-        $('#year_icon').addClass('fas fa-minus');
-    } else {
-        $('#year_visible').val(0);
-        $('#year_block').css('display', 'none');
-        $('#year_icon').removeClass('fas fa-minus');
-        $('#year_icon').addClass('fas fa-plus');
-    }
-});
