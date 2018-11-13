@@ -61,7 +61,7 @@ body {
     border-bottom: 1px solid rgb(150, 150, 150);
     border-top: 1px solid rgb(150, 150, 150);
     font-weight: bold;
-    padding:7%;
+    padding: 1rem;
 }
 .view_button {
     text-align: center;
@@ -99,7 +99,8 @@ body {
 }
 .slider
 {
-    width: 100% !important;
+    width: 92% !important;
+    margin-left: 4%;
 }
 .ajax-loader {
     position: fixed;
@@ -133,6 +134,7 @@ body {
 .especial_wines{
     color: black;
     font-style: italic;
+    margin-left: 1%;
 }
 .especial_wines:hover{
     cursor: pointer;

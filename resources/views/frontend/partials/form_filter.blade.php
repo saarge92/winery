@@ -90,7 +90,9 @@
             </div>
             <div>
                 @foreach ($type_of_wines as $type_w)
-                <a href="{{route('home')}}?type_of_wine={{$type_w->id}}#vines" class="especial_wines">{{$type_w->name}}</a>
+                    <div>
+                        <a href="{{route('home')}}?type_of_wine={{$type_w->id}}#vines" class="especial_wines">{{$type_w->name}}</a>
+                    </div>
                 @endforeach
             </div>
             <div style="text-align:center;padding:0.5rem;">
