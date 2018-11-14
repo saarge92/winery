@@ -70,9 +70,10 @@ trait vineTrait
             $row['color'] = $this->getColorNameById($vine->color_id);
             $row['sweet'] = $this->getSweetNameById($vine->sweet_id);
             $row['country_en'] = $this->getCountryNameEnById($vine->country_id);
-            $row['status'] = $vine->is_active;
+            $row['is_active'] = $vine->is_active;
             $row['producer'] = $this->getProducersName($vine->producer_id);
             $row['type_name'] = $this->getTypeOfWine($vine->id_type);
+            $row['region_name'] = $vine->region_name;
             $vines_for_review[] = (object)$row;
         }
         return $vines_for_review;

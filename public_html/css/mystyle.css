@@ -62,7 +62,6 @@ body {
     border-top: 1px solid #969696;
     font-weight: 700;
     padding-left: 1rem;
-    padding-right: 1rem;
     height: 2.5rem;
 }
 .view_button {
@@ -164,5 +163,8 @@ body {
     text-align: center;
     width: 36px;
     height: 36px;
-    transition: .3s;
+}
+#logo_img{
+    height: 2rem;
+    padding-bottom: .7rem;
 }

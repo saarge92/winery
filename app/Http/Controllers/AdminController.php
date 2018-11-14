@@ -64,12 +64,14 @@ class AdminController extends Controller
 		$producers = producer::all();
 		$sweets = sweet::all();
 		$vine = vine::find($id);
+		$types_for_wines = type_of_wine::all();
 		return view('admin.editVine', [
 			'vine' => $vine,
 			'countries' => $countries,
 			'colors' => $colors,
 			'producers' => $producers,
 			'sweets' => $sweets,
+			'types_for_wines' => $types_for_wines
 		]);
 	}
 

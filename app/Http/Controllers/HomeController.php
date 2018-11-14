@@ -25,7 +25,7 @@ class HomeController extends Controller
 
 		//Get Filtered Wines
 		$vines = $this->filterVines($request->all());
-		$vines = $vines->paginate(4);
+		$vines = $vines->paginate(6);
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();

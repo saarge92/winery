@@ -6,7 +6,7 @@
     @if($vine!=null)
     <div class="row">
         <div class="col col-md-6">
-            <img id="image" src="{{Storage::url($vine->image_src)}}" style="height:10rem;" />
+            <img id="image" src="{{Storage::url($vine->image_src ? $vine->image_src : 'projectFolders/unknow.png')}}" style="height:10rem;" />
             @include('admin.partials.activate_disable_vine')
         </div>
     </div>
@@ -71,7 +71,7 @@
                     <label>Сладость</label>
                     <select class="form-control" name="sweet">
                         @foreach ($sweets as $sweet)
-                        <option value="{{$sweet->id}}" {{$vine->sweet_id == $sweet->id}}>
+                        <option value="{{$sweet->id}}" {{$vine->sweet_id == $sweet->id ? 'selected' : ''}}>
                             {{$sweet->name}}
                         </option>
                         @endforeach
@@ -116,6 +116,24 @@
             </div>
         </div>
         <div class="form-group">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label>Тип вина</label>
+                    <select class="form-control" name="type_wine">
+                        @foreach($types_for_wines as $type_w)
+                        <option value="{{$type_w->id}}" {{$type_w->id == $vine->id_type ? 'selected' : ''}}>{{$type_w->name}}</option>
+                        @endforeach
+                        <option value="">Общий</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Регион</label>
+                    {{print_r($vine->region_name)}}
+                    <input type="text" name="region_name" class="form-control" value="{{$vine->region_name}}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             <label>Содержание вина (необязательно)</label>
             <textarea class="form-control" name="sort_contain" placeholder="Например Шардоне 80%" value="{{$vine->sort_contain}}">
 				</textarea>
@@ -137,6 +155,6 @@
 
 @endsection
 @section('scripts')
-    <script type="text/javascript" src="{{URL::asset('admin/js/int_input.js')}}"></script>
-    <script type="text/javascript" src="{{URL::asset('admin/js/readImage.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('admin/js/int_input.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('admin/js/readImage.js')}}"></script>
 @endsection

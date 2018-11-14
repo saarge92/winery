@@ -37,6 +37,7 @@ class CreateVines extends Migration
             $table->string('image_src');
             $table->boolean('is_active')->default(true);
             $table->integer('id_type')->nullable();
+            $table->string('region_name')->nullable();
             $table->timestamps();
         });
     }

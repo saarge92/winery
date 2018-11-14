@@ -71,6 +71,7 @@ trait adminVineTrait
         $vine->sweet_id = $request->get('sweet');
         $vine->producer_id = $request->get('producer');
         $vine->id_type = $request->get('type_wine');
+        $vine->region_name = $request->get('region_name');
         return $vine;
     }
 

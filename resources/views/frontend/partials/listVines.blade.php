@@ -23,15 +23,20 @@
                 </div>
                 <div class="info-wine">
                     <div class="row">
-                        <div class="float-left">
+                        <div class="col-lg-8 col-8">
                             {{$vine->color}},
                             {{$vine->type_name ? $vine->type_name : $vine->sweet}}
                         </div>
-                        <div class="mx-auto">
+                        <div>
                             {{$vine->country}}
                         </div>
-                        <div class="text-right">
-                            {{$vine->year}} г
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8 col-8">
+                            {{$vine->year}}г
+                        </div>
+                        <div>
+                            {{$vine->region_name}}
                         </div>
                     </div>
                 </div>
