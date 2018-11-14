@@ -21,7 +21,6 @@ class HomeController extends Controller
 		$countries = country::all();
 		$sweets = sweet::all();
 		$colors = color::all();
-		$year_distincts = vine::distinct('year')->get();
 
 		//Get Filtered Wines
 		$vines = $this->filterVines($request->all());

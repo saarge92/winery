@@ -19,7 +19,8 @@ $('.filter_checked').change((event) => {
             $(parentElement).prepend($('.filter_count'));
             $(this).parent('div').append($('.filter_count'));
         },
-        error: () => {
+        error: (error) => {
+            console.log(error);
             $('.ajax-loader').css('display', 'none');
         }
     });

@@ -6,7 +6,10 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-            <input type="text" id="wine_name" class="form-control" placeholder="Поиск вин" aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" name="wine_name" id="wine_name" class="form-control" placeholder="Поиск вин">
+            {{-- <div id="wineList">
+                <ul></ul>
+            </div> --}}
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                     <i class="fas fa-search"></i>
@@ -27,7 +30,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-                <a class="dropdown-item"href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">Выйти</a>
             </div>
             @endif

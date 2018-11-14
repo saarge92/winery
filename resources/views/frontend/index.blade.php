@@ -29,6 +29,7 @@
     var minPriceEnable = {{ $min_price }};
     var current_minPrice = {{ isset($params['price_min']) ? $params['price_min'] : 0 }};
     var currentMaxPrice = {{ isset($params['price_max']) ? $params['price_max'] : $max_price }};
+    var searchLink = 'viewWine/';
 </script>
 <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>

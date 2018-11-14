@@ -23,12 +23,32 @@ class AdminController extends Controller
 	{
 		$this->middleware('roles');
 	}
-	public function index()
+	public function index(Request $request)
 	{
-		$vines = vine::paginate(6);
-		$vines_for_review = array();
+		$countries = country::all();
+		$sweets = sweet::all();
+		$colors = color::all();
+
+		//Get Filtered Wines
+		$vines = $this->filterVines($request->all());
+		$vines = $vines->paginate(6);
+		$max_price = vine::max('price');
+		$min_price = vine::min('price');
+		$types_for_wines = type_of_wine::all();
+		//Generate array for review
 		$vines_for_review = $this->generateListVines($vines);
-		return view('admin.index', ['vines_for_review' => collect($vines_for_review), 'vines' => $vines]);
+		return view('admin.index',
+		[
+			'vines' => $vines,
+			'countries' => $countries,
+			'vines_for_review' => collect($vines_for_review),
+			'colors' => $colors,
+			'sweets' => $sweets,
+			'params' => $request->all(),
+			'max_price' => $max_price,
+			'min_price' => $min_price,
+			'type_of_wines' => $types_for_wines
+		]);
 	}
 
 	public function createVine()

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Сердар Дурдыев">
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>Админ панель</title>
 
     <link href="{{URL::asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -18,7 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{URL::asset('admin/css/sb-admin.css')}}" rel="stylesheet">
-
+    @yield('styles')
 </head>
 
 <body id="page-top">
@@ -45,8 +45,7 @@
 
 <script src="{{URL::asset('js/fontawesome/all.min.js')}}"></script>
 <script src="{{URL::asset('js/autocompleteWine.js')}}"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
+
 @yield('scripts')
 </body>
 
