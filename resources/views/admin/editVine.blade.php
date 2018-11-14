@@ -128,7 +128,6 @@
                 </div>
                 <div class="col-md-6">
                     <label>Регион</label>
-                    {{print_r($vine->region_name)}}
                     <input type="text" name="region_name" class="form-control" value="{{$vine->region_name}}">
                 </div>
             </div>
