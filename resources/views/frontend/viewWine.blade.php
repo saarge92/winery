@@ -6,7 +6,7 @@
 
 @section('content')
 @if($vine!=null)
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
         	<div class="col-lg-4 col-md-4 col-sm-6">
         		<div class="image-holder">

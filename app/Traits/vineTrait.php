@@ -7,7 +7,7 @@ use App\country;
 use App\producer;
 use App\sweet;
 use App\vine;
-
+use App\type_of_wine;
 trait vineTrait
 {
     public function getCountryNameRusById($id)
@@ -27,24 +27,29 @@ trait vineTrait
     public function getColorNameById($id)
     {
         $color = color::find($id);
-        $color != null ? $color_name = $color->name : $country_name = 'Цвет не указан';
+        $color != null ? $color_name = $color->name : $color_name = 'Цвет не указан';
         return $color_name;
     }
 
     public function getSweetNameById($id)
     {
         $sweet = sweet::find($id);
-        $sweet != null ? $sweet_name = $sweet->name : 'Сладость не указана';
+        $sweet != null ? $sweet_name = $sweet->name : $sweet_name = 'Сладость не указана';
         return $sweet_name;
     }
 
     public function getProducersName($id)
     {
         $producer = producer::find($id);
-        $producer != null ? $producer_name = $producer->name : 'Производитель не указан';
+        $producer != null ? $producer_name = $producer->name : $producer_name = 'Производитель не указан';
         return $producer_name;
     }
-
+    public function getTypeOfWine($id)
+    {
+        $type_w = type_of_wine::find($id);
+        $type_w !=null ? $type_name = $type_w->name : $type_name = null;
+        return $type_name;
+    }
     public function generateListVines($vines)
     {
         $vines_for_review = array();
@@ -67,6 +72,7 @@ trait vineTrait
             $row['country_en'] = $this->getCountryNameEnById($vine->country_id);
             $row['status'] = $vine->is_active;
             $row['producer'] = $this->getProducersName($vine->producer_id);
+            $row['type_name'] = $this->getTypeOfWine($vine->id_type);
             $vines_for_review[] = (object)$row;
         }
         return $vines_for_review;

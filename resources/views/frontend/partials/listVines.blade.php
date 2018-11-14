@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="float-left">
                             {{$vine->color}},
-                            {{$vine->sweet}}
+                            {{$vine->type_name ? $vine->type_name : $vine->sweet}}
                         </div>
                         <div class="mx-auto">
                             {{$vine->country}}
@@ -54,7 +54,7 @@
     @endforeach
     <div class="row">
         <div class="col-md12">
-            {{$vines->appends($_GET)->links()}}
+            {{$vines->appends([$_GET])->links()}}
         </div>
 
     </div>

@@ -27,6 +27,10 @@ $('.filter_checked').change((event) => {
 $('#showButton').click(() => {
     $("#filter_form").submit();
 });
+$('#close_counter').click(()=>{
+    console
+    $('.filter_count').css('display','none');
+});
 $('#toggle_country').click(() => {
     const country_value = $('#country_visible').val();
     if (country_value == 0) {
