@@ -23,7 +23,7 @@
                 </div>
                 <div class="info-wine">
                     <div class="row">
-                        <div class="text-right">
+                        <div class="float-left">
                             {{$vine->color}},
                             {{$vine->sweet}}
                         </div>

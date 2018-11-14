@@ -8,10 +8,10 @@ body {
     color:white !important;
 }
 .contact-block{
-    background-color: #212121;
+    background-color: inherit;
     color: white;
-    padding: 0.6rem;
-    font-size: 1.2em;
+    padding-top: 0.4rem;
+    font-size: 1em;
     border-bottom: 1px solid #635d5d;
 }
 .contact-block .email_info
@@ -140,4 +140,27 @@ body {
     cursor: pointer;
     text-decoration: none;
     color:black;
+}
+.mobile-contact{
+    border-top: 1px solid rgba(138, 128, 128, 0.5);
+    font-size: .75em;
+}
+.mobile-contact a{
+    color: white;
+    display: inline-block;
+    padding: 1%
+}
+.social-icons{
+    font-size: 18px;
+    display: inline-block;
+    background: #a53030;
+    color: #eee;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: .3s;
 }
