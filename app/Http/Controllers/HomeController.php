@@ -36,7 +36,6 @@ class HomeController extends Controller
 			'vines_for_review' => collect($vines_for_review),
 			'colors' => $colors,
 			'sweets' => $sweets,
-			'params' => $request->all(),
 			'max_price' => $max_price,
 			'min_price' => $min_price,
 			'type_of_wines' => $types_for_wines

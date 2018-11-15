@@ -11,19 +11,21 @@
             </div>
             <div>
                 Мин.цена
-                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number" value="{{isset($params['price_min']) ? $params['price_min'] : 0}}">
+                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number"
+                        value="{{isset($_GET['price_min']) ? $_GET['price_min'] : 0}}">
                 Макс.Цена
-                <input type="number" class="priceSlider form-control filter_checked" id="price_max" name="price_max" type="number" value="{{isset($params['price_max']) ? $params['price_max'] : $max_price}}">
+                <input type="number" class="priceSlider form-control filter_checked" id="price_max" name="price_max" type="number"
+                        value="{{isset($_GET['price_max']) ? $_GET['price_max'] : $max_price}}">
                 <div id="slider_price"></div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_country">
-                        @if(isset($params['country_visible']))
-                        @if($params['country_visible']== 1)
+                        @if(isset($_GET['country_visible']))
+                        @if($_GET['country_visible']== 1)
                         <i class="fas fa-minus" id="country_icon"></i>
-                        @elseif ($params['country_visible']== 0)
+                        @elseif ($_GET['country_visible']== 0)
                         <i class="fas fa-plus" id="country_icon"></i>
                         @endif
                         @else
@@ -34,9 +36,10 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($params['country_visible']) ? ($params['country_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="country_block">
+            <div style="display: {{isset($_GET['country_visible']) ? ($_GET['country_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="country_block">
                 @foreach ($countries as $country)
-                <input type="checkbox" name="country[]" class="filter_checked" value="{{$country->id}}" {{in_array($country->id, isset($params['country']) ? $params['country'] : []) ? 'checked' : ''}}>
+                <input type="checkbox" name="country[]" class="filter_checked" value="{{$country->id}}"
+                {{in_array($country->id, isset($_GET['country']) ? $_GET['country'] : []) ? 'checked' : ''}}>
                 <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label> <br>
                 @endforeach
             </div>
@@ -44,10 +47,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_color">
-                        @if(isset($params['color_visible']))
-                        @if($params['color_visible']== 1)
+                        @if(isset($_GET['color_visible']))
+                        @if($_GET['color_visible']== 1)
                         <i class="fas fa-minus" id="color_icon"></i>
-                        @elseif ($params['color_visible']== 0)
+                        @elseif ($_GET['color_visible']== 0)
                         <i class="fas fa-plus" id="color_icon"></i>
                         @endif
                         @else
@@ -58,9 +61,10 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($params['color_visible']) ? ($params['color_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="color_block">
+            <div style="display: {{isset($_GET['color_visible']) ? ($_GET['color_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="color_block">
                 @foreach ($colors as $color)
-                <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked" {{in_array($color->id,isset($params['color']) ? $params['color'] : []) ? 'checked' : ''}}>
+                <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked"
+                    {{in_array($color->id,isset($_GET['color']) ? $_GET['color'] : []) ? 'checked' : ''}}>
                 <label for="{{$color->id}}">{{$color->name}}</label> <br>
                 @endforeach
             </div>
@@ -68,10 +72,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_sweet">
-                        @if(isset($params['sweet_visible']))
-                        @if($params['sweet_visible']== 1)
+                        @if(isset($_GET['sweet_visible']))
+                        @if($_GET['sweet_visible']== 1)
                         <i class="fas fa-minus" id="sweet_icon"></i>
-                        @elseif ($params['sweet_visible']== 0)
+                        @elseif ($_GET['sweet_visible']== 0)
                         <i class="fas fa-plus" id="sweet_icon"></i>
                         @endif
                         @else
@@ -82,9 +86,10 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($params['sweet_visible']) ? ($params['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="sweet_block">
+            <div style="display: {{isset($_GET['sweet_visible']) ? ($_GET['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="sweet_block">
                 @foreach ($sweets as $sweet)
-                <input type="checkbox" name="sweet[]" class="filter_checked" value="{{$sweet->id}}" {{in_array($sweet->id,isset($params['sweet'])?$params['sweet'] : []) ? 'checked' : ''}}>
+                <input type="checkbox" name="sweet[]" class="filter_checked" value="{{$sweet->id}}"
+                    {{in_array($sweet->id,isset($_GET['sweet'])?$_GET['sweet'] : []) ? 'checked' : ''}}>
                 <label for="{{$sweet->id}}">{{$sweet->name}}</label> <br>
                 @endforeach
             </div>
@@ -101,9 +106,9 @@
                 </button>
             </div>
         </div>
-        <input type="hidden" name="country_visible" id="country_visible" value="{{isset($params['country_visible']) ? $params['country_visible'] : 0}}">
-        <input type="hidden" name="color_visible" id="color_visible" value="{{isset($params['color_visible']) ? $params['color_visible'] : 0}}">
-        <input type="hidden" name="sweet_visible" id="sweet_visible" value="{{isset($params['sweet_visible']) ? $params['sweet_visible'] : 0}}">
-        <input type="hidden" name="year_visible" id="year_visible" value="{{isset($params['year_visible']) ? $params['year_visible'] : 0}}">
+        <input type="hidden" name="country_visible" id="country_visible" value="{{isset($_GET['country_visible']) ? $_GET['country_visible'] : 0}}">
+        <input type="hidden" name="color_visible" id="color_visible" value="{{isset($_GET['color_visible']) ? $_GET['color_visible'] : 0}}">
+        <input type="hidden" name="sweet_visible" id="sweet_visible" value="{{isset($_GET['sweet_visible']) ? $_GET['sweet_visible'] : 0}}">
+        <input type="hidden" name="year_visible" id="year_visible" value="{{isset($_GET['year_visible']) ? $_GET['year_visible'] : 0}}">
     </form>
 </div>

@@ -44,13 +44,17 @@ class AdminController extends Controller
 			'vines_for_review' => collect($vines_for_review),
 			'colors' => $colors,
 			'sweets' => $sweets,
-			'params' => $request->all(),
 			'max_price' => $max_price,
 			'min_price' => $min_price,
 			'type_of_wines' => $types_for_wines
 		]);
 	}
-
+	public function searchAdminWines(Request $request)
+	{
+		$vines = $this->searchSomeWines($request);
+		$vines_for_review = collect($this->generateListVines($vines));
+		return view('admin.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines]);
+	}
 	public function createVine()
 	{
 		$countries = country::all();

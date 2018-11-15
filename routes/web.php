@@ -158,6 +158,10 @@ Route::group(['middleware' => 'roles'], function () {
 		'uses' => 'SweetController@dropSweet',
 		'as' => 'dropSweet',
 	]);
+	Route::get('searchAdminWines',[
+		'uses' => 'AdminController@searchAdminWines',
+		'as' => 'searchAdminWines'
+	]);
 });
 
 Route::post('getCountOfChoice', [

@@ -11,13 +11,14 @@
     <meta name="csrf-token" content="{{csrf_token()}}">
     <title>Админ панель</title>
 
-    <link href="{{URL::asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
+    {{-- <link href="{{URL::asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
     <link href="{{URL::asset('css/fontawesome/all.min.css')}}" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
-    <link href="{{URL::asset('admin/css/sb-admin.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('admin/css/sb-admin.css')}}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{elixir('admin/admin.css')}}">
     @yield('styles')
 </head>
 
@@ -36,13 +37,13 @@
 
 @include('admin.partials.logout')
 
-<script src="{{URL::asset('admin/js/jquery.min.js')}}"></script>
+{{-- <script src="{{URL::asset('admin/js/jquery.min.js')}}"></script>
 <script src="{{URL::asset('admin/js/bootstrap.bundle.min.js')}}"></script>
 
 <script src="{{URL::asset('admin/js/jquery.easing.min.js')}}"></script>
 
-<script src="{{URL::asset('admin/js/sb-admin.min.js')}}"></script>
-
+<script src="{{URL::asset('admin/js/sb-admin.min.js')}}"></script> --}}
+<script type="text/javascript" src="{{elixir('admin/admin.js')}}"></script>
 <script src="{{URL::asset('js/fontawesome/all.min.js')}}"></script>
 <script src="{{URL::asset('js/autocompleteWine.js')}}"></script>
 

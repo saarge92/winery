@@ -1,5 +1,10 @@
+html{
+    position: relative;
+    min-height: 100%;
+}
 body {
     background-color: #f8f8f8;
+    margin-bottom: 5rem;
 }
 #bar {
     color: rgb(255, 131, 0)
@@ -20,10 +25,18 @@ body {
     text-decoration: none;
     margin-left: 40px;
 }
+.search_result{
+    margin-top:2rem;
+}
 .contact-block .phone_info
 {
     color: white;
     text-decoration: none;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 .filter_count {
     display: none;
@@ -123,6 +136,7 @@ body {
     list-style: none;
     background-color: white;
     padding: 1%;
+    margin-bottom: -1rem;
 }
 #wineList ul a {
     text-decoration: none;

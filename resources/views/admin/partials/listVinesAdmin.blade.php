@@ -1,7 +1,7 @@
 @foreach ($vines_for_review->chunk(3) as $vine_chink)
 <div class="row">
     @foreach($vine_chink as $vine)
-    <div class="col-md-4 col-sm-6 mb-3 mt-2 col-sm-6 {{ $vine->is_active ? '' : 'inactive' }}">
+    <div class="col-md-4 col-sm-6  mt-2 {{ $vine->is_active ? '' : 'inactive' }}">
         <div class="card">
             @include('admin.partials.activate_disable_vine')
             <div class="image-holder">
@@ -32,7 +32,7 @@
     @endforeach
 </div>
 @endforeach
-<div class="row">
+<div class="row mt-2">
     <div class="col-md-12">
         {{$vines->appends($_GET)->links()}}
     </div>

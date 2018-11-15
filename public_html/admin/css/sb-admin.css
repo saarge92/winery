@@ -16,7 +16,21 @@ body {
 .param-holder {
     cursor: pointer;
 }
-
+#wineList {
+    display: none;
+    line-height: 1.5;
+}
+#wineList ul {
+    list-style: none;
+    padding: 0%;
+    z-index: 1000;
+    background-color: #f3f2f2;
+    margin-bottom: -1rem;
+}
+#wineList ul a {
+    text-decoration: none;
+    color: black;
+}
 .slider {
     width: 92% !important;
     margin-left: 4%;
@@ -418,9 +432,9 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .description {
-    text-align: center;
-    padding: 1rem;
-    height: 6rem;
+    text-align: justify;
+    height: 5rem;
+    overflow: hidden;
 }
 
 .button-holder {
