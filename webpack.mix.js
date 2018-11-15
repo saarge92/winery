@@ -10,9 +10,6 @@ mix.styles([
 ],'public_html/admin/admin.css');
 
  mix.js([
- 	'public_html/admin/js/jquery.min.js',
- 	'public_html/admin/js/bootstrap.bundle.min.js',
- 	'public_html/admin/js/jquery.easing.min.js',
  	'public_html/admin/js/sb-admin.min.js',
 ],'public_html/admin/admin.js');
 
