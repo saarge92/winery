@@ -31,7 +31,7 @@ $('#showButton').click(() => {
 $('#close_counter').click(()=>{
     $('.filter_count').css('display','none');
 });
-$('#toggle_country').on('touchstart mousedown',() => {
+$('#toggle_country').on('click',() => {
     const country_value = $('#country_visible').val();
     if (country_value == 0) {
         $('#country_visible').val(1);
