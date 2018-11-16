@@ -6,12 +6,11 @@ $(function() {
         range: true,
         orientation: 'horizontal',
         value: [current_minPrice, currentMaxPrice],
-    }).on('change', (event) => {
+    }).on('slideStop', (event) => {
         const _values = event.target.value;
         $("#price_min").val(_values[0]);
         $("#price_max").val(_values[1]);
-        setTimeout(() => {
-            $(".priceSlider").trigger('change');
-        }, 500);
+        $("#price_min").trigger('change');
+        $("#price_max").trigger('change');
     });
 });

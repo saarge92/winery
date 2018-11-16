@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     <h4 style="text-align: center;">
                         Фильтры
-                        <a class="btn btn-light" href="{{route('home')}}#vines">Очистить</a>
+                        <a class="btn btn-light" href="{{route('home')}}">Очистить</a>
                     </h4>
                 </div>
             </div>

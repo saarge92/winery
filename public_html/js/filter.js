@@ -29,7 +29,6 @@ $('#showButton').click(() => {
     $("#filter_form").submit();
 });
 $('#close_counter').click(()=>{
-    console
     $('.filter_count').css('display','none');
 });
 $('#toggle_country').on('touchstart mousedown',() => {
