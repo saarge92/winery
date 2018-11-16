@@ -7,6 +7,7 @@
 @section('content')
 @include('frontend.partials.slider')
 @include('frontend.partials.countOfFilter')
+@include('frontend.partials.modalWine')
 <div>
     @include('frontend.partials.loader')
     <div class="container">
@@ -34,4 +35,5 @@
 <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/autocompleteWine.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('frontend/js/modalWine.js')}}"></script>
 @endsection

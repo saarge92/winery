@@ -12,6 +12,9 @@ body {
 .nav-link{
     color:white !important;
 }
+.red_item{
+    color:red !important;
+}
 .contact-block{
     background-color: inherit;
     color: white;
@@ -75,7 +78,8 @@ body {
     border-top: 1px solid #969696;
     font-weight: 700;
     padding-left: 0.5rem;
-    height: 2.7rem;
+    height: 4rem;
+    overflow: hidden;
 }
 .view_button {
     text-align: center;
@@ -91,6 +95,8 @@ body {
     border-radius: 0.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-color: white;
+    padding-left: .5rem;
+    padding-right: .5rem;
 }
 .param-holder {
     cursor: pointer;
@@ -181,4 +187,15 @@ body {
 #logo_img{
     height: 2rem;
     padding-bottom: .7rem;
+}
+#image_wine{
+    height: 6rem;
+}
+.column{
+    text-decoration: underline;
+}
+@media (max-width:991px) {
+    .carousel-inner{
+        height: 15rem !important;
+    }
 }

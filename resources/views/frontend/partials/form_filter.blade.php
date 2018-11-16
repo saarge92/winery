@@ -96,7 +96,10 @@
             <div>
                 @foreach ($type_of_wines as $type_w)
                     <div>
-                        <a href="{{route('home')}}?type_of_wine={{$type_w->id}}#vines" class="especial_wines">{{$type_w->name}}</a>
+                        <a href="{{route('home')}}?type_of_wine={{$type_w->id}}#vines" class="especial_wines
+                            {{isset($_GET['type_of_wine']) ? ($_GET['type_of_wine'] == $type_w->id ? 'red_item' : '') : ''}}">
+                            {{$type_w->name}}
+                        </a>
                     </div>
                 @endforeach
             </div>

@@ -4,19 +4,19 @@
         @foreach($vine_chunk as $key => $vine)
         <div class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
             <div class="card my-2 {{$key % 3 ==  0 ?  '' : 'mx-2' }}">
-                <div class="text-right">
+                <div class="text-right volume">
                     <i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л
                 </div>
                 <div class="img-holder">
                     @if($vine->image_src!=null)
-                        <img src="{{Storage::url($vine->image_src)}}" class="">
+                        <img src="{{Storage::url($vine->image_src)}}" class="wine_img">
                         @else
-                        <img src="{{Storage::url('projectFolders/unknow.png')}}" class="">
+                        <img src="{{Storage::url('projectFolders/unknow.png')}}" class="wine_img">
                         @endif
                 </div>
                 <div class="description">
                     <p>
-                        {{$vine->name_rus}}
+                        <span class="name_rus">{{$vine->name_rus}}</span>
                         {{$vine->name_en ? ','.$vine->name_en : ''}},
                         {{$vine->volume / 1000}} л
                     </p>
@@ -24,33 +24,30 @@
                 <div class="info-wine">
                     <div class="row">
                         <div class="col-lg-8 col-8">
-                            {{$vine->color}},
-                            {{$vine->type_name ? $vine->type_name : $vine->sweet}}
+                            <span class="color_wine">{{$vine->color}}</span>,
+                            <span class="sweet_wine">{{$vine->type_name ? $vine->type_name : $vine->sweet}}</span>
                         </div>
-                        <div>
+                        <div class="country_wine">
                             {{$vine->country}}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-8 col-8">
-                            {{$vine->year}}г
-                        </div>
-                        <div>
-                            {{$vine->region_name}}
-                        </div>
+                    <div class="region_name">
+                        {{$vine->region_name}}
                     </div>
                 </div>
                 <div class="price">
-                    Цена за бутылку {{$vine->price}} <i class="fas fa-ruble-sign"></i>
+                    Цена за бутылку <span class="price_bottle">{{$vine->price}}</span><i class="fas fa-ruble-sign"></i>
                 </div>
 
                 <div class="price">
-                    Цена за бокал : {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
+                    Цена за бокал : <span class="price_cup">{{$vine->price_cup}}</span><i class="fas fa-ruble-sign"></i>
                 </div>
+                <input type="hidden" class="strength" value="{{$vine->strength}}" />
+                <input type="hidden" class="year" value="{{$vine->year}}">
                 <div class="view_button">
-                    <a href="{{route('viewWine',['id'=>$vine->id])}}" target="_blank" class="btn btn-warning">
+                    <button  class="btn btn-warning wine">
                         <i class="fas fa-search-plus"></i>Посмотреть
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

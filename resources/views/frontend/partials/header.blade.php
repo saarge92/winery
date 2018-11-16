@@ -1,14 +1,10 @@
 <!-- Navigation -->
 <div class="fixed-top bg-dark">
     <div class="row contact-block d-none d-xs-none d-lg-flex">
-        <div class="float-left">
-            <a href="mailto:admin@barhouse.com" class="email_info"><i class="fas fa-envelope"></i>admin
-            @barhouse.com</a>
-        </div>
-        <div class="mx-auto">
+        <div class="mr-auto">
             <a href="tel:+79999999999" class="email_info"><i class="fas fa-phone"></i>+7 999 999 99 99</a>
         </div>
-        <div class="float-right mr-4">
+        <div class="mr-4">
             <div class="email_info">
                 <i class="fas fa-map-marker-alt"></i> Астрахань, ул.Красного знамени, 12
             </div>
