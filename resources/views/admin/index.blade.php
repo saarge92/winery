@@ -42,8 +42,8 @@
 <script type="text/javascript">
     var maxPriceEnable = {{ $max_price }};
     var minPriceEnable = {{ $min_price }};
-    var current_minPrice = {{ isset($params['price_min']) ? $params['price_min'] : 0 }};
-    var currentMaxPrice = {{ isset($params['price_max']) ? $params['price_max'] : $max_price }};
+    var current_minPrice = {{ isset($_GET['price_min']) ? $_GET['price_min'] : 0 }};
+    var currentMaxPrice = {{ isset($_GET['price_max']) ? $_GET['price_max'] : $max_price }};
     var searchLink = 'editVine/';
 </script>
 <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
