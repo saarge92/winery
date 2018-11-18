@@ -137,6 +137,10 @@ body {
 #wineList {
     display: none;
     line-height: 1.5;
+    width: 100%;
+    position: absolute;
+    padding-right: 2rem;
+    z-index: 100;
 }
 #wineList ul {
     list-style: none;

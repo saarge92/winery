@@ -21,6 +21,9 @@ body {
 #wineList {
     display: none;
     line-height: 1.5;
+    position: absolute;
+    width: 100%;
+    padding-right: 2rem;
 }
 #wineList ul {
     list-style: none;

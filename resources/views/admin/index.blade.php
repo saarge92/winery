@@ -7,12 +7,12 @@
 @include('frontend.partials.countOfFilter')
 @include('frontend.partials.loader')
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-3">
         <a class="btn text-white btn-danger" href="{{route('createVine')}}">
             <i class="fas fa-plus"></i>Добавить вино
         </a>
     </div>
-    <div class="col-md-9">
+    <div class="col-lg-9">
         @include('admin.partials.searchWines')
     </div>
     {{-- <div class="col-md-4">
