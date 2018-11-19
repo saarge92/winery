@@ -5,11 +5,12 @@ let mix = require('laravel-mix');
 
 mix.styles([
 	'public_html/admin/css/bootstrap.min.css',
-	'public_html/css/fontawesome/all.min.css',
 	'public_html/admin/css/sb-admin.css'
 ],'public_html/admin/admin.css');
 
- mix.js([
+ mix.combine([
+	'public_html/admin/js/jquery.min.js',
+	'public_html/admin/js/bootstrap.bundle.min.js',
  	'public_html/admin/js/sb-admin.min.js',
 ],'public_html/admin/admin.js');
 
@@ -19,7 +20,7 @@ mix.styles([
  mix.styles([
 	 'public_html/frontend/vendor/bootstrap/css/bootstrap.min.css',
 	 'public_html/frontend/css/modern-business.css',
-	 'public_html/css/fontawesome/all.min.css',
+	 // 'public_html/css/fontawesome/all.min.css',
 	 'public_html/frontend/css/bootstrap.slider.min.css',
 	 'public_html/css/mystyle.css',
  ],'public_html/frontend/frontend.css');
@@ -27,7 +28,7 @@ mix.styles([
 mix.combine([
 	'public_html/frontend/vendor/jquery/jquery.min.js',
 	'public_html/frontend/vendor/bootstrap/js/bootstrap.bundle.min.js',
-	'public_html/js/fontawesome/all.min.js',
+	// 'public_html/js/fontawesome/all.min.js',
 	'public_html/frontend/js/bootstrap.slider.min.js'
 ],'public_html/frontend/frontend.js');
 /*End frontend*/

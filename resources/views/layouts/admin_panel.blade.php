@@ -10,6 +10,8 @@
     <meta name="author" content="Сердар Дурдыев">
     <meta name="csrf-token" content="{{csrf_token()}}">
     <title>Админ панель</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="{{elixir('admin/admin.css')}}">
     @yield('styles')
 </head>
@@ -29,10 +31,7 @@
 
 @include('admin.partials.logout')
 
-<script src="{{URL::asset('admin/js/jquery.min.js')}}"></script>
-<script src="{{URL::asset('admin/js/bootstrap.bundle.min.js')}}"></script>
 <script type="text/javascript" src="{{elixir('admin/admin.js')}}"></script>
-<script src="{{URL::asset('js/fontawesome/all.min.js')}}"></script>
 <script src="{{URL::asset('js/autocompleteWine.js')}}"></script>
 
 @yield('scripts')

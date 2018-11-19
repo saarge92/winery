@@ -36,16 +36,22 @@
                     </div>
                 </div>
                 <div class="price">
-                    Цена за бутылку <span class="price_bottle">{{$vine->price}}</span><i class="fas fa-ruble-sign"></i>
+                    Цена за бутылку
+                    <span class="price_bottle">
+                        {{$vine->price}} <i class="fas fa-ruble-sign"></i>
+                    </span>
                 </div>
 
                 <div class="price">
-                    Цена за бокал : <span class="price_cup">{{$vine->price_cup}}</span><i class="fas fa-ruble-sign"></i>
+                    Цена за бокал :
+                    <span class="price_cup">
+                        {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
+                    </span>
                 </div>
                 <input type="hidden" class="strength" value="{{$vine->strength}}" />
                 <input type="hidden" class="year" value="{{$vine->year}}">
                 <div class="view_button">
-                    <button  class="btn btn-warning wine">
+                    <button class="btn btn-warning wine">
                         <i class="fas fa-search-plus"></i>Посмотреть
                     </button>
                 </div>
