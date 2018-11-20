@@ -11,7 +11,7 @@
             </div>
             <div>
                 Мин.цена
-                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number" value="{{isset($_GET['price_min']) ? $_GET['price_min'] : 0}}">
+                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number" value="{{isset($_GET['price_min']) ? $_GET['price_min'] : $min_price}}">
                 Макс.Цена
                 <input type="number" class="priceSlider form-control filter_checked" id="price_max" name="price_max" type="number" value="{{isset($_GET['price_max']) ? $_GET['price_max'] : $max_price}}">
                 <div id="slider_price"></div>

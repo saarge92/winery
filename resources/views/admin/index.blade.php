@@ -42,7 +42,7 @@
 <script type="text/javascript">
     var maxPriceEnable = {{ $max_price }};
     var minPriceEnable = {{ $min_price }};
-    var current_minPrice = {{ isset($_GET['price_min']) ? $_GET['price_min'] : 0 }};
+    var current_minPrice = {{ isset($_GET['price_min']) ? $_GET['price_min'] : $min_price }};
     var currentMaxPrice = {{ isset($_GET['price_max']) ? $_GET['price_max'] : $max_price }};
     var searchLink = 'editVine/';
 </script>

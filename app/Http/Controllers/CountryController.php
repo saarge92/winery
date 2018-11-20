@@ -13,7 +13,7 @@ class CountryController extends Controller
     use countryTrait;
     public function getCountries()
     {
-        $country = country::orderby('name_rus', 'asc')->paginate(3);
+        $country = country::orderby('name_rus', 'asc')->paginate(6);
         return view('admin.countries', ['countries'=>$country]);
     }
     public function startCreateCountry()

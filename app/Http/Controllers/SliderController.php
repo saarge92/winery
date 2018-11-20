@@ -13,7 +13,7 @@ class SliderController extends Controller
     use sliderTrait;
     public function allSliders(Request $request)
     {
-        $sliders = slider::paginate(5);
+        $sliders = slider::paginate(6);
         return view('admin.sliders')->with('sliders', $sliders);
     }
     public function startCreateSlider()

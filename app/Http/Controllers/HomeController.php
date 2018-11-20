@@ -17,7 +17,7 @@ class HomeController extends Controller
 	use vineTrait;
 	public function index(Request $request)
 	{
-		$sliders = slider::all();
+		$sliders = slider::where(['is_active'=>true])->get();
 		$countries = country::all();
 		$sweets = sweet::all();
 		$colors = color::all();

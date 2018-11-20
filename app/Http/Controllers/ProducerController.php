@@ -13,7 +13,7 @@ class ProducerController extends Controller
 {
 	use producerTrait;
 	public function getProducers() {
-		$producers = producer::orderby('name', 'asc')->paginate(4);
+		$producers = producer::orderby('name', 'asc')->paginate(6);
 		return view('admin.producers', ['producers' => $producers]);
 	}
 	public function startCreateProducer()
