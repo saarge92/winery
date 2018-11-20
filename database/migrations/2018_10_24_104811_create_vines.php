@@ -17,11 +17,11 @@ class CreateVines extends Migration
             $table->increments('id');
             $table->string('name_rus');
             $table->string('name_en')->nullable();
-            $table->float('price', 10, 2);
-            $table->float('price_cup', 10, 2);
+            $table->float('price', 20, 2);
+            $table->float('price_cup', 20, 2);
             $table->float('volume', 10, 2);
             $table->integer('year');
-            $table->integer('strength');
+            $table->float('strength',10,2);
             $table->text('sort_contain')->nullable();
 
             $table->integer('country_id')->unsigned()->nullable();

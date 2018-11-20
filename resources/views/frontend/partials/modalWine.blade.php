@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="">
                         <img id="image_wine" src="">
                     </div>
                     <div class="col-8">
@@ -54,6 +54,10 @@
                             <div class="mr-auto">
                                 <span class="column">Цена за бутылку</span>:
                                 <span id="price_bottle"></span> <i class="fas fa-ruble-sign"></i>
+                            </div>
+                            <div class="mr-auto">
+                                <span class="column">Содержание вина</span>:
+                                <span id="sort_contain"></span>
                             </div>
                         </div>
                     </div>

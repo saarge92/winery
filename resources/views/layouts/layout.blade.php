@@ -21,6 +21,7 @@
     @yield('content')
     @include('frontend.partials.footer')
     <script type="text/javascript" src="{{elixir('frontend/frontend.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
     @yield('scripts')
 </body>
 

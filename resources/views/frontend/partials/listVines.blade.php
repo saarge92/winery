@@ -18,7 +18,6 @@
                     <p>
                         <span class="name_rus">{{$vine->name_rus}}</span>
                         {{$vine->name_en ? ','.$vine->name_en : ''}},
-                        {{$vine->volume / 1000}} л
                     </p>
                 </div>
                 <div class="info-wine">
@@ -49,7 +48,8 @@
                     </span>
                 </div>
                 <input type="hidden" class="strength" value="{{$vine->strength}}" />
-                <input type="hidden" class="year" value="{{$vine->year}}">
+                <input type="hidden" class="year" value="{{$vine->year}}" />
+                <input type="hidden" class="sort_contain" value="{{$vine->sort_contain}}">
                 <div class="view_button">
                     <button class="btn btn-warning wine">
                         <i class="fas fa-search-plus"></i>Посмотреть

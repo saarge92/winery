@@ -1,5 +1,8 @@
-@include('admin.partials.modal')
+{{--    @include('admin.partials.modal') --}}
 @extends('layouts.admin_panel')
+@section('title')
+    Список вин
+@endsection
 @section('styles')
 <link rel="stylesheet" href="{{URL::asset('frontend/css/bootstrap.slider.min.css')}}">
 @endsection
@@ -15,16 +18,6 @@
     <div class="col-lg-9">
         @include('admin.partials.searchWines')
     </div>
-    {{-- <div class="col-md-4">
-            <a class="btn btn-outline-secondary" href="{{route('allSweets')}}">
-    Сладость вин
-    </a>
-</div>
-<div class="col-md-4">
-    <a class="btn btn-outline-secondary" href="{{route('allColors')}}">
-        Цвета вин
-    </a>
-</div> --}}
 </div>
 <div class="row">
     <div class="col-lg-3 mt-2">

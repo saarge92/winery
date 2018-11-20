@@ -1,5 +1,7 @@
 @extends('layouts.admin_panel')
-
+@section('title')
+    Редактирование вина
+@endsection
 @section('content')
 
 <div class="container">
@@ -87,7 +89,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Крепость %</label>
-                    <input type="number" name="strength" class="decimal form-control" value="{{$vine->strength}}" required="required">
+                    <input type="text" name="strength" class="decimal form-control" value="{{$vine->strength}}" required="required">
                 </div>
             </div>
         </div>
@@ -123,7 +125,7 @@
                         @foreach($types_for_wines as $type_w)
                         <option value="{{$type_w->id}}" {{$type_w->id == $vine->id_type ? 'selected' : ''}}>{{$type_w->name}}</option>
                         @endforeach
-                        <option value="">Общий</option>
+                        <option value="" {{$type_w->id_type == null ? 'selected' : ''}}>Общий</option>
                     </select>
                 </div>
                 <div class="col-md-6">
@@ -134,8 +136,8 @@
         </div>
         <div class="form-group">
             <label>Содержание вина (необязательно)</label>
-            <textarea class="form-control" name="sort_contain" placeholder="Например Шардоне 80%" value="{{$vine->sort_contain}}">
-				</textarea>
+            <textarea wrap="soft" class="form-control" name="sort_contain" placeholder="Например Шардоне 80%">{{$vine->sort_contain}}
+			</textarea>
         </div>
         <input type="hidden" name="id" value="{{$vine->id}}">
         {{csrf_field()}}

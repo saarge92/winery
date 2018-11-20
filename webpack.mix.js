@@ -20,7 +20,6 @@ mix.styles([
  mix.styles([
 	 'public_html/frontend/vendor/bootstrap/css/bootstrap.min.css',
 	 'public_html/frontend/css/modern-business.css',
-	 // 'public_html/css/fontawesome/all.min.css',
 	 'public_html/frontend/css/bootstrap.slider.min.css',
 	 'public_html/css/mystyle.css',
  ],'public_html/frontend/frontend.css');
@@ -28,7 +27,6 @@ mix.styles([
 mix.combine([
 	'public_html/frontend/vendor/jquery/jquery.min.js',
 	'public_html/frontend/vendor/bootstrap/js/bootstrap.bundle.min.js',
-	// 'public_html/js/fontawesome/all.min.js',
 	'public_html/frontend/js/bootstrap.slider.min.js'
 ],'public_html/frontend/frontend.js');
 /*End frontend*/

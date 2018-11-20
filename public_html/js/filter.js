@@ -75,3 +75,12 @@ $('#toggle_sweet').click(() => {
         $('#sweet_icon').addClass('fas fa-plus');
     }
 });
+$("#clear-btn").click((event)=>{
+    event.preventDefault();
+    console.log(window.location);
+    if(window.location.href ==  "/"){
+        location.reload();
+    }
+    //window.location = "/#vines";
+
+})

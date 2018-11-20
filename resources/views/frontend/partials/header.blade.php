@@ -2,7 +2,7 @@
 <div class="fixed-top bg-dark">
     <div class="row contact-block d-none d-xs-none d-lg-flex">
         <div class="mr-auto">
-            <a href="tel:+79999999999" class="email_info"><i class="fas fa-phone"></i>+7 999 999 99 99</a>
+            <a href="tel:456-500" class="email_info"><i class="fas fa-phone"></i>456-500</a>
         </div>
         <div class="mr-4">
             <div class="email_info">
@@ -12,7 +12,7 @@
     </div>
     <div class="navbar  navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{route('home')}}"><img id="logo_img" src="{{asset('icons/wine-bottle.png')}}" alt=""><span id="bar">BAR</span>HOUSE</a>
+            <a class="navbar-brand" href="{{route('home')}}"><img id="logo_img" src="{{asset('icons/barhouse_logo.png')}}" alt=""></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,7 +25,7 @@
                 <div class="d-block d-lg-none mobile-contact">
                     <div class="row">
                         <div class="col-12">
-                            <a href="tel:+79999999999" class=""><i class="fas fa-phone"></i>+7 999 999 99 99</a>
+                            <a href="tel:+456-500" class=""><i class="fas fa-phone"></i>456-500</a>
                             <a href="mailto:admin@barhouse.com" class=""><i class="fas fa-envelope"></i>admin
                             @barhouse.com</a>
                         </div>

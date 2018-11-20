@@ -34,7 +34,8 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['country_visible']) ? ($_GET['country_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="country_block">
+            <div style="display: {{isset($_GET['country_visible']) ? ($_GET['country_visible'] == '1' ? 'block' : 'none') : 'none'}}"
+                id="country_block" class="sub-menu">
                 @foreach ($countries as $country)
                 <input type="checkbox" name="country[]" class="filter_checked" value="{{$country->id}}" {{in_array($country->id, isset($_GET['country']) ? $_GET['country'] : []) ? 'checked' : ''}}>
                 <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label> <br>

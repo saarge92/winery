@@ -4,13 +4,13 @@ html{
 }
 body {
     background-color: #f8f8f8;
-    margin-bottom: 5rem;
-}
-#bar {
-    color: rgb(255, 131, 0)
+    /* margin-bottom: 1rem; */
 }
 .nav-link{
     color:white !important;
+}
+.sub-menu{
+    font-size: 0.75em;
 }
 .red_item{
     color:red !important;
@@ -43,7 +43,7 @@ body {
     text-decoration: none;
 }
 .footer{
-    position: absolute;
+    position: inherit;
     bottom: 0;
     width: 100%;
 }
@@ -194,12 +194,15 @@ body {
     width: 36px;
     height: 36px;
 }
+.social-icons:hover{
+    cursor: pointer;
+    color: white;
+}
 #logo_img{
     height: 2rem;
-    padding-bottom: .7rem;
 }
 #image_wine{
-    height: 6rem;
+    max-width: 7rem;
 }
 .column{
     text-decoration: underline;

@@ -17,6 +17,16 @@
             <span>Производители</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{route('allSweets')}}">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Сладость вин</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('allColors')}}">
+            <i class="fas fa-wine-bottle"></i>
+            <span>Цвет вин</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{route('allSliders')}}">
             <i class="fas fa-sliders-h"></i>
             <span>Слайдеры</span></a>

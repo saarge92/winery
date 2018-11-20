@@ -1,5 +1,7 @@
 @extends('layouts.admin_panel')
-
+@section('title')
+    Создать цвет
+@endsection
 @section('content')
 <div class="row">
     <div class="col col-md-12">

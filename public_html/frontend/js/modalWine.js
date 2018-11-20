@@ -14,6 +14,7 @@ $('.wine').on('click touchstart', function(event) {
     var price_cup = Card.find('.price_cup');
     var price_bottle = Card.find('.price_bottle');
     var volume = Card.find('.volume');
+    var sort_contain = Card.find('.sort_contain');
     $('#image_wine').attr('src', image_src.attr('src'));
     $('#name_rus').text(wine_name_rus.text());
     $('#color_wine').text(wine_color.text());
@@ -25,4 +26,5 @@ $('.wine').on('click touchstart', function(event) {
     $('#price_cup').text(price_cup.text());
     $("#price_bottle").text(price_bottle.text());
     $("#volume").text(volume.text());
+    $("#sort_contain").text(sort_contain.val());
 });

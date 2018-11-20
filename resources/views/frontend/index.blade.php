@@ -33,7 +33,6 @@
     var searchLink = 'viewWine/';
 </script>
 <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
-<script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/autocompleteWine.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('frontend/js/modalWine.js')}}"></script>
 @endsection

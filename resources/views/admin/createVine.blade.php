@@ -1,5 +1,7 @@
 @extends('layouts.admin_panel')
-
+@section('title')
+    Добавление вина
+@endsection
 @section('content')
 
 <div class="container">
@@ -127,8 +129,7 @@
         </div>
         <div class="form-group">
             <label>Содержание вина (необязательно)</label>
-            <textarea class="form-control" name="sort_contain" placeholder="Например Шардоне 80%" value="{{old('sort_contain')}}">
-		        </textarea>
+            <textarea class="form-control" name="sort_contain" placeholder="Например Шардоне 80%"></textarea>
         </div>
         {{csrf_field()}}
         <button type="submit" class="text-white btn btn-danger btn-block">
