@@ -13,7 +13,7 @@ class ColorController extends Controller
     use colorTrait;
     public function allColors()
     {
-        $colors = color::paginate(5);
+        $colors = color::orderby('priority','asc')->paginate(5);
         return view('admin.allColors')->with('colors',$colors);
     }
     public function startCreateColor()
@@ -24,7 +24,7 @@ class ColorController extends Controller
     {
         if ($request->validated()) {
             $result = $this->addColor($request);
-            $result == true ? Session::flash('success', 'Цвет  успешно '.$request->get('name_rus').' успешно обновлено')
+            $result == true ? Session::flash('success', 'Цвет успешно добавлен')
                 : Session::flash('error', 'Произошла ошибка,повторите попытку снова!');
             return redirect('allColors');
         }
@@ -39,7 +39,7 @@ class ColorController extends Controller
     {
         if ($request->validated()) {
             $result = $this->editColorPost($request, $id);
-            $result == true ? Session::flash('success', 'Цвет '.$request->get('name_color').' успешно обновлен')
+            $result == true ? Session::flash('success', 'Цвет успешно обновлен')
                 : Session::flash('error', 'Произошла ошибка!');
             return redirect('allColors');
         }

@@ -76,11 +76,6 @@ $('#toggle_sweet').click(() => {
     }
 });
 $("#clear-btn").click((event)=>{
-    event.preventDefault();
-    console.log(window.location);
-    if(window.location.href ==  "/"){
-        location.reload();
-    }
-    //window.location = "/#vines";
-
+     window.location.hash = $(event.target).attr('href');
+     window.location.reload();
 })

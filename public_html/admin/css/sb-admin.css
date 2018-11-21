@@ -24,6 +24,7 @@ body {
     position: absolute;
     width: 100%;
     padding-right: 2rem;
+    z-index: 100;
 }
 #wineList ul {
     list-style: none;

@@ -10,7 +10,7 @@
 @include('frontend.partials.modalWine')
 <div>
     @include('frontend.partials.loader')
-    <div class="container">
+    <div class="container" id="vines">
         @include('frontend.partials.searchWines')
         <div class="row">
             <div class="col-lg-3 my-2">
@@ -32,6 +32,7 @@
     var currentMaxPrice = {{ isset($_GET['price_max']) ? $_GET['price_max'] : $max_price }};
     var searchLink = 'viewWine/';
 </script>
+<script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/autocompleteWine.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('frontend/js/modalWine.js')}}"></script>

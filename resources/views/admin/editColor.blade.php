@@ -8,6 +8,10 @@
                 <label>Название</label>
                 <input type="text" name="name_color" value="{{$color->name}}" class="form-control">
             </div>
+            <div class="form-group">
+                <label>Название</label>
+                <input type="text" name="priority" value="{{$color->priority}}" class="int form-control">
+            </div>
             {{csrf_field()}}
             <div class="form-group">
                 <button type="submit" class="btn btn-success">OK</button>
@@ -16,4 +20,7 @@
         </form>
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script type="text/javascript" src="{{URL::asset('admin/js/int_input')}}"></script>
 @endsection

@@ -50,6 +50,12 @@ trait vineTrait
         $type_w !=null ? $type_name = $type_w->name : $type_name = null;
         return $type_name;
     }
+    public function getPriorityColorNumber($id_color)
+    {
+        $color = color::find($id_color);
+        $color !==null ? $priority_num = $color->priority : $priority_num = null;
+        return $priority_num;
+    }
     public function generateListVines($vines)
     {
         $vines_for_review = array();
@@ -74,9 +80,19 @@ trait vineTrait
             $row['producer'] = $this->getProducersName($vine->producer_id);
             $row['type_name'] = $this->getTypeOfWine($vine->id_type);
             $row['region_name'] = $vine->region_name;
+            $row['priority'] = $this->getPriorityColorNumber($vine->color_id);
             $vines_for_review[] = (object)$row;
         }
+        $vines_for_review = $this->sort_by_priority($vines_for_review);
         return $vines_for_review;
+    }
+    //Sorting by color priority
+    private function sort_by_priority($_vines)
+    {
+        usort($_vines, function($a,$b){
+            return $a->priority > $b->priority;
+        });
+        return $_vines;
     }
     public function filterVines($params)
     {
