@@ -30,10 +30,7 @@
 </div>
 
 @include('admin.partials.logout')
-
 <script type="text/javascript" src="{{elixir('admin/admin.js')}}"></script>
-<script src="{{URL::asset('js/autocompleteWine.js')}}"></script>
-
 @yield('scripts')
 </body>
 

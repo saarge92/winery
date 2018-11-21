@@ -12,7 +12,7 @@ trait adminVineTrait
         $new_vine = new vine();
         $new_vine = $this->initializeVine($new_vine, $request);
         $file = $request->file('image');
-        if ($file) {
+        if (isset($file)) {
             $filename = $request->get('name_rus') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
             $destination = public_path() . '/storage/wines/';
             $file->move($destination, $filename);

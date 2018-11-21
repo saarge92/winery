@@ -2,6 +2,7 @@
 @section('title')
 Слайдеры
 @endsection
+@include('admin.partials.modal')
 @section('content')
 <div class="row">
     <div class="col col-md-12">
@@ -31,7 +32,7 @@
                     <td>
                         <form action="{{route('dropSlider',['id'=>$slider->id])}}" method="post">
                             {{csrf_field()}}
-                            <button type="submit" name="button"> <i class="fas fa-times"></i> Удалить</button>
+                            <button type="submit" class="delete"> <i class="fas fa-times"></i> Удалить</button>
                         </form>
                     </td>
                 </tr>
@@ -44,4 +45,7 @@
         {{$sliders->links()}}
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script src="{{URL::asset('admin/js/forModal.js')}}"></script>
 @endsection

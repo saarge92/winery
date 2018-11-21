@@ -34,7 +34,7 @@ class CreateVines extends Migration
             //$table->foreign('sweet_id')->references('id')->on('sweets')->onDelete('set null');
 
             $table->integer('producer_id')->unsigned()->nullable();
-            $table->string('image_src');
+            $table->string('image_src')->nullable();
             $table->boolean('is_active')->default(true);
             $table->integer('id_type')->nullable();
             $table->string('region_name')->nullable();

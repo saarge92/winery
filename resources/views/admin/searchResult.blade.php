@@ -1,5 +1,5 @@
 @extends('layouts.admin_panel')
-
+@include('admin.partials.modal')
 @section('content')
     <div class="container">
         <p>Результаты поиска : {{($_GET['wine_name'])}}</p>
@@ -9,4 +9,8 @@
             <p>К сожалению, ничего не найдено</p>
         @endif
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{URL::asset('admin/js/forModal.js')}}"></script>
 @endsection

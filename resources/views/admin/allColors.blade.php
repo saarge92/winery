@@ -2,6 +2,7 @@
 @section('title')
     Цвета вин
 @endsection
+@include('admin.partials.modal')
 @section('content')
     <div class="container mt-2">
         <div class="row">
@@ -32,7 +33,7 @@
                             <td>
                                 <form action="{{route('dropColor',['id'=>$color->id])}}" method="post">
                                     {{csrf_field()}}
-                                    <button type="submit" name="button"><i class="fas fa-times"></i> Удалить</button>
+                                    <button type="submit" name="button" class="delete"><i class="fas fa-times"></i> Удалить</button>
                                 </form>
                             </td>
                         </tr>
@@ -46,4 +47,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{URL::asset('admin/js/forModal.js')}}"></script>
 @endsection

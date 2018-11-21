@@ -1,4 +1,4 @@
-{{--    @include('admin.partials.modal') --}}
+@include('admin.partials.modal')
 @extends('layouts.admin_panel')
 @section('title')
     Список вин
@@ -42,5 +42,6 @@
 <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/autocompleteWine.js')}}"></script>
+<script src="{{URL::asset('admin/js/forModal.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('frontend/js/bootstrap.slider.min.js')}}"></script>
 @endsection

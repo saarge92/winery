@@ -136,8 +136,7 @@
         </div>
         <div class="form-group">
             <label>Содержание вина (необязательно)</label>
-            <textarea wrap="soft" class="form-control" name="sort_contain" placeholder="Например Шардоне 80%">{{$vine->sort_contain}}
-			</textarea>
+            <textarea wrap="soft" class="form-control" name="sort_contain" placeholder="Например Шардоне 80%">{{$vine->sort_contain}}</textarea>
         </div>
         <input type="hidden" name="id" value="{{$vine->id}}">
         {{csrf_field()}}
