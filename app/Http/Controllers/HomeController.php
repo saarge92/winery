@@ -56,17 +56,51 @@ class HomeController extends Controller
 	}
 	public function getWine(Request $request, $id)
 	{
+		$sliders = slider::where(['is_active'=>true])->get();
+		$countries = country::all();
+		$sweets = sweet::all();
+		$colors = color::all();
+		$max_price = vine::max('price');
+		$min_price = vine::min('price');
+		$types_for_wines = type_of_wine::all();
 		$vine = vine::where('id', $id)->get();
 		if (count($vine) > 0) {
-			$vine = $this->generateListVines($vine)[0];
-			return view('frontend.viewWine', ['vine' => $vine]);
+			$vine_for_review = collect($this->generateListVines($vine))[0];
+			return view('frontend.viewWine', [
+				'vine' => $vine_for_review,
+				'sliders' => $sliders,
+				'countries' => $countries,
+				'sweets' => $sweets,
+				'colors' => $colors,
+				'max_price' => $max_price,
+				'min_price' => $min_price,
+				'type_of_wines' => $types_for_wines
+			]);
 		}
 		return null;
 	}
 	public function search(Request $request)
 	{
+		$sliders = slider::where(['is_active'=>true])->get();
+		$countries = country::all();
+		$sweets = sweet::all();
+		$colors = color::all();
+		$max_price = vine::max('price');
+		$min_price = vine::min('price');
+		$types_for_wines = type_of_wine::all();
+
 		$vines = $this->searchSomeWines($request);
 		$vines_for_review = collect($this->generateListVines($vines));
-		return view('frontend.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines]);
+		return view('frontend.searchResult', [
+			'vines_for_review' => $vines_for_review,
+			'vines' => $vines,
+			'sliders' => $sliders,
+			'countries' => $countries,
+			'sweets' => $sweets,
+			'colors' => $colors,
+			'max_price' => $max_price,
+			'min_price' => $min_price,
+			'type_of_wines' => $types_for_wines
+		]);
 	}
 }

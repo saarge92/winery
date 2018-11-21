@@ -6,7 +6,7 @@ $(function() {
         range: true,
         orientation: 'horizontal',
         value: [current_minPrice, currentMaxPrice],
-    }).on('slideStop', (event) => {
+    }).on('slideStop', function(event){
         const _values = event.target.value;
         $("#price_min").val(_values[0]);
         $("#price_max").val(_values[1]);

@@ -1,4 +1,4 @@
-$('.filter_checked').change((event) => {
+$('.filter_checked').change(function(event){
     $.ajax({
         url: '/getCountOfChoice',
         type: 'POST',
@@ -7,11 +7,11 @@ $('.filter_checked').change((event) => {
             _token: $('meta[name="csrf-token"]').attr('content'),
             params: $('#filter_form').serialize()
         },
-        beforeSend: () => {
+        beforeSend: function(){
             $('.ajax-loader').css('display', 'block');
             $('.filter_count').css('display', 'none');
         },
-        success: (message) => {
+        success: function(message){
             $('.ajax-loader').css('display', 'none');
             $('.filter_count').css('display', 'block');
             $('#count_choosen').text(message.all);
@@ -19,19 +19,19 @@ $('.filter_checked').change((event) => {
             $(parentElement).prepend($('.filter_count'));
             $(this).parent('div').append($('.filter_count'));
         },
-        error: (error) => {
+        error: function(error){
             console.log(error);
             $('.ajax-loader').css('display', 'none');
         }
     });
 });
-$('#showButton').click(() => {
+$('#showButton').click(function(){
     $("#filter_form").submit();
 });
-$('#close_counter').click(()=>{
+$('#close_counter').click(function(){
     $('.filter_count').css('display','none');
 });
-$('#toggle_country').on('click',() => {
+$('#toggle_country').on('click',function(){
     const country_value = $('#country_visible').val();
     if (country_value == 0) {
         $('#country_visible').val(1);
@@ -46,7 +46,7 @@ $('#toggle_country').on('click',() => {
     }
 });
 
-$('#toggle_color').click(() => {
+$('#toggle_color').click(function(){
     const country_value = $('#color_visible').val();
     if (country_value == 0) {
         $('#color_visible').val(1);
@@ -61,7 +61,7 @@ $('#toggle_color').click(() => {
     }
 });
 
-$('#toggle_sweet').click(() => {
+$('#toggle_sweet').click(function(){
     const country_value = $('#sweet_visible').val();
     if (country_value == 0) {
         $('#sweet_visible').val(1);
@@ -75,7 +75,7 @@ $('#toggle_sweet').click(() => {
         $('#sweet_icon').addClass('fas fa-plus');
     }
 });
-$("#clear-btn").click((event)=>{
+$("#clear-btn").click(function(event){
      window.location.hash = $(event.target).attr('href');
      window.location.reload();
 })

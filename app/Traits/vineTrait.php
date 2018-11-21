@@ -134,7 +134,7 @@ trait vineTrait
     public function searchSomeWines($request)
     {
         $vines = vine::where('name_rus','LIKE','%'.$request->get('wine_name').'%')
-        ->orWhere('name_en', 'LIKE', '%'.$request->get('wine_name').'%')->paginate(1);
+        ->orWhere('name_en', 'LIKE', '%'.$request->get('wine_name').'%')->paginate(6);
         return $vines;
     }
 }

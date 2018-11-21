@@ -1,11 +1,10 @@
 let mix = require('laravel-mix');
 
-
 /*For admin*/
 
 mix.styles([
 	'public_html/admin/css/bootstrap.min.css',
-	'public_html/admin/css/sb-admin.css'
+	'public_html/admin/css/sb-admin.css',
 ],'public_html/admin/admin.css');
 
  mix.combine([
@@ -27,6 +26,10 @@ mix.styles([
 mix.combine([
 	'public_html/frontend/vendor/jquery/jquery.min.js',
 	'public_html/frontend/vendor/bootstrap/js/bootstrap.bundle.min.js',
-	'public_html/frontend/js/bootstrap.slider.min.js'
+	'public_html/frontend/js/bootstrap.slider.min.js',
+	'public_html/js/filter.js',
+	'public_html/js/slider.js',
+	'public_html/js/autocompleteWine.js',
+	'public_html/frontend/js/modalWine.js',
 ],'public_html/frontend/frontend.js');
 /*End frontend*/

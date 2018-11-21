@@ -37,7 +37,7 @@
     var minPriceEnable = {{ $min_price }};
     var current_minPrice = {{ isset($_GET['price_min']) ? $_GET['price_min'] : $min_price }};
     var currentMaxPrice = {{ isset($_GET['price_max']) ? $_GET['price_max'] : $max_price }};
-    var searchLink = 'editVine/';
+    var searchLink = '/editVine/';
 </script>
 <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>

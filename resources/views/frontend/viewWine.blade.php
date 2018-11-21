@@ -1,70 +1,68 @@
 @extends('layouts.layout')
-
-@section('styles')
-<link rel="stylesheet" type="text/css" href={{URL::asset('css/oneWine.css')}}>
+@section('title')
+Вино
 @endsection
 
 @section('content')
-@if($vine!=null)
-<div class="container mt-5">
-	<div class="row">
-		<div class="col-lg-4 col-md-4 col-sm-6">
-			<div class="image-holder">
-				<img src="{{Storage::url($vine->image_src)}}">
-			</div>
-		</div>
-		<div class="col-lg-8 col-md-8 col-sm-6">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="price-block">
-						Цена за бутылку: {{$vine->price}} руб,
-					</div>
-					<div class="price-block">
-						Цена за бокал: {{$vine->price_cup}} руб
-					</div>
-				</div>
-			</div>
-			<div class="row country_info">
-				<div class="mr-auto">Название</div>
-				<div>{{$vine->name_rus}} {{$vine->name_en ? ','.$vine->name_en : ''}}</div>
-			</div>
-			<div class="row info-text">
-				<div class="mr-auto">Страна</div>
-				<div>{{$vine->country}}</div>
-			</div>
-			<div class="row country_info">
-				<div class="mr-auto">Цвет</div>
-				<div>{{$vine->color}}</div>
-			</div>
-			<div class="row info-text">
-				<div class="mr-auto">Производитель</div>
-				<div>{{$vine->producer}}</div>
-			</div>
-			<div class="row country_info">
-				<div class="mr-auto">Сахар</div>
-				<div>{{$vine->sweet}}</div>
-			</div>
-			<div class="row info-text">
-				<div class="mr-auto">Объем</div>
-				<div>{{$vine->volume}} л</div>
-			</div>
-			<div class="row country_info">
-				<div class="mr-auto">Год</div>
-				<div>{{$vine->year}}</div>
-			</div>
-			<div class="row info-text">
-				<div class="mr-auto">Крепость</div>
-				<div>{{$vine->strength}} %</div>
-			</div>
-			<div class="row info-text">
-				<div class="col-md6 offset-md-4 col-xs-7 offset-xs2">
-					<a class="btn btn-primary" href="{{URL::previous()}}">
-						<i class="fas fa-backward"></i> К списку Вин
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-@endif
-@endsection
+@if(count($vine)>0)
+    <div class="row my-2 mr-1">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="text-right volume">
+                    <i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л
+                </div>
+                <div class="img-holder">
+                    @if($vine->image_src!=null)
+                        <img src="{{Storage::url($vine->image_src)}}" class="wine_img">
+                        @else
+                        <img src="{{Storage::url('projectFolders/unknow.png')}}" class="wine_img">
+                        @endif
+                </div>
+                <div class="description">
+                    <p>
+                        <span class="name_rus">{{$vine->name_rus}}</span>
+                        {{$vine->name_en ? ','.$vine->name_en : ''}},
+                    </p>
+                </div>
+                <div class="info-wine">
+                    <div class="row">
+                        <div class="col-lg-8 col-8">
+                            <span class="color_wine">{{$vine->color}}</span>,
+                            <span class="sweet_wine">{{$vine->type_name ? $vine->type_name : $vine->sweet}}</span>
+                        </div>
+                        <div class="country_wine">
+                            {{$vine->country}}
+                        </div>
+                    </div>
+                    <div class="region_name">
+                        {{$vine->region_name}}
+                    </div>
+                </div>
+                <div class="price">
+                    Цена за бутылку
+                    <span class="price_bottle">
+                        {{$vine->price}} <i class="fas fa-ruble-sign"></i>
+                    </span>
+                </div>
+
+                <div class="price">
+                    Цена за бокал :
+                    <span class="price_cup">
+                        {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
+                    </span>
+                </div>
+                <input type="hidden" class="strength" value="{{$vine->strength}}" />
+                <input type="hidden" class="year" value="{{$vine->year}}" />
+                <input type="hidden" class="sort_contain" value="{{$vine->sort_contain}}">
+                <div class="view_button">
+                    <button class="btn btn-warning wine">
+                        <i class="fas fa-search-plus"></i>Посмотреть
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @else
+    <div>К сожалению, ничего не найдено</div>
+    @endif
+    @endsection

@@ -18,9 +18,20 @@
 
 <body>
     @include('frontend.partials.header')
-    @yield('content')
+    @include('frontend.main')
     @include('frontend.partials.footer')
+    <script type="text/javascript">
+        var maxPriceEnable = {{ $max_price }};
+        var minPriceEnable = {{ $min_price }};
+        var current_minPrice = {{ isset($_GET['price_min']) ? $_GET['price_min'] : $min_price }};
+        var currentMaxPrice = {{ isset($_GET['price_max']) ? $_GET['price_max'] : $max_price }};
+        var searchLink = '/viewWine/';
+    </script>
     <script type="text/javascript" src="{{elixir('frontend/frontend.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{URL::asset('js/filter.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('js/slider.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('js/autocompleteWine.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('frontend/js/modalWine.js')}}"></script> --}}
     @yield('scripts')
 </body>
 
