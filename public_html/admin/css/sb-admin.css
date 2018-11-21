@@ -427,6 +427,7 @@ body.sidebar-toggled footer.sticky-footer {
 
 .image-holder img {
     height: 10rem;
+    max-width: 100%;
 }
 
 .card {
@@ -446,4 +447,10 @@ body.sidebar-toggled footer.sticky-footer {
 .button-holder {
     text-align: center;
     padding: 0.5rem;
+}
+.filter-groups{
+    font-size: 1.25em;
+}
+.sub-menu{
+    font-size: .75em;
 }

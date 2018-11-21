@@ -28,10 +28,15 @@ trait adminVineTrait
         $editVine = vine::find($id);
         $editVine = $this->initializeVine($editVine, $request);
         $file = $request->file('image');
-        if ($file) {
-            if($editVine->image_sc != null)
+        if (isset($file))
+        {
+            if($editVine->image_src != null)
             {
-                unlink(public_path().'/storage/'.$editVine->image_src);
+                $delete_path = public_path().'/storage/'.$editVine->image_src;
+                if(file_exists($delete_path))
+                {
+                    unlink($delete_path);
+                }
             }
             $filename = $request->get('name_rus') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
             $destination = public_path() . '/storage/wines/';
@@ -47,8 +52,13 @@ trait adminVineTrait
         $deletedVine = vine::find($id);
         if($deletedVine!=null)
         {
-            if($deletedVine->image_src!=null){
-                unlink(public_path().'/storage/'.$deletedVine->image_src);
+            if($deletedVine->image_src!=null)
+            {
+                $delete_file = public_path().'/storage/'.$deletedVine->image_src;
+                if(file_exists($delete_file))
+                {
+                    unlink($delete_file);
+                }
             }
             $is_deleted = $deletedVine->delete();
             return $is_deleted;

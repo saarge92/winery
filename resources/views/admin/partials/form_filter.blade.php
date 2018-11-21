@@ -59,7 +59,8 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['color_visible']) ? ($_GET['color_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="color_block">
+            <div style="display: {{isset($_GET['color_visible']) ? ($_GET['color_visible'] == '1' ? 'block' : 'none') : 'none'}}"
+                id="color_block" class="sub-menu">
                 @foreach ($colors as $color)
                 <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked" {{in_array($color->id,isset($_GET['color']) ? $_GET['color'] : []) ? 'checked' : ''}}>
                 <label for="{{$color->id}}">{{$color->name}}</label> <br>
@@ -83,7 +84,8 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['sweet_visible']) ? ($_GET['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="sweet_block">
+            <div style="display: {{isset($_GET['sweet_visible']) ? ($_GET['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}"
+                id="sweet_block" class="sub-menu">
                 @foreach ($sweets as $sweet)
                 <input type="checkbox" name="sweet[]" class="filter_checked" value="{{$sweet->id}}" {{in_array($sweet->id,isset($_GET['sweet'])?$_GET['sweet'] : []) ? 'checked' : ''}}>
                 <label for="{{$sweet->id}}">{{$sweet->name}}</label> <br>
