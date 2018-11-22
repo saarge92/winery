@@ -84,9 +84,10 @@ body {
     border-top: 1px solid #969696;
     font-weight: 600;
     padding-left: 0.5rem;
-    height: 5rem;
+    height: 5.5rem;
     overflow: hidden;
     font-style: italic;
+    letter-spacing: 0.05em;
 }
 
 .view_button {
@@ -204,10 +205,11 @@ body {
     height: 2rem;
 }
 #image_wine{
-    max-width: 7rem;
+    width: inherit;
 }
 .column{
-    text-decoration: underline;
+    color: #b3b3b3;
+    font-weight: 400;
 }
 @media (max-width:991px) {
     .carousel-inner{
@@ -216,4 +218,14 @@ body {
 }
 .region_name{
     text-align: center;
+}
+.name-block{
+    font-size: 1.5em;
+}
+#sort_contain{
+    text-align: justify;
+    display: flex;
+}
+#img_block{
+    width: 6rem;
 }

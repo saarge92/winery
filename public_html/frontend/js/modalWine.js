@@ -27,6 +27,6 @@ $('.wine').on('click touchstart', function(event) {
     $('#price_cup').text(price_cup.text());
     $("#price_bottle").text(price_bottle.text());
     $("#volume").text(volume.text());
-    $("#sort_contain").text(sort_contain.val());
+    $("#sort_contain").append(sort_contain.val());
     $("#producer").text(producer.val());
 });

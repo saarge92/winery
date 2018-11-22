@@ -16,14 +16,19 @@
                 </div>
                 <div class="description">
                     <p>
-                        <span class="name_rus">{{$vine->name_rus}}</span>
-                        {{$vine->name_en ? ','.$vine->name_en : ''}},
+                        <span class="name_rus">
+                            {{$vine->name_rus}}
+                            {{$vine->name_en ? ','.$vine->name_en : ''}}
+                            {{','.$vine->year}} г
+                        </span>
                     </p>
                 </div>
                 <div class="info-wine">
                     <div class="text-center">
-                        {{$vine->country}}
-                        {{$vine->country_en ? ','.$vine->country_en : ''}}
+                        <span class="country_wine">
+                            {{$vine->country}}
+                            {{$vine->country_en ? ','.$vine->country_en : ''}}
+                        </span>
                     </div>
                     <div class="region_name">
                         {{$vine->region_name}}
