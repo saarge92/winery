@@ -6,7 +6,7 @@
             <a href="https://www.instagram.com/barhousecafe/" class="social-icons" target="_blank"><i class="fab fa-instagram"></i>
             </a>
         </div>
-        <p class="m-0 text-center text-white"> Астрахань &copy; BARHOSE {{date('Y')}}</p>
+        <p class="m-0 text-center text-white"> Астрахань &copy; BARHOUSE {{date('Y')}}</p>
     </div>
     <!-- /.container -->
 </footer>

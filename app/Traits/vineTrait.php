@@ -41,7 +41,7 @@ trait vineTrait
     public function getProducersName($id)
     {
         $producer = producer::find($id);
-        $producer != null ? $producer_name = $producer->name : $producer_name = 'Производитель не указан';
+        $producer != null ? $producer_name = $producer->name : $producer_name = 'Не указан';
         return $producer_name;
     }
     public function getTypeOfWine($id)

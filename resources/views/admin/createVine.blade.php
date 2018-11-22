@@ -39,6 +39,7 @@
                                 {{$producer->name}}
                             </option>
                             @endforeach
+                            <option value="" selected>Не указан</option>
                         </select>
                     </div>
                 </div>

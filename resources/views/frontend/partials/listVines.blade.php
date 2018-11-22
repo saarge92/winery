@@ -21,17 +21,16 @@
                     </p>
                 </div>
                 <div class="info-wine">
-                    <div class="row">
-                        <div class="col-lg-8 col-8">
-                            <span class="color_wine">{{$vine->color}}</span>,
-                            <span class="sweet_wine">{{$vine->type_name ? $vine->type_name : $vine->sweet}}</span>
-                        </div>
-                        <div class="country_wine">
-                            {{$vine->country}}
-                        </div>
+                    <div class="text-center">
+                        {{$vine->country}}
+                        {{$vine->country_en ? ','.$vine->country_en : ''}}
                     </div>
                     <div class="region_name">
                         {{$vine->region_name}}
+                    </div>
+                    <div class="text-center">
+                        <span class="color_wine">{{$vine->color}}</span>
+                        <span class="sweet_wine">{{$vine->sweet}}</span>
                     </div>
                 </div>
                 <div class="price">
@@ -50,6 +49,7 @@
                 <input type="hidden" class="strength" value="{{$vine->strength}}" />
                 <input type="hidden" class="year" value="{{$vine->year}}" />
                 <input type="hidden" class="sort_contain" value="{{$vine->sort_contain}}">
+                <input type="hidden" class="producer" value="{{$vine->producer}}">
                 <div class="view_button">
                     <button class="btn btn-warning wine">
                         <i class="fas fa-search-plus"></i>Посмотреть

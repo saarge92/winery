@@ -56,8 +56,12 @@
                                 <span id="price_bottle"></span> <i class="fas fa-ruble-sign"></i>
                             </div>
                             <div class="mr-auto">
-                                <span class="column">Содержание вина</span>:
+                                <span class="column">О вине</span>:
                                 <span id="sort_contain"></span>
+                            </div>
+                            <div class="mr-auto">
+                                <span class="column">Производитель</span>:
+                                <span id="producer"></span>
                             </div>
                         </div>
                     </div>

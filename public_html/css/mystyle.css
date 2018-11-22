@@ -77,16 +77,18 @@ body {
     height: 4.5rem;
 }
 .info-wine {
-    color: #380b7d;
-    font-size: 13px;
+    color: black;
+    font-size: 0.8em;
     line-height: 1.5;
     border-bottom: 1px solid #969696;
     border-top: 1px solid #969696;
-    font-weight: 700;
+    font-weight: 600;
     padding-left: 0.5rem;
-    height: 4rem;
+    height: 5rem;
     overflow: hidden;
+    font-style: italic;
 }
+
 .view_button {
     text-align: center;
     margin: 1rem;
@@ -211,4 +213,7 @@ body {
     .carousel-inner{
         height: 15rem !important;
     }
+}
+.region_name{
+    text-align: center;
 }

@@ -46,6 +46,7 @@
                                 {{$producer->name}}
                             </option>
                             @endforeach
+                            <option value="" {{$vine->producer_id == null ? 'selected' : ''}}>Не указан</option>
                         </select>
                     </div>
                 </div>
