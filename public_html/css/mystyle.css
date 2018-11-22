@@ -221,6 +221,7 @@ body {
 }
 .name-block{
     font-size: 1.5em;
+    text-align: justify;
 }
 #sort_contain{
     text-align: justify;
