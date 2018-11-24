@@ -63,8 +63,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-success mx-auto" id="ok_btn">ОК</button>
+            <div class="modal-footer text-center">
+                <div class="mr-auto ml-auto"><button type="button" data-dismiss="modal" class="btn btn-success" id="ok_btn">ОК</button></div>
             </div>
         </div>
     </div>
