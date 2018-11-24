@@ -26,8 +26,6 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="tel:+456-500" class=""><i class="fas fa-phone"></i>456-500</a>
-                            <a href="mailto:admin@barhouse.com" class=""><i class="fas fa-envelope"></i>admin
-                            @barhouse.com</a>
                         </div>
                         <div class="col-12" style="color:white;">
                             <i class="fas fa-map-marker-alt"></i> Астрахань, ул.Красного знамени, 12

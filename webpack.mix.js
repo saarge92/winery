@@ -31,5 +31,6 @@ mix.combine([
 	'public_html/js/slider.js',
 	'public_html/js/autocompleteWine.js',
 	'public_html/frontend/js/modalWine.js',
+	'public_html/frontend/js/swipe.js',
 ],'public_html/frontend/frontend.js');
 /*End frontend*/
