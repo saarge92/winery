@@ -3,9 +3,12 @@
     <div class="row">
         @foreach($vine_chunk as $key => $vine)
         <div class="col-xs-12 col-md-4 col-sm-12 col-lg-4">
-            <div class="card my-2 {{$key % 3 ==  0 ?  '' : 'mx-2' }}">
-                <div class="text-right volume">
-                    <i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л
+            <div class="card my-2">
+                <div class="card-vine-header">
+                    @if($vine->is_coravin == 1)
+                        <img src="{{asset('icons/Coravin.png')}}" alt="">
+                    @endif
+                    <span class="volume_info"><i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л </span>
                 </div>
                 <div class="img-holder">
                     @if($vine->image_src!=null)

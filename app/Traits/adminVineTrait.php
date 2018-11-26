@@ -82,6 +82,7 @@ trait adminVineTrait
         $vine->producer_id = $request->get('producer');
         $vine->id_type = $request->get('type_wine');
         $vine->region_name = $request->get('region_name');
+        $vine->is_coravin = $request->get('coravin') == 'on' ? true : false;
         return $vine;
     }
 

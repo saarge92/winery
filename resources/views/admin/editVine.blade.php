@@ -1,6 +1,6 @@
 @extends('layouts.admin_panel')
 @section('title')
-    Редактирование вина
+Редактирование вина
 @endsection
 @section('content')
 
@@ -113,7 +113,7 @@
                     <input type="number" class="int form-control" name="year" value="{{$vine->year}}">
                 </div>
                 <div class="col-md-6">
-                    <label>Изображение</label>
+                    <label>Изображение</label> <br>
                     <input type="file" onchange="readURL(this);" name="image" accept="image/x-png,image/gif,image/jpeg">
                 </div>
             </div>
@@ -136,8 +136,16 @@
             </div>
         </div>
         <div class="form-group">
-            <label>Содержание вина (необязательно)</label>
-            <textarea wrap="soft" class="form-control" name="sort_contain" placeholder="Например Шардоне 80%">{{$vine->sort_contain}}</textarea>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label>Содержание вина (необязательно)</label>
+                    <textarea wrap="soft" class="form-control" name="sort_contain" placeholder="Например Шардоне 80%">{{$vine->sort_contain}}</textarea>
+                </div>
+                <div class="col-md-6">
+                    <label>Coravin</label>
+                    <input type="checkbox" name="coravin" {{$vine->is_coravin == true ? 'checked' : ''}}>
+                </div>
+            </div>
         </div>
         <input type="hidden" name="id" value="{{$vine->id}}">
         {{csrf_field()}}

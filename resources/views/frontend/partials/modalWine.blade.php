@@ -29,7 +29,7 @@
                             <span class="column">Страна: </span>
                             <span id="country_wine"></span>
                         </div>
-                        <div class="mr-auto">
+                        <div class="mr-auto" id="region-block">
                             <span class="column">Регион:</span>
                             <span id="region_name"></span>
                         </div>
@@ -37,15 +37,15 @@
                             <span class="column">Крепость: </span>
                             <span id="strength"></span>
                         </div>
-                        <div class="mr-auto">
-                            <span class="column">Год: </span>:
+                        <div class="mr-auto" id="year-block">
+                            <span class="column">Год: </span>
                             <span id="year"></span>
                         </div>
                         <div class="mr-auto">
                             <span class="column">Объем: </span>:
                             <span id="volume"></span>
                         </div>
-                        <div class="mr-auto text-justify">
+                        <div class="mr-auto text-justify" id="price_cup-block">
                             <span class="column">Цена за бокал: </span>
                             <span id="price_cup"></span> <i class="fas fa-ruble-sign"></i>
                         </div>
@@ -53,7 +53,7 @@
                             <span class="column">Цена за бутылку: </span>
                             <span id="price_bottle"></span> <i class="fas fa-ruble-sign"></i>
                         </div>
-                        <div class="mr-auto">
+                        <div class="mr-auto" id="sort_contain-block">
                             <div id="sort_contain"><span class="column">О вине : </span></div>
                         </div>
                         <div class="mr-auto text-justify">

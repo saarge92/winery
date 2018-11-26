@@ -81,6 +81,7 @@ trait vineTrait
             $row['type_name'] = $this->getTypeOfWine($vine->id_type);
             $row['region_name'] = $vine->region_name;
             $row['priority'] = $this->getPriorityColorNumber($vine->color_id);
+            $row['is_coravin'] = $vine->is_coravin;
             $vines_for_review[] = (object)$row;
         }
         $vines_for_review = $this->sort_by_priority($vines_for_review);
