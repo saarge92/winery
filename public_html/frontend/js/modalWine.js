@@ -2,6 +2,7 @@ $('.wine').on('click touchstart', function(event) {
     $("#wineModal").modal({
         show: true
     });
+    //Get Card's elements
     var Card = $(event.target).closest('.card');
     var image_src = Card.find('.wine_img');
     var wine_name_rus = Card.find('.name_rus');
@@ -16,6 +17,8 @@ $('.wine').on('click touchstart', function(event) {
     var volume = Card.find('.volume');
     var sort_contain = Card.find('.sort_contain');
     var producer = Card.find('.producer');
+
+    //initialize node elements of modal
     $('#image_wine').attr('src', image_src.attr('src'));
     $('#name_rus').text(wine_name_rus.text());
     $('#color_wine').text(wine_color.text());
@@ -27,6 +30,11 @@ $('.wine').on('click touchstart', function(event) {
     $('#price_cup').text(price_cup.text());
     $("#price_bottle").text(price_bottle.text());
     $("#volume").text(volume.text());
-    $("#sort_contain").append(sort_contain.val());
+
+    var clone_column = $('#sort_contain .column');
+    $('#sort_contain').empty();
+    $('#sort_contain').append(clone_column);
+    $('#sort_contain').append(sort_contain.val());
+
     $("#producer").text(producer.val());
 });

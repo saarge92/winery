@@ -82,11 +82,10 @@ body {
     line-height: 1.5;
     border-bottom: 1px solid #969696;
     border-top: 1px solid #969696;
-    font-weight: 600;
+    font-weight: 650;
     padding-left: 0.5rem;
     height: 5.5rem;
     overflow: hidden;
-    font-style: italic;
     letter-spacing: 0.05em;
 }
 
@@ -167,8 +166,8 @@ body {
 }
 .especial_wines{
     color: black;
-    font-style: italic;
     margin-left: 1%;
+    font-weight: 650;
 }
 .especial_wines:hover{
     cursor: pointer;
@@ -221,10 +220,10 @@ body {
 }
 .name-block{
     font-size: 1.5em;
-    text-align: justify;
+    text-align: left;
 }
 #sort_contain{
-    text-align: justify;
+    text-align: left;
 }
 #img_block{
     width: 6rem;

@@ -22,11 +22,10 @@ class VinePostRequest extends FormRequest
             'volume.required' => 'Объем обязателен для заполнения',
             'price_bottle.required' => 'Цена за бутылку обязательно для заполнения',
             'strength.required' => 'Крепость обязательно для заполнения',
-            'price_glass.required' => 'Цена за бокал обязательно',
-            'volume.numeric' => 'Должно быть число',
-            'price_bottle.numeric' => 'Должно быть число',
+            'volume.numeric' => 'Объем Должно быть число',
+            'price_bottle.numeric' => 'Цена за бутылку должно быть числом',
             'strength.numeric' => 'Должно быть число',
-            'price_glass.numeric' => 'Должно быть число'
+            'price_glass.numeric' => 'Цена за бокал должно быть числом'
         ];
     }
     /**
@@ -41,7 +40,7 @@ class VinePostRequest extends FormRequest
             'volume' => 'required|numeric',
             'price_bottle' => 'required|numeric',
             'strength' => 'required|numeric',
-            'price_glass'=>'required|numeric'
+            'price_glass'=>'nullable|numeric'
         ];
     }
 }

@@ -18,9 +18,9 @@ class CreateVines extends Migration
             $table->string('name_rus');
             $table->string('name_en')->nullable();
             $table->float('price', 20, 2);
-            $table->float('price_cup', 20, 2);
+            $table->float('price_cup', 20, 2)->nullable();
             $table->float('volume', 10, 2);
-            $table->integer('year');
+            $table->integer('year')->nullable();
             $table->float('strength',10,2);
             $table->text('sort_contain')->nullable();
 
@@ -38,6 +38,7 @@ class CreateVines extends Migration
             $table->boolean('is_active')->default(true);
             $table->integer('id_type')->nullable();
             $table->string('region_name')->nullable();
+            $table->boolean('is_coravin')->default(false);
             $table->timestamps();
         });
     }

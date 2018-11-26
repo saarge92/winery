@@ -1,6 +1,6 @@
 @extends('layouts.admin_panel')
 @section('title')
-    Добавление вина
+Добавление вина
 @endsection
 @section('content')
 
@@ -95,7 +95,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Цена (за бокал)<i class="fas fa-wine-glass"></i></label>
-                    <input type="text" name="price_glass" class="decimal form-control" required="required" value="{{old('price_glass')}}">
+                    <input type="text" name="price_glass" class="decimal form-control" value="{{old('price_glass')}}">
                 </div>
             </div>
         </div>
@@ -103,10 +103,10 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <label>Год</label>
-                    <input type="number" class="int form-control" name="year" required="required" value="{{old('year')}}">
+                    <input type="number" class="int form-control" name="year" maxlength="11" value="{{old('year')}}">
                 </div>
                 <div class="col-md-6">
-                    <label>Изображение</label>
+                    <label>Изображение</label> <br>
                     <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg">
                 </div>
             </div>
@@ -129,8 +129,16 @@
             </div>
         </div>
         <div class="form-group">
-            <label>Содержание вина (необязательно)</label>
-            <textarea class="form-control" name="sort_contain" placeholder="Например Шардоне 80%"></textarea>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label>Содержание вина (необязательно)</label>
+                    <textarea class="form-control" name="sort_contain" placeholder="Например Шардоне 80%"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label>Coravin</label>
+                    <input type="checkbox" name="coravin">
+                </div>
+            </div>
         </div>
         {{csrf_field()}}
         <button type="submit" class="text-white btn btn-danger btn-block">

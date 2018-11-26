@@ -19,7 +19,7 @@
                         <span class="name_rus">
                             {{$vine->name_rus}}
                             {{$vine->name_en ? ','.$vine->name_en : ''}}
-                            {{','.$vine->year}} г
+                            {{$vine->year ? ','.$vine->year.'г':''}}
                         </span>
                     </p>
                 </div>
@@ -46,10 +46,12 @@
                 </div>
 
                 <div class="price">
-                    Цена за бокал :
-                    <span class="price_cup">
-                        {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
-                    </span>
+                    @if($vine->price_cup != null)
+                        Цена за бокал :
+                        <span class="price_cup">
+                            {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
+                        </span>
+                    @endif
                 </div>
                 <input type="hidden" class="strength" value="{{$vine->strength}}" />
                 <input type="hidden" class="year" value="{{$vine->year}}" />
@@ -67,7 +69,7 @@
     @endforeach
     <div class="row">
         <div class="col-md12">
-            {{$vines->appends([$_GET])->links()}}
+            {{$vines->fragment('vines')->appends([$_GET])->links()}}
         </div>
 
     </div>

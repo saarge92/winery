@@ -102,7 +102,7 @@
                 </div>
                 <div class="col-md-6">
                     <label>Цена (за бокал)<i class="fas fa-wine-glass"></i></label>
-                    <input type="text" name="price_glass" class="decimal form-control" required="required" value="{{$vine->price_cup}}">
+                    <input type="text" name="price_glass" class="decimal form-control" value="{{$vine->price_cup}}">
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <label>Год</label>
-                    <input type="number" class="int form-control" name="year" required="required" value="{{$vine->year}}">
+                    <input type="number" class="int form-control" name="year" value="{{$vine->year}}">
                 </div>
                 <div class="col-md-6">
                     <label>Изображение</label>
