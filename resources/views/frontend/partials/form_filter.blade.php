@@ -3,10 +3,10 @@
         <div class="filter-groups">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 style="text-align: center;">
+                    <h5 style="text-align: center;">
                         Фильтры
                         <a class="btn btn-light" href="{{route('home')}}#vines" id="clear-btn">Очистить</a>
-                    </h4>
+                    </h5>
                 </div>
             </div>
             <div>
