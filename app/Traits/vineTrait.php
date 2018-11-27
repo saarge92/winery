@@ -130,7 +130,6 @@ trait vineTrait
         if (isset($volume_max)) {
             $vines = $vines->where('volume', '<=', $volume_max);
         }
-        $vines->orderby('price','desc');
         return $vines;
     }
     public function searchSomeWines($request)
