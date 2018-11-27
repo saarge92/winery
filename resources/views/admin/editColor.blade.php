@@ -1,5 +1,7 @@
 @extends('layouts.admin_panel')
-
+@section('title')
+    Редактирование цвета
+@endsection
 @section('content')
 <div class="row">
     <div class="col col-md-12">
@@ -7,10 +9,6 @@
             <div class="form-group">
                 <label>Название</label>
                 <input type="text" name="name_color" value="{{$color->name}}" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Название</label>
-                <input type="text" name="priority" value="{{$color->priority}}" class="int form-control">
             </div>
             {{csrf_field()}}
             <div class="form-group">

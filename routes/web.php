@@ -10,6 +10,30 @@ Route::group(['middleware' => 'roles'], function () {
 		'uses' => 'AdminController@index',
 		'as' => 'admin',
 	]);
+	Route::get('all_types',[
+		'uses' => 'TypeWineController@index',
+		'as' => 'all_types'
+	]);
+	Route::get('startCreateTypeWine',[
+		'uses' => 'TypeWineController@getCreate',
+		'as' => 'startCreateTypeWine'
+	]);
+	Route::post('createTypeWine',[
+		'uses' => 'TypeWineController@createTypeWine',
+		'as' => 'createTypeWine'
+	]);
+	Route::get('getEditType/{id}',[
+		'uses' => 'TypeWineController@getEditType',
+		'as' => 'getEditType'
+	]);
+	Route::post('editType/{id}',[
+		'uses' => 'TypeWineController@editType',
+		'as' => 'editType'
+	]);
+	Route::post('dropType/{id}',[
+		'uses' => 'TypeWineController@dropType',
+		'as' => 'dropType'
+	]);
 	Route::get('createVine', [
 		'uses' => 'AdminController@createVine',
 		'as' => 'createVine',

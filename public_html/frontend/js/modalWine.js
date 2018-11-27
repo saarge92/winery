@@ -17,8 +17,17 @@ $('.wine').on('click touchstart', function(event) {
     var volume = Card.find('.volume_info');
     var sort_contain = Card.find('.sort_contain');
     var producer = Card.find('.producer');
-
+    var coravin_image = Card.find('.coravin');
     //initialize node elements of modal
+    if(coravin_image.length){
+        console.log('image has');
+        $('#coravin-modal').css('display','block');
+        $('#coravin-modal').attr('src',coravin_image.attr('src'));
+    }
+    else{
+        console.log('image none');
+        $('#coravin-modal').css('display','none');
+    }
     if(year.val())
     {
         $('#year-block').css('display','block');

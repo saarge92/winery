@@ -17,15 +17,11 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Название</th>
-                        <th>Приоритет</th>
                     </tr>
                     @foreach ($colors as $color)
                         <tr>
                             <td>
                                 {{$color->name}}
-                            </td>
-                            <td>
-                                {{$color->priority}}
                             </td>
                             <td>
                                 <a href="{{route('startEditColor',['id'=>$color->id])}}" class="btn btn-success">Редактировать</a>

@@ -10,10 +10,10 @@
                 </div>
             </div>
             <div>
-                Мин.цена
+                min цена
                 <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number"
                         value="{{isset($_GET['price_min']) ? $_GET['price_min'] : $min_price}}">
-                Макс.Цена
+                max цена
                 <input type="number" class="priceSlider form-control filter_checked" id="price_max" name="price_max" type="number"
                         value="{{isset($_GET['price_max']) ? $_GET['price_max'] : $max_price}}">
                 <div id="slider_price"></div>
@@ -96,7 +96,7 @@
                 <label for="{{$sweet->id}}">{{$sweet->name}}</label> <br>
                 @endforeach
             </div>
-            <div>
+            <div id="type_wines_block">
                 @foreach ($type_of_wines as $type_w)
                     <div>
                         <a href="{{route('home')}}?type_of_wine={{$type_w->id}}#vines" class="especial_wines

@@ -6,7 +6,7 @@
             <div class="card my-2">
                 <div class="card-vine-header">
                     @if($vine->is_coravin == 1)
-                        <img src="{{asset('icons/Coravin.png')}}" alt="">
+                        <img class="coravin" src="{{asset('icons/Coravin.png')}}" alt="">
                     @endif
                     <span class="volume_info"><i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л </span>
                 </div>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="text-center">
                         <span class="color_wine">{{$vine->color}}</span>
-                        <span class="sweet_wine">{{$vine->sweet}}</span>
+                        <span class="sweet_wine">{{$vine->type_name ? $vine->type_name : $vine->sweet}}</span>
                     </div>
                 </div>
                 <div class="price">
@@ -72,7 +72,7 @@
     @endforeach
     <div class="row">
         <div class="col-md12">
-            {{$vines->fragment('vines')->appends([$_GET])->links()}}
+            {{$vines->fragment('vines')->appends(request()->input())->links()}}
         </div>
 
     </div>

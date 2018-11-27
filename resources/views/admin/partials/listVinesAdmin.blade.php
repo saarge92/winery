@@ -34,6 +34,6 @@
 @endforeach
 <div class="row mt-2">
     <div class="col-md-12">
-        {{$vines->appends($_GET)->links()}}
+        {{$vines->appends(request()->input())->links()}}
     </div>
 </div>

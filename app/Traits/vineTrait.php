@@ -80,11 +80,9 @@ trait vineTrait
             $row['producer'] = $this->getProducersName($vine->producer_id);
             $row['type_name'] = $this->getTypeOfWine($vine->id_type);
             $row['region_name'] = $vine->region_name;
-            $row['priority'] = $this->getPriorityColorNumber($vine->color_id);
             $row['is_coravin'] = $vine->is_coravin;
             $vines_for_review[] = (object)$row;
         }
-        $vines_for_review = $this->sort_by_priority($vines_for_review);
         return $vines_for_review;
     }
     //Sorting by color priority
@@ -104,7 +102,10 @@ trait vineTrait
         $price_min = isset($params['price_min']) ? $params['price_min'] : null;
         $price_max = isset($params['price_max']) ? $params['price_max'] : null;
         $type_of_wine = isset($params['type_of_wine']) ? $params['type_of_wine'] : null;
-        $vines = $vines->where(['id_type'=>$type_of_wine]);
+        if($type_of_wine)
+        {
+            $vines = $vines->where(['id_type'=>$type_of_wine]);
+        }
         if (!empty($country_select)) {
             $vines = $vines->whereIn('country_id', $country_select);
         }
@@ -129,7 +130,7 @@ trait vineTrait
         if (isset($volume_max)) {
             $vines = $vines->where('volume', '<=', $volume_max);
         }
-        $vines->orderby('price','asc');
+        $vines->orderby('price','desc');
         return $vines;
     }
     public function searchSomeWines($request)

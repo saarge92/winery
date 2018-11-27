@@ -12,16 +12,6 @@ trait colorTrait
     {
         $color = new color();
         $color->name = $req->get('name_color');
-        $priority = $req->get('priority');
-        if(isset($priority))
-        {
-            $color->priority = $priority;
-        }
-        else
-        {
-            $priority_max = color::max('priority') + 1;
-            $color->priority = $priority_max;
-        }
         $result = $color->save();
         return $result;
     }
@@ -30,16 +20,6 @@ trait colorTrait
         $color = color::find($id);
         if ($color!=null) {
             $color->name = $request->get('name_color');
-            $priority = $request->get('priority');
-            if(isset($priority))
-            {
-                $color->priority = $priority;
-            }
-            else
-            {
-                $priority_max = color::max('priority') + 1;
-                $color->priority = $priority_max;
-            }
             $result = $color->save();
             return $result;
         }

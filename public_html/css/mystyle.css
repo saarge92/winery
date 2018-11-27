@@ -170,6 +170,7 @@ body {
     margin-left: 1%;
     font-weight: 650;
     font-size: 0.8em;
+    letter-spacing: .05em;
 }
 .especial_wines:hover{
     cursor: pointer;
@@ -227,8 +228,11 @@ body {
 #sort_contain{
     text-align: left;
 }
-#img_block{
+/* #img_block{
     width: 6rem;
+} */
+#coravin-modal{
+    height: 2rem;
 }
 .card-vine-header{
     height: 2rem;
@@ -240,4 +244,7 @@ body {
 .volume_info{
     float: right;
     margin-top: .2rem;
+}
+#type_wines_block{
+    font-size: 0.8em;
 }

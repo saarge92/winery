@@ -10,10 +10,11 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div id="img_block">
+                    <div class="col-3">
                         <img id="image_wine" src="">
                     </div>
-                    <div class="col-8">
+                    <div class="col-9">
+                        <img id="coravin-modal" />
                         <div class="name-block">
                             <span id="name_rus"></span>
                         </div>

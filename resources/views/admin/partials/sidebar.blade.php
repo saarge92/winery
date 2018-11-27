@@ -7,6 +7,11 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="{{route('all_types')}}">
+            <i class="fas fa-flask"></i>
+            <span>Типы вин</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{route('all_countries')}}">
             <i class="fas fa-flag"></i>
             <span>Страны</span></a>

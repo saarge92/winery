@@ -1,11 +1,11 @@
 @extends('layouts.admin_panel')
 @section('title')
-    Создать цвет
+    Создать тип вина
 @endsection
 @section('content')
 <div class="row">
     <div class="col col-md-12">
-        <form action="{{route('createColor')}}" method="post">
+        <form action="{{route('createTypeWine')}}" method="post">
             <div class="form-group">
                 <label>Название</label>
                 <input type="text" name="name_color" value="{{old('name_color')}}" class="form-control">
@@ -17,7 +17,7 @@
             {{csrf_field()}}
             <div class="form-group">
                 <button type="submit" class="btn btn-success">OK</button>
-                <a href="{{route('allColors')}}" class="btn btn-default">Назад</a>
+                <a href="{{route('all_types')}}" class="btn btn-default">Назад</a>
             </div>
         </form>
     </div>
