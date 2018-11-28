@@ -78,7 +78,7 @@ body {
 }
 .info-wine {
     color: black;
-    font-size: 0.8em;
+    font-size: 0.85rem;
     line-height: 1.5;
     border-bottom: 1px solid #969696;
     border-top: 1px solid #969696;
@@ -86,7 +86,6 @@ body {
     padding-left: 0.5rem;
     height: 5.5rem;
     overflow: hidden;
-    letter-spacing: 0.05em;
 }
 
 .view_button {
@@ -166,11 +165,10 @@ body {
     height: 1.5rem;
 }
 .especial_wines{
-    color: black;
+    color: black !important;
     margin-left: 1%;
-    font-weight: 650;
-    font-size: 0.8em;
-    letter-spacing: .05em;
+    font-weight:650;
+    font-size: 0.85rem;
 }
 .especial_wines:hover{
     cursor: pointer;
@@ -245,6 +243,6 @@ body {
     float: right;
     margin-top: .2rem;
 }
-#type_wines_block{
+.type-block{
     font-size: 0.8em;
 }
