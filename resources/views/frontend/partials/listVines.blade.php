@@ -44,7 +44,7 @@
                     </div>
                     <div class="text-center">
                         <span class="color_wine">{{$vine->color}}</span>
-                        <span class="sweet_wine">{{$vine->sweet}} {{$vine->type_name ? $vine->type_name : ''}}</span>
+                        <span class="sweet_wine">{{$vine->sweet}}</span>
                     </div>
                 </div>
                 <div class="price">
