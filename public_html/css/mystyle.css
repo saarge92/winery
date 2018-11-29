@@ -242,3 +242,24 @@ body {
     float: right;
     margin-top: .2rem;
 }
+.back-to-top {
+    position: fixed;
+    display: none;
+    background: #18d26e;
+    color: #fff;
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 1;
+    font-size: 16px;
+    border-radius: 50%;
+    right: 15px;
+    bottom: 15px;
+    transition: background .5s;
+    z-index: 11;
+}
+.back-to-top i {
+    padding-top: 12px;
+    color: #fff;
+}

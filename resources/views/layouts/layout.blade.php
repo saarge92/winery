@@ -20,6 +20,7 @@
     @include('frontend.partials.header')
     @include('frontend.main')
     @include('frontend.partials.footer')
+    <a href="#" class="back-to-top" style=""><i class="fa fa-chevron-up"></i></a>
     <script type="text/javascript">
         var maxPriceEnable = {{ $max_price }};
         var minPriceEnable = {{ $min_price }};
