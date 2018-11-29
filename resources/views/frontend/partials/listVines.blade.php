@@ -18,13 +18,19 @@
                         @endif
                 </div>
                 <div class="description">
-                    <p>
-                        <span class="name_rus">
-                            {{$vine->name_rus}}
-                            {{$vine->name_en ? ','.$vine->name_en : ''}}
-                            {{$vine->year ? ','.$vine->year.'г':''}}
-                        </span>
-                    </p>
+                    <div class="name_rus">
+                        {{$vine->name_rus}}
+                    </div>
+                    @if($vine->name_en != null)
+                        <div class="name_rus">
+                            {{$vine->name_en}}
+                        </div>
+                    @endif
+                    @if($vine->year)
+                        <div>
+                            {{$vine->year.'г'}}
+                        </div>
+                    @endif
                 </div>
                 <div class="info-wine">
                     <div class="text-center">
@@ -38,7 +44,7 @@
                     </div>
                     <div class="text-center">
                         <span class="color_wine">{{$vine->color}}</span>
-                        <span class="sweet_wine">{{$vine->sweet}}</span>
+                        <span class="sweet_wine">{{$vine->sweet}} {{$vine->type_name ? $vine->type_name : ''}}</span>
                     </div>
                 </div>
                 <div class="price">

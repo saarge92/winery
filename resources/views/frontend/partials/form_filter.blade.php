@@ -11,11 +11,9 @@
             </div>
             <div>
                 min цена
-                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number"
-                        value="{{isset($_GET['price_min']) ? $_GET['price_min'] : $min_price}}">
+                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number" value="{{isset($_GET['price_min']) ? $_GET['price_min'] : $min_price}}">
                 max цена
-                <input type="number" class="priceSlider form-control filter_checked" id="price_max" name="price_max" type="number"
-                        value="{{isset($_GET['price_max']) ? $_GET['price_max'] : $max_price}}">
+                <input type="number" class="priceSlider form-control filter_checked" id="price_max" name="price_max" type="number" value="{{isset($_GET['price_max']) ? $_GET['price_max'] : $max_price}}">
                 <div id="slider_price"></div>
             </div>
 
@@ -36,11 +34,9 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['country_visible']) ? ($_GET['country_visible'] == '1' ? 'block' : 'none') : 'none'}}"
-                id="country_block" class="sub-menu">
+            <div style="display: {{isset($_GET['country_visible']) ? ($_GET['country_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="country_block" class="sub-menu">
                 @foreach ($countries as $country)
-                <input type="checkbox" name="country[]" class="filter_checked" value="{{$country->id}}"
-                {{in_array($country->id, isset($_GET['country']) ? $_GET['country'] : []) ? 'checked' : ''}}>
+                <input type="checkbox" name="country[]" class="filter_checked" value="{{$country->id}}" {{in_array($country->id, isset($_GET['country']) ? $_GET['country'] : []) ? 'checked' : ''}}>
                 <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label> <br>
                 @endforeach
             </div>
@@ -62,11 +58,9 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['color_visible']) ? ($_GET['color_visible'] == '1' ? 'block' : 'none') : 'none'}}"
-                id="color_block" class="sub-menu">
+            <div style="display: {{isset($_GET['color_visible']) ? ($_GET['color_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="color_block" class="sub-menu">
                 @foreach ($colors as $color)
-                <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked"
-                    {{in_array($color->id,isset($_GET['color']) ? $_GET['color'] : []) ? 'checked' : ''}}>
+                <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked" {{in_array($color->id,isset($_GET['color']) ? $_GET['color'] : []) ? 'checked' : ''}}>
                 <label for="{{$color->id}}">{{$color->name}}</label> <br>
                 @endforeach
             </div>
@@ -88,22 +82,18 @@
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['sweet_visible']) ? ($_GET['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}"
-                id="sweet_block" class="sub-menu">
+            <div style="display: {{isset($_GET['sweet_visible']) ? ($_GET['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="sweet_block" class="sub-menu">
                 @foreach ($sweets as $sweet)
                 <input type="checkbox" name="sweet[]" class="filter_checked" value="{{$sweet->id}}"
                     {{in_array($sweet->id,isset($_GET['sweet'])?$_GET['sweet'] : []) ? 'checked' : ''}}>
-                <label for="{{$sweet->id}}">{{$sweet->name}}</label> <br>
+                <label>{{$sweet->name}}</label> <br>
                 @endforeach
             </div>
             <div>
                 @foreach ($type_of_wines as $type_w)
-                    <div>
-                        <a href="{{route('home')}}?type_of_wine={{$type_w->id}}#vines" class="especial_wines
-                            {{isset($_GET['type_of_wine']) ? ($_GET['type_of_wine'] == $type_w->id ? 'red_item' : '') : ''}}">
-                            {{$type_w->name}}
-                        </a>
-                    </div>
+                <input type="checkbox" name="types_wines[]" class="filter_checked" value="{{$type_w->id}}"
+                    {{in_array($type_w->id,isset($_GET['types_wines'])?$_GET['types_wines'] : []) ? 'checked' : ''}}>
+                <label>{{$type_w->name}}</label> <br>
                 @endforeach
             </div>
             <div style="text-align:center;padding:0.5rem;">

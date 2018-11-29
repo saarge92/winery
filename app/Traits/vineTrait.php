@@ -101,10 +101,10 @@ trait vineTrait
         $sweet_select = isset($params['sweet']) ? $params['sweet'] : [];
         $price_min = isset($params['price_min']) ? $params['price_min'] : null;
         $price_max = isset($params['price_max']) ? $params['price_max'] : null;
-        $type_of_wine = isset($params['type_of_wine']) ? $params['type_of_wine'] : null;
-        if($type_of_wine)
+        $type_of_wine = isset($params['types_wines']) ? $params['types_wines'] : [];
+        if(!empty($type_of_wine))
         {
-            $vines = $vines->where(['id_type'=>$type_of_wine]);
+            $vines = $vines->whereIn('id_type',$type_of_wine);
         }
         if (!empty($country_select)) {
             $vines = $vines->whereIn('country_id', $country_select);

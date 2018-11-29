@@ -4,8 +4,6 @@ html{
 }
 body {
     background-color: #f8f8f8;
-    /* margin-bottom: 1rem; */
-    font-family: 'Helvetica';
 }
 .nav-link{
     color:white !important;
@@ -75,7 +73,7 @@ body {
     text-align: center;
     line-height: 1.5;
     overflow: hidden;
-    height: 4.5rem;
+    height: 8rem;
 }
 .info-wine {
     color: black;
@@ -85,7 +83,7 @@ body {
     border-top: 1px solid #969696;
     font-weight: 650;
     padding-left: 0.5rem;
-    height: 5.5rem;
+    height: 6rem;
     overflow: hidden;
 }
 
