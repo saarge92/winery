@@ -17,7 +17,7 @@ $(".carousel").on("touchstart", function(event) {
     });
 });
 $(document).ready(function() {
-    $('.back-to-top').css('display','none');
+    // $('.back-to-top').css('display','none');
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
             $('.back-to-top').fadeIn('slow');
