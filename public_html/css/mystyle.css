@@ -5,6 +5,7 @@ html{
 body {
     background-color: #f8f8f8;
     /* margin-bottom: 1rem; */
+    font-family: 'Helvetica';
 }
 .nav-link{
     color:white !important;
@@ -94,7 +95,7 @@ body {
 }
 
 .filter-groups {
-    font-size: 1.4em;
+    font-size: 1.2em;
     line-height: 1.5;
 }
 
