@@ -27,8 +27,11 @@ class HomeController extends Controller
 
 		//Get Filtered Wines
 		$vines = $this->filterVines($request->all());
+		//Get per page number
 		$paginate_number = $this->getPaginateNumber($request);
-		$vines = $vines->orderby('price','desc')->where(['is_active'=>true])->paginate($paginate_number);
+		// dd($paginate_number);
+		$paginate_number!==0 ? $vines = $vines->orderby('price','desc')->where(['is_active'=>true])->paginate($paginate_number)
+		: $vines = $vines->orderby('price','desc')->where(['is_active'=>true]);
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();

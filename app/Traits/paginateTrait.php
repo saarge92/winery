@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Session;
 use App\DisplayPaginator;
 trait paginateTrait
 {
-    public function getPaginateNumber($request) : int
+    public function getPaginateNumber($request)
     {
         $paginate_number = DisplayPaginator::where('num','!=',0)->min('num');
         if($request->has('perPage'))

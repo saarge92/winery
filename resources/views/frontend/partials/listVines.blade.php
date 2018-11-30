@@ -93,9 +93,9 @@
         <div class="col-md12">
             {{$vines->fragment('vines')->appends(request()->input())->links()}}
         </div>
-
     </div>
 
     @else
     <div>Вина отсутсвуют по заданным критериям</div>
+    <div><a href="{{route('home')}}#vines" class="btn btn-primary"><i class="fas fa-arrow-left"></i>К списку вин</a></div>
     @endif
