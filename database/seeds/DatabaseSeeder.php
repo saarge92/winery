@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(producerSeeder::class);
         $this->call(sliderSeeder::class);
         $this->call(vineSeeder::class);
+        $this->call(DisplayPaginatorSeed::class);
         //$this->call(RoleSeeder::class);
     }
 }

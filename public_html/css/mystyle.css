@@ -69,11 +69,11 @@ body {
 }
 .description {
     color: black;
-    font-size: 1em;
+    font-size: 0.92rem;
     text-align: center;
     line-height: 1.5;
     overflow: hidden;
-    height: 8rem;
+    height: 6.5rem;
 }
 .info-wine {
     color: black;

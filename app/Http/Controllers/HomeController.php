@@ -7,14 +7,17 @@ use App\country;
 use App\slider;
 use App\sweet;
 use App\Traits\vineTrait;
+use App\Traits\paginateTrait;
 use App\vine;
 use App\type_of_wine;
+use App\DisplayPaginator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
 	use vineTrait;
+	use paginateTrait;
 	public function index(Request $request)
 	{
 		$sliders = slider::where(['is_active'=>true])->get();
@@ -24,10 +27,12 @@ class HomeController extends Controller
 
 		//Get Filtered Wines
 		$vines = $this->filterVines($request->all());
-		$vines = $vines->orderby('price','desc')->where(['is_active'=>true])->paginate(6);
+		$paginate_number = $this->getPaginateNumber($request);
+		$vines = $vines->orderby('price','desc')->where(['is_active'=>true])->paginate($paginate_number);
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
+		$paginators = DisplayPaginator::all();
 		//Generate array for review
 		$vines_for_review = $this->generateListVines($vines);
 		return view('frontend.index', ['sliders' => $sliders,
@@ -38,7 +43,9 @@ class HomeController extends Controller
 			'sweets' => $sweets,
 			'max_price' => $max_price,
 			'min_price' => $min_price,
-			'type_of_wines' => $types_for_wines
+			'type_of_wines' => $types_for_wines,
+			'paginate_number' => $paginate_number,
+			'paginators' => $paginators
 		]);
 	}
 	public function getCountOfChoice(Request $request)
@@ -88,8 +95,9 @@ class HomeController extends Controller
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
-
-		$vines = $this->searchSomeWines($request);
+		$paginators = DisplayPaginator::all();
+		$paginate_number = $this->getPaginateNumber($request);
+		$vines = $this->searchSomeWines($request)->paginate($paginate_number);
 		$vines_for_review = collect($this->generateListVines($vines));
 		return view('frontend.searchResult', [
 			'vines_for_review' => $vines_for_review,
@@ -100,7 +108,9 @@ class HomeController extends Controller
 			'colors' => $colors,
 			'max_price' => $max_price,
 			'min_price' => $min_price,
-			'type_of_wines' => $types_for_wines
+			'type_of_wines' => $types_for_wines,
+			'paginators' => $paginators,
+			'paginate_number' => $paginate_number,
 		]);
 	}
 }
