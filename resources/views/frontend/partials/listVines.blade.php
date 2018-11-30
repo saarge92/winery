@@ -76,25 +76,24 @@
         @endforeach
     </div>
     @endforeach
-    <div class="row">
+    <div class="row mt-2 mb-2">
         <div class="col-md12">
             Показывать по
             <span>
                 @foreach ($paginators as $paginator)
-                    {{-- <a href="{{route('home',request()->except(['perPage','page'])).'?&perPage='.$paginator->num.'#vines'}}"
-                    class="btn {{$paginate_number == $paginator->num ? 'btn-danger' : 'btn-dark'}}">{{$paginator->num == 0 ? 'Все' : $paginator->num}}</a> --}}
-                    <a href="{{route(request()->route()->getName(),array_merge(request()->except(['perPage']),['perPage'=>$paginator->num]))}}#vines"
-                    class="btn {{$paginate_number == $paginator->num ? 'btn-danger' : 'btn-dark'}}">{{$paginator->num == 0 ? 'Все' : $paginator->num}}</a>
+                <a href="{{route(request()->route()->getName(),array_merge(request()->except(['perPage']),['perPage'=>$paginator->num]))}}#vines" class="btn {{$paginate_number == $paginator->num ? 'btn-danger' : 'btn-dark'}}">{{$paginator->num == 0 ? 'Все' : $paginator->num}}</a>
                 @endforeach
             </span>
         </div>
     </div>
-    <div class="row mt-2">
+
+    @if($paginate_number!=0)
+    <div class="row">
         <div class="col-md12">
             {{$vines->fragment('vines')->appends(request()->input())->links()}}
         </div>
     </div>
-
+    @endif
     @else
     <div>Вина отсутсвуют по заданным критериям</div>
     <div><a href="{{route('home')}}#vines" class="btn btn-primary"><i class="fas fa-arrow-left"></i>К списку вин</a></div>

@@ -24,20 +24,24 @@ class HomeController extends Controller
 		$countries = country::all();
 		$sweets = sweet::all();
 		$colors = color::all();
-
 		//Get Filtered Wines
 		$vines = $this->filterVines($request->all());
 		//Get per page number
 		$paginate_number = $this->getPaginateNumber($request);
-		// dd($paginate_number);
-		$paginate_number!==0 ? $vines = $vines->orderby('price','desc')->where(['is_active'=>true])->paginate($paginate_number)
-		: $vines = $vines->orderby('price','desc')->where(['is_active'=>true]);
+		//Generate array for review
+		if($paginate_number == 0)
+		{
+			$vines = $vines->where(['is_active'=>true]);
+			$vines_for_review = $this->generateListVines($vines->get());
+		}
+		else{
+			$vines = $vines->where(['is_active'=>true])->paginate($paginate_number);
+			$vines_for_review = $this->generateListVines($vines);
+		}
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
 		$paginators = DisplayPaginator::all();
-		//Generate array for review
-		$vines_for_review = $this->generateListVines($vines);
 		return view('frontend.index', ['sliders' => $sliders,
 			'vines' => $vines,
 			'countries' => $countries,
