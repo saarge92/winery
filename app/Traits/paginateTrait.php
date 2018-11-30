@@ -1,12 +1,12 @@
 <?php
 namespace App\Traits;
 use Illuminate\Support\Facades\Session;
-
+use App\DisplayPaginator;
 trait paginateTrait
 {
     public function getPaginateNumber($request) : int
     {
-        $paginate_number = 9;
+        $paginate_number = DisplayPaginator::where('num','!=',0)->min('num');
         if($request->has('perPage'))
         {
             $paginate_number = $request->get('perPage');
