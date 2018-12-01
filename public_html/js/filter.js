@@ -15,7 +15,7 @@ $('.filter_checked').change(function(event){
             $('.ajax-loader').css('display', 'none');
             $('.filter_count').css('display', 'block');
             $('#count_choosen').text(message.all);
-            if($(event.target).hasClass('sub-menu')){
+            if($(event.target).hasClass('sub-point')){
                 $(event.target).next('label').after($('.filter_count'));
             }
             else{
