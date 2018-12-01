@@ -15,9 +15,15 @@ $('.filter_checked').change(function(event){
             $('.ajax-loader').css('display', 'none');
             $('.filter_count').css('display', 'block');
             $('#count_choosen').text(message.all);
-            var parentElement = event.target.parentElement;
-            $(parentElement).prepend($('.filter_count'));
-            $(this).parent('div').append($('.filter_count'));
+            if($(event.target).hasClass('sub-menu')){
+                $(event.target).next('label').after($('.filter_count'));
+            }
+            else{
+                var parentElement = event.target.parentElement;
+                $(parentElement).prepend($('.filter_count'));
+                $(this).parent('div').append($('.filter_count'));
+            }
+
         },
         error: function(error){
             console.log(error);

@@ -31,7 +31,7 @@ class AdminController extends Controller
 
 		//Get Filtered Wines
 		$vines = $this->filterVines($request->all());
-		$vines = $vines->paginate(6);
+		$vines = $vines->orderby('price','desc')->paginate(12);
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
@@ -51,9 +51,9 @@ class AdminController extends Controller
 	}
 	public function searchAdminWines(Request $request)
 	{
-		$vines = $this->searchSomeWines($request);
-		$vines_for_review = collect($this->generateListVines($vines));
-		return view('admin.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines]);
+		$vines = $this->searchSomeWines($request)->orderby('price','desc');
+		$vines_for_review = collect($this->generateListVines($vines->get()));
+		return view('admin.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines->paginate(12)]);
 	}
 	public function createVine()
 	{

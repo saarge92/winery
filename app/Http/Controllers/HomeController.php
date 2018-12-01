@@ -31,11 +31,11 @@ class HomeController extends Controller
 		//Generate array for review
 		if($paginate_number == 0)
 		{
-			$vines = $vines->where(['is_active'=>true]);
+			$vines = $vines->where(['is_active'=>true])->orderby('price','desc');
 			$vines_for_review = $this->generateListVines($vines->get());
 		}
 		else{
-			$vines = $vines->where(['is_active'=>true])->paginate($paginate_number);
+			$vines = $vines->where(['is_active'=>true])->orderby('price','desc')->paginate($paginate_number);
 			$vines_for_review = $this->generateListVines($vines);
 		}
 		$max_price = vine::max('price');
@@ -104,7 +104,7 @@ class HomeController extends Controller
 		$types_for_wines = type_of_wine::all();
 		$paginators = DisplayPaginator::all();
 		$paginate_number = $this->getPaginateNumber($request);
-		$vines = $this->searchSomeWines($request)->paginate($paginate_number);
+		$vines = $this->searchSomeWines($request)->orderby('price','desc')->paginate($paginate_number);
 		$vines_for_review = collect($this->generateListVines($vines));
 		return view('frontend.searchResult', [
 			'vines_for_review' => $vines_for_review,
