@@ -7,9 +7,12 @@
 @if(count($vine)>0)
     <div class="row my-2 mr-1">
         <div class="col-lg-12">
-            <div class="card">
-                <div class="text-right volume">
-                    <i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л
+            <div class="card my-2">
+                <div class="card-vine-header">
+                    @if($vine->is_coravin == 1)
+                        <img class="coravin" src="{{asset('icons/Coravin.png')}}" alt="">
+                        @endif
+                        <span class="volume_info"><i class="fas fa-wine-bottle"></i>{{$vine->volume / 1000}} л </span>
                 </div>
                 <div class="img-holder">
                     @if($vine->image_src!=null)
@@ -19,23 +22,33 @@
                         @endif
                 </div>
                 <div class="description">
-                    <p>
-                        <span class="name_rus">{{$vine->name_rus}}</span>
-                        {{$vine->name_en ? ','.$vine->name_en : ''}},
-                    </p>
+                    <div class="name_rus">
+                        {{$vine->name_rus}}
+                    </div>
+                    @if($vine->name_en != null)
+                        <div class="name_rus">
+                            {{$vine->name_en}}
+                        </div>
+                        @endif
+                        @if($vine->year)
+                            <span>
+                                {{$vine->year.'г'}}
+                            </span>
+                            @endif
                 </div>
                 <div class="info-wine">
-                    <div class="row">
-                        <div class="col-lg-8 col-8">
-                            <span class="color_wine">{{$vine->color}}</span>,
-                            <span class="sweet_wine">{{$vine->type_name ? $vine->type_name : $vine->sweet}}</span>
-                        </div>
-                        <div class="country_wine">
+                    <div class="text-center">
+                        <span class="country_wine">
                             {{$vine->country}}
-                        </div>
+                            {{$vine->country_en ? ','.$vine->country_en : ''}}
+                        </span>
                     </div>
                     <div class="region_name">
                         {{$vine->region_name}}
+                    </div>
+                    <div class="text-center">
+                        <span class="color_wine">{{$vine->color}}</span>
+                        <span class="sweet_wine">{{$vine->sweet}}</span>
                     </div>
                 </div>
                 <div class="price">
@@ -46,14 +59,17 @@
                 </div>
 
                 <div class="price">
-                    Цена за бокал :
-                    <span class="price_cup">
-                        {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
-                    </span>
+                    @if($vine->price_cup != null)
+                        Цена за бокал :
+                        <span class="price_cup">
+                            {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
+                        </span>
+                        @endif
                 </div>
                 <input type="hidden" class="strength" value="{{$vine->strength}}" />
                 <input type="hidden" class="year" value="{{$vine->year}}" />
                 <input type="hidden" class="sort_contain" value="{{$vine->sort_contain}}">
+                <input type="hidden" class="producer" value="{{$vine->producer}}">
                 <div class="view_button">
                     <button class="btn btn-warning wine">
                         <i class="fas fa-search-plus"></i>Посмотреть
