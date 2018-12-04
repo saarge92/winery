@@ -58,13 +58,13 @@ class HomeController extends Controller
 	public function getCountOfChoice(Request $request)
 	{
 		parse_str($request->get('params'), $filter_array);
-		$count_vines = count($this->filterVines($filter_array)->get());
+		$count_vines = count($this->filterVines($filter_array)->where('is_active',true)->get());
 		return response()->json(['all' => $count_vines]);
 	}
 	public function autocomplete(Request $request)
 	{
 		$name = $request->get('wine_name');
-		$some_wines = vine::where('name_rus', 'LIKE', '%' . $name . '%')
+		$some_wines = vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $name . '%')
 			->orWhere('name_en', 'LIKE', '%' . $name . '%')->get();
 		return response()->json(['wines' => $some_wines]);
 	}
@@ -77,21 +77,18 @@ class HomeController extends Controller
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
-		$vine = vine::where('id', $id)->get();
-		if (count($vine) > 0) {
-			$vine_for_review = collect($this->generateListVines($vine))[0];
-			return view('frontend.viewWine', [
-				'vine' => $vine_for_review,
-				'sliders' => $sliders,
-				'countries' => $countries,
-				'sweets' => $sweets,
-				'colors' => $colors,
-				'max_price' => $max_price,
-				'min_price' => $min_price,
-				'type_of_wines' => $types_for_wines
-			]);
-		}
-		return null;
+		$vine = vine::where(['id'=>$id,'is_active'=>true])->get();
+		$vine_for_review = count($vine)!=0 ? collect($this->generateListVines($vine))[0] :null;
+		return view('frontend.viewWine', [
+			'vine' => $vine_for_review,
+			'sliders' => $sliders,
+			'countries' => $countries,
+			'sweets' => $sweets,
+			'colors' => $colors,
+			'max_price' => $max_price,
+			'min_price' => $min_price,
+			'type_of_wines' => $types_for_wines
+		]);
 	}
 	public function search(Request $request)
 	{
