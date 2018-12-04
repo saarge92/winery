@@ -126,7 +126,7 @@
                         @foreach($types_for_wines as $type_w)
                         <option value="{{$type_w->id}}" {{$type_w->id == $vine->id_type ? 'selected' : ''}}>{{$type_w->name}}</option>
                         @endforeach
-                        <option value="" {{$type_w->id == null ? 'selected' : ''}}>Общий</option>
+                        <option value="" {{$vine->id_type == null ? 'selected' : ''}}>Общий</option>
                     </select>
                 </div>
                 <div class="col-md-6">
