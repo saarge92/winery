@@ -16,7 +16,7 @@ trait typeWineTrait
     public function editTypeWine($request, $id)
     {
         $tw = type_of_wine::find($id);
-        if ($tw!=null) {
+        if ($tw != null) {
             $tw->name = $request->get('name_color');
             $result = $tw->save();
             return $result;

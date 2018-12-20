@@ -8,6 +8,7 @@ use App\producer;
 use App\sweet;
 use App\vine;
 use App\type_of_wine;
+
 trait vineTrait
 {
     public function getCountryNameRusById($id)
@@ -47,20 +48,19 @@ trait vineTrait
     public function getTypeOfWine($id)
     {
         $type_w = type_of_wine::find($id);
-        $type_w !=null ? $type_name = $type_w->name : $type_name = null;
+        $type_w != null ? $type_name = $type_w->name : $type_name = null;
         return $type_name;
     }
     public function getPriorityColorNumber($id_color)
     {
         $color = color::find($id_color);
-        $color !==null ? $priority_num = $color->priority : $priority_num = null;
+        $color !== null ? $priority_num = $color->priority : $priority_num = null;
         return $priority_num;
     }
     public function generateListVines($vines)
     {
         $vines_for_review = array();
-        foreach ($vines as $vine)
-        {
+        foreach ($vines as $vine) {
             $row['id'] = $vine->id;
             $row['name_rus'] = $vine->name_rus;
             $row['name_en'] = $vine->name_en;
@@ -88,7 +88,7 @@ trait vineTrait
     //Sorting by color priority
     private function sort_by_priority($_vines)
     {
-        usort($_vines, function($a,$b){
+        usort($_vines, function ($a, $b) {
             return $a->priority > $b->priority;
         });
         return $_vines;
@@ -102,9 +102,8 @@ trait vineTrait
         $price_min = isset($params['price_min']) ? $params['price_min'] : null;
         $price_max = isset($params['price_max']) ? $params['price_max'] : null;
         $type_of_wine = isset($params['types_wines']) ? $params['types_wines'] : [];
-        if(!empty($type_of_wine))
-        {
-            $vines = $vines->whereIn('id_type',$type_of_wine);
+        if (!empty($type_of_wine)) {
+            $vines = $vines->whereIn('id_type', $type_of_wine);
         }
         if (!empty($country_select)) {
             $vines = $vines->whereIn('country_id', $country_select);
@@ -134,8 +133,8 @@ trait vineTrait
     }
     public function searchSomeWines($request)
     {
-        $vines = vine::where('is_active',true)->where('name_rus','LIKE','%'.$request->get('wine_name').'%')
-        ->orWhere('name_en', 'LIKE', '%'.$request->get('wine_name').'%');
+        $vines = vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $request->get('wine_name') . '%')
+            ->orWhere('name_en', 'LIKE', '%' . $request->get('wine_name') . '%');
         return $vines;
     }
 }

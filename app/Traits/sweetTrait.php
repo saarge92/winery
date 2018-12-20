@@ -18,7 +18,7 @@ trait sweetTrait
     public function editSweetPost($request, $id)
     {
         $sweet = sweet::find($id);
-        if ($sweet!=null) {
+        if ($sweet != null) {
             $sweet->name = $request->get('name_sweet');
             $result = $sweet->save();
             return $result;

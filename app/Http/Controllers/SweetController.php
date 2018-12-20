@@ -34,7 +34,7 @@ class SweetController extends Controller
     public function startEditSweet(Request $request, $id)
     {
         $sweet = sweet::find($id);
-        return view('admin.editSweet', ['sweet'=>$sweet]);
+        return view('admin.editSweet', ['sweet' => $sweet]);
     }
     public function editSweet(SweetRequest $request, $id)
     {
@@ -49,7 +49,7 @@ class SweetController extends Controller
     public function dropSweet(Request $req, $id)
     {
         $this->deleteSweet($id) == true ? Session::flash('success', 'Запись успешно удалена')
-        : Session::flash('error', 'Ошибка при удалении');
+            : Session::flash('error', 'Ошибка при удалении');
         return redirect('allSweets');
     }
 }

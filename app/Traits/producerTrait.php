@@ -18,7 +18,7 @@ trait producerTrait
     public function editProducerPost($request, $id)
     {
         $producer = producer::find($id);
-        if ($producer!=null) {
+        if ($producer != null) {
             $producer->name = $request->get('name_producer');
             $result = $producer->save();
             return $result;

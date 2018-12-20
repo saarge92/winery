@@ -19,7 +19,7 @@ trait countryTrait
     public function editCountryPost($request, $id)
     {
         $country = country::find($id);
-        if ($country!=null) {
+        if ($country != null) {
             $country->name_rus = $request->get('name_rus');
             $country->name_en = $request->get('name_en');
             $result = $country->save();

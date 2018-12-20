@@ -8,13 +8,14 @@ use App\Http\Controllers\Controller;
 use App\color;
 use App\Traits\colorTrait;
 use Illuminate\Support\Facades\Session;
+
 class ColorController extends Controller
 {
     use colorTrait;
     public function allColors()
     {
-        $colors = color::orderby('priority','asc')->paginate(5);
-        return view('admin.allColors')->with('colors',$colors);
+        $colors = color::orderby('priority', 'asc')->paginate(5);
+        return view('admin.allColors')->with('colors', $colors);
     }
     public function startCreateColor()
     {
@@ -33,7 +34,7 @@ class ColorController extends Controller
     public function startEditColor(Request $request, $id)
     {
         $color = color::find($id);
-        return view('admin.editColor', ['color'=>$color]);
+        return view('admin.editColor', ['color' => $color]);
     }
     public function editColor(ColorRequest $request, $id)
     {
@@ -48,7 +49,7 @@ class ColorController extends Controller
     public function dropColor(Request $req, $id)
     {
         $this->deleteColor($id) == true ? Session::flash('success', 'Цвет успешно удален')
-        : Session::flash('error', 'Ошибка при удалении');
+            : Session::flash('error', 'Ошибка при удалении');
         return redirect('allColors');
     }
 }

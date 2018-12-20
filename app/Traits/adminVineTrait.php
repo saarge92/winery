@@ -28,13 +28,10 @@ trait adminVineTrait
         $editVine = vine::find($id);
         $editVine = $this->initializeVine($editVine, $request);
         $file = $request->file('image');
-        if (isset($file))
-        {
-            if($editVine->image_src != null)
-            {
-                $delete_path = public_path().'/storage/'.$editVine->image_src;
-                if(file_exists($delete_path))
-                {
+        if (isset($file)) {
+            if ($editVine->image_src != null) {
+                $delete_path = public_path() . '/storage/' . $editVine->image_src;
+                if (file_exists($delete_path)) {
                     unlink($delete_path);
                 }
             }
@@ -50,13 +47,10 @@ trait adminVineTrait
     public function dropVine($id)
     {
         $deletedVine = vine::find($id);
-        if($deletedVine!=null)
-        {
-            if($deletedVine->image_src!=null)
-            {
-                $delete_file = public_path().'/storage/'.$deletedVine->image_src;
-                if(file_exists($delete_file))
-                {
+        if ($deletedVine != null) {
+            if ($deletedVine->image_src != null) {
+                $delete_file = public_path() . '/storage/' . $deletedVine->image_src;
+                if (file_exists($delete_file)) {
                     unlink($delete_file);
                 }
             }

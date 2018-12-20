@@ -14,13 +14,14 @@ use App\DisplayPaginator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
+
 class HomeController extends Controller
 {
 	use vineTrait;
 	use paginateTrait;
 	public function index(Request $request)
 	{
-		$sliders = slider::where(['is_active'=>true])->get();
+		$sliders = slider::where(['is_active' => true])->get();
 		$countries = country::all();
 		$sweets = sweet::all();
 		$colors = color::all();
@@ -29,20 +30,19 @@ class HomeController extends Controller
 		//Get per page number
 		$paginate_number = $this->getPaginateNumber($request);
 		//Generate array for review
-		if($paginate_number == 0)
-		{
-			$vines = $vines->where(['is_active'=>true])->orderby('price','desc');
+		if ($paginate_number == 0) {
+			$vines = $vines->where(['is_active' => true])->orderby('price', 'desc');
 			$vines_for_review = $this->generateListVines($vines->get());
-		}
-		else{
-			$vines = $vines->where(['is_active'=>true])->orderby('price','desc')->paginate($paginate_number);
+		} else {
+			$vines = $vines->where(['is_active' => true])->orderby('price', 'desc')->paginate($paginate_number);
 			$vines_for_review = $this->generateListVines($vines);
 		}
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
 		$paginators = DisplayPaginator::all();
-		return view('frontend.index', ['sliders' => $sliders,
+		return view('frontend.index', [
+			'sliders' => $sliders,
 			'vines' => $vines,
 			'countries' => $countries,
 			'vines_for_review' => collect($vines_for_review),
@@ -58,7 +58,7 @@ class HomeController extends Controller
 	public function getCountOfChoice(Request $request)
 	{
 		parse_str($request->get('params'), $filter_array);
-		$count_vines = count($this->filterVines($filter_array)->where('is_active',true)->get());
+		$count_vines = count($this->filterVines($filter_array)->where('is_active', true)->get());
 		return response()->json(['all' => $count_vines]);
 	}
 	public function autocomplete(Request $request)
@@ -70,15 +70,15 @@ class HomeController extends Controller
 	}
 	public function getWine(Request $request, $id)
 	{
-		$sliders = slider::where(['is_active'=>true])->get();
+		$sliders = slider::where(['is_active' => true])->get();
 		$countries = country::all();
 		$sweets = sweet::all();
 		$colors = color::all();
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
-		$vine = vine::where(['id'=>$id,'is_active'=>true])->get();
-		$vine_for_review = count($vine)!=0 ? collect($this->generateListVines($vine))[0] :null;
+		$vine = vine::where(['id' => $id, 'is_active' => true])->get();
+		$vine_for_review = count($vine) != 0 ? collect($this->generateListVines($vine))[0] : null;
 		return view('frontend.viewWine', [
 			'vine' => $vine_for_review,
 			'sliders' => $sliders,
@@ -92,7 +92,7 @@ class HomeController extends Controller
 	}
 	public function search(Request $request)
 	{
-		$sliders = slider::where(['is_active'=>true])->get();
+		$sliders = slider::where(['is_active' => true])->get();
 		$countries = country::all();
 		$sweets = sweet::all();
 		$colors = color::all();
@@ -101,7 +101,7 @@ class HomeController extends Controller
 		$types_for_wines = type_of_wine::all();
 		$paginators = DisplayPaginator::all();
 		$paginate_number = $this->getPaginateNumber($request);
-		$vines = $this->searchSomeWines($request)->orderby('price','desc')->paginate($paginate_number);
+		$vines = $this->searchSomeWines($request)->orderby('price', 'desc')->paginate($paginate_number);
 		$vines_for_review = collect($this->generateListVines($vines));
 		return view('frontend.searchResult', [
 			'vines_for_review' => $vines_for_review,

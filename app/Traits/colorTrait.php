@@ -18,7 +18,7 @@ trait colorTrait
     public function editColorPost($request, $id)
     {
         $color = color::find($id);
-        if ($color!=null) {
+        if ($color != null) {
             $color->name = $request->get('name_color');
             $result = $color->save();
             return $result;

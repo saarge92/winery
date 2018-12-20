@@ -31,27 +31,29 @@ class AdminController extends Controller
 
 		//Get Filtered Wines
 		$vines = $this->filterVines($request->all());
-		$vines = $vines->orderby('price','desc')->paginate(12);
+		$vines = $vines->orderby('price', 'desc')->paginate(12);
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
 		//Generate array for review
 		$vines_for_review = $this->generateListVines($vines);
-		return view('admin.index',
-		[
-			'vines' => $vines,
-			'countries' => $countries,
-			'vines_for_review' => collect($vines_for_review),
-			'colors' => $colors,
-			'sweets' => $sweets,
-			'max_price' => $max_price,
-			'min_price' => $min_price,
-			'type_of_wines' => $types_for_wines
-		]);
+		return view(
+			'admin.index',
+			[
+				'vines' => $vines,
+				'countries' => $countries,
+				'vines_for_review' => collect($vines_for_review),
+				'colors' => $colors,
+				'sweets' => $sweets,
+				'max_price' => $max_price,
+				'min_price' => $min_price,
+				'type_of_wines' => $types_for_wines
+			]
+		);
 	}
 	public function searchAdminWines(Request $request)
 	{
-		$vines = $this->searchSomeWines($request)->orderby('price','desc');
+		$vines = $this->searchSomeWines($request)->orderby('price', 'desc');
 		$vines_for_review = collect($this->generateListVines($vines->get()));
 		return view('admin.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines->paginate(12)]);
 	}
@@ -62,7 +64,8 @@ class AdminController extends Controller
 		$producers = producer::all();
 		$sweets = sweet::all();
 		$types_for_wines = type_of_wine::all();
-		return view('admin.createVine', ['countries' => $countries,
+		return view('admin.createVine', [
+			'countries' => $countries,
 			'colors' => $colors,
 			'producers' => $producers,
 			'sweets' => $sweets,
@@ -75,7 +78,7 @@ class AdminController extends Controller
 		if ($request->validated()) {
 			$result = $this->addVine($request);
 			$result == true ? Session::flash('success', 'Вино успешно добавлено') :
-			Session::flash('error', 'Произошла ошибка. Обратитесь к разработчику сайта');
+				Session::flash('error', 'Произошла ошибка. Обратитесь к разработчику сайта');
 			return redirect('admin-panel');
 		}
 		return redirect()->back();
@@ -104,7 +107,7 @@ class AdminController extends Controller
 		if ($request->validated()) {
 			$result = $this->updateVine($request);
 			$result == true ? Session::flash('success', 'Вино успешно обновлено')
-			: Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
+				: Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
 			return redirect('admin-panel');
 		}
 		return redirect()->back();
