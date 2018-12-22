@@ -13,6 +13,7 @@ First of all, you need to get [Composer](https://getcomposer.org). Then you need
 After that you need create .env file in the root folder. For example you can use .env.example
 Then you need run next commands
 ```bash
+  php artisan key:generate
   php artisan migrate
   npm install
   php artisan serve
