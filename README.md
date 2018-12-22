@@ -1,8 +1,19 @@
-Real project for winery shop developed on laravel php.
+# About
 
-To install it you need : 
+This is a real web application which was developed on PHP using Laravel framework. This project intended for viewing different types of wines. Also this project allows administrators to manage the records about wines.
 
-1.Composer install
-2. Configure yout own .env file for database connection 
-3. Then npm install
-4. PHP artisan serve
+## Installation
+
+First of all, you need to get [Composer](https://getcomposer.org). Then you need to run next console command
+
+```bash
+  composer install
+```
+
+After that you need create .env file in the root folder. For example you can use .env.example
+Then you need run next commands
+```bash
+  php artisan migrate
+  npm install
+  php artisan serve
+```
