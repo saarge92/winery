@@ -6,28 +6,96 @@ use Illuminate\Http\Request;
 use App\type_of_wine;
 use App\sweet;
 use App\producer;
-//Public Api for mobile application
+use App\country;
+use App\color;
+use App\vine;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+/**
+ * MobileController для api запросов мобильного приложения
+ * 
+ * Реализация простых GET, POST запросов для api запросов
+ * мобильного приложения
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 BarHouse
+ */
 class MobileController extends Controller
 {
-    //Get all types of wines
+    /** @var array массив параметров json-ответа */
     private $header_info;
+
     public function __construct()
     {
         $this->header_info = ['Content-Type' => 'application/json;charset=UTF-8', 'charset' => 'utf-8'];
     }
-    public function getAllTypes()
+
+    /**
+     * Получение списка типов вина
+     * @return object
+     */
+    public function getAllTypes() : object
     {
         $all_types = type_of_wine::all();
         return response()->json($all_types, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
     }
-    public function getAllSweets()
+
+    /**
+     * Получение списка сладостей вина
+     * @return object
+     */
+    public function getAllSweets() : object
     {
         $all_sweets = sweet::all();
         return response()->json($all_sweets, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
     }
-    public function getAllProducers()
+
+    /**
+     * Получение списка производителей
+     * @return object
+     */
+    public function getAllProducers() : object
     {
         $all_producers = producer::all();
         return response()->json($all_producers, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * Получение списка стран вин
+     * @return object
+     */
+    public function getAllCountries() : object
+    {
+        $allCountries = country::all();
+        return response()->json($allCountries, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * Получение списка цвета вин
+     * @return object
+     */
+    public function getAllColors() : object
+    {
+        $allColors = color::all();
+        return response()->json($allColors, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+    }
+    /**
+     * Получение минимальной цены вин
+     * @return int
+     */
+    public function getMinPrice() : int
+    {
+        $minPrice = vine::min('price');
+        return $minPrice;
+    }
+
+    /**
+     * Получение максимальной цены вин
+     * @return int
+     */
+    public function getMaxPrice() : int
+    {
+        $maxPrice = vine::max('price');
+        return $maxPrice;
     }
 }

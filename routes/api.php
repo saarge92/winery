@@ -19,4 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/getAllTypes', ['uses' => 'MobileController@getAllTypes']);
 Route::get('/getAllSweets', ['uses' => 'MobileController@getAllSweets']);
-Route::get('/getAllProducers',['uses' => 'MobileController@getAllProducers']);
+Route::get('/getAllProducers', ['uses' => 'MobileController@getAllProducers']);
+Route::get('/getAllCountries', ['uses' => 'MobileController@getAllCountries']);
+Route::get('/getAllColors', ['uses' => 'MobileController@getAllColors']);
+Route::get('/getMinPrice', ['uses' => 'MobileController@getMinPrice']);
+Route::get('/getMaxPrice', ['uses' => 'MobileController@getMaxPrice']);
