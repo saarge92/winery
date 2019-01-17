@@ -32,9 +32,9 @@ class MobileController extends Controller
 
     /**
      * Получение списка типов вина
-     * @return object
+     * @return JsonResponse
      */
-    public function getAllTypes() : object
+    public function getAllTypes() : JsonResponse
     {
         $all_types = type_of_wine::all();
         return response()->json($all_types, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -42,9 +42,9 @@ class MobileController extends Controller
 
     /**
      * Получение списка сладостей вина
-     * @return object
+     * @return JsonResponse
      */
-    public function getAllSweets() : object
+    public function getAllSweets() : JsonResponse
     {
         $all_sweets = sweet::all();
         return response()->json($all_sweets, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -52,7 +52,7 @@ class MobileController extends Controller
 
     /**
      * Получение списка производителей
-     * @return object
+     * @return JsonResponse
      */
     public function getAllProducers() : JsonResponse
     {
@@ -62,9 +62,9 @@ class MobileController extends Controller
 
     /**
      * Получение списка стран вин
-     * @return object
+     * @return JsonResponse
      */
-    public function getAllCountries() : object
+    public function getAllCountries() : JsonResponse
     {
         $allCountries = country::all();
         return response()->json($allCountries, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -72,9 +72,9 @@ class MobileController extends Controller
 
     /**
      * Получение списка цвета вин
-     * @return object
+     * @return JsonResponse
      */
-    public function getAllColors() : object
+    public function getAllColors() : JsonResponse
     {
         $allColors = color::all();
         return response()->json($allColors, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
