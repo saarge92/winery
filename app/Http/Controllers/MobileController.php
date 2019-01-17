@@ -10,7 +10,7 @@ use App\country;
 use App\color;
 use App\vine;
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use Illuminate\Http\JsonResponse;
 /**
  * MobileController для api запросов мобильного приложения
  * 
@@ -54,7 +54,7 @@ class MobileController extends Controller
      * Получение списка производителей
      * @return object
      */
-    public function getAllProducers() : object
+    public function getAllProducers() : JsonResponse
     {
         $all_producers = producer::all();
         return response()->json($all_producers, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
