@@ -17,10 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/getAllTypes', ['uses' => 'MobileController@getAllTypes']);
-Route::get('/getAllSweets', ['uses' => 'MobileController@getAllSweets']);
-Route::get('/getAllProducers', ['uses' => 'MobileController@getAllProducers']);
-Route::get('/getAllCountries', ['uses' => 'MobileController@getAllCountries']);
-Route::get('/getAllColors', ['uses' => 'MobileController@getAllColors']);
-Route::get('/getMinPrice', ['uses' => 'MobileController@getMinPrice']);
-Route::get('/getMaxPrice', ['uses' => 'MobileController@getMaxPrice']);
+Route::get('/get-all-types', ['uses' => 'MobileController@getAllTypes']);
+Route::get('/get-all-sweets', ['uses' => 'MobileController@getAllSweets']);
+Route::get('/get-all-producers', ['uses' => 'MobileController@getAllProducers']);
+Route::get('/get-all-countries', ['uses' => 'MobileController@getAllCountries']);
+Route::get('/get-all-colors', ['uses' => 'MobileController@getAllColors']);
+Route::get('/get-min-price', ['uses' => 'MobileController@getMinPrice']);
+Route::get('/get-max-price', ['uses' => 'MobileController@getMaxPrice']);
