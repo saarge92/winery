@@ -166,7 +166,7 @@ trait vineTrait
      * 
      * @return object
      */
-    public function filterVines($params) : object
+    public function filterVines($params)
     {
         $vines = new vine;
         $country_select = isset($params['country']) ? $params['country'] : [];
@@ -210,7 +210,7 @@ trait vineTrait
      * @param mixed $request - параметр поиска
      * @return object
      */
-    public function searchSomeWines($request) : ?object
+    public function searchSomeWines($request)
     {
         $vines = vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $request->get('wine_name') . '%')
             ->orWhere('name_en', 'LIKE', '%' . $request->get('wine_name') . '%');
