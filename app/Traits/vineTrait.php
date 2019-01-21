@@ -8,30 +8,64 @@ use App\producer;
 use App\sweet;
 use App\vine;
 use App\type_of_wine;
-
+/**
+ * Трейт предназначен для работы с сущностью "Вино"
+ * 
+ * Содержит набор функций для работы
+ */
 trait vineTrait
 {
-    public function getCountryNameRusById($id)
+    /**
+     * Получение названия вина (по русски) по id
+     * 
+     * Возвращает либо string либо null
+     * 
+     * @param int $id - входной параметр для поиска вина
+     * @return mixed
+     */
+    public function getCountryNameRusById($id) : string
     {
         $country = country::find($id);
-        $country != null ? $country_name = $country->name_rus : $country_name = 'Страна не указана';
+        $country != null ? ($country_name = $country->name_rus != null ? $country->name_rus : '') : $country_name = 'Страна не найдена';
         return $country_name;
     }
 
-    public function getCountryNameEnById($id)
+    /**
+     * Получение названия вина (по-английский) по id
+     * 
+     * Возвращает либо string либо null
+     * 
+     * @param int $id - входной параметр для поиска вина
+     * @return string
+     */
+    public function getCountryNameEnById($id) : string
     {
         $country = country::find($id);
-        isset($country) ? $country_name = $country->name_en : $country_name = 'Страна не указана';
+        isset($country) ? $country_name = ($country->name_en != null ? $country->name_en : '') : $country_name = 'Страна не указана';
         return $country_name;
     }
 
-    public function getColorNameById($id)
+    /**
+     * Возвращает цвет вина по id
+     * 
+     * Возвращает либо string либо null
+     * 
+     * @param int $id - входной параметр для поиска вина
+     * @return string
+     */
+    public function getColorNameById($id) : string
     {
         $color = color::find($id);
         $color != null ? $color_name = $color->name : $color_name = 'Цвет не указан';
         return $color_name;
     }
 
+    /**
+     * Возвращает название "Сладости вина" по id
+     * 
+     * @param int $id - Входной параметр $id вина
+     * @return string
+     */
     public function getSweetNameById($id)
     {
         $sweet = sweet::find($id);
@@ -39,25 +73,54 @@ trait vineTrait
         return $sweet_name;
     }
 
-    public function getProducersName($id)
+    /**
+     * Возвращает производителя вина по id вина
+     * 
+     * @param int $id - входной параметр - id вина
+     * @return string
+     */
+    public function getProducersName($id) : string
     {
         $producer = producer::find($id);
-        $producer != null ? $producer_name = $producer->name : $producer_name = 'Не указан';
+        $producer != null ? $producer_name = $producer->name : $producer_name = 'Производитель Не указан';
         return $producer_name;
     }
-    public function getTypeOfWine($id)
+    /**
+     * Возвращает тип вина по id вина
+     * 
+     * Возвращает либо название типа вина , либо null
+     * 
+     * @param int $id - id вина
+     * @return string
+     */
+    public function getTypeOfWine($id) : ? string
     {
         $type_w = type_of_wine::find($id);
         $type_w != null ? $type_name = $type_w->name : $type_name = null;
         return $type_name;
     }
-    public function getPriorityColorNumber($id_color)
+
+    /**
+     * Возвращает приоритет цвета вина
+     * 
+     * @param int $id_color - id цвета
+     * 
+     * @deprecated
+     * @return string
+     */
+    public function getPriorityColorNumber($id_color) : ? string
     {
         $color = color::find($id_color);
         $color !== null ? $priority_num = $color->priority : $priority_num = null;
         return $priority_num;
     }
-    public function generateListVines($vines)
+    /**
+     * Формирует и инииализирует список вина в соответствующий вин
+     * 
+     * @param array $vines - список записей из бд
+     * @return array
+     */
+    public function generateListVines($vines) : array
     {
         $vines_for_review = array();
         foreach ($vines as $vine) {
@@ -85,7 +148,10 @@ trait vineTrait
         }
         return $vines_for_review;
     }
-    //Sorting by color priority
+    /**
+     * Сортировка вин по цветовому приоритету
+     * @deprecated
+     */
     private function sort_by_priority($_vines)
     {
         usort($_vines, function ($a, $b) {
@@ -93,7 +159,14 @@ trait vineTrait
         });
         return $_vines;
     }
-    public function filterVines($params)
+    /**
+     * Фильтрация вин согласно параметров
+     * 
+     * @param array $params - список параметров для фильтрации
+     * 
+     * @return object
+     */
+    public function filterVines($params) : object
     {
         $vines = new vine;
         $country_select = isset($params['country']) ? $params['country'] : [];
@@ -131,7 +204,13 @@ trait vineTrait
         }
         return $vines;
     }
-    public function searchSomeWines($request)
+    /**
+     * Поиск вина 
+     * 
+     * @param mixed $request - параметр поиска
+     * @return object
+     */
+    public function searchSomeWines($request) : ?object
     {
         $vines = vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $request->get('wine_name') . '%')
             ->orWhere('name_en', 'LIKE', '%' . $request->get('wine_name') . '%');
