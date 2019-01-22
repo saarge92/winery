@@ -3,11 +3,25 @@
 namespace App\Traits;
 
 use App\vine;
-// use Illuminate\Support\Facades\File;
+
+/**
+ * Trait для операций с сущностью "вино" администратором
+ * 
+ * Предоставляет возможность администратору провододить операции с вином
+ */
 
 trait adminVineTrait
 {
-    public function addVine($request)
+    /**
+     * Добавление вина
+     * 
+     * Функция для сохранения вина в базе
+     * 
+     * @param Request $request - Request с параметрами для добавления вина
+     * @return bool - Возвращает булево значение, сохранено ли значение
+     * 
+     */
+    public function addVine($request) : bool
     {
         $new_vine = new vine();
         $new_vine = $this->initializeVine($new_vine, $request);
@@ -22,7 +36,15 @@ trait adminVineTrait
         return $is_saved;
     }
 
-    public function updateVine($request)
+    /**
+     * Обновление вина
+     * 
+     * Функция для обновления записи вина
+     * 
+     * @param Request $request - параметр для обновления вина
+     * @return bool - Возвращает булево значение, сохранено ли значение
+     */
+    public function updateVine($request) : bool
     {
         $id = $request->get('id');
         $editVine = vine::find($id);
@@ -43,8 +65,15 @@ trait adminVineTrait
         $is_save = $editVine->save();
         return $is_save;
     }
-
-    public function dropVine($id)
+    /**
+     * Удаление вина
+     * 
+     * Функция для удаления по $id
+     *  
+     * @param int $id - параметр для удаления
+     * @return bool - Возвращает, удалено ли вино
+     */
+    public function dropVine(int $id) : bool
     {
         $deletedVine = vine::find($id);
         if ($deletedVine != null) {
@@ -59,7 +88,14 @@ trait adminVineTrait
         }
         return false;
     }
-
+    /**
+     * Функция инициализации вина(1 объекта) для вывода в удобно-читаемый вид
+     * 
+     * Функция позволяет инициализировать объект-вино для добавления в базу
+     * 
+     * @param $vine - объект-вино для инициализации
+     * @param $request - параметры инициализации
+     */
     private function initializeVine($vine, $request)
     {
         $vine->name_rus = $request->get('name_rus');
@@ -80,7 +116,13 @@ trait adminVineTrait
         return $vine;
     }
 
-    public function disableVine($id)
+    /**
+     * Деактивация вина по его id
+     * 
+     * @param $id - номер вина
+     * @return bool - Деактивировано ли вино
+     */
+    public function disableVine($id) : bool
     {
         $vine = vine::find($id);
         if ($vine != null) {
@@ -90,6 +132,13 @@ trait adminVineTrait
         }
         return false;
     }
+
+    /**
+     * Активация вина по его id
+     * 
+     * @param $id - номер вина
+     * @return bool - Активировано ли вино
+     */
     public function enableVine($id)
     {
         $vine = vine::find($id);
