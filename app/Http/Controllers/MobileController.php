@@ -114,7 +114,7 @@ class MobileController extends Controller
     public function getRequestedWines(Request $request) : JsonResponse
     {
         $filteredWines = $this->filterVines($request);
-        $filteredWines = $this->generateListVines($filterWines);
+        $filteredWines = $this->generateListVines($filteredWines->get());
         return response()->json($filteredWines, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
     }
 }
