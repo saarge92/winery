@@ -24,3 +24,4 @@ Route::get('/get-all-countries', ['uses' => 'MobileController@getAllCountries'])
 Route::get('/get-all-colors', ['uses' => 'MobileController@getAllColors']);
 Route::get('/get-min-price', ['uses' => 'MobileController@getMinPrice']);
 Route::get('/get-max-price', ['uses' => 'MobileController@getMaxPrice']);
+Route::post('/get-requested-wines', ['uses' => 'MobileController@getRequestedWines']);

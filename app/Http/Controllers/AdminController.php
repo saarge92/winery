@@ -14,6 +14,14 @@ use App\type_of_wine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Контроллер для работы с личным кабинетом администратора
+ * 
+ * Предоставляет методы для генерации представлений личного кабинета админа
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 BarHouse
+ */
 class AdminController extends Controller
 {
 	use vineTrait;
@@ -23,19 +31,23 @@ class AdminController extends Controller
 	{
 		$this->middleware('roles');
 	}
+	/**
+	 * Генерация индексной страницы администратора
+	 * @param Request $request - параметр-запрос
+	 */
 	public function index(Request $request)
 	{
 		$countries = country::all();
 		$sweets = sweet::all();
 		$colors = color::all();
 
-		//Get Filtered Wines
+		/** Отфильтрованные вина */
 		$vines = $this->filterVines($request->all());
 		$vines = $vines->orderby('price', 'desc')->paginate(12);
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
-		//Generate array for review
+		/**Генерация списка вин для отображения */
 		$vines_for_review = $this->generateListVines($vines);
 		return view(
 			'admin.index',
@@ -51,12 +63,23 @@ class AdminController extends Controller
 			]
 		);
 	}
+
+	/**
+	 * Поиск вин в админ-панеле
+	 * 
+	 * Применяются функции из трейтов vineTrait и adminVineTrait
+	 */
 	public function searchAdminWines(Request $request)
 	{
 		$vines = $this->searchSomeWines($request)->orderby('price', 'desc');
 		$vines_for_review = collect($this->generateListVines($vines->get()));
 		return view('admin.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines->paginate(12)]);
 	}
+	/**
+	 * GET запрос на создание вина
+	 * 
+	 * Генерирует страницу для начала создания вина
+	 */
 	public function createVine()
 	{
 		$countries = country::all();
@@ -73,6 +96,13 @@ class AdminController extends Controller
 		]);
 	}
 
+	/**
+	 * POST запрос на создание вина
+	 * 
+	 * Обработка запроса на создание вина
+	 * 
+	 * @param VinePostRequest $request - форма для создание вина
+	 */
 	public function postVine(VinePostRequest $request)
 	{
 		if ($request->validated()) {
@@ -84,7 +114,13 @@ class AdminController extends Controller
 		return redirect()->back();
 	}
 
-	public function editVine(Request $request, $id)
+	/**
+	 * GET запрос на редактирование вина
+	 * 
+	 * @param Request $requst - параметры запроса
+	 * @param int $id - номер редактируемого вина
+	 */
+	public function editVine(Request $request, int $id)
 	{
 		$countries = country::all();
 		$colors = color::all();

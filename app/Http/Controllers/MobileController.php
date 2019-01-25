@@ -10,6 +10,7 @@ use App\country;
 use App\color;
 use App\vine;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Traits\vineTrait;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -25,6 +26,8 @@ class MobileController extends Controller
 {
     /** @var array массив параметров json-ответа */
     private $header_info;
+
+    use vineTrait;
 
     public function __construct()
     {
@@ -98,5 +101,20 @@ class MobileController extends Controller
     {
         $maxPrice = vine::max('price');
         return $maxPrice;
+    }
+
+    /**
+     * API для получения вин
+     * 
+     * Получение вин по запросу
+     * 
+     * @param Requset $request - входной параметр
+     * @return JsonResponse
+     */
+    public function getRequestedWines(Request $request) : JsonResponse
+    {
+        $filteredWines = $this->filterVines($request);
+        $filteredWines = $this->generateListVines($filterWines);
+        return response()->json($filteredWines, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
     }
 }

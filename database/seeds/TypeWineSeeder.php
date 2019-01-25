@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\type_of_wine;
+
 class TypeWineSeeder extends Seeder
 {
     /**

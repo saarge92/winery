@@ -3,19 +3,40 @@
 namespace App\Traits;
 
 use App\sweet;
+use Illuminate\Http\Request;
 
-// use Illuminate\Support\Facades\File;
-
+/**
+ * Trait для работы со сладостью вин
+ * 
+ * Trait содержит базовые операции с сущностью "Сладость вина"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 BarHouse
+ */
 trait sweetTrait
 {
-    public function addSweet($req)
+    /**
+     * Добавление сладости вина
+     * 
+     * @param Request $req - список параметров
+     * @return bool $result - Добавлено ли производитель
+     */
+    public function addSweet(Request $req) : bool
     {
         $sweet = new sweet();
         $sweet->name = $req->get('name_sweet');
         $result = $sweet->save();
         return $result;
     }
-    public function editSweetPost($request, $id)
+
+    /**
+     * Редактирование сладости вин
+     * 
+     * @param Request $request - параметры запроса
+     * @param int $id - id номер производителя
+     * @return bool $result - Редактирована ли запись
+     */
+    public function editSweetPost(Request $request, int $id) : bool
     {
         $sweet = sweet::find($id);
         if ($sweet != null) {
@@ -25,7 +46,15 @@ trait sweetTrait
         }
         return false;
     }
-    public function deleteSweet($id)
+
+    /**
+     * Удаление сладости вина
+     * 
+     * @param Request $request - параметры запроса
+     * @param int $id - id номер записи
+     * @return bool $result - Редактирована ли запись
+     */
+    public function deleteSweet(int $id)
     {
         $sweet = sweet::find($id);
         if (isset($sweet)) {

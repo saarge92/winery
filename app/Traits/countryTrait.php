@@ -3,12 +3,25 @@
 namespace App\Traits;
 
 use App\country;
+use Illuminate\Http\Request;
 
-// use Illuminate\Support\Facades\File;
-
+/**
+ * Trait для работы со странами вин
+ * 
+ * Trait содержит базовые операции с сущностью "Страны вин"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 BarHouse
+ */
 trait countryTrait
 {
-    public function addCountry($req)
+    /**
+     * Добавление Страны вина
+     * 
+     * @param Request $req - список параметров
+     * @return bool $result - Добавлена ли страна
+     */
+    public function addCountry($req) : bool
     {
         $result = country::create([
             'name_rus' => $req->get('name_rus'),
@@ -16,7 +29,15 @@ trait countryTrait
         ])->save();
         return $result;
     }
-    public function editCountryPost($request, $id)
+
+    /**
+     * Редактирование страны
+     * 
+     * @param Request $request - параметры запроса
+     * @param int $id - id номер вина
+     * @return bool $result - Редактирована ли страна
+     */
+    public function editCountryPost(Request $request, int $id) : bool
     {
         $country = country::find($id);
         if ($country != null) {
@@ -27,7 +48,15 @@ trait countryTrait
         }
         return false;
     }
-    public function deleteCountry($id)
+
+    /**
+     * Удаление страны вина
+     * 
+     * @param Request $request - параметры запроса
+     * @param int $id - id номер страны
+     * @return bool $result - Редактирована ли страна
+     */
+    public function deleteCountry(int $id) : bool
     {
         $country = country::find($id);
         if (isset($country)) {

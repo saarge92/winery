@@ -11,8 +11,9 @@
             </div>
             <div>
                 min цена
-                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min" type="number" value="{{isset($_GET['price_min']) ? $_GET['price_min'] : $min_price}}">
-                max цена
+                <input type="number" class="priceSlider form-control filter_checked" class="priceSlider" id="price_min" name="price_min"
+                    type="number" value="{{isset($_GET['price_min']) ? $_GET['price_min'] : $min_price}}"> max
+                цена
                 <input type="number" class="priceSlider form-control filter_checked" id="price_max" name="price_max" type="number" value="{{isset($_GET['price_max']) ? $_GET['price_max'] : $max_price}}">
                 <div id="slider_price"></div>
             </div>
@@ -20,83 +21,64 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_country">
-                        @if(isset($_GET['country_visible']))
-                        @if($_GET['country_visible']== 1)
-                        <i class="fas fa-minus" id="country_icon"></i>
-                        @elseif ($_GET['country_visible']== 0)
-                        <i class="fas fa-plus" id="country_icon"></i>
-                        @endif
-                        @else
-                        <i class="fas fa-plus" id="country_icon"></i>
-                        @endif
-                        Страны
+                        @if(isset($_GET['country_visible'])) @if($_GET['country_visible']== 1)
+                        <i class="fas fa-minus" id="country_icon"></i> @elseif ($_GET['country_visible']== 0)
+                        <i class="fas fa-plus" id="country_icon"></i> @endif @else
+                        <i class="fas fa-plus" id="country_icon"></i> @endif Страны
                     </div>
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['country_visible']) ? ($_GET['country_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="country_block"
-                class="sub-menu">
+            <div style="display: {{isset($_GET['country_visible']) ? ($_GET['country_visible'] == '1' ? 'block' : 'none') : 'none'}}"
+                id="country_block" class="sub-menu">
                 @foreach ($countries as $country)
-                <input type="checkbox" name="country[]" class="filter_checked sub-point" value="{{$country->id}}" {{in_array($country->id, isset($_GET['country']) ? $_GET['country'] : []) ? 'checked' : ''}}>
-                <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label> <br>
-                @endforeach
+                <input type="checkbox" name="country[]" class="filter_checked sub-point" value="{{$country->id}}" {{in_array($country->id,
+                isset($_GET['country']) ? $_GET['country'] : []) ? 'checked' : ''}}>
+                <label for="{{$country->id}}">{{$country->name_rus}} {{$country->name_en ? '/'.$country->name_en : ''}}</label>                <br> @endforeach
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_color">
-                        @if(isset($_GET['color_visible']))
-                        @if($_GET['color_visible']== 1)
-                        <i class="fas fa-minus" id="color_icon"></i>
-                        @elseif ($_GET['color_visible']== 0)
-                        <i class="fas fa-plus" id="color_icon"></i>
-                        @endif
-                        @else
-                        <i class="fas fa-plus" id="color_icon"></i>
-                        @endif
-                        Цвет
+                        @if(isset($_GET['color_visible'])) @if($_GET['color_visible']== 1)
+                        <i class="fas fa-minus" id="color_icon"></i> @elseif ($_GET['color_visible']== 0)
+                        <i class="fas fa-plus" id="color_icon"></i> @endif @else
+                        <i class="fas fa-plus" id="color_icon"></i> @endif Цвет
                     </div>
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['color_visible']) ? ($_GET['color_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="color_block" class="sub-menu">
+            <div style="display: {{isset($_GET['color_visible']) ? ($_GET['color_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="color_block"
+                class="sub-menu">
                 @foreach ($colors as $color)
-                <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked sub-point"
-                    {{in_array($color->id,isset($_GET['color']) ? $_GET['color'] : []) ? 'checked' : ''}}>
-                <label for="{{$color->id}}">{{$color->name}}</label> <br>
-                @endforeach
+                <input type="checkbox" name="color[]" value="{{$color->id}}" class="filter_checked sub-point" {{in_array($color->id,isset($_GET['color'])
+                ? $_GET['color'] : []) ? 'checked' : ''}}>
+                <label for="{{$color->id}}">{{$color->name}}</label> <br> @endforeach
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="param-holder" id="toggle_sweet">
-                        @if(isset($_GET['sweet_visible']))
-                        @if($_GET['sweet_visible']== 1)
-                        <i class="fas fa-minus" id="sweet_icon"></i>
-                        @elseif ($_GET['sweet_visible']== 0)
-                        <i class="fas fa-plus" id="sweet_icon"></i>
-                        @endif
-                        @else
-                        <i class="fas fa-plus" id="sweet_icon"></i>
-                        @endif
-                        Сахар
+                        @if(isset($_GET['sweet_visible'])) @if($_GET['sweet_visible']== 1)
+                        <i class="fas fa-minus" id="sweet_icon"></i> @elseif ($_GET['sweet_visible']== 0)
+                        <i class="fas fa-plus" id="sweet_icon"></i> @endif @else
+                        <i class="fas fa-plus" id="sweet_icon"></i> @endif Сахар
                     </div>
                 </div>
             </div>
 
-            <div style="display: {{isset($_GET['sweet_visible']) ? ($_GET['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="sweet_block" class="sub-menu">
+            <div style="display: {{isset($_GET['sweet_visible']) ? ($_GET['sweet_visible'] == '1' ? 'block' : 'none') : 'none'}}" id="sweet_block"
+                class="sub-menu">
                 @foreach ($sweets as $sweet)
-                <input type="checkbox" name="sweet[]" class="filter_checked sub-point" value="{{$sweet->id}}"
-                    {{in_array($sweet->id,isset($_GET['sweet'])?$_GET['sweet'] : []) ? 'checked' : ''}}>
-                <label>{{$sweet->name}}</label> <br>
-                @endforeach
+                <input type="checkbox" name="sweet[]" class="filter_checked sub-point" value="{{$sweet->id}}" {{in_array($sweet->id,isset($_GET['sweet'])?$_GET['sweet']
+                : []) ? 'checked' : ''}}>
+                <label>{{$sweet->name}}</label> <br> @endforeach
             </div>
             <div>
                 @foreach ($type_of_wines as $type_w)
-                <input type="checkbox" name="types_wines[]" class="filter_checked sub-point" value="{{$type_w->id}}"
-                    {{in_array($type_w->id,isset($_GET['types_wines'])?$_GET['types_wines'] : []) ? 'checked' : ''}}>
-                <label>{{$type_w->name}}</label> <br>
-                @endforeach
+                <input type="checkbox" name="types_wines[]" class="filter_checked sub-point" value="{{$type_w->id}}" {{in_array($type_w->id,isset($_GET['types_wines'])?$_GET['types_wines']
+                : []) ? 'checked' : ''}}>
+                <label>{{$type_w->name}}</label> <br> @endforeach
             </div>
             <div style="text-align:center;padding:0.5rem;">
                 <button class="btn btn-danger" type="submit">

@@ -3,12 +3,25 @@
 namespace App\Traits;
 
 use App\slider;
+use Illuminate\Http\Request;
 
-// use Illuminate\Support\Facades\File;
-
+/**
+ * Trait для работы со слайдерами на главной странице
+ * 
+ * Trait содержит базовые операции с сущностью "Слайдеры"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 BarHouse
+ */
 trait sliderTrait
 {
-    public function addSlider($req)
+    /**
+     * Добавление слайдера
+     * 
+     * @param Request $req - список параметров
+     * @return bool $result - Добавлен ли слайдер
+     */
+    public function addSlider(Request $req) : bool
     {
         $slider = new slider();
         $slider->content = $req->get('content');
@@ -21,7 +34,15 @@ trait sliderTrait
         $result = $slider->save();
         return $result;
     }
-    public function editSlider($req, $id)
+
+    /**
+     * Редактирование слайдера
+     * 
+     * @param Request $request - параметры запроса
+     * @param int $id - id номер слайдера
+     * @return bool $result - Редактирован ли слайдер
+     */
+    public function editSlider(Request $req, int $id)
     {
         $slider = slider::find($id);
         if ($slider != null) {
@@ -40,6 +61,14 @@ trait sliderTrait
         }
         return false;
     }
+
+    /**
+     * Редактирование слайдера вин
+     * 
+     * @param Request $request - параметры запроса
+     * @param int $id - id номер слайдера
+     * @return bool $result - Редактирован ли слайдер
+     */
     public function deleteSlider($id)
     {
         $slider = slider::find($id);

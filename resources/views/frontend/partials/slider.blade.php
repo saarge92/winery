@@ -2,8 +2,7 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             @foreach ($sliders as $key => $slider)
-                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
-                    class="{{ $key== 0 ? 'active' : '' }}"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="{{ $key== 0 ? 'active' : '' }}"></li>
             @endforeach
         </ol>
         <div class="carousel-inner">

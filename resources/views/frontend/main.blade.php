@@ -1,15 +1,15 @@
 @include('frontend.partials.slider')
-@include('frontend.partials.countOfFilter')
-@include('frontend.partials.modalWine')
+    @include('frontend.partials.countOfFilter')
+    @include('frontend.partials.modalWine')
 <div>
     @include('frontend.partials.loader')
     <div class="container">
-        @include('frontend.partials.searchWines')
+    @include('frontend.partials.searchWines')
         <div class="row">
             <div class="col-lg-3 my-2">
-                @include('frontend.partials.form_filter')
+    @include('frontend.partials.form_filter')
             </div>
-            <div class="col-lg-9"  id="vines">
+            <div class="col-lg-9" id="vines">
                 @yield('content')
             </div>
         </div>
