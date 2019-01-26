@@ -113,8 +113,20 @@ class MobileController extends Controller
      */
     public function getRequestedWines(Request $request) : JsonResponse
     {
+        /**Фильтруем вина */
         $filteredWines = $this->filterVines($request);
-        $filteredWines = $this->generateListVines($filteredWines->get());
-        return response()->json($filteredWines, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+
+        /**Текущая страница */
+        isset($request['page']) ? $currentPage = $request['page'] : $currentPage = 1;
+
+        /**Результат пагинации */
+        $paginatedWines = $filteredWines->paginate(12, ['*'], 'page', $currentPage);
+
+        $resultFilter = $this->generateListVines($paginatedWines);
+        $result = [
+            'result' => $resultFilter,
+            'countPages' => $paginatedWines->lastPage()
+        ];
+        return response()->json($result, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
     }
 }
