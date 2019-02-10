@@ -33,6 +33,7 @@ class AdminController extends Controller
 	}
 	/**
 	 * Генерация индексной страницы администратора
+	 * 
 	 * @param Request $request - параметр-запрос
 	 */
 	public function index(Request $request)
@@ -75,6 +76,7 @@ class AdminController extends Controller
 		$vines_for_review = collect($this->generateListVines($vines->get()));
 		return view('admin.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines->paginate(12)]);
 	}
+
 	/**
 	 * GET запрос на создание вина
 	 * 
@@ -117,7 +119,7 @@ class AdminController extends Controller
 	/**
 	 * GET запрос на редактирование вина
 	 * 
-	 * @param Request $requst - параметры запроса
+	 * @param Request $request - параметры запроса
 	 * @param int $id - номер редактируемого вина
 	 */
 	public function editVine(Request $request, int $id)
@@ -138,6 +140,13 @@ class AdminController extends Controller
 		]);
 	}
 
+	/**
+	 * POST-запрос на редактирование вина
+	 * 
+	 * Перенаправляет на предыдущую страницу, в случае успешного редактирования
+	 * 
+	 * @param VinePostRequest $request - запрос с параметрами редактирования
+	 */
 	public function postEditVine(VinePostRequest $request)
 	{
 		if ($request->validated()) {
@@ -149,18 +158,44 @@ class AdminController extends Controller
 		return redirect()->back();
 	}
 
-	public function deleteVine(Request $request, $id)
+	/**
+	 * POST-запрос на редактирование вина
+	 * 
+	 * Перенаправляет на предыдущую страницу, в случае успешного удаления
+	 * 
+	 * @param Request $request - запрос с параметрами удаления
+	 * @param int $id - id удаляемого вина
+	 */
+	public function deleteVine(Request $request, int $id)
 	{
 		$result = $this->dropVine($id);
 		$result == true ? Session::flash('success', 'Вино удалено') : Session::flash('error', 'Произошла ошибка при удалении');
 		return redirect('admin-panel');
 	}
+
+	/**
+	 * POST-запрос на деактивацию вина вина
+	 * 
+	 * Перенаправляет на предыдущую страницу, в случае успешной деактивации
+	 * 
+	 * @param Request $request - запрос с параметрами деактивации
+	 * @param int $id - id деактивируемого вина
+	 */
 	public function deactivateVine(Request $request, $id)
 	{
 		$result = $this->disableVine($id);
 		$result == true ? Session::flash('success', 'Вино деактивировано') : Session::flash('error', 'Ошибка. Возможно вино отсутсвует в базе');
 		return redirect()->back();
 	}
+
+	/**
+	 * POST-запрос на деактивацию вина вина
+	 * 
+	 * Перенаправляет на предыдущую страницу, в случае успешной деактивации
+	 * 
+	 * @param Request $request - запрос с параметрами деактивации
+	 * @param int $id - id деактивируемого вина
+	 */
 	public function activateVine(Request $request, $id)
 	{
 		$result = $this->enableVine($id);
