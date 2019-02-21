@@ -12,6 +12,7 @@ use App\vine;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Traits\vineTrait;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * MobileController для api запросов мобильного приложения
@@ -128,5 +129,15 @@ class MobileController extends Controller
             'countPages' => $paginatedWines->lastPage()
         ];
         return response()->json($result, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * API для получения вина по Id
+     */
+    public function getWineById(Request $request) : JsonResponse
+    {
+        $id = $request->get('wineId');
+        $wine = vine::find($id);
+        
     }
 }

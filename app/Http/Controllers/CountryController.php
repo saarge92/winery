@@ -8,18 +8,40 @@ use App\Traits\countryTrait;
 use App\Http\Requests\CountryCreateRequest;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Контроллер для работы со странами вин в кабинете администратора
+ * 
+ * Предоставляет методы для работы с сущностью "страны вин"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 BarHouse
+ */
 class CountryController extends Controller
 {
     use countryTrait;
+
+    /** 
+    * Получение страницы со списком стран
+    */
     public function getCountries()
     {
         $country = country::orderby('name_rus', 'asc')->paginate(6);
         return view('admin.countries', ['countries' => $country]);
     }
+
+    /**
+    * GET-запрос на получение страницы для создания страны
+    */
     public function startCreateCountry()
     {
         return view('admin.newCountry');
     }
+
+    /**
+    * POST-запрос для создания страны
+    * 
+    * @param CountryCreateRequest $request - Запрос на создание страны
+    */
     public function createCountry(CountryCreateRequest $request)
     {
         if ($request->validated()) {
@@ -30,11 +52,24 @@ class CountryController extends Controller
         }
         return redirect()->back();
     }
+
+    /**
+    * GET-запрос на получение страницы для редактирования страны
+    * @param Request $request - Запрос на редактирование страны
+    * @param $id - номер страны
+    */
     public function startEdit(Request $request, $id)
     {
         $country = country::find($id);
         return view('admin.editCountry', ['country' => $country]);
     }
+
+    /**
+     * POST - запрос редактирования страны
+     * 
+     * @param CountryCreateRequest $request - Запрос на редактирование страны
+     * @param $id - номер страны
+     */
     public function editCountry(CountryCreateRequest $request, $id)
     {
         if ($request->validated()) {
@@ -45,6 +80,13 @@ class CountryController extends Controller
         }
         return redirect('countries');
     }
+
+    /**
+     * POST-запрос на удаление страны
+     * 
+     * @param Request $req - Post-запрос
+     * @param $id - номер страны
+     */
     public function dropCountry(Request $req, $id)
     {
         $this->deleteCountry($id) == true ? Session::flash('success', 'Страна успешно удалена')
