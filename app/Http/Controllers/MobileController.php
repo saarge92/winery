@@ -12,7 +12,7 @@ use App\vine;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Traits\vineTrait;
 use Illuminate\Http\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * MobileController для api запросов мобильного приложения
@@ -39,7 +39,7 @@ class MobileController extends Controller
      * Получение списка типов вина
      * @return JsonResponse
      */
-    public function getAllTypes() : JsonResponse
+    public function getAllTypes(): JsonResponse
     {
         $all_types = type_of_wine::all();
         return response()->json($all_types, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -49,7 +49,7 @@ class MobileController extends Controller
      * Получение списка сладостей вина
      * @return JsonResponse
      */
-    public function getAllSweets() : JsonResponse
+    public function getAllSweets(): JsonResponse
     {
         $all_sweets = sweet::all();
         return response()->json($all_sweets, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -59,7 +59,7 @@ class MobileController extends Controller
      * Получение списка производителей
      * @return JsonResponse
      */
-    public function getAllProducers() : JsonResponse
+    public function getAllProducers(): JsonResponse
     {
         $all_producers = producer::all();
         return response()->json($all_producers, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -69,7 +69,7 @@ class MobileController extends Controller
      * Получение списка стран вин
      * @return JsonResponse
      */
-    public function getAllCountries() : JsonResponse
+    public function getAllCountries(): JsonResponse
     {
         $allCountries = country::all();
         return response()->json($allCountries, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -79,7 +79,7 @@ class MobileController extends Controller
      * Получение списка цвета вин
      * @return JsonResponse
      */
-    public function getAllColors() : JsonResponse
+    public function getAllColors(): JsonResponse
     {
         $allColors = color::all();
         return response()->json($allColors, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -88,7 +88,7 @@ class MobileController extends Controller
      * Получение минимальной цены вин
      * @return int
      */
-    public function getMinPrice() : int
+    public function getMinPrice(): int
     {
         $minPrice = vine::min('price');
         return $minPrice;
@@ -98,7 +98,7 @@ class MobileController extends Controller
      * Получение максимальной цены вин
      * @return int
      */
-    public function getMaxPrice() : int
+    public function getMaxPrice(): int
     {
         $maxPrice = vine::max('price');
         return $maxPrice;
@@ -112,7 +112,7 @@ class MobileController extends Controller
      * @param Requset $request - входной параметр
      * @return JsonResponse
      */
-    public function getRequestedWines(Request $request) : JsonResponse
+    public function getRequestedWines(Request $request): JsonResponse
     {
         /**Фильтруем вина */
         $filteredWines = $this->filterVines($request);
@@ -133,11 +133,13 @@ class MobileController extends Controller
 
     /**
      * API для получения вина по Id
+     * 
+     * @param $id - номер вина
+     * @return JsonResponse - вино в формате json
      */
-    public function getWineById(Request $request) : JsonResponse
+    public function getWineById($id): JsonResponse
     {
-        $id = $request->get('wineId');
         $wine = vine::find($id);
-        
+        return response()->json($wine, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
     }
 }
