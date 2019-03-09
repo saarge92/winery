@@ -21,16 +21,16 @@ Then you need run next commands
 
 ## Project structure
 
-###Models
+### Models
 Models you can find in the app folder
 
-###Controllers
+### Controllers
 Controllers you can find in the app\HTTP\Controllers folder
 
-###Traits
+### Traits
 Traits of this application you can find in the app\Traits folder
 
-###Tests
+### Tests
 All tests you can find in the tests folder
 To run tests you need run in the command line
 
