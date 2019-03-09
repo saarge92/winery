@@ -15,10 +15,24 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
 
+/**
+ * Контроллер для работы главной (frontend) страницы
+ * 
+ * Предоставляет методы для работы с клиентской частью
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 BarHouse
+ */
 class HomeController extends Controller
 {
 	use vineTrait;
 	use paginateTrait;
+
+	/**
+	 * Генерация главной индексной страницы
+	 * 
+	 * @param Request $request Get-запрос
+	 */
 	public function index(Request $request)
 	{
 		$sliders = slider::where(['is_active' => true])->get();
@@ -55,12 +69,25 @@ class HomeController extends Controller
 			'paginators' => $paginators
 		]);
 	}
+
+	/**
+	 * Получение количества вин при выборе на клиентской части
+	 * 
+	 * @param Request $request POST-запрос
+	 */
 	public function getCountOfChoice(Request $request)
 	{
 		parse_str($request->get('params'), $filter_array);
 		$count_vines = count($this->filterVines($filter_array)->where('is_active', true)->get());
 		return response()->json(['all' => $count_vines]);
 	}
+
+	/**
+	 * Автозаполнение поля ввода поиска
+	 * 
+	 * @param Request $request POST-запрос
+	 * @return JsonResponse Json-ответ со списком вин
+	 */
 	public function autocomplete(Request $request)
 	{
 		$name = $request->get('wine_name');
@@ -68,6 +95,13 @@ class HomeController extends Controller
 			->orWhere('name_en', 'LIKE', '%' . $name . '%')->get();
 		return response()->json(['wines' => $some_wines]);
 	}
+
+	/**
+	 * Получение вина по id
+	 * 
+	 * @param Request $request Get-запрос
+	 * @param $id Номер вина
+	 */
 	public function getWine(Request $request, $id)
 	{
 		$sliders = slider::where(['is_active' => true])->get();
@@ -90,6 +124,12 @@ class HomeController extends Controller
 			'type_of_wines' => $types_for_wines
 		]);
 	}
+
+	/**
+	 * Поиск вина
+	 * 
+	 * @param Request $request POST-запрос
+	 */
 	public function search(Request $request)
 	{
 		$sliders = slider::where(['is_active' => true])->get();

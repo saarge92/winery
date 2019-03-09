@@ -2,7 +2,7 @@
 @section('title') Вино
 @endsection
  
-@section('content') @if(count($vine)>0)
+@section('content') @if($vine !=null )
 <div class="row my-2 mr-1">
     <div class="col-lg-12">
         <div class="card my-2">
