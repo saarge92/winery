@@ -205,4 +205,14 @@ Route::get('searchWine', [
 	'as' => 'search',
 ]);
 
+
 Auth::routes();
+
+if (!env('ALLOW_REGISTRATION', false)) {
+	Route::any('/register', function () {
+		abort(404);
+	});
+	Route::any('/password/reset', function () {
+		abort(404);
+	});
+}
