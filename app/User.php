@@ -34,7 +34,7 @@ class User extends Authenticatable
     {
         if (is_array($roles)) {
             foreach ($roles as $role) {
-                if ($this > hasRole($role)) {
+                if ($this -> hasRole($role)) {
                     return true;
                 }
             }
