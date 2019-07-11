@@ -1,5 +1,5 @@
 @extends('layouts.layout') 
-@section('title') Винная карта BarHouse
+@section('title') Винная карта Крем cafe
 @endsection
  {{--
     @include('frontend.partials.loader')
