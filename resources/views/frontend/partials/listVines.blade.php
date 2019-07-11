@@ -23,15 +23,15 @@
                 </div>
                 @endif @if($vine->year)
                 <span>
-                                {{$vine->year.'г'}}
-                            </span> @endif
+                    {{$vine->year.'г'}}
+                </span> @endif
             </div>
             <div class="info-wine">
                 <div class="text-center">
                     <span class="country_wine">
-                            {{$vine->country}}
-                            {{$vine->country_en ? ','.$vine->country_en : ''}}
-                        </span>
+                        {{$vine->country}}
+                        {{$vine->country_en ? ','.$vine->country_en : ''}}
+                    </span>
                 </div>
                 <div class="region_name">
                     {{$vine->region_name}}
@@ -44,15 +44,15 @@
             <div class="price">
                 Цена за бутылку
                 <span class="price_bottle">
-                        {{$vine->price}} <i class="fas fa-ruble-sign"></i>
-                    </span>
+                    {{$vine->price}} <i class="fas fa-ruble-sign"></i>
+                </span>
             </div>
 
             <div class="price">
                 @if($vine->price_cup != null) Цена за бокал :
                 <span class="price_cup">
-                            {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
-                        </span> @endif
+                    {{$vine->price_cup}} <i class="fas fa-ruble-sign"></i>
+                </span> @endif
             </div>
             <input type="hidden" class="strength" value="{{$vine->strength}}" />
             <input type="hidden" class="year" value="{{$vine->year}}" />
@@ -60,8 +60,8 @@
             <input type="hidden" class="producer" value="{{$vine->producer}}">
             <div class="view_button">
                 <button class="btn btn-warning wine">
-                        <i class="fas fa-search-plus"></i>Посмотреть
-                    </button>
+                    <i class="fas fa-search-plus"></i>Посмотреть
+                </button>
             </div>
         </div>
     </div>
@@ -72,10 +72,11 @@
     <div class="col-md12">
         Показывать по
         <span>
-                @foreach ($paginators as $paginator)
-                <a href="{{route(request()->route()->getName(),array_merge(request()->except(['perPage']),['perPage'=>$paginator->num]))}}#vines" class="btn {{$paginate_number == $paginator->num ? 'btn-danger' : 'btn-dark'}}">{{$paginator->num == 0 ? 'Все' : $paginator->num}}</a>
-                @endforeach
-            </span>
+            @foreach ($paginators as $paginator)
+            <a href="{{route(request()->route()->getName(),array_merge(request()->except(['perPage']),['perPage'=>$paginator->num]))}}#vines"
+                class="btn {{$paginate_number == $paginator->num ? 'btn-danger' : 'btn-dark'}}">{{$paginator->num == 0 ? 'Все' : $paginator->num}}</a>
+            @endforeach
+        </span>
     </div>
 </div>
 

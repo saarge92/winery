@@ -211,7 +211,14 @@ body {
   .carousel-inner {
     height: 15rem !important;
   }
+  .pc-navbar{
+    height: inherit !important;
+  }
 }
+.pc-navbar{
+  height: 3.8rem;
+}
+
 .region_name {
   text-align: center;
 }

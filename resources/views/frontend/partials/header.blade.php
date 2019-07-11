@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="navbar  navbar-expand-lg navbar-dark">
+    <div class="navbar pc-navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="" href="{{route('home')}}"><img id="logo_img" src="{{asset('icons/logo_krem.png')}}" alt=""></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
