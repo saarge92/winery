@@ -5,32 +5,32 @@ Route::get('/', [
 	'as' => 'home',
 ]);
 
-Route::group(['middleware' => 'roles'], function () {
+Route::group(['middleware' => 'roles', 'roles' => ['admin']], function () {
 	Route::get('admin-panel', [
 		'uses' => 'AdminController@index',
 		'as' => 'admin',
 	]);
-	Route::get('all_types',[
+	Route::get('all_types', [
 		'uses' => 'TypeWineController@index',
 		'as' => 'all_types'
 	]);
-	Route::get('startCreateTypeWine',[
+	Route::get('startCreateTypeWine', [
 		'uses' => 'TypeWineController@getCreate',
 		'as' => 'startCreateTypeWine'
 	]);
-	Route::post('createTypeWine',[
+	Route::post('createTypeWine', [
 		'uses' => 'TypeWineController@createTypeWine',
 		'as' => 'createTypeWine'
 	]);
-	Route::get('getEditType/{id}',[
+	Route::get('getEditType/{id}', [
 		'uses' => 'TypeWineController@getEditType',
 		'as' => 'getEditType'
 	]);
-	Route::post('editType/{id}',[
+	Route::post('editType/{id}', [
 		'uses' => 'TypeWineController@editType',
 		'as' => 'editType'
 	]);
-	Route::post('dropType/{id}',[
+	Route::post('dropType/{id}', [
 		'uses' => 'TypeWineController@dropType',
 		'as' => 'dropType'
 	]);
@@ -182,7 +182,7 @@ Route::group(['middleware' => 'roles'], function () {
 		'uses' => 'SweetController@dropSweet',
 		'as' => 'dropSweet',
 	]);
-	Route::get('searchAdminWines',[
+	Route::get('searchAdminWines', [
 		'uses' => 'AdminController@searchAdminWines',
 		'as' => 'searchAdminWines'
 	]);
@@ -205,4 +205,14 @@ Route::get('searchWine', [
 	'as' => 'search',
 ]);
 
+
 Auth::routes();
+
+if (!env('ALLOW_REGISTRATION', false)) {
+	Route::any('/register', function () {
+		abort(404);
+	});
+	Route::any('/password/reset', function () {
+		abort(404);
+	});
+}

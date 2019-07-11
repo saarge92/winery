@@ -21,7 +21,7 @@ trait sliderTrait
      * @param Request $req - список параметров
      * @return bool $result - Добавлен ли слайдер
      */
-    public function addSlider(Request $req) : bool
+    public function addSlider(Request $req): bool
     {
         $slider = new slider();
         $slider->content = $req->get('content');
@@ -49,11 +49,14 @@ trait sliderTrait
             $slider->content = $req->get('content');
             $req->get('is_active') == "1" ? $slider->is_active = true : $slider->is_active = false;
             $file = $req->file('src_image');
-            if ($file) {
+            if (isset($file)) {
                 $filename = $req->get('content') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
                 $destination = public_path() . '/storage/sliders/';
                 $file->move($destination, $filename);
-                unlink(public_path() . '/storage/' . $slider->src_image);
+                $deletePath = public_path() . '/storage/' . $slider->src_image;
+                if (file_exists($deletePath)) {
+                    unlink($deletePath);
+                }
                 $slider->src_image = 'sliders/' . $filename;
             }
             $result = $slider->save();
@@ -73,7 +76,10 @@ trait sliderTrait
     {
         $slider = slider::find($id);
         if (isset($slider)) {
-            unlink(public_path() . '/storage/' . $slider->src_image);
+            $deletePath = public_path() . '/storage/' . $slider->src_image;
+            if (file_exists($deletePath)) {
+                unlink($deletePath);
+            }
             $result = $slider->delete();
             return $result;
         }
