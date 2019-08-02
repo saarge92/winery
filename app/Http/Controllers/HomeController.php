@@ -12,8 +12,6 @@ use App\vine;
 use App\type_of_wine;
 use App\DisplayPaginator;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Session;
 
 /**
  * Контроллер для работы главной (frontend) страницы

@@ -8,6 +8,7 @@ use App\producer;
 use App\sweet;
 use App\vine;
 use App\type_of_wine;
+
 /**
  * Трейт предназначен для работы с сущностью "Вино"
  * 
@@ -23,7 +24,7 @@ trait vineTrait
      * @param int $id - входной параметр для поиска вина
      * @return mixed
      */
-    public function getCountryNameRusById($id) : string
+    public function getCountryNameRusById($id): string
     {
         $country = country::find($id);
         $country != null ? ($country_name = $country->name_rus != null ? $country->name_rus : '') : $country_name = 'Страна не найдена';
@@ -38,7 +39,7 @@ trait vineTrait
      * @param int $id - входной параметр для поиска вина
      * @return string
      */
-    public function getCountryNameEnById($id) : string
+    public function getCountryNameEnById($id): string
     {
         $country = country::find($id);
         isset($country) ? $country_name = ($country->name_en != null ? $country->name_en : '') : $country_name = 'Страна не указана';
@@ -53,7 +54,7 @@ trait vineTrait
      * @param int $id - входной параметр для поиска вина
      * @return string
      */
-    public function getColorNameById($id) : string
+    public function getColorNameById($id): string
     {
         $color = color::find($id);
         $color != null ? $color_name = $color->name : $color_name = 'Цвет не указан';
@@ -79,7 +80,7 @@ trait vineTrait
      * @param int $id - входной параметр - id вина
      * @return string
      */
-    public function getProducersName($id) : string
+    public function getProducersName($id): string
     {
         $producer = producer::find($id);
         $producer != null ? $producer_name = $producer->name : $producer_name = 'Производитель Не указан';
@@ -93,7 +94,7 @@ trait vineTrait
      * @param int $id - id вина
      * @return string
      */
-    public function getTypeOfWine($id) : ? string
+    public function getTypeOfWine($id): ?string
     {
         $type_w = type_of_wine::find($id);
         $type_w != null ? $type_name = $type_w->name : $type_name = null;
@@ -108,7 +109,7 @@ trait vineTrait
      * @deprecated
      * @return string
      */
-    public function getPriorityColorNumber($id_color) : ? string
+    public function getPriorityColorNumber($id_color): ?string
     {
         $color = color::find($id_color);
         $color !== null ? $priority_num = $color->priority : $priority_num = null;
@@ -120,7 +121,7 @@ trait vineTrait
      * @param array $vines - список записей из бд
      * @return array
      */
-    public function generateListVines($vines) : array
+    public function generateListVines($vines): array
     {
         $vines_for_review = array();
         foreach ($vines as $vine) {
@@ -144,7 +145,7 @@ trait vineTrait
             $row['type_name'] = $this->getTypeOfWine($vine->id_type);
             $row['region_name'] = $vine->region_name;
             $row['is_coravin'] = $vine->is_coravin;
-            $vines_for_review[] = (object)$row;
+            $vines_for_review[] = (object) $row;
         }
         return $vines_for_review;
     }
@@ -187,20 +188,11 @@ trait vineTrait
         if (!empty($sweet_select)) {
             $vines = $vines->whereIn('sweet_id', $sweet_select);
         }
-        if (!empty($year_select)) {
-            $vines = $vines->whereIn('year', $year_select);
-        }
         if (isset($price_min)) {
             $vines = $vines->where('price', '>=', $price_min);
         }
         if (isset($price_max)) {
             $vines = $vines->where('price', '<=', $price_max);
-        }
-        if (isset($volume_min)) {
-            $vines = $vines->where('volume', '>=', $volume_min);
-        }
-        if (isset($volume_max)) {
-            $vines = $vines->where('volume', '<=', $volume_max);
         }
         return $vines;
     }
