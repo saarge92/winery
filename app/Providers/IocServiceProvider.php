@@ -7,6 +7,8 @@ use App\Interfaces\IRepositories\ICountryRepository;
 use App\Repositories\CountryRepository;
 use App\Interfaces\IRepositories\IColorRepository;
 use App\Repositories\ColorRepository;
+use App\Interfaces\IServices\ICountryService;
+use App\Services\CountryService;
 
 class IocServiceProvider extends ServiceProvider
 {
@@ -19,5 +21,6 @@ class IocServiceProvider extends ServiceProvider
     {
         $this->app->bind(ICountryRepository::class, CountryRepository::class);
         $this->app->bind(IColorRepository::class, ColorRepository::class);
+        $this->app->bind(ICountryService::class, CountryService::class);
     }
 }

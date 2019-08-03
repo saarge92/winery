@@ -1,12 +1,14 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\country;
 use App\Traits\countryTrait;
-use App\Http\Requests\CountryCreateRequest;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CountryCreateRequest;
+use App\Interfaces\IServices\ICountryService;
 
 /**
  * Контроллер для работы со странами вин в кабинете администратора
@@ -20,9 +22,16 @@ class CountryController extends Controller
 {
     use countryTrait;
 
+    private $countryService;
+
+    public function __construct(ICountryService $countryService)
+    {
+        $this->countryService = $countryService;
+    }
+
     /** 
-    * Получение страницы со списком стран
-    */
+     * Получение страницы со списком стран
+     */
     public function getCountries()
     {
         $country = country::orderby('name_rus', 'asc')->paginate(6);
@@ -30,22 +39,22 @@ class CountryController extends Controller
     }
 
     /**
-    * GET-запрос на получение страницы для создания страны
-    */
+     * GET-запрос на получение страницы для создания страны
+     */
     public function startCreateCountry()
     {
         return view('admin.newCountry');
     }
 
     /**
-    * POST-запрос для создания страны
-    * 
-    * @param CountryCreateRequest $request - Запрос на создание страны
-    */
+     * POST-запрос для создания страны
+     * 
+     * @param CountryCreateRequest $request - Запрос на создание страны
+     */
     public function createCountry(CountryCreateRequest $request)
     {
         if ($request->validated()) {
-            $result = $this->addCountry($request);
+            $result = $this->countryService->createCountry($request);
             $result == true ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
             return redirect('countries');
@@ -54,10 +63,10 @@ class CountryController extends Controller
     }
 
     /**
-    * GET-запрос на получение страницы для редактирования страны
-    * @param Request $request - Запрос на редактирование страны
-    * @param $id - номер страны
-    */
+     * GET-запрос на получение страницы для редактирования страны
+     * @param Request $request - Запрос на редактирование страны
+     * @param $id - номер страны
+     */
     public function startEdit(Request $request, $id)
     {
         $country = country::find($id);

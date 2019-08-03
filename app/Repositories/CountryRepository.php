@@ -40,4 +40,39 @@ class CountryRepository implements ICountryRepository
         }
         return null;
     }
+
+    /**
+     * Добавление страны
+     * 
+     * @param string $nameRus Название страны по русски
+     * @param ?string $nameEn Название по анлийски
+     * @return bool Результат сохранения
+     */
+    public function addCountry(string $nameRus, ?string $nameEn): bool
+    {
+        $result = country::create([
+            'name_rus' => $nameRus,
+            'name_en' => $nameEn
+        ])->save();
+        return $result;
+    }
+
+    /**
+     * Редактирование страны
+     */
+    public function editCountry(country &$country, string $nameRus, ?string $nameEn): bool
+    {
+        $country->name_rus = $nameRus;
+        $country->name_en = $nameEn;
+        $result = $country->save();
+        return $result;
+    }
+
+    /**
+     * Удаление страны
+     */
+    public function deleteCountry(country $country): bool
+    {
+        return $country->delete();
+    }
 }
