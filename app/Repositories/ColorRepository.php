@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 use App\color;
-use App\Interfaces\IRepositories\ICountryRepository;
+use App\Interfaces\IRepositories\IColorRepository;
 
-class ColorRepository implements ICountryRepository
+class ColorRepository implements IColorRepository
 {
     /**
      * Возвращает цвет вина по id
@@ -54,7 +54,7 @@ class ColorRepository implements ICountryRepository
     /**
      * Редактирование цвета вина
      */
-    public function editColor(color $color, string $name): bool
+    public function editColor(color &$color, string $name): bool
     {
         $color->name = $name;
         $result = $color->save();

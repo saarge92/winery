@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\color;
+use App\Traits\colorTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests\ColorRequest;
 use App\Http\Controllers\Controller;
-use App\color;
-use App\Traits\colorTrait;
 use Illuminate\Support\Facades\Session;
+use App\Interfaces\IServices\IColorService;
 
 /**
  * Контроллер для работы цветом вин в кабинете администратора
@@ -19,7 +20,12 @@ use Illuminate\Support\Facades\Session;
  */
 class ColorController extends Controller
 {
-    use colorTrait;
+    private $colorService;
+
+    public function __construct(IColorService $colorService)
+    {
+        $this->colorService = $colorService;
+    }
 
     /**
      * Генерирует страницу с цветами вин
@@ -46,8 +52,8 @@ class ColorController extends Controller
     public function createColor(ColorRequest $request)
     {
         if ($request->validated()) {
-            $result = $this->addColor($request);
-            $result == true ? Session::flash('success', 'Цвет успешно добавлен')
+            $result = $this->colorService->addColor($request);
+            $result ? Session::flash('success', 'Цвет успешно добавлен')
                 : Session::flash('error', 'Произошла ошибка,повторите попытку снова!');
             return redirect('allColors');
         }
@@ -75,8 +81,8 @@ class ColorController extends Controller
     public function editColor(ColorRequest $request, $id)
     {
         if ($request->validated()) {
-            $result = $this->editColorPost($request, $id);
-            $result == true ? Session::flash('success', 'Цвет успешно обновлен')
+            $edited = $this->colorService->editColor($request, $id);
+            $edited ? Session::flash('success', 'Цвет успешно обновлен')
                 : Session::flash('error', 'Произошла ошибка!');
             return redirect('allColors');
         }
@@ -89,9 +95,9 @@ class ColorController extends Controller
      * @param Request $request - запрос с параметрами
      * @param mixed $id - id цвета 
      */
-    public function dropColor(Request $req, $id)
+    public function dropColor(int $id)
     {
-        $this->deleteColor($id) == true ? Session::flash('success', 'Цвет успешно удален')
+        $this->colorService->deleteColor($id) == true ? Session::flash('success', 'Цвет успешно удален')
             : Session::flash('error', 'Ошибка при удалении');
         return redirect('allColors');
     }

@@ -2,13 +2,15 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Interfaces\IRepositories\ICountryRepository;
-use App\Repositories\CountryRepository;
-use App\Interfaces\IRepositories\IColorRepository;
-use App\Repositories\ColorRepository;
-use App\Interfaces\IServices\ICountryService;
+use App\Services\ColorService;
 use App\Services\CountryService;
+use App\Repositories\ColorRepository;
+use App\Repositories\CountryRepository;
+use Illuminate\Support\ServiceProvider;
+use App\Interfaces\IServices\IColorService;
+use App\Interfaces\IServices\ICountryService;
+use App\Interfaces\IRepositories\IColorRepository;
+use App\Interfaces\IRepositories\ICountryRepository;
 
 class IocServiceProvider extends ServiceProvider
 {
@@ -22,5 +24,6 @@ class IocServiceProvider extends ServiceProvider
         $this->app->bind(ICountryRepository::class, CountryRepository::class);
         $this->app->bind(IColorRepository::class, ColorRepository::class);
         $this->app->bind(ICountryService::class, CountryService::class);
+        $this->app->bind(IColorService::class,ColorService::class);
     }
 }
