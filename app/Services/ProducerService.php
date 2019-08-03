@@ -1,33 +1,40 @@
 <?php
 
-namespace App\Traits;
+namespace App\Services;
 
 use App\producer;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProducerRequest;
+use App\Interfaces\IServices\IProducerService;
+use App\Interfaces\IRepositories\IProducerRepository;
 
 /**
- * Trait для работы с производителями вин
- * 
- * Trait содержит базовые операции с сущностью "Проивзодитель вин"
+ * Сервис для работы с сущностью "Страна"
  * 
  * @author Serdar Durdyev <sarage92@mail.ru>
- * @copyright Copyright (c) 2019 BarHouse
+ * @copyright Copyright (c) 2019 KremCafe
  */
-trait producerTrait
+class ProducerService implements IProducerService
 {
-    /**
-     * Добавление производитель вина
-     * 
-     * @param Request $req - список параметров
-     * @return bool $result - Добавлено ли производитель
-     */
-    public function addProducer(Request $req): bool
+    private $producerRepository;
+    public function __construct(IProducerRepository $producerRepository)
     {
-        $producer = new producer();
-        $producer->name = $req->get('name_producer');
-        $result = $producer->save();
-        return $result;
+        $this->producerRepository = $producerRepository;
     }
+
+    /**
+     * Создание производителя
+     * 
+     * @param ProducerRequest $request - Post запрос с параметрами
+     * @return bool Создан ли производитель
+     */
+    public function createProducer(ProducerRequest $request): bool
+    {
+        $name = $request->get('name_producer');
+        $created = $this->producerRepository->addProducer($name);
+        return $created;
+    }
+
 
     /**
      * Редактирование производителя вина
@@ -40,8 +47,8 @@ trait producerTrait
     {
         $producer = producer::find($id);
         if ($producer != null) {
-            $producer->name = $request->get('name_producer');
-            $result = $producer->save();
+            $name = $request->get('name_producer');
+            $result = $this->producerRepository->editProducer($producer, $name);
             return $result;
         }
         return false;
@@ -58,9 +65,9 @@ trait producerTrait
     {
         $producer = producer::find($id);
         if (isset($producer)) {
-            $result = $producer->delete();
+            $result = $this->producerRepository->deleteProducer($producer);
             return $result;
         }
-        return $result;
+        return false;
     }
 }

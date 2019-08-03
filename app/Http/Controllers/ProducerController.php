@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\producer;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProducerRequest;
-use App\producer;
-use App\Traits\producerTrait;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Interfaces\IServices\IProducerService;
 
 /**
  * Контроллер для работы с производителями вин в кабинете администратора
@@ -19,11 +19,15 @@ use Illuminate\Support\Facades\Session;
  */
 class ProducerController extends Controller
 {
-    use producerTrait;
+    private $producerService;
 
+    public function __construct(IProducerService $producerService)
+    {
+        $this->producerService = $producerService;
+    }
     /** 
-    * Получение страницы со списком производителей
-    */
+     * Получение страницы со списком производителей
+     */
     public function getProducers()
     {
         $producers = producer::orderby('name', 'asc')->paginate(6);
@@ -31,23 +35,23 @@ class ProducerController extends Controller
     }
 
     /**
-    * GET-запрос на получение страницы для создания производителя
-    */
+     * GET-запрос на получение страницы для создания производителя
+     */
     public function startCreateProducer()
     {
         return view('admin.createProducer');
     }
 
     /**
-    * POST-запрос для создания производителя
-    * 
-    * @param ProducerRequest $request - Запрос на создание производителя
-    */
+     * POST-запрос для создания производителя
+     * 
+     * @param ProducerRequest $request - Запрос на создание производителя
+     */
     public function createProducer(ProducerRequest $request)
     {
         if ($request->validated()) {
-            $result = $this->addProducer($request);
-            $result == true ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
+            $result = $this->producerService->createProducer($request);
+            $result ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
             return redirect('producers');
         }
@@ -55,10 +59,10 @@ class ProducerController extends Controller
     }
 
     /**
-    * GET-запрос на получение страницы для редактирования производителя
-	* @param Request $request - Запрос на редактирование производителя
-	* @param $id - номер производителя
-    */
+     * GET-запрос на получение страницы для редактирования производителя
+     * @param Request $request - Запрос на редактирование производителя
+     * @param $id - номер производителя
+     */
     public function startEdit(Request $request, $id)
     {
         $producer = producer::find($id);
@@ -74,7 +78,7 @@ class ProducerController extends Controller
     public function editProducer(ProducerRequest $request, $id)
     {
         if ($request->validated()) {
-            $result = $this->editProducerPost($request, $id);
+            $result = $this->producerService->editProducerPost($request, $id);
             $result == true ? Session::flash('success', 'Произодитель ' . $request->get('name_producer') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка!');
             return redirect('producers');
@@ -90,7 +94,7 @@ class ProducerController extends Controller
      */
     public function dropProducer(Request $req, $id)
     {
-        $this->deleteProducer($id) == true ? Session::flash('success', 'Производитель успешно успешно')
+        $this->producerService->deleteProducer($id) ? Session::flash('success', 'Производитель успешно успешно')
             : Session::flash('error', 'Ошибка при удалении');
         return redirect()->back();
     }
