@@ -13,5 +13,5 @@ interface ICountryRepository
     public function getCountryNameEnById(int $id): ?string;
     public function addCountry(string $nameRus, ?string $nameEn): bool;
     public function editCountry(country &$country, string $nameRus, ?string $nameEn): bool;
-    public function deleteCountry(country $country): bool;
+    public function deleteCountry(country &$country): bool;
 }

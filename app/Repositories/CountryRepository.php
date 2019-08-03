@@ -71,7 +71,7 @@ class CountryRepository implements ICountryRepository
     /**
      * Удаление страны
      */
-    public function deleteCountry(country $country): bool
+    public function deleteCountry(country &$country): bool
     {
         return $country->delete();
     }

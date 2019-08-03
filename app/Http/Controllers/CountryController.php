@@ -20,8 +20,6 @@ use App\Interfaces\IServices\ICountryService;
  */
 class CountryController extends Controller
 {
-    use countryTrait;
-
     private $countryService;
 
     public function __construct(ICountryService $countryService)
@@ -54,8 +52,8 @@ class CountryController extends Controller
     public function createCountry(CountryCreateRequest $request)
     {
         if ($request->validated()) {
-            $result = $this->countryService->createCountry($request);
-            $result == true ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
+            $created = $this->countryService->createCountry($request);
+            $created ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
             return redirect('countries');
         }
@@ -79,11 +77,11 @@ class CountryController extends Controller
      * @param CountryCreateRequest $request - Запрос на редактирование страны
      * @param $id - номер страны
      */
-    public function editCountry(CountryCreateRequest $request, $id)
+    public function editCountry(CountryCreateRequest $request, int $id)
     {
         if ($request->validated()) {
-            $result = $this->editCountryPost($request, $id);
-            $result == true ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
+            $edited = $this->countryService->editCountryPost($request, $id);
+            $edited ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
             return redirect('countries');
         }
@@ -96,9 +94,10 @@ class CountryController extends Controller
      * @param Request $req - Post-запрос
      * @param $id - номер страны
      */
-    public function dropCountry(Request $req, $id)
+    public function dropCountry(int $id)
     {
-        $this->deleteCountry($id) == true ? Session::flash('success', 'Страна успешно удалена')
+        $deleted = $this->countryService->deleteCountry($id);
+        $deleted ? Session::flash('success', 'Страна успешно удалена')
             : Session::flash('error', 'Ошибка при удалении');
         return redirect()->back();
     }

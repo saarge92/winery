@@ -22,25 +22,36 @@ class CountryService implements ICountryService
      * Создание страны в базе
      */
     public function createCountry(CountryCreateRequest $request): bool
-    { 
+    {
         $nameRus = $request->get('name_rus');
         $nameEn = $request->get('name_en');
-        $result = $this->countryRepository->addCountry($nameRus,$nameEn);
+        $result = $this->countryRepository->addCountry($nameRus, $nameEn);
         return $result;
     }
 
     /**
      * Редактирование страны в базе
      */
-    public function editCountryPost(CountryCreateRequest $request, int $id) : bool
+    public function editCountryPost(CountryCreateRequest $request, int $id): bool
     {
         $country = country::find($id);
         if ($country != null) {
             $nameRus = $request->get('name_rus');
             $nameEn = $request->get('name_en');
-            $result = $this->countryRepository->editCountry($country,$nameRus,$nameEn);            
+            $result = $this->countryRepository->editCountry($country, $nameRus, $nameEn);
             return $result;
         }
         return false;
+    }
+
+    /**
+     * Удаление страны из базы
+     */
+    public function deleteCountry(int $id): bool
+    {
+        $deleted = false;
+        $country = country::find($id);
+        if ($country) $deleted = $this->countryRepository->deleteCountry($country);
+        return $deleted;
     }
 }
