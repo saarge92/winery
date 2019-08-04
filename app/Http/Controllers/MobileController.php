@@ -9,7 +9,6 @@ use App\producer;
 use App\country;
 use App\color;
 use App\vine;
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Traits\vineTrait;
 use Illuminate\Http\JsonResponse;
 

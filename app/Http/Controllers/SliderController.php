@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\slider;
 use App\Traits\sliderTrait;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderRequest;
 use Illuminate\Support\Facades\Session;
+use App\Interfaces\IServices\ISliderService;
 
 /**
  * Контроллер для работы со слайдерами на гавной странице
@@ -19,11 +20,16 @@ use Illuminate\Support\Facades\Session;
  */
 class SliderController extends Controller
 {
-    use sliderTrait;
+    private $sliderService;
+
+    public function __construct(ISliderService $sliderService)
+    {
+        $this->sliderService = $sliderService;
+    }
 
     /** 
-    * Получение страницы со списком слайдеров
-    */
+     * Получение страницы со списком слайдеров
+     */
     public function allSliders(Request $request)
     {
         $sliders = slider::paginate(6);
@@ -31,32 +37,33 @@ class SliderController extends Controller
     }
 
     /**
-    * GET-запрос на получение страницы для создания слайдера
-    */
+     * GET-запрос на получение страницы для создания слайдера
+     */
     public function startCreateSlider()
     {
         return view('admin.createSlider');
     }
 
     /**
-    * POST-запрос для создания слайдера
-    * 
-    * @param SliderRequest $request - Запрос на создание слайдера
-    */
+     * POST-запрос для создания слайдера
+     * 
+     * @param SliderRequest $request - Запрос на создание слайдера
+     */
     public function postCreateSlider(SliderRequest $request)
     {
         if ($request->validated()) {
-            $this->addSlider($request) == true ? Session::flash('succes', 'Слайдер успешно добавлен') : Session::flash('error', 'Ошибка при добавлении слайдера');
+            $created = $this->sliderService->createSlider($request);
+            $created ? Session::flash('succes', 'Слайдер успешно добавлен') : Session::flash('error', 'Ошибка при добавлении слайдера');
             return redirect('allSliders');
         }
         return redirect()->back();
     }
 
     /**
-    * GET-запрос на получение страницы для редактирования слайдера
-    * @param Request $request - Запрос на редактирование производителя
-    * @param $id - номер слайдера
-    */
+     * GET-запрос на получение страницы для редактирования слайдера
+     * @param Request $request - Запрос на редактирование производителя
+     * @param $id - номер слайдера
+     */
     public function getEditSlider(Request $request, $id)
     {
         $slider = slider::find($id);
@@ -69,9 +76,10 @@ class SliderController extends Controller
      * @param ProducerRequest $request - Запрос на редактирование слайдера
      * @param $id - номер слайдера
      */
-    public function postEditSlider(Request $request, $id)
+    public function postEditSlider(Request $request, int $id)
     {
-        $this->editSlider($request, $id) == true ? Session::flash('succes', 'Слайдер успешно отредактирован') : Session::flash('error', 'Ошибка при редактировании слайдера');
+        $edited = $this->sliderService->editSlider($request, $id);
+        $edited ? Session::flash('succes', 'Слайдер успешно отредактирован') : Session::flash('error', 'Ошибка при редактировании слайдера');
         return redirect('allSliders');
     }
 
@@ -81,9 +89,10 @@ class SliderController extends Controller
      * @param Request $req - Post-запрос
      * @param $id - номер слайдера
      */
-    public function dropSlider($id)
+    public function dropSlider(int $id)
     {
-        $this->deleteSlider($id) == true ? Session::flash('succes', 'Слайдер успешно удален') : Session::flash('error', 'Ошибка при редактировании слайдера');
+        $deleted = $this->sliderService->deleteSlider($id);
+        $deleted ? Session::flash('succes', 'Слайдер успешно удален') : Session::flash('error', 'Ошибка при редактировании слайдера');
         return redirect('allSliders');
     }
 }

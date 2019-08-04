@@ -15,6 +15,10 @@ use App\Interfaces\IRepositories\IProducerRepository;
 use App\Repositories\ProducerRepository;
 use App\Interfaces\IServices\IProducerService;
 use App\Services\ProducerService;
+use App\Interfaces\IRepositories\ISliderRepository;
+use App\Repositories\SliderRepository;
+use App\Interfaces\IServices\ISliderService;
+use App\Services\SliderService;
 
 class IocServiceProvider extends ServiceProvider
 {
@@ -31,5 +35,7 @@ class IocServiceProvider extends ServiceProvider
         $this->app->bind(IColorService::class, ColorService::class);
         $this->app->bind(IProducerRepository::class, ProducerRepository::class);
         $this->app->bind(IProducerService::class, ProducerService::class);
+        $this->app->bind(ISliderRepository::class, SliderRepository::class);
+        $this->app->bind(ISliderService::class, SliderService::class);
     }
 }
