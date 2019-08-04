@@ -44,4 +44,11 @@ class ProducerRepository implements IProducerRepository
     {
         return $producer->delete();
     }
+
+    public function getProducerName(?int $id): ?string
+    {
+        $producer = producer::find($id);
+        if ($producer) return $producer->name;
+        return null;
+    }
 }

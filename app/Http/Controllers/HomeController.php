@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\color;
-use App\country;
-use App\slider;
-use App\sweet;
-use App\Traits\vineTrait;
-use App\Traits\paginateTrait;
 use App\vine;
+use App\color;
+use App\sweet;
+use App\slider;
+use App\country;
 use App\type_of_wine;
 use App\DisplayPaginator;
+use App\Traits\vineTrait;
 use Illuminate\Http\Request;
+use App\Traits\paginateTrait;
+use App\Interfaces\IServices\IWineService;
 
 /**
  * Контроллер для работы главной (frontend) страницы
@@ -23,8 +24,14 @@ use Illuminate\Http\Request;
  */
 class HomeController extends Controller
 {
-	use vineTrait;
 	use paginateTrait;
+
+	private $wineService;
+
+	public function __construct(IWineService $wineService)
+	{
+		$this->wineService = $wineService;
+	}
 
 	/**
 	 * Генерация главной индексной страницы
@@ -38,16 +45,16 @@ class HomeController extends Controller
 		$sweets = sweet::all();
 		$colors = color::all();
 		//Get Filtered Wines
-		$vines = $this->filterVines($request->all());
+		$vines = $this->wineService->filterWines($request->all());
 		//Get per page number
 		$paginate_number = $this->getPaginateNumber($request);
 		//Generate array for review
 		if ($paginate_number == 0) {
 			$vines = $vines->where(['is_active' => true])->orderby('price', 'desc');
-			$vines_for_review = $this->generateListVines($vines->get());
+			$vines_for_review = $this->wineService->generateListVines($vines->get());
 		} else {
 			$vines = $vines->where(['is_active' => true])->orderby('price', 'desc')->paginate($paginate_number);
-			$vines_for_review = $this->generateListVines($vines);
+			$vines_for_review = $this->wineService->generateListVines($vines);
 		}
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
@@ -76,7 +83,7 @@ class HomeController extends Controller
 	public function getCountOfChoice(Request $request)
 	{
 		parse_str($request->get('params'), $filter_array);
-		$count_vines = count($this->filterVines($filter_array)->where('is_active', true)->get());
+		$count_vines = count($this->wineService->filterWines($filter_array)->where('is_active', true)->get());
 		return response()->json(['all' => $count_vines]);
 	}
 
@@ -110,7 +117,7 @@ class HomeController extends Controller
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
 		$vine = vine::where(['id' => $id, 'is_active' => true])->get();
-		$vine_for_review = count($vine) != 0 ? collect($this->generateListVines($vine))[0] : null;
+		$vine_for_review = count($vine) != 0 ? collect($this->wineService->generateListVines($vine))[0] : null;
 		return view('frontend.viewWine', [
 			'vine' => $vine_for_review,
 			'sliders' => $sliders,
@@ -139,8 +146,8 @@ class HomeController extends Controller
 		$types_for_wines = type_of_wine::all();
 		$paginators = DisplayPaginator::all();
 		$paginate_number = $this->getPaginateNumber($request);
-		$vines = $this->searchSomeWines($request)->orderby('price', 'desc')->paginate($paginate_number);
-		$vines_for_review = collect($this->generateListVines($vines));
+		$vines = $this->wineService->searchSomeWines($request)->orderby('price', 'desc')->paginate($paginate_number);
+		$vines_for_review = collect($this->wineService->generateListVines($vines));
 		return view('frontend.searchResult', [
 			'vines_for_review' => $vines_for_review,
 			'vines' => $vines,

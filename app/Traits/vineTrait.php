@@ -12,6 +12,7 @@ use App\type_of_wine;
 /**
  * Трейт предназначен для работы с сущностью "Вино"
  * 
+ * @deprecated
  * Содержит набор функций для работы
  */
 trait vineTrait
@@ -196,6 +197,7 @@ trait vineTrait
         }
         return $vines;
     }
+
     /**
      * Поиск вина 
      * 

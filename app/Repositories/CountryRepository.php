@@ -15,7 +15,7 @@ class CountryRepository implements ICountryRepository
      * @param int $id - входной параметр для поиска вина
      * @return string
      */
-    public function getCountryNameRusById(int $id): ?string
+    public function getCountryNameRusById(?int $id): ?string
     {
         $country = country::find($id);
         if ($country) {
@@ -32,7 +32,7 @@ class CountryRepository implements ICountryRepository
      * @param int $id - входной параметр для поиска вина
      * @return string
      */
-    public function getCountryNameEnById(int $id): ?string
+    public function getCountryNameEnById(?int $id): ?string
     {
         $country = country::find($id);
         if ($country) {

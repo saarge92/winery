@@ -19,6 +19,8 @@ use App\Interfaces\IRepositories\ISliderRepository;
 use App\Repositories\SliderRepository;
 use App\Interfaces\IServices\ISliderService;
 use App\Services\SliderService;
+use App\Interfaces\IServices\IWineService;
+use App\Services\WineService;
 
 class IocServiceProvider extends ServiceProvider
 {
@@ -37,5 +39,6 @@ class IocServiceProvider extends ServiceProvider
         $this->app->bind(IProducerService::class, ProducerService::class);
         $this->app->bind(ISliderRepository::class, SliderRepository::class);
         $this->app->bind(ISliderService::class, SliderService::class);
+        $this->app->bind(IWineService::class, WineService::class);
     }
 }
