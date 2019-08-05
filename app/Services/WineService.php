@@ -3,13 +3,16 @@
 namespace App\Services;
 
 use App\vine;
-use App\Interfaces\IServices\IWineService;
-use App\Interfaces\IRepositories\ICountryRepository;
-use App\Interfaces\IRepositories\IColorRepository;
-use App\Repositories\SweetRepository;
-use App\Interfaces\IRepositories\IProducerRepository;
-use App\Repositories\TypeWineRepository;
 use Illuminate\Http\Request;
+use App\Repositories\SweetRepository;
+use App\Http\Requests\VinePostRequest;
+use App\Repositories\TypeWineRepository;
+use App\Interfaces\IServices\IWineService;
+use App\Interfaces\IRepositories\IColorRepository;
+use App\Interfaces\IRepositories\ICountryRepository;
+use App\Interfaces\IRepositories\IProducerRepository;
+use App\Dto\WineDtoCreate;
+use App\Repositories\WineRepository;
 
 class WineService implements IWineService
 {
@@ -18,16 +21,28 @@ class WineService implements IWineService
     private $sweetRepository;
     private $producerRepository;
     private $typeWineRepository;
+    private $wineRepository;
 
-    public function __construct(ICountryRepository $countryRepository, IColorRepository $colorRepository, SweetRepository $sweetRepository, IProducerRepository $producerRepository, TypeWineRepository $typeWineRepository)
+    /**
+     * Внедрение зависимостей
+     */
+    public function __construct(ICountryRepository $countryRepository, IColorRepository $colorRepository, SweetRepository $sweetRepository, IProducerRepository $producerRepository, TypeWineRepository $typeWineRepository, WineRepository $wineRepository)
     {
         $this->countryRepository = $countryRepository;
         $this->colorRepository = $colorRepository;
         $this->sweetRepository = $sweetRepository;
         $this->producerRepository = $producerRepository;
         $this->typeWineRepository = $typeWineRepository;
+        $this->wineRepository = $wineRepository;
     }
 
+    /**
+     * Фильтрация вин согласно списку параметров
+     * 
+     * @param array $params - список параметров для фильтрации
+     * 
+     * @return $vines - Список с фильтрованными финами
+     */
     public function filterWines(array $filter)
     {
         $vines = new vine;
@@ -58,6 +73,12 @@ class WineService implements IWineService
         return $vines;
     }
 
+    /**
+     * Формирует и инииализирует список вина в соответствующий вин
+     * 
+     * @param array $vines - список записей из бд
+     * @return array
+     */
     public function generateListVines($vines): array
     {
         $vinesForReview = array();
@@ -88,10 +109,53 @@ class WineService implements IWineService
         return $vinesForReview;
     }
 
+    /**
+     * Поиск вин согласно параметрам
+     * 
+     * @param Request $request - Запрос с параметрами
+     */
     public function searchSomeWines(Request $request)
     {
         $vines = vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $request->get('wine_name') . '%')
             ->orWhere('name_en', 'LIKE', '%' . $request->get('wine_name') . '%');
         return $vines;
+    }
+
+    /**
+     * Обработка запроса на создания вина в базе
+     * 
+     * @param VinePostRequest $request - Request с параметрами для добавления вина
+     * @return bool - Возвращает булево значение, сохранено ли значение
+     * 
+     */
+    public function addWine(VinePostRequest $request): bool
+    {
+        $wineDto = new WineDtoCreate();
+        $wineDto->nameRus = $request->get('name_rus');
+        $wineDto->nameEn = $request->get('name_en');
+        $wineDto->price = $request->get('price_bottle');
+        $wineDto->priceCup = $request->get('price_glass');
+        $wineDto->volume = $request->get('volume');
+        $wineDto->year = $request->get('year');
+        $wineDto->strength = $request->get('strength');
+        $wineDto->sortContain = $request->get('sort_contain');
+        $wineDto->countryId = $request->get('country');
+        $wineDto->colorId = $request->get('color');
+        $wineDto->sweetId = $request->get('sweet');
+        $wineDto->producerId = $request->get('producer');
+        $wineDto->typeId = $request->get('type_wine');
+        $wineDto->regionName = $request->get('region_name');
+        $wineDto->isCoravin = $request->get('coravin') == 'on' ? true : false;
+
+        $file = $request->file('image');
+        if (isset($file)) {
+            $filename = $request->get('name_rus') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
+            $destination = public_path() . '/storage/wines/';
+            $file->move($destination, $filename);
+            $wineDto->imageSrc = 'wines/' . $filename;
+        }
+
+        $created = $this->wineRepository->createVine($wineDto);
+        return $created;
     }
 }

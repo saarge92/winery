@@ -13,6 +13,7 @@ use App\vine;
 use App\type_of_wine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Interfaces\IServices\IWineService;
 
 /**
  * Контроллер для работы с личным кабинетом администратора
@@ -27,9 +28,12 @@ class AdminController extends Controller
 	use vineTrait;
 	use adminVineTrait;
 
-	public function __construct()
+	private $wineService;
+
+	public function __construct(IWineService $wineService)
 	{
 		$this->middleware('roles');
+		$this->wineService = $wineService;
 	}
 	/**
 	 * Генерация индексной страницы администратора
@@ -43,13 +47,13 @@ class AdminController extends Controller
 		$colors = color::all();
 
 		/** Отфильтрованные вина */
-		$vines = $this->filterVines($request->all());
+		$vines = $this->wineService->filterWines($request->all());
 		$vines = $vines->orderby('price', 'desc')->paginate(12);
 		$max_price = vine::max('price');
 		$min_price = vine::min('price');
 		$types_for_wines = type_of_wine::all();
 		/**Генерация списка вин для отображения */
-		$vines_for_review = $this->generateListVines($vines);
+		$vines_for_review = $this->wineService->generateListVines($vines);
 		return view(
 			'admin.index',
 			[
@@ -72,8 +76,8 @@ class AdminController extends Controller
 	 */
 	public function searchAdminWines(Request $request)
 	{
-		$vines = $this->searchSomeWines($request)->orderby('price', 'desc');
-		$vines_for_review = collect($this->generateListVines($vines->get()));
+		$vines = $this->wineService->searchSomeWines($request)->orderby('price', 'desc');
+		$vines_for_review = collect($this->wineService->generateListVines($vines->get()));
 		return view('admin.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines->paginate(12)]);
 	}
 
@@ -108,9 +112,8 @@ class AdminController extends Controller
 	public function postVine(VinePostRequest $request)
 	{
 		if ($request->validated()) {
-			$result = $this->addVine($request);
-			$result == true ? Session::flash('success', 'Вино успешно добавлено') :
-				Session::flash('error', 'Произошла ошибка. Обратитесь к разработчику сайта');
+			$result = $this->wineService->addWine($request);
+			$result == true ? Session::flash('success', 'Вино успешно добавлено') : Session::flash('error', 'Произошла ошибка. Обратитесь к разработчику сайта');
 			return redirect('admin-panel');
 		}
 		return redirect()->back();
