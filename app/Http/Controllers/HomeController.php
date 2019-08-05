@@ -3,16 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\vine;
-use App\color;
-use App\sweet;
-use App\slider;
-use App\country;
-use App\type_of_wine;
-use App\DisplayPaginator;
-use App\Traits\vineTrait;
 use Illuminate\Http\Request;
 use App\Traits\paginateTrait;
 use App\Interfaces\IServices\IWineService;
+use App\Traits\homeTrait;
 
 /**
  * Контроллер для работы главной (frontend) страницы
@@ -25,6 +19,7 @@ use App\Interfaces\IServices\IWineService;
 class HomeController extends Controller
 {
 	use paginateTrait;
+	use homeTrait;
 
 	private $wineService;
 
@@ -40,10 +35,7 @@ class HomeController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$sliders = slider::where(['is_active' => true])->get();
-		$countries = country::all();
-		$sweets = sweet::all();
-		$colors = color::all();
+		$dataFormHomePage = $this->getDataForHomePage();
 		//Get Filtered Wines
 		$vines = $this->wineService->filterWines($request->all());
 		//Get per page number
@@ -56,22 +48,18 @@ class HomeController extends Controller
 			$vines = $vines->where(['is_active' => true])->orderby('price', 'desc')->paginate($paginate_number);
 			$vines_for_review = $this->wineService->generateListVines($vines);
 		}
-		$max_price = vine::max('price');
-		$min_price = vine::min('price');
-		$types_for_wines = type_of_wine::all();
-		$paginators = DisplayPaginator::all();
 		return view('frontend.index', [
-			'sliders' => $sliders,
+			'sliders' => $dataFormHomePage['sliders'],
 			'vines' => $vines,
-			'countries' => $countries,
+			'countries' => $dataFormHomePage['countries'],
 			'vines_for_review' => collect($vines_for_review),
-			'colors' => $colors,
-			'sweets' => $sweets,
-			'max_price' => $max_price,
-			'min_price' => $min_price,
-			'type_of_wines' => $types_for_wines,
+			'colors' => $dataFormHomePage['colors'],
+			'sweets' => $dataFormHomePage['sweets'],
+			'max_price' => $dataFormHomePage['max_price'],
+			'min_price' => $dataFormHomePage['min_price'],
+			'type_of_wines' => $dataFormHomePage['type_of_wines'],
 			'paginate_number' => $paginate_number,
-			'paginators' => $paginators
+			'paginators' => $dataFormHomePage['paginators']
 		]);
 	}
 
@@ -107,26 +95,20 @@ class HomeController extends Controller
 	 * @param Request $request Get-запрос
 	 * @param $id Номер вина
 	 */
-	public function getWine(Request $request, $id)
+	public function getWine(int $id)
 	{
-		$sliders = slider::where(['is_active' => true])->get();
-		$countries = country::all();
-		$sweets = sweet::all();
-		$colors = color::all();
-		$max_price = vine::max('price');
-		$min_price = vine::min('price');
-		$types_for_wines = type_of_wine::all();
+		$dataFormHomePage = $this->getDataForHomePage();
 		$vine = vine::where(['id' => $id, 'is_active' => true])->get();
 		$vine_for_review = count($vine) != 0 ? collect($this->wineService->generateListVines($vine))[0] : null;
 		return view('frontend.viewWine', [
 			'vine' => $vine_for_review,
-			'sliders' => $sliders,
-			'countries' => $countries,
-			'sweets' => $sweets,
-			'colors' => $colors,
-			'max_price' => $max_price,
-			'min_price' => $min_price,
-			'type_of_wines' => $types_for_wines
+			'sliders' => $dataFormHomePage['sliders'],
+			'countries' => $dataFormHomePage['countries'],
+			'sweets' => $dataFormHomePage['sweets'],
+			'colors' => $dataFormHomePage['colors'],
+			'max_price' => $dataFormHomePage['max_price'],
+			'min_price' => $dataFormHomePage['min_price'],
+			'type_of_wines' => $dataFormHomePage['type_of_wines']
 		]);
 	}
 
@@ -137,28 +119,21 @@ class HomeController extends Controller
 	 */
 	public function search(Request $request)
 	{
-		$sliders = slider::where(['is_active' => true])->get();
-		$countries = country::all();
-		$sweets = sweet::all();
-		$colors = color::all();
-		$max_price = vine::max('price');
-		$min_price = vine::min('price');
-		$types_for_wines = type_of_wine::all();
-		$paginators = DisplayPaginator::all();
+		$dataFormHomePage = $this->getDataForHomePage();
 		$paginate_number = $this->getPaginateNumber($request);
 		$vines = $this->wineService->searchSomeWines($request)->orderby('price', 'desc')->paginate($paginate_number);
 		$vines_for_review = collect($this->wineService->generateListVines($vines));
 		return view('frontend.searchResult', [
 			'vines_for_review' => $vines_for_review,
 			'vines' => $vines,
-			'sliders' => $sliders,
-			'countries' => $countries,
-			'sweets' => $sweets,
-			'colors' => $colors,
-			'max_price' => $max_price,
-			'min_price' => $min_price,
-			'type_of_wines' => $types_for_wines,
-			'paginators' => $paginators,
+			'sliders' => $dataFormHomePage['sliders'],
+			'countries' => $dataFormHomePage['countries'],
+			'sweets' => $dataFormHomePage['sweets'],
+			'colors' => $dataFormHomePage['colors'],
+			'max_price' => $dataFormHomePage['max_price'],
+			'min_price' => $dataFormHomePage['min_price'],
+			'type_of_wines' => $dataFormHomePage['type_of_wines'],
+			'paginators' => $dataFormHomePage['paginators'],
 			'paginate_number' => $paginate_number,
 		]);
 	}

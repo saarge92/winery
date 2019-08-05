@@ -2,7 +2,6 @@
 namespace App\Traits;
 
 use Illuminate\Support\Facades\Session;
-use App\DisplayPaginator;
 
 /**
  * Trait для работы с пагинацией вина
@@ -18,9 +17,9 @@ trait paginateTrait
      * @param $request - параметр запроса
      * @return $paginate_number - количество страниц
      */
-    public function getPaginateNumber($request) : int
+    public function getPaginateNumber(\Illuminate\Http\Request $request) : int
     {
-        $paginate_number = DisplayPaginator::where('num', '!=', 0)->min('num');
+        $paginate_number = \App\DisplayPaginator::where('num', '!=', 0)->min('num');
         if ($request->has('perPage')) {
             $paginate_number = $request->get('perPage');
             Session::put('paginate_number', $paginate_number);
