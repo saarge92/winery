@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\country;
-use App\Traits\countryTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;

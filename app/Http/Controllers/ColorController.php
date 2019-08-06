@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\color;
-use App\Traits\colorTrait;
 use Illuminate\Http\Request;
 use App\Http\Requests\ColorRequest;
 use App\Http\Controllers\Controller;
