@@ -9,9 +9,8 @@ use App\producer;
 use App\country;
 use App\color;
 use App\vine;
-use App\Traits\vineTrait;
 use Illuminate\Http\JsonResponse;
-
+use App\Interfaces\IServices\IWineService;
 
 /**
  * MobileController для api запросов мобильного приложения
@@ -27,11 +26,12 @@ class MobileController extends Controller
     /** @var array массив параметров json-ответа */
     private $header_info;
 
-    use vineTrait;
+    private $wineService;
 
-    public function __construct()
+    public function __construct(IWineService $wineService)
     {
         $this->header_info = ['Content-Type' => 'application/json;charset=UTF-8', 'charset' => 'utf-8'];
+        $this->wineService = $wineService;
     }
 
     /**
@@ -114,7 +114,7 @@ class MobileController extends Controller
     public function getRequestedWines(Request $request): JsonResponse
     {
         /**Фильтруем вина */
-        $filteredWines = $this->filterVines($request);
+        $filteredWines = $this->wineService->filterWines($request->all());
 
         /**Текущая страница */
         isset($request['page']) ? $currentPage = $request['page'] : $currentPage = 1;
@@ -122,7 +122,7 @@ class MobileController extends Controller
         /**Результат пагинации */
         $paginatedWines = $filteredWines->paginate(12, ['*'], 'page', $currentPage);
 
-        $resultFilter = $this->generateListVines($paginatedWines);
+        $resultFilter = $this->wineService->generateListVines($paginatedWines);
         $result = [
             'result' => $resultFilter,
             'countPages' => $paginatedWines->lastPage()
