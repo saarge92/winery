@@ -179,6 +179,7 @@ class WineService implements IWineService
         $editWine = vine::find($id);
         if ($editWine) {
             $wineDto = $this->initWineDto($request);
+            $wineDto->imageSrc = $editWine->image_src;
             $file = $request->file('image');
             if (isset($file)) {
                 if ($editWine->image_src != null) {
@@ -194,6 +195,63 @@ class WineService implements IWineService
             }
             $updated = $this->wineRepository->editVine($editWine, $wineDto);
             return $updated;
+        }
+        return false;
+    }
+
+    /**
+     * Удаление вина по Id
+     * 
+     * @param int $id Id вина
+     * @return bool Результат удаления
+     */
+    public function deleteWine(int $id): bool
+    {
+        $deletedVine = vine::find($id);
+        if ($deletedVine != null) {
+            if ($deletedVine->image_src != null) {
+                $delete_file = public_path() . '/storage/' . $deletedVine->image_src;
+                if (file_exists($delete_file)) {
+                    unlink($delete_file);
+                }
+            }
+            $isDeleted = $deletedVine->delete();
+            return $isDeleted;
+        }
+        return false;
+    }
+
+    /**
+     * Деактивация вина по его id
+     * 
+     * @param $id - номер вина
+     * @return bool - Деактивировано ли вино
+     */
+    public function disableVine(int $id): bool
+    {
+        $vine = vine::find($id);
+        if ($vine != null) {
+            $vine->is_active = false;
+            $result = $vine->save();
+            return $result;
+        }
+        return false;
+    }
+
+
+    /**
+     * Активация вина по его id
+     * 
+     * @param $id - номер вина
+     * @return bool - Активировано ли вино
+     */
+    public function enableVine(int $id): bool
+    {
+        $vine = vine::find($id);
+        if ($vine != null) {
+            $vine->is_active = true;
+            $vine->save();
+            return true;
         }
         return false;
     }

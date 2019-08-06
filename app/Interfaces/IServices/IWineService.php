@@ -12,4 +12,7 @@ interface IWineService
     public function searchSomeWines(Request $request);
     public function addWine(VinePostRequest $request): bool;
     public function updateWine(VinePostRequest $request): bool;
+    public function deleteWine(int $id): bool;
+    public function disableVine(int $id): bool;
+    public function enableVine(int $id):bool;
 }

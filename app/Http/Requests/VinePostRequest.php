@@ -40,7 +40,8 @@ class VinePostRequest extends FormRequest
             'volume' => 'required|numeric',
             'price_bottle' => 'required|numeric',
             'strength' => 'required|numeric',
-            'price_glass'=>'nullable|numeric'
+            'price_glass' => 'nullable|numeric',
+            'image' => 'max:8192|image'
         ];
     }
 }

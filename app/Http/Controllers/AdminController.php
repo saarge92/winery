@@ -7,8 +7,6 @@ use App\country;
 use App\Http\Requests\VinePostRequest;
 use App\producer;
 use App\sweet;
-use App\Traits\adminVineTrait;
-use App\Traits\vineTrait;
 use App\vine;
 use App\type_of_wine;
 use Illuminate\Http\Request;
@@ -25,14 +23,10 @@ use App\Interfaces\IServices\IWineService;
  */
 class AdminController extends Controller
 {
-	use vineTrait;
-	use adminVineTrait;
-
 	private $wineService;
 
 	public function __construct(IWineService $wineService)
 	{
-		$this->middleware('roles');
 		$this->wineService = $wineService;
 	}
 	/**
@@ -125,7 +119,7 @@ class AdminController extends Controller
 	 * @param Request $request - параметры запроса
 	 * @param int $id - номер редактируемого вина
 	 */
-	public function editVine(Request $request, int $id)
+	public function editVine(int $id)
 	{
 		$countries = country::all();
 		$colors = color::all();
@@ -169,9 +163,9 @@ class AdminController extends Controller
 	 * @param Request $request - запрос с параметрами удаления
 	 * @param int $id - id удаляемого вина
 	 */
-	public function deleteVine(Request $request, int $id)
+	public function deleteVine(int $id)
 	{
-		$result = $this->dropVine($id);
+		$result = $this->wineService->deleteWine($id);
 		$result == true ? Session::flash('success', 'Вино удалено') : Session::flash('error', 'Произошла ошибка при удалении');
 		return redirect('admin-panel');
 	}
@@ -186,7 +180,7 @@ class AdminController extends Controller
 	 */
 	public function deactivateVine(Request $request, $id)
 	{
-		$result = $this->disableVine($id);
+		$result = $this->wineService->disableVine($id);
 		$result == true ? Session::flash('success', 'Вино деактивировано') : Session::flash('error', 'Ошибка. Возможно вино отсутсвует в базе');
 		return redirect()->back();
 	}
@@ -201,7 +195,7 @@ class AdminController extends Controller
 	 */
 	public function activateVine(Request $request, $id)
 	{
-		$result = $this->enableVine($id);
+		$result = $this->wineService->enableVine($id);
 		$result == true ? Session::flash('success', 'Вино деактивировано') : Session::flash('error', 'Ошибка. Возможно вино отсутсвует в базе');
 		return redirect()->back();
 	}
