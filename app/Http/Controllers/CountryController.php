@@ -15,7 +15,7 @@ use App\Interfaces\IServices\ICountryService;
  * Предоставляет методы для работы с сущностью "страны вин"
  * 
  * @author Serdar Durdyev <sarage92@mail.ru>
- * @copyright Copyright (c) 2019 BarHouse
+ * @copyright Copyright (c) 2019 KremCafe
  */
 class CountryController extends Controller
 {

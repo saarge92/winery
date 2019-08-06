@@ -7,6 +7,12 @@ use App\Http\Requests\ColorRequest;
 use App\Interfaces\IServices\IColorService;
 use App\Interfaces\IRepositories\IColorRepository;
 
+/**
+ * Сервис для обработки бизнес-логики при работе с сущностью "Цвет вина"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 KremCafe
+ */
 class ColorService implements IColorService
 {
     private $colorRepository;
@@ -18,6 +24,9 @@ class ColorService implements IColorService
 
     /**
      * Добавление цвета вина в базу
+     * 
+     * @param ColorRequest $request - Post-запрос на добавление цвета
+     * @return bool - Создано ли вино
      */
     public function addColor(ColorRequest $request): bool
     {
@@ -28,6 +37,10 @@ class ColorService implements IColorService
 
     /**
      * Редактирование цвета
+     * 
+     * @param ColorRequest $request - Post-запрос на редактирование цвета
+     * @param int $id - Id цвета
+     * @return bool - Отредактирован ли запись
      */
     public function editColor(ColorRequest $request, int $id): bool
     {
@@ -42,6 +55,9 @@ class ColorService implements IColorService
 
     /**
      * Удаление цвета
+     * 
+     * @param int $id - Id цвета
+     * @return bool - Удален ли цвет
      */
     public function deleteColor(int $id): bool
     {

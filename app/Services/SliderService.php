@@ -73,6 +73,12 @@ class SliderService implements ISliderService
         return false;
     }
 
+    /**
+     * Удаление слайдера из базы
+     * 
+     * @param int $id - Id слайдера
+     * @return bool - Удален ли слайдер
+     */
     public function deleteSlider(int $id): bool
     {
         $slider = slider::find($id);

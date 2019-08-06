@@ -11,7 +11,7 @@ use App\country;
  * Сервис для работы с сущностью "Страна"
  * 
  * @author Serdar Durdyev <sarage92@mail.ru>
- * @copyright Copyright (c) 2019 BarHouse
+ * @copyright Copyright (c) 2019 KremCafe
  */
 class CountryService implements ICountryService
 {
@@ -23,6 +23,9 @@ class CountryService implements ICountryService
 
     /**
      * Создание страны в базе
+     * 
+     * @param CountryCreateRequest $request - Post-запрос на добавление страны
+     * @return bool - Создана ли страна
      */
     public function createCountry(CountryCreateRequest $request): bool
     {
@@ -34,6 +37,10 @@ class CountryService implements ICountryService
 
     /**
      * Редактирование страны в базе
+     * 
+     * @param CountryCreateRequest $request - Post-запрос на редактирование страны
+     * @param int $id - Id страны
+     * @return bool - Отредактирован ли запись
      */
     public function editCountryPost(CountryCreateRequest $request, int $id): bool
     {
@@ -49,6 +56,9 @@ class CountryService implements ICountryService
 
     /**
      * Удаление страны из базы
+     * 
+     * @param int $id - Id страны
+     * @return bool - Удален ли страна
      */
     public function deleteCountry(int $id): bool
     {

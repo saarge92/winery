@@ -15,7 +15,7 @@ use App\Interfaces\IServices\IColorService;
  * Предоставляет методы для работы с сущностью "цвета вин"
  * 
  * @author Serdar Durdyev <sarage92@mail.ru>
- * @copyright Copyright (c) 2019 BarHouse
+ * @copyright Copyright (c) 2019 KremCafe
  */
 class ColorController extends Controller
 {
