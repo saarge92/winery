@@ -12,6 +12,7 @@ use App\type_of_wine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Interfaces\IServices\IWineService;
+use App\Traits\adminTrait;
 
 /**
  * Контроллер для работы с личным кабинетом администратора
@@ -19,10 +20,12 @@ use App\Interfaces\IServices\IWineService;
  * Предоставляет методы для генерации представлений личного кабинета админа
  * 
  * @author Serdar Durdyev <sarage92@mail.ru>
- * @copyright Copyright (c) 2019 BarHouse
+ * @copyright Copyright (c) 2019 KremCafe
  */
 class AdminController extends Controller
 {
+	use adminTrait;
+
 	private $wineService;
 
 	public function __construct(IWineService $wineService)
@@ -36,29 +39,23 @@ class AdminController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$countries = country::all();
-		$sweets = sweet::all();
-		$colors = color::all();
-
+		$dataForAdminPage = $this->getDataForAdminPage();
 		/** Отфильтрованные вина */
 		$vines = $this->wineService->filterWines($request->all());
 		$vines = $vines->orderby('price', 'desc')->paginate(12);
-		$max_price = vine::max('price');
-		$min_price = vine::min('price');
-		$types_for_wines = type_of_wine::all();
 		/**Генерация списка вин для отображения */
 		$vines_for_review = $this->wineService->generateListVines($vines);
 		return view(
 			'admin.index',
 			[
 				'vines' => $vines,
-				'countries' => $countries,
+				'countries' => $dataForAdminPage['countries'],
 				'vines_for_review' => collect($vines_for_review),
-				'colors' => $colors,
-				'sweets' => $sweets,
-				'max_price' => $max_price,
-				'min_price' => $min_price,
-				'type_of_wines' => $types_for_wines
+				'colors' => $dataForAdminPage['colors'],
+				'sweets' => $dataForAdminPage['sweets'],
+				'max_price' => $dataForAdminPage['minPrice'],
+				'min_price' => $dataForAdminPage['minPrice'],
+				'type_of_wines' => $dataForAdminPage['typeWines']
 			]
 		);
 	}
@@ -82,17 +79,13 @@ class AdminController extends Controller
 	 */
 	public function createVine()
 	{
-		$countries = country::all();
-		$colors = color::all();
-		$producers = producer::all();
-		$sweets = sweet::all();
-		$types_for_wines = type_of_wine::all();
+		$dataForCreateWine = $this->getDataForCreateWine();
 		return view('admin.createVine', [
-			'countries' => $countries,
-			'colors' => $colors,
-			'producers' => $producers,
-			'sweets' => $sweets,
-			'types_for_wines' => $types_for_wines
+			'countries' => $dataForCreateWine['countries'],
+			'colors' => $dataForCreateWine['colors'],
+			'producers' => $dataForCreateWine['producers'],
+			'sweets' => $dataForCreateWine['sweets'],
+			'types_for_wines' => $dataForCreateWine['typeWines']
 		]);
 	}
 
@@ -121,19 +114,15 @@ class AdminController extends Controller
 	 */
 	public function editVine(int $id)
 	{
-		$countries = country::all();
-		$colors = color::all();
-		$producers = producer::all();
-		$sweets = sweet::all();
+		$dataForEdit = $this->getDataForCreateWine();
 		$vine = vine::find($id);
-		$types_for_wines = type_of_wine::all();
 		return view('admin.editVine', [
 			'vine' => $vine,
-			'countries' => $countries,
-			'colors' => $colors,
-			'producers' => $producers,
-			'sweets' => $sweets,
-			'types_for_wines' => $types_for_wines
+			'countries' => $dataForEdit['countries'],
+			'colors' => $dataForEdit['colors'],
+			'producers' => $dataForEdit['producers'],
+			'sweets' => $dataForEdit['sweets'],
+			'types_for_wines' => $dataForEdit['typeWines']
 		]);
 	}
 
