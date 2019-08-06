@@ -5,6 +5,12 @@ namespace App\Repositories;
 use App\color;
 use App\Interfaces\IRepositories\IColorRepository;
 
+/**
+ * Репозиторий для работы с таблицей "Цвета вин"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 KremCafe
+ */
 class ColorRepository implements IColorRepository
 {
     /**
@@ -53,6 +59,10 @@ class ColorRepository implements IColorRepository
 
     /**
      * Редактирование цвета вина
+     * 
+     * @param color &$color - Редактируемая запись
+     * @param string $name - Название, которое хотим присвоить
+     * @return bool - Отредактирована ли запись
      */
     public function editColor(color &$color, string $name): bool
     {
@@ -61,6 +71,12 @@ class ColorRepository implements IColorRepository
         return $result;
     }
 
+    /**
+     * Удаление записи о цвете вина
+     * 
+     * @param color $color - Удаляемая запись
+     * @return bool - Удалена ли запись
+     */
     public function deleteColor(color $color): bool
     {
         return $color->delete();

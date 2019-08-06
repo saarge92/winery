@@ -14,7 +14,7 @@ use App\Traits\homeTrait;
  * Предоставляет методы для работы с клиентской частью
  * 
  * @author Serdar Durdyev <sarage92@mail.ru>
- * @copyright Copyright (c) 2019 BarHouse
+ * @copyright Copyright (c) 2019 KremCafe
  */
 class HomeController extends Controller
 {

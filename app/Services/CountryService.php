@@ -9,6 +9,9 @@ use App\country;
 
 /**
  * Сервис для работы с сущностью "Страна"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 BarHouse
  */
 class CountryService implements ICountryService
 {

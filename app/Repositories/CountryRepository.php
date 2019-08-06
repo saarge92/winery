@@ -5,6 +5,12 @@ namespace App\Repositories;
 use App\country;
 use App\Interfaces\IRepositories\ICountryRepository;
 
+/**
+ * Репозиторий для работы с таблицей "Страны вин"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 KremCafe
+ */
 class CountryRepository implements ICountryRepository
 {
     /**
@@ -12,8 +18,8 @@ class CountryRepository implements ICountryRepository
      * 
      * Возвращает либо string либо null
      * 
-     * @param int $id - входной параметр для поиска вина
-     * @return string
+     * @param int $id - Входной параметр для поиска вина
+     * @return string - Вернет название вина (по-русски)
      */
     public function getCountryNameRusById(?int $id): ?string
     {
@@ -30,7 +36,7 @@ class CountryRepository implements ICountryRepository
      * Возвращает либо string либо null
      * 
      * @param int $id - входной параметр для поиска вина
-     * @return string
+     * @return string - Вернет название по английски
      */
     public function getCountryNameEnById(?int $id): ?string
     {
@@ -59,6 +65,11 @@ class CountryRepository implements ICountryRepository
 
     /**
      * Редактирование страны
+     * 
+     * @param country $country - Редактируемая запись о стране
+     * @param string $nameRus- Название (русское), которое хотим присвоить
+     * @param string $nameEn - Название (английское), которое хотим присвоить
+     * @return bool - Отредактирована ли запись
      */
     public function editCountry(country &$country, string $nameRus, ?string $nameEn): bool
     {

@@ -6,7 +6,10 @@ use App\Interfaces\IRepositories\IProducerRepository;
 use App\producer;
 
 /**
- * Репозиторий для работы с сущностью "Страна"
+ * Репозиторий для работы с сущностью "Производитель"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 KremCafe
  */
 class ProducerRepository implements IProducerRepository
 {
@@ -39,12 +42,21 @@ class ProducerRepository implements IProducerRepository
 
     /**
      * Удаление прозводителя
+     * 
+     * @param producer $producer - Редактируемая запись о производителе
+     * @return bool - Отредактирована ли запись
      */
     public function deleteProducer(producer $producer): bool
     {
         return $producer->delete();
     }
 
+    /**
+     * Получение имение производителя по его Id
+     * 
+     * @param int $id - Id прозводителя
+     * @return string - Название производителя
+     */
     public function getProducerName(?int $id): ?string
     {
         $producer = producer::find($id);

@@ -14,6 +14,13 @@ use App\Interfaces\IRepositories\IProducerRepository;
 use App\Dto\WineDtoCreate;
 use App\Repositories\WineRepository;
 
+/**
+ * Сервис для обработки запросов,
+ * связанных с сущностью "Вино"
+ * 
+ * @author Serdar Durdyev <sarage92@mail.ru>
+ * @copyright Copyright (c) 2019 KremCafe
+ */
 class WineService implements IWineService
 {
     private $countryRepository;

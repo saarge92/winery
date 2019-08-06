@@ -43,6 +43,10 @@ class WineRepository
 
     /**
      * Редактирование вина в базе
+     * 
+     * @param vine $wine - Редактируемая запись о вине
+     * @param WineDtoCreate - Сущность с редактируемыми параметрами вина
+     * @return bool Результат редактирования
      */
     public function editVine(vine $wine, WineDtoCreate $wineDto): bool
     {
