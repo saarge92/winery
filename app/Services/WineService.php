@@ -47,8 +47,7 @@ class WineService implements IWineService
      * Фильтрация вин согласно списку параметров
      * 
      * @param array $params - список параметров для фильтрации
-     * 
-     * @return $vines - Список с фильтрованными финами
+     * @return $vines - Список с фильтрованными винами
      */
     public function filterWines(array $filter)
     {
@@ -81,7 +80,7 @@ class WineService implements IWineService
     }
 
     /**
-     * Формирует и инииализирует список вина в соответствующий вин
+     * Формирует и инииализирует список вина в соответствующий вид
      * 
      * @param array $vines - список записей из бд
      * @return array
