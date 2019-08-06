@@ -40,4 +40,28 @@ class WineRepository
         $wine->image_src = $wineDtoCreate->imageSrc;
         return $wine->save();
     }
+
+    /**
+     * Редактирование вина в базе
+     */
+    public function editVine(vine $wine, WineDtoCreate $wineDto): bool
+    {
+        $wine->name_rus = $wineDto->nameRus;
+        $wine->name_en = $wineDto->nameEn;
+        $wine->price = $wineDto->price;
+        $wine->price_cup = $wineDto->priceCup;
+        $wine->volume = $wineDto->volume;
+        $wine->year = $wineDto->year;
+        $wine->strength = $wineDto->strength;
+        $wine->sort_contain = $wineDto->sortContain;
+        $wine->country_id = $wineDto->countryId;
+        $wine->color_id = $wineDto->colorId;
+        $wine->sweet_id = $wineDto->sweetId;
+        $wine->producer_id = $wineDto->producerId;
+        $wine->id_type = $wineDto->typeId;
+        $wine->region_name = $wineDto->regionName;
+        $wine->is_coravin = $wineDto->isCoravin;
+        $wine->image_src = $wineDto->imageSrc;
+        return $wine->save();
+    }
 }

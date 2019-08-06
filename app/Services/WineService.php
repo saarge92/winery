@@ -130,6 +130,24 @@ class WineService implements IWineService
      */
     public function addWine(VinePostRequest $request): bool
     {
+        $wineDto = $this->initWineDto($request);
+        $file = $request->file('image');
+        if (isset($file)) {
+            $filename = $request->get('name_rus') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
+            $destination = public_path() . '/storage/wines/';
+            $file->move($destination, $filename);
+            $wineDto->imageSrc = 'wines/' . $filename;
+        }
+
+        $created = $this->wineRepository->createVine($wineDto);
+        return $created;
+    }
+
+    /**
+     * Инициализация вина из запроса
+     */
+    private function initWineDto(VinePostRequest $request): WineDtoCreate
+    {
         $wineDto = new WineDtoCreate();
         $wineDto->nameRus = $request->get('name_rus');
         $wineDto->nameEn = $request->get('name_en');
@@ -146,16 +164,37 @@ class WineService implements IWineService
         $wineDto->typeId = $request->get('type_wine');
         $wineDto->regionName = $request->get('region_name');
         $wineDto->isCoravin = $request->get('coravin') == 'on' ? true : false;
+        return $wineDto;
+    }
 
-        $file = $request->file('image');
-        if (isset($file)) {
-            $filename = $request->get('name_rus') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
-            $destination = public_path() . '/storage/wines/';
-            $file->move($destination, $filename);
-            $wineDto->imageSrc = 'wines/' . $filename;
+    /**
+     * Редактирование данных о вине
+     * 
+     * @param VinePostRequest $request - Запрос с редактируемыми данными
+     * @return bool Результат редактирования
+     */
+    public function updateWine(VinePostRequest $request): bool
+    {
+        $id = $request->get('id');
+        $editWine = vine::find($id);
+        if ($editWine) {
+            $wineDto = $this->initWineDto($request);
+            $file = $request->file('image');
+            if (isset($file)) {
+                if ($editWine->image_src != null) {
+                    $delete_path = public_path() . '/storage/' . $editWine->image_src;
+                    if (file_exists($delete_path)) {
+                        unlink($delete_path);
+                    }
+                }
+                $filename = $request->get('name_rus') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
+                $destination = public_path() . '/storage/wines/';
+                $file->move($destination, $filename);
+                $wineDto->imageSrc = 'wines/' . $filename;
+            }
+            $updated = $this->wineRepository->editVine($editWine, $wineDto);
+            return $updated;
         }
-
-        $created = $this->wineRepository->createVine($wineDto);
-        return $created;
+        return false;
     }
 }

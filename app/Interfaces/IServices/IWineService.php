@@ -11,4 +11,5 @@ interface IWineService
     public function generateListVines($vines): array;
     public function searchSomeWines(Request $request);
     public function addWine(VinePostRequest $request): bool;
+    public function updateWine(VinePostRequest $request): bool;
 }
