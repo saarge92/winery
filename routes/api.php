@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
  */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('/get-all-types', ['uses' => 'MobileController@getAllTypes']);
 Route::get('/get-all-sweets', ['uses' => 'MobileController@getAllSweets']);
 Route::get('/get-all-producers', ['uses' => 'MobileController@getAllProducers']);
@@ -26,4 +22,3 @@ Route::get('/get-min-price', ['uses' => 'MobileController@getMinPrice']);
 Route::get('/get-max-price', ['uses' => 'MobileController@getMaxPrice']);
 Route::post('/get-requested-wines', ['uses' => 'MobileController@getRequestedWines']);
 Route::get('/getWineById/{id}', ['uses' => 'MobileController@getWineById']);
-
