@@ -45,27 +45,27 @@ class WineRepository
      * Редактирование вина в базе
      * 
      * @param vine $wine - Редактируемая запись о вине
-     * @param WineDtoCreate - Сущность с редактируемыми параметрами вина
+     * @param WineDtoCreate - Массив с редактируемыми параметрами вина
      * @return bool Результат редактирования
      */
-    public function editVine(vine $wine, WineDtoCreate $wineDto): bool
+    public function editVine(vine $wine, array $wineDto): bool
     {
-        $wine->name_rus = $wineDto->nameRus;
-        $wine->name_en = $wineDto->nameEn;
-        $wine->price = $wineDto->price;
-        $wine->price_cup = $wineDto->priceCup;
-        $wine->volume = $wineDto->volume;
-        $wine->year = $wineDto->year;
-        $wine->strength = $wineDto->strength;
-        $wine->sort_contain = $wineDto->sortContain;
-        $wine->country_id = $wineDto->countryId;
-        $wine->color_id = $wineDto->colorId;
-        $wine->sweet_id = $wineDto->sweetId;
-        $wine->producer_id = $wineDto->producerId;
-        $wine->id_type = $wineDto->typeId;
-        $wine->region_name = $wineDto->regionName;
-        $wine->is_coravin = $wineDto->isCoravin;
-        $wine->image_src = $wineDto->imageSrc;
+        $wine->name_rus = $wineDto['name_rus'];
+        if (isset($wineDto['name_en'])) $wine->name_en = $wineDto['name_en'];
+        $wine->price = $wineDto['price_bottle'];
+        $wine->price_cup = $wineDto['price_glass'];
+        $wine->volume = $wineDto['volume'];
+        $wine->year = $wineDto['year'];
+        $wine->strength = $wineDto['strength'];
+        $wine->sort_contain = $wineDto['sort_contain'];
+        $wine->country_id = $wineDto['country'];
+        $wine->color_id = $wineDto['color'];
+        $wine->sweet_id = $wineDto['sweet'];
+        $wine->producer_id = $wineDto['producer'];
+        $wine->id_type = $wineDto['type_wine'];
+        if (isset($wineDto['region_name'])) $wine->region_name = $wineDto['region_name'];
+        if (isset($wineDto['coravin'])) $wine->is_coravin = $wineDto['coravin'] == 'on' ? true : false;
+        if (isset($wineDto['imageSrc'])) $wine->image_src = $wineDto['imageSrc'];
         return $wine->save();
     }
 }

@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\color;
-use App\country;
 use App\Http\Requests\VinePostRequest;
-use App\producer;
-use App\sweet;
 use App\vine;
-use App\type_of_wine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Interfaces\IServices\IWineService;
@@ -137,7 +132,7 @@ class AdminController extends Controller
 	public function postEditVine(VinePostRequest $request)
 	{
 		if ($request->validated()) {
-			$result = $this->wineService->updateWine($request);
+			$result = $this->wineService->updateWine($request->all());
 			$result == true ? Session::flash('success', 'Вино успешно обновлено')
 				: Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
 			return redirect('admin-panel');

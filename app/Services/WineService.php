@@ -11,7 +11,6 @@ use App\Interfaces\IServices\IWineService;
 use App\Interfaces\IRepositories\IColorRepository;
 use App\Interfaces\IRepositories\ICountryRepository;
 use App\Interfaces\IRepositories\IProducerRepository;
-use App\Dto\WineDtoCreate;
 use App\Repositories\WineRepository;
 
 /**
@@ -149,56 +148,30 @@ class WineService implements IWineService
     }
 
     /**
-     * Инициализация вина из запроса
-     */
-    private function initWineDto(VinePostRequest $request): array
-    {
-        $wineDto = array();
-        $wineDto['nameRus'] = $request->get('name_rus');
-        $wineDto->nameEn = $request->get('name_en');
-        $wineDto->price = $request->get('price_bottle');
-        $wineDto->priceCup = $request->get('price_glass');
-        $wineDto->volume = $request->get('volume');
-        $wineDto->year = $request->get('year');
-        $wineDto->strength = $request->get('strength');
-        $wineDto->sortContain = $request->get('sort_contain');
-        $wineDto->countryId = $request->get('country');
-        $wineDto->colorId = $request->get('color');
-        $wineDto->sweetId = $request->get('sweet');
-        $wineDto->producerId = $request->get('producer');
-        $wineDto->typeId = $request->get('type_wine');
-        $wineDto->regionName = $request->get('region_name');
-        $wineDto->isCoravin = $request->get('coravin') == 'on' ? true : false;
-        return $wineDto;
-    }
-
-    /**
      * Редактирование данных о вине
      * 
      * @param VinePostRequest $request - Запрос с редактируемыми данными
      * @return bool Результат редактирования
      */
-    public function updateWine(VinePostRequest $request): bool
+    public function updateWine(array $editWineForm): bool
     {
-        $id = $request->get('id');
+        $id = $editWineForm['id'];
         $editWine = vine::find($id);
         if ($editWine) {
-            $wineDto = $this->initWineDto($request);
-            $wineDto->imageSrc = $editWine->image_src;
-            $file = $request->file('image');
-            if (isset($file)) {
+            $file = isset($editWineForm['image']) ? $editWineForm['image'] : null;
+            if ($file != null) {
                 if ($editWine->image_src != null) {
                     $delete_path = public_path() . '/storage/' . $editWine->image_src;
                     if (file_exists($delete_path)) {
                         unlink($delete_path);
                     }
                 }
-                $filename = $request->get('name_rus') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
+                $filename = $editWineForm['name_rus'] . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
                 $destination = public_path() . '/storage/wines/';
                 $file->move($destination, $filename);
-                $wineDto->imageSrc = 'wines/' . $filename;
+                $editWineForm['imageSrc'] = 'wines/' . $filename;
             }
-            $updated = $this->wineRepository->editVine($editWine, $wineDto);
+            $updated = $this->wineRepository->editVine($editWine, $editWineForm);
             return $updated;
         }
         return false;
