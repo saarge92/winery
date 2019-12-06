@@ -89,27 +89,27 @@ class WineService implements IWineService
     {
         $vinesForReview = array();
         foreach ($vines as $vine) {
-            $vineElement = new \stdClass();
-            $vineElement->id = $vine->id;
-            $vineElement->name_rus = $vine->name_rus;
-            $vineElement->name_en = $vine->name_en;
-            $vineElement->price = $vine->price;
-            $vineElement->price_cup = $vine->price_cup;
-            $vineElement->volume = $vine->volume;
-            $vineElement->year = $vine->year;
-            $vineElement->strength = $vine->strength;
-            $vineElement->sort_contain = $vine->sort_contain;
-            $vineElement->image_src = $vine->image_src;
-            $vineElement->country = $this->countryRepository->getCountryNameRusById($vine->country_id);
-            $vineElement->country_en = $this->countryRepository->getCountryNameEnById($vine->country_id);
-            $vineElement->color = $this->colorRepository->getColorNameById($vine->color_id);
-            $vineElement->sweet = $this->sweetRepository->getSweetNameById($vine->sweet_id);
-            $vineElement->country_en = $this->countryRepository->getCountryNameEnById($vine->country_id);
-            $vineElement->is_active = $vine->is_active;
-            $vineElement->producer = $this->producerRepository->getProducerName($vine->producer_id);
-            $vineElement->type_name = $this->typeWineRepository->getTypeNameById($vine->id_type);
-            $vineElement->region_name = $vine->region_name;
-            $vineElement->is_coravin = $vine->is_coravin;
+            $vineElement = [];
+            $vineElement['id'] = $vine->id;
+            $vineElement['name_rus'] = $vine->name_rus;
+            $vineElement['name_en'] = $vine->name_en;
+            $vineElement['price'] = $vine->price;
+            $vineElement['price_cup'] = $vine->price_cup;
+            $vineElement['volume'] = $vine->volume;
+            $vineElement['year'] = $vine->year;
+            $vineElement['strength'] = $vine->strength;
+            $vineElement['sort_contain'] = $vine->sort_contain;
+            $vineElement['image_src'] = $vine->image_src;
+            $vineElement['country'] = $this->countryRepository->getCountryNameRusById($vine->country_id);
+            $vineElement['country_en'] = $this->countryRepository->getCountryNameEnById($vine->country_id);
+            $vineElement['color'] = $this->colorRepository->getColorNameById($vine->color_id);
+            $vineElement['sweet'] = $this->sweetRepository->getSweetNameById($vine->sweet_id);
+            $vineElement['country_en'] = $this->countryRepository->getCountryNameEnById($vine->country_id);
+            $vineElement['is_active'] = $vine->is_active;
+            $vineElement['producer'] = $this->producerRepository->getProducerName($vine->producer_id);
+            $vineElement['type_name'] = $this->typeWineRepository->getTypeNameById($vine->id_type);
+            $vineElement['region_name'] = $vine->region_name;
+            $vineElement['is_coravin'] = $vine->is_coravin;
             $vinesForReview[] = $vineElement;
         }
         return $vinesForReview;
@@ -134,28 +134,27 @@ class WineService implements IWineService
      * @return bool - Возвращает булево значение, сохранено ли значение
      * 
      */
-    public function addWine(VinePostRequest $request): bool
+    public function addWine(array $wineForm): bool
     {
-        $wineDto = $this->initWineDto($request);
-        $file = $request->file('image');
+        //$wineDto = $this->initWineDto($request);
+        $file = $wineForm['image'];
         if (isset($file)) {
-            $filename = $request->get('name_rus') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
+            $filename = $wineForm['name_rus'] . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
             $destination = public_path() . '/storage/wines/';
             $file->move($destination, $filename);
-            $wineDto->imageSrc = 'wines/' . $filename;
+            $wineForm['image_src'] = 'wines/' . $filename;
         }
-
-        $created = $this->wineRepository->createVine($wineDto);
+        $created = $this->wineRepository->createVine($wineForm);
         return $created;
     }
 
     /**
      * Инициализация вина из запроса
      */
-    private function initWineDto(VinePostRequest $request): WineDtoCreate
+    private function initWineDto(VinePostRequest $request): array
     {
-        $wineDto = new WineDtoCreate();
-        $wineDto->nameRus = $request->get('name_rus');
+        $wineDto = array();
+        $wineDto['nameRus'] = $request->get('name_rus');
         $wineDto->nameEn = $request->get('name_en');
         $wineDto->price = $request->get('price_bottle');
         $wineDto->priceCup = $request->get('price_glass');

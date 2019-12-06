@@ -70,6 +70,7 @@ class HomeController extends Controller
 	 */
 	public function getCountOfChoice(Request $request)
 	{
+		$filter_array = [];
 		parse_str($request->get('params'), $filter_array);
 		$count_vines = count($this->wineService->filterWines($filter_array)->where('is_active', true)->get());
 		return response()->json(['all' => $count_vines]);

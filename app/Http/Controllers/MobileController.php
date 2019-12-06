@@ -48,7 +48,7 @@ class MobileController extends Controller
      * Получение списка сладостей вина
      * @return JsonResponse
      */
-    public function getAllSweets(): JsonResponse
+    public function getAllSweets()
     {
         $all_sweets = sweet::all();
         return response()->json($all_sweets, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -58,7 +58,7 @@ class MobileController extends Controller
      * Получение списка производителей
      * @return JsonResponse
      */
-    public function getAllProducers(): JsonResponse
+    public function getAllProducers()
     {
         $all_producers = producer::all();
         return response()->json($all_producers, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -68,7 +68,7 @@ class MobileController extends Controller
      * Получение списка стран вин
      * @return JsonResponse
      */
-    public function getAllCountries(): JsonResponse
+    public function getAllCountries()
     {
         $allCountries = country::all();
         return response()->json($allCountries, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -78,7 +78,7 @@ class MobileController extends Controller
      * Получение списка цвета вин
      * @return JsonResponse
      */
-    public function getAllColors(): JsonResponse
+    public function getAllColors()
     {
         $allColors = color::all();
         return response()->json($allColors, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
@@ -111,7 +111,7 @@ class MobileController extends Controller
      * @param Requset $request - входной параметр
      * @return JsonResponse
      */
-    public function getRequestedWines(Request $request): JsonResponse
+    public function getRequestedWines(Request $request)
     {
         /**Фильтруем вина */
         $filteredWines = $this->wineService->filterWines($request->all());
@@ -136,7 +136,7 @@ class MobileController extends Controller
      * @param $id - номер вина
      * @return JsonResponse - вино в формате json
      */
-    public function getWineById($id): JsonResponse
+    public function getWineById($id)
     {
         $wine = vine::find($id);
         return response()->json($wine, 200, $this->header_info, JSON_UNESCAPED_UNICODE);

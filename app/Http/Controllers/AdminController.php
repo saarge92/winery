@@ -99,7 +99,8 @@ class AdminController extends Controller
 	public function postVine(VinePostRequest $request)
 	{
 		if ($request->validated()) {
-			$result = $this->wineService->addWine($request);
+			$winesForm = $request->all();
+			$result = $this->wineService->addWine($winesForm);
 			$result == true ? Session::flash('success', 'Вино успешно добавлено') : Session::flash('error', 'Произошла ошибка. Обратитесь к разработчику сайта');
 			return redirect('admin-panel');
 		}

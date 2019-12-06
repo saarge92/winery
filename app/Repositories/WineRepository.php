@@ -16,28 +16,28 @@ class WineRepository
     /**
      * Добавление вина в базу
      * 
-     * @param WineDtoCreate $wineDtoCreate - объект с добавляемыми параметрами
+     * @param array $wineDtoCreate - массив с добавляемыми параметрами
      * @return bool - Добавлен ли объект в базу
      */
-    public function createVine(WineDtoCreate $wineDtoCreate): bool
+    public function createVine(array $wineDtoCreate): bool
     {
         $wine = new vine();
-        $wine->name_rus = $wineDtoCreate->nameRus;
-        $wine->name_en = $wineDtoCreate->nameEn;
-        $wine->price = $wineDtoCreate->price;
-        $wine->price_cup = $wineDtoCreate->priceCup;
-        $wine->volume = $wineDtoCreate->volume;
-        $wine->year = $wineDtoCreate->year;
-        $wine->strength = $wineDtoCreate->strength;
-        $wine->sort_contain = $wineDtoCreate->sortContain;
-        $wine->country_id = $wineDtoCreate->countryId;
-        $wine->color_id = $wineDtoCreate->colorId;
-        $wine->sweet_id = $wineDtoCreate->sweetId;
-        $wine->producer_id = $wineDtoCreate->producerId;
-        $wine->id_type = $wineDtoCreate->typeId;
-        $wine->region_name = $wineDtoCreate->regionName;
-        $wine->is_coravin = $wineDtoCreate->isCoravin;
-        $wine->image_src = $wineDtoCreate->imageSrc;
+        $wine->name_rus = $wineDtoCreate['name_rus'];
+        $wine->name_en = $wineDtoCreate['name_en'];
+        $wine->price = $wineDtoCreate['price_bottle'];
+        $wine->price_cup = $wineDtoCreate['price_glass'];
+        $wine->volume = $wineDtoCreate['volume'];
+        $wine->year = $wineDtoCreate['year'];
+        $wine->strength = $wineDtoCreate['strength'];
+        $wine->sort_contain = $wineDtoCreate['sort_contain'];
+        $wine->country_id = $wineDtoCreate['country'];
+        $wine->color_id = $wineDtoCreate['color'];
+        $wine->sweet_id = $wineDtoCreate['sweet'];
+        $wine->producer_id = $wineDtoCreate['producer'];
+        $wine->id_type = $wineDtoCreate['type_wine'];
+        $wine->region_name = $wineDtoCreate['region_name'];
+        $wine->is_coravin = $wineDtoCreate['coravin'] == 'on' ? true : false;
+        $wine->image_src = $wineDtoCreate['image_src'];
         return $wine->save();
     }
 

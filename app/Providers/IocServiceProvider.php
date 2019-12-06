@@ -31,14 +31,14 @@ class IocServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(ICountryRepository::class, CountryRepository::class);
-        $this->app->bind(IColorRepository::class, ColorRepository::class);
-        $this->app->bind(ICountryService::class, CountryService::class);
-        $this->app->bind(IColorService::class, ColorService::class);
-        $this->app->bind(IProducerRepository::class, ProducerRepository::class);
-        $this->app->bind(IProducerService::class, ProducerService::class);
-        $this->app->bind(ISliderRepository::class, SliderRepository::class);
-        $this->app->bind(ISliderService::class, SliderService::class);
-        $this->app->bind(IWineService::class, WineService::class);
+        $this->app->singleton(ICountryRepository::class, CountryRepository::class);
+        $this->app->singleton(IColorRepository::class, ColorRepository::class);
+        $this->app->singleton(ICountryService::class, CountryService::class);
+        $this->app->singleton(IColorService::class, ColorService::class);
+        $this->app->singleton(IProducerRepository::class, ProducerRepository::class);
+        $this->app->singleton(IProducerService::class, ProducerService::class);
+        $this->app->singleton(ISliderRepository::class, SliderRepository::class);
+        $this->app->singleton(ISliderService::class, SliderService::class);
+        $this->app->singleton(IWineService::class, WineService::class);
     }
 }
