@@ -22,6 +22,7 @@ class WineRepository
     public function createVine(array $wineDtoCreate): bool
     {
         $wine = new vine();
+        $wine->name_rus = $wineDtoCreate['name_rus'];
         if (isset($wineDtoCreate['name_en'])) $wine->name_en = $wineDtoCreate['name_en'];
         $wine->price = $wineDtoCreate['price_bottle'];
         $wine->price_cup = $wineDtoCreate['price_glass'];
