@@ -136,8 +136,8 @@ class WineService implements IWineService
     public function addWine(array $wineForm): bool
     {
         //$wineDto = $this->initWineDto($request);
-        $file = $wineForm['image'];
-        if (isset($file)) {
+        $file = isset($wineForm['image'])  ? $wineForm['image'] : null;
+        if ($file != null) {
             $filename = $wineForm['name_rus'] . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
             $destination = public_path() . '/storage/wines/';
             $file->move($destination, $filename);
