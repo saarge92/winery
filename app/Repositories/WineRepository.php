@@ -22,8 +22,7 @@ class WineRepository
     public function createVine(array $wineDtoCreate): bool
     {
         $wine = new vine();
-        $wine->name_rus = $wineDtoCreate['name_rus'];
-        $wine->name_en = $wineDtoCreate['name_en'];
+        if (isset($wineDtoCreate['name_en'])) $wine->name_en = $wineDtoCreate['name_en'];
         $wine->price = $wineDtoCreate['price_bottle'];
         $wine->price_cup = $wineDtoCreate['price_glass'];
         $wine->volume = $wineDtoCreate['volume'];
@@ -35,9 +34,9 @@ class WineRepository
         $wine->sweet_id = $wineDtoCreate['sweet'];
         $wine->producer_id = $wineDtoCreate['producer'];
         $wine->id_type = $wineDtoCreate['type_wine'];
-        $wine->region_name = $wineDtoCreate['region_name'];
-        $wine->is_coravin = $wineDtoCreate['coravin'] == 'on' ? true : false;
-        $wine->image_src = $wineDtoCreate['image_src'];
+        if (isset($wineDtoCreate['region_name'])) $wine->region_name = $wineDtoCreate['region_name'];
+        if (isset($wineDtoCreate['coravin'])) $wine->is_coravin = $wineDtoCreate['coravin'] == 'on' ? true : false;
+        if (isset($wineDtoCreate['imageSrc'])) $wine->image_src = $wineDtoCreate['imageSrc'];
         return $wine->save();
     }
 
