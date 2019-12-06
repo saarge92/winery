@@ -53,7 +53,7 @@ class AdminController extends Controller
 				'vines_for_review' => collect($vines_for_review),
 				'colors' => $dataForAdminPage['colors'],
 				'sweets' => $dataForAdminPage['sweets'],
-				'max_price' => $dataForAdminPage['minPrice'],
+				'max_price' => $dataForAdminPage['maxPrice'],
 				'min_price' => $dataForAdminPage['minPrice'],
 				'type_of_wines' => $dataForAdminPage['typeWines']
 			]
