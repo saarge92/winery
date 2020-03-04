@@ -9,7 +9,9 @@ use App\Http\Requests\CountryCreateRequest;
  */
 interface ICountryService
 {
-    public function createCountry(CountryCreateRequest $request): bool;
-    public function editCountryPost(CountryCreateRequest $request, int $id) : bool;
-    public function deleteCountry(int $id) : bool;
+    public function createCountry(array $countryParams): bool;
+
+    public function editCountryPost(array $countryParams, int $id): bool;
+
+    public function deleteCountry(int $id): bool;
 }

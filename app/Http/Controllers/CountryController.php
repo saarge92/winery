@@ -11,9 +11,9 @@ use App\Interfaces\IServices\ICountryService;
 
 /**
  * Контроллер для работы со странами вин в кабинете администратора
- * 
+ *
  * Предоставляет методы для работы с сущностью "страны вин"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
@@ -26,7 +26,7 @@ class CountryController extends Controller
         $this->countryService = $countryService;
     }
 
-    /** 
+    /**
      * Получение страницы со списком стран
      */
     public function getCountries()
@@ -45,13 +45,14 @@ class CountryController extends Controller
 
     /**
      * POST-запрос для создания страны
-     * 
+     *
      * @param CountryCreateRequest $request - Запрос на создание страны
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function createCountry(CountryCreateRequest $request)
     {
         if ($request->validated()) {
-            $created = $this->countryService->createCountry($request);
+            $created = $this->countryService->createCountry($request->all());
             $created ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
             return redirect('countries');
@@ -72,7 +73,7 @@ class CountryController extends Controller
 
     /**
      * POST - запрос редактирования страны
-     * 
+     *
      * @param CountryCreateRequest $request - Запрос на редактирование страны
      * @param $id - номер страны
      */
@@ -89,7 +90,7 @@ class CountryController extends Controller
 
     /**
      * POST-запрос на удаление страны
-     * 
+     *
      * @param Request $req - Post-запрос
      * @param $id - номер страны
      */

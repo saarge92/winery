@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\color;
-use App\Http\Requests\ColorRequest;
 use App\Interfaces\IServices\IColorService;
 use App\Interfaces\IRepositories\IColorRepository;
 
