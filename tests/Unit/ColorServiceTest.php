@@ -40,4 +40,16 @@ class ColorServiceTest extends TestCase
         $editedColor = $colorService->editColor(['name_color' => $this->faker->name], $randomColor['id']);
         $this->assertSame($editedColor, true);
     }
+
+    /**
+     * Тестирование редактирование цвета
+     * Тестирование deleteColor
+     */
+    public function testDeleteColor()
+    {
+        $colorService = resolve(IColorService::class);
+        $randomColor = color::orderByRaw("RAND()")->first();
+        $isDeletedColor = $colorService->deleteColor($randomColor['id']);
+        $this->assertSame($isDeletedColor, true);
+    }
 }
