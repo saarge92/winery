@@ -24,7 +24,7 @@ class CountryServiceTest extends TestCase
      */
     public function testCreateCountry()
     {
-        $countryService = resolve(ICountryService::class);
+        $countryService = $this->createCountryResolver();
         $createParams = [
             'name_rus' => $this->faker->name,
             'name_en' => $this->faker->name
@@ -39,7 +39,7 @@ class CountryServiceTest extends TestCase
      */
     public function testEditCountry()
     {
-        $countryService = resolve(ICountryService::class);
+        $countryService = $this->createCountryResolver();
         $randomCountry = country::orderByRaw("RAND()")->first();
         $editParams = [
             'name_rus' => $this->faker->country,
@@ -47,5 +47,26 @@ class CountryServiceTest extends TestCase
         ];
         $isEdited = $countryService->editCountryPost($editParams, $randomCountry['id']);
         $this->assertSame($isEdited, true);
+    }
+
+    /**
+     * Тестирование удаления страны из базы
+     * Тестирование deleteCountry
+     */
+    public function testDeleteCountry()
+    {
+        $countryService = $this->createCountryResolver();
+        $randomCountry = country::orderByRaw("RAND()")->first();
+        $isDeleted = $countryService->deleteCountry($randomCountry['id']);
+        $this->assertSame($isDeleted, true);
+    }
+
+    /**
+     * Генерация и получение зависимости ICountryService
+     * @return ICountryService полученная зависимость
+     */
+    private function createCountryResolver(): ICountryService
+    {
+        return resolve(ICountryService::class);
     }
 }
