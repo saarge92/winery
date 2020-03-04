@@ -11,9 +11,9 @@ use App\Interfaces\IServices\IColorService;
 
 /**
  * Контроллер для работы цветом вин в кабинете администратора
- * 
+ *
  * Предоставляет методы для работы с сущностью "цвета вин"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
@@ -45,13 +45,14 @@ class ColorController extends Controller
 
     /**
      * Обработка POST-запроса для создания цвета
-     * 
+     *
      * @param ColorRequest $request - Класс-запрос с параметрами цвета
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function createColor(ColorRequest $request)
     {
         if ($request->validated()) {
-            $result = $this->colorService->addColor($request);
+            $result = $this->colorService->addColor($request->all());
             $result ? Session::flash('success', 'Цвет успешно добавлен')
                 : Session::flash('error', 'Произошла ошибка,повторите попытку снова!');
             return redirect('allColors');
@@ -61,9 +62,10 @@ class ColorController extends Controller
 
     /**
      * Генерация страницы с редактирование цвета
-     * 
+     *
      * @param Request $request - запрос с параметрами
-     * @param mixed $id - id цвета 
+     * @param mixed $id - id цвета
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function startEditColor(Request $request, $id)
     {
@@ -73,14 +75,15 @@ class ColorController extends Controller
 
     /**
      * POST-запрос на редактирование цвета
-     * 
-     * @param Request $request - запрос с параметрами
-     * @param mixed $id - id цвета 
+     *
+     * @param ColorRequest $request - запрос с параметрами
+     * @param mixed $id - id цвета
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function editColor(ColorRequest $request, $id)
     {
         if ($request->validated()) {
-            $edited = $this->colorService->editColor($request, $id);
+            $edited = $this->colorService->editColor($request->all(), $id);
             $edited ? Session::flash('success', 'Цвет успешно обновлен')
                 : Session::flash('error', 'Произошла ошибка!');
             return redirect('allColors');
@@ -90,9 +93,9 @@ class ColorController extends Controller
 
     /**
      * POST-запрос на удаление цвета
-     * 
+     *
      * @param Request $request - запрос с параметрами
-     * @param mixed $id - id цвета 
+     * @param mixed $id - id цвета
      */
     public function dropColor(int $id)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -32,7 +32,7 @@ class HomeControllerTest extends TestCase
 
     /**
      * Тестирование отображения вина
-     * 
+     *
      * @return void
      */
     public function testViewWine()
@@ -44,7 +44,7 @@ class HomeControllerTest extends TestCase
 
     /**
      * Тестирование автозаполнения
-     * 
+     *
      * @return void
      */
     public function testAutocomplete()

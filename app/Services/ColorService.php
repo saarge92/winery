@@ -9,7 +9,7 @@ use App\Interfaces\IRepositories\IColorRepository;
 
 /**
  * Сервис для обработки бизнес-логики при работе с сущностью "Цвет вина"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
@@ -24,38 +24,34 @@ class ColorService implements IColorService
 
     /**
      * Добавление цвета вина в базу
-     * 
-     * @param ColorRequest $request - Post-запрос на добавление цвета
+     *
+     * @param array $createParams Параметры создания
      * @return bool - Создано ли вино
      */
-    public function addColor(ColorRequest $request): bool
+    public function addColor(array $createParams): bool
     {
-        $name = $request->get('name_color');
-        $created = $this->colorRepository->addColor($name);
-        return $created;
+        return $this->colorRepository->addColor($createParams['name']);
     }
 
     /**
      * Редактирование цвета
-     * 
-     * @param ColorRequest $request - Post-запрос на редактирование цвета
+     *
+     * @param array $updateParams
      * @param int $id - Id цвета
      * @return bool - Отредактирован ли запись
      */
-    public function editColor(ColorRequest $request, int $id): bool
+    public function editColor(array $updateParams, int $id): bool
     {
         $color = color::find($id);
         if ($color != null) {
-            $name = $request->get('name_color');
-            $edited = $this->colorRepository->editColor($color, $name);
-            return $edited;
+            return $this->colorRepository->editColor($color, $updateParams['name_color']);
         }
         return false;
     }
 
     /**
      * Удаление цвета
-     * 
+     *
      * @param int $id - Id цвета
      * @return bool - Удален ли цвет
      */

@@ -9,7 +9,9 @@ use App\Http\Requests\ColorRequest;
  */
 interface IColorService
 {
-    public function addColor(ColorRequest $request): bool;
-    public function editColor(ColorRequest $request, int $id) : bool;
+    public function addColor(array $createParams): bool;
+
+    public function editColor(array $editParams, int $id): bool;
+
     public function deleteColor(int $id): bool;
 }
