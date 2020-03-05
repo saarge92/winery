@@ -93,8 +93,7 @@ class CountryController extends Controller
     /**
      * POST-запрос на удаление страны
      *
-     * @param Request $req - Post-запрос
-     * @param $id - номер страны
+     * @param int $id - номер страны
      * @return \Illuminate\Http\RedirectResponse
      */
     public function dropCountry(int $id)

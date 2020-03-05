@@ -50,4 +50,16 @@ class ProducerServiceTest extends TestCase
         $isEdited = $producerService->editProducerPost(['name_producer' => $newName], $randomProducer['id']);
         $this->assertSame($isEdited, true);
     }
+
+    /**
+     * Тестирование удаления производителя
+     * Тестирование метода deleteProducer
+     */
+    public function testDeleteProducer()
+    {
+        $producerService = $this->resolveProducerService();
+        $randomProducer = producer::orderByRaw("RAND()")->first();
+        $isDeleted = $producerService->deleteProducer($randomProducer['id']);
+        $this->assertSame($isDeleted, true);
+    }
 }
