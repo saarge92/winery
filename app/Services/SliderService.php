@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 /**
  * Сервис для работы с сущностью "Слайдер"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
@@ -25,26 +25,25 @@ class SliderService implements ISliderService
 
     /**
      * Добавление слайдера
-     * 
-     * @param SliderRequest $request - список параметров
+     *
+     * @param array $createParams Параметры создания слайдера
      * @return bool $result - Добавлен ли слайдер
      */
-    public function createSlider(SliderRequest $request): bool
+    public function createSlider(array $createParams): bool
     {
-        $content = $request->get('content');
-        $file = $request->file('src_image');
-        $filename = $request->get('content') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
+        $content = $createParams['content'];
+        $file = $createParams['src_image'];
+        $filename = $content . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
         $destination = public_path() . '/storage/sliders/';
         $file->move($destination, $filename);
         $imagePath = 'sliders/' . $filename;
-        $request->get('is_active') == "1" ? $isActive = true : $isActive = false;
-        $created = $this->sliderRepository->addSlider($content, $imagePath, $isActive);
-        return $created;
+        $createParams['is_active'] == "1" ? $isActive = true : $isActive = false;
+        return $this->sliderRepository->addSlider($content, $imagePath, $isActive);
     }
 
     /**
      * Редактирование слайдера
-     * 
+     *
      * @param Request $request - параметры запроса
      * @param int $id - id номер слайдера
      * @return bool $result - Редактирован ли слайдер
@@ -75,7 +74,7 @@ class SliderService implements ISliderService
 
     /**
      * Удаление слайдера из базы
-     * 
+     *
      * @param int $id - Id слайдера
      * @return bool - Удален ли слайдер
      */

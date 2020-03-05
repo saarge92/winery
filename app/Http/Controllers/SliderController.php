@@ -12,9 +12,9 @@ use App\Interfaces\IServices\ISliderService;
 
 /**
  * Контроллер для работы со слайдерами на гавной странице
- * 
+ *
  * Предоставляет методы для работы с сущностью "слайдер"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
@@ -27,10 +27,11 @@ class SliderController extends Controller
         $this->sliderService = $sliderService;
     }
 
-    /** 
+    /**
      * Получение страницы со списком слайдеров
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function allSliders(Request $request)
+    public function allSliders()
     {
         $sliders = slider::paginate(6);
         return view('admin.sliders')->with('sliders', $sliders);
@@ -46,13 +47,14 @@ class SliderController extends Controller
 
     /**
      * POST-запрос для создания слайдера
-     * 
+     *
      * @param SliderRequest $request - Запрос на создание слайдера
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postCreateSlider(SliderRequest $request)
     {
         if ($request->validated()) {
-            $created = $this->sliderService->createSlider($request);
+            $created = $this->sliderService->createSlider($request->all());
             $created ? Session::flash('succes', 'Слайдер успешно добавлен') : Session::flash('error', 'Ошибка при добавлении слайдера');
             return redirect('allSliders');
         }
@@ -63,6 +65,7 @@ class SliderController extends Controller
      * GET-запрос на получение страницы для редактирования слайдера
      * @param Request $request - Запрос на редактирование производителя
      * @param $id - номер слайдера
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getEditSlider(Request $request, $id)
     {
@@ -72,9 +75,10 @@ class SliderController extends Controller
 
     /**
      * POST - запрос редактирования производителя
-     * 
-     * @param ProducerRequest $request - Запрос на редактирование слайдера
-     * @param $id - номер слайдера
+     *
+     * @param Request $request - Запрос на редактирование слайдера
+     * @param int $id - номер слайдера
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postEditSlider(Request $request, int $id)
     {
@@ -85,9 +89,10 @@ class SliderController extends Controller
 
     /**
      * POST-запрос на удаление слайдера
-     * 
+     *
      * @param Request $req - Post-запрос
      * @param $id - номер слайдера
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function dropSlider(int $id)
     {
