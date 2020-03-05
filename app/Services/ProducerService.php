@@ -53,7 +53,6 @@ class ProducerService implements IProducerService
     /**
      * Удаление производителя вина
      *
-     * @param Request $request - параметры запроса
      * @param int $id - id номер производителя
      * @return bool $result - Редактировано ли тип проивзодитель
      */
@@ -61,8 +60,7 @@ class ProducerService implements IProducerService
     {
         $producer = producer::find($id);
         if (isset($producer)) {
-            $result = $this->producerRepository->deleteProducer($producer);
-            return $result;
+            return $this->producerRepository->deleteProducer($producer);
         }
         return false;
     }

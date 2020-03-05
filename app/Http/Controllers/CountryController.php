@@ -64,6 +64,7 @@ class CountryController extends Controller
      * GET-запрос на получение страницы для редактирования страны
      * @param Request $request - Запрос на редактирование страны
      * @param $id - номер страны
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function startEdit(Request $request, $id)
     {
@@ -76,11 +77,12 @@ class CountryController extends Controller
      *
      * @param CountryCreateRequest $request - Запрос на редактирование страны
      * @param $id - номер страны
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function editCountry(CountryCreateRequest $request, int $id)
     {
         if ($request->validated()) {
-            $edited = $this->countryService->editCountryPost($request, $id);
+            $edited = $this->countryService->editCountryPost($request->all(), $id);
             $edited ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
             return redirect('countries');
@@ -93,6 +95,7 @@ class CountryController extends Controller
      *
      * @param Request $req - Post-запрос
      * @param $id - номер страны
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function dropCountry(int $id)
     {

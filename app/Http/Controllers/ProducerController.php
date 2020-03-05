@@ -11,9 +11,9 @@ use App\Interfaces\IServices\IProducerService;
 
 /**
  * Контроллер для работы с производителями вин в кабинете администратора
- * 
+ *
  * Предоставляет методы для работы с сущностью "производитель вин"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
@@ -25,7 +25,8 @@ class ProducerController extends Controller
     {
         $this->producerService = $producerService;
     }
-    /** 
+
+    /**
      * Получение страницы со списком производителей
      */
     public function getProducers()
@@ -44,13 +45,14 @@ class ProducerController extends Controller
 
     /**
      * POST-запрос для создания производителя
-     * 
+     *
      * @param ProducerRequest $request - Запрос на создание производителя
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function createProducer(ProducerRequest $request)
     {
         if ($request->validated()) {
-            $result = $this->producerService->createProducer($request);
+            $result = $this->producerService->createProducer($request->all());
             $result ? Session::flash('success', 'Страна ' . $request->get('name_rus') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка, обратитесь к разработчику сайта!');
             return redirect('producers');
@@ -62,6 +64,7 @@ class ProducerController extends Controller
      * GET-запрос на получение страницы для редактирования производителя
      * @param Request $request - Запрос на редактирование производителя
      * @param $id - номер производителя
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function startEdit(Request $request, $id)
     {
@@ -71,14 +74,15 @@ class ProducerController extends Controller
 
     /**
      * POST - запрос редактирования производителя
-     * 
+     *
      * @param ProducerRequest $request - Запрос на редактирование производителя
      * @param $id - номер производителя
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function editProducer(ProducerRequest $request, $id)
     {
         if ($request->validated()) {
-            $result = $this->producerService->editProducerPost($request, $id);
+            $result = $this->producerService->editProducerPost($request->all(), $id);
             $result == true ? Session::flash('success', 'Произодитель ' . $request->get('name_producer') . ' успешно обновлено')
                 : Session::flash('error', 'Произошла ошибка!');
             return redirect('producers');
@@ -88,9 +92,10 @@ class ProducerController extends Controller
 
     /**
      * POST-запрос на удаление производителя
-     * 
+     *
      * @param Request $req - Post-запрос
      * @param $id - номер производителя
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function dropProducer(Request $req, $id)
     {
