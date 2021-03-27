@@ -16,22 +16,20 @@ use App\Repositories\WineRepository;
 /**
  * Сервис для обработки запросов,
  * связанных с сущностью "Вино"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
 class WineService implements IWineService
 {
-    private $countryRepository;
-    private $colorRepository;
-    private $sweetRepository;
-    private $producerRepository;
-    private $typeWineRepository;
-    private $wineRepository;
+    private ICountryRepository $countryRepository;
+    private IColorRepository $colorRepository;
+    private SweetRepository $sweetRepository;
+    private IProducerRepository $producerRepository;
+    private TypeWineRepository $typeWineRepository;
+    private WineRepository $wineRepository;
 
-    /**
-     * Внедрение зависимостей
-     */
+
     public function __construct(ICountryRepository $countryRepository, IColorRepository $colorRepository, SweetRepository $sweetRepository, IProducerRepository $producerRepository, TypeWineRepository $typeWineRepository, WineRepository $wineRepository)
     {
         $this->countryRepository = $countryRepository;
@@ -43,12 +41,10 @@ class WineService implements IWineService
     }
 
     /**
-     * Фильтрация вин согласно списку параметров
-     * 
-     * @param array $params - список параметров для фильтрации
-     * @return $vines - Список с фильтрованными винами
+     * @param array $filter
+     * @return vine[]
      */
-    public function filterWines(array $filter)
+    public function filterWines(array $filter): array
     {
         $vines = new vine;
         $country_select = isset($filter['country']) ? $filter['country'] : [];
@@ -80,7 +76,7 @@ class WineService implements IWineService
 
     /**
      * Формирует и инииализирует список вина в соответствующий вид
-     * 
+     *
      * @param array $vines - список записей из бд
      * @return array
      */
@@ -116,7 +112,7 @@ class WineService implements IWineService
 
     /**
      * Поиск вин согласно параметрам
-     * 
+     *
      * @param Request $request - Запрос с параметрами
      */
     public function searchSomeWines(Request $request)
@@ -128,15 +124,15 @@ class WineService implements IWineService
 
     /**
      * Обработка запроса на создания вина в базе
-     * 
+     *
      * @param VinePostRequest $request - Request с параметрами для добавления вина
      * @return bool - Возвращает булево значение, сохранено ли значение
-     * 
+     *
      */
     public function addWine(array $wineForm): bool
     {
         //$wineDto = $this->initWineDto($request);
-        $file = isset($wineForm['image'])  ? $wineForm['image'] : null;
+        $file = isset($wineForm['image']) ? $wineForm['image'] : null;
         if ($file != null) {
             $filename = $wineForm['name_rus'] . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
             $destination = public_path() . '/storage/wines/';
@@ -149,7 +145,7 @@ class WineService implements IWineService
 
     /**
      * Редактирование данных о вине
-     * 
+     *
      * @param VinePostRequest $request - Запрос с редактируемыми данными
      * @return bool Результат редактирования
      */
@@ -179,7 +175,7 @@ class WineService implements IWineService
 
     /**
      * Удаление вина по Id
-     * 
+     *
      * @param int $id Id вина
      * @return bool Результат удаления
      */
@@ -201,7 +197,7 @@ class WineService implements IWineService
 
     /**
      * Деактивация вина по его id
-     * 
+     *
      * @param $id - номер вина
      * @return bool - Деактивировано ли вино
      */
@@ -219,7 +215,7 @@ class WineService implements IWineService
 
     /**
      * Активация вина по его id
-     * 
+     *
      * @param $id - номер вина
      * @return bool - Активировано ли вино
      */
