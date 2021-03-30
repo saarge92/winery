@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\vine;
+use App\Vine;
 use Illuminate\Http\Request;
 use App\Repositories\SweetRepository;
 use App\Http\Requests\VinePostRequest;
@@ -12,6 +12,7 @@ use App\Interfaces\IRepositories\IColorRepository;
 use App\Interfaces\IRepositories\ICountryRepository;
 use App\Interfaces\IRepositories\IProducerRepository;
 use App\Repositories\WineRepository;
+use Illuminate\Support\Collection;
 
 /**
  * Сервис для обработки запросов,
@@ -40,13 +41,9 @@ class WineService implements IWineService
         $this->wineRepository = $wineRepository;
     }
 
-    /**
-     * @param array $filter
-     * @return vine[]
-     */
-    public function filterWines(array $filter): array
+    public function filterWines(array $filter): Collection
     {
-        $vines = new vine;
+        $vines = new Vine;
         $country_select = isset($filter['country']) ? $filter['country'] : [];
         $color_select = isset($filter['color']) ? $filter['color'] : [];
         $sweet_select = isset($filter['sweet']) ? $filter['sweet'] : [];
@@ -74,13 +71,7 @@ class WineService implements IWineService
         return $vines;
     }
 
-    /**
-     * Формирует и инииализирует список вина в соответствующий вид
-     *
-     * @param array $vines - список записей из бд
-     * @return array
-     */
-    public function generateListVines($vines): array
+    public function generateListVines(Collection $vines): array
     {
         $vinesForReview = array();
         foreach ($vines as $vine) {
@@ -110,28 +101,14 @@ class WineService implements IWineService
         return $vinesForReview;
     }
 
-    /**
-     * Поиск вин согласно параметрам
-     *
-     * @param Request $request - Запрос с параметрами
-     */
     public function searchSomeWines(Request $request)
     {
-        $vines = vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $request->get('wine_name') . '%')
+        return Vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $request->get('wine_name') . '%')
             ->orWhere('name_en', 'LIKE', '%' . $request->get('wine_name') . '%');
-        return $vines;
     }
 
-    /**
-     * Обработка запроса на создания вина в базе
-     *
-     * @param VinePostRequest $request - Request с параметрами для добавления вина
-     * @return bool - Возвращает булево значение, сохранено ли значение
-     *
-     */
     public function addWine(array $wineForm): bool
     {
-        //$wineDto = $this->initWineDto($request);
         $file = isset($wineForm['image']) ? $wineForm['image'] : null;
         if ($file != null) {
             $filename = $wineForm['name_rus'] . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
@@ -139,20 +116,13 @@ class WineService implements IWineService
             $file->move($destination, $filename);
             $wineForm['image_src'] = 'wines/' . $filename;
         }
-        $created = $this->wineRepository->createVine($wineForm);
-        return $created;
+        return $this->wineRepository->createVine($wineForm);
     }
 
-    /**
-     * Редактирование данных о вине
-     *
-     * @param VinePostRequest $request - Запрос с редактируемыми данными
-     * @return bool Результат редактирования
-     */
     public function updateWine(array $editWineForm): bool
     {
         $id = $editWineForm['id'];
-        $editWine = vine::find($id);
+        $editWine = Vine::find($id);
         if ($editWine) {
             $file = isset($editWineForm['image']) ? $editWineForm['image'] : null;
             if ($file != null) {
@@ -167,21 +137,14 @@ class WineService implements IWineService
                 $file->move($destination, $filename);
                 $editWineForm['imageSrc'] = 'wines/' . $filename;
             }
-            $updated = $this->wineRepository->editVine($editWine, $editWineForm);
-            return $updated;
+            return $this->wineRepository->editVine($editWine, $editWineForm);
         }
         return false;
     }
 
-    /**
-     * Удаление вина по Id
-     *
-     * @param int $id Id вина
-     * @return bool Результат удаления
-     */
     public function deleteWine(int $id): bool
     {
-        $deletedVine = vine::find($id);
+        $deletedVine = Vine::find($id);
         if ($deletedVine != null) {
             if ($deletedVine->image_src != null) {
                 $delete_file = public_path() . '/storage/' . $deletedVine->image_src;
@@ -189,39 +152,24 @@ class WineService implements IWineService
                     unlink($delete_file);
                 }
             }
-            $isDeleted = $deletedVine->delete();
-            return $isDeleted;
+            return $deletedVine->delete();
         }
         return false;
     }
 
-    /**
-     * Деактивация вина по его id
-     *
-     * @param $id - номер вина
-     * @return bool - Деактивировано ли вино
-     */
     public function disableVine(int $id): bool
     {
-        $vine = vine::find($id);
+        $vine = Vine::find($id);
         if ($vine != null) {
             $vine->is_active = false;
-            $result = $vine->save();
-            return $result;
+            return $vine->save();
         }
         return false;
     }
 
-
-    /**
-     * Активация вина по его id
-     *
-     * @param $id - номер вина
-     * @return bool - Активировано ли вино
-     */
     public function enableVine(int $id): bool
     {
-        $vine = vine::find($id);
+        $vine = Vine::find($id);
         if ($vine != null) {
             $vine->is_active = true;
             $vine->save();

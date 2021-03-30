@@ -20,8 +20,8 @@ trait adminTrait
         $countries = \App\country::all();
         $sweets = \App\sweet::all();
         $colors = \App\color::all();
-        $maxPrice = \App\vine::max('price');
-        $minPrice = \App\vine::min('price');
+        $maxPrice = \App\Vine::max('price');
+        $minPrice = \App\Vine::min('price');
         $typeWines = \App\type_of_wine::all();
         return [
             'colors' => $colors,

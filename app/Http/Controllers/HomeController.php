@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\vine;
+use App\Vine;
 use Illuminate\Http\Request;
 use App\Traits\paginateTrait;
 use App\Interfaces\IServices\IWineService;
@@ -85,7 +85,7 @@ class HomeController extends Controller
 	public function autocomplete(Request $request)
 	{
 		$name = $request->get('wine_name');
-		$some_wines = vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $name . '%')
+		$some_wines = Vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $name . '%')
 			->orWhere('name_en', 'LIKE', '%' . $name . '%')->get();
 		return response()->json(['wines' => $some_wines]);
 	}
@@ -99,7 +99,7 @@ class HomeController extends Controller
 	public function getWine(int $id)
 	{
 		$dataFormHomePage = $this->getDataForHomePage();
-		$vine = vine::where(['id' => $id, 'is_active' => true])->get();
+		$vine = Vine::where(['id' => $id, 'is_active' => true])->get();
 		$vine_for_review = count($vine) != 0 ? collect($this->wineService->generateListVines($vine))[0] : null;
 		return view('frontend.viewWine', [
 			'vine' => $vine_for_review,

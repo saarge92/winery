@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\vine;
+use App\Vine;
 
 class HomeControllerTest extends TestCase
 {
@@ -37,7 +37,7 @@ class HomeControllerTest extends TestCase
      */
     public function testViewWine()
     {
-        $wine = vine::inRandomOrder()->first();
+        $wine = Vine::inRandomOrder()->first();
         $this->call('GET', "/viewWine/" . $wine->id)
             ->assertOk();
     }

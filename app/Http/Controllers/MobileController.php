@@ -8,7 +8,7 @@ use App\sweet;
 use App\producer;
 use App\country;
 use App\color;
-use App\vine;
+use App\Vine;
 use Illuminate\Http\JsonResponse;
 use App\Interfaces\IServices\IWineService;
 
@@ -89,7 +89,7 @@ class MobileController extends Controller
      */
     public function getMinPrice(): int
     {
-        $minPrice = vine::min('price');
+        $minPrice = Vine::min('price');
         return $minPrice;
     }
 
@@ -99,7 +99,7 @@ class MobileController extends Controller
      */
     public function getMaxPrice(): int
     {
-        $maxPrice = vine::max('price');
+        $maxPrice = Vine::max('price');
         return $maxPrice;
     }
 
@@ -138,7 +138,7 @@ class MobileController extends Controller
      */
     public function getWineById($id)
     {
-        $wine = vine::find($id);
+        $wine = Vine::find($id);
         return response()->json($wine, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
     }
 }

@@ -3,10 +3,8 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\color;
-use App\vine;
+use App\Vine;
 
 /**
  * Тестирование методов api для мобильного приложения
@@ -16,11 +14,6 @@ use App\vine;
  */
 class MobileControllerTest extends TestCase
 {
-    /**
-     * Получение списка типов вина
-     *
-     * @return void
-     */
     public function testAllTypes() : void
     {
         $this->json('GET', '/api/get-all-types')
@@ -32,11 +25,6 @@ class MobileControllerTest extends TestCase
             ]);
     }
 
-    /**
-     * Тестирование списка сладостей
-     * 
-     * @return void
-     */
     public function testAllSweets() : void
     {
         $this->json('GET','api/get-all-sweets')
@@ -48,22 +36,12 @@ class MobileControllerTest extends TestCase
         ]]);
     }
 
-    /**
-     * Тестирование списка производителей
-     * 
-     * @return void
-     */
     public function testAllProducers() : void
     {
         $this->json('GET','api/get-all-producers')
         ->assertOk();
     }
 
-    /**
-     * Тестирование списка стран
-     * 
-     * @return void
-     */
     public function testAllCountries() :void
     {
         $this->json('GET','api/get-all-countries')
@@ -72,11 +50,6 @@ class MobileControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * Тестирование списка цветов
-     * 
-     * @return void
-     */
     public function testAllColors() :void
     {
         $count = color::count();
@@ -84,24 +57,14 @@ class MobileControllerTest extends TestCase
         ->assertJsonCount($count);
     }
 
-    /**
-     * Тестирование минимальных и максимальных цен
-     * 
-     * @return void
-     */
     public function testMinAndMaxPrice() :void
     {
-        $minPrice = vine::min('price');
-        $maxPrice = vine::max('price');
+        $minPrice = Vine::min('price');
+        $maxPrice = Vine::max('price');
         $this->get('/api/get-min-price')->assertSee($minPrice);
         $this->get('/api/get-max-price')->assertSee($maxPrice);
     }
 
-    /**
-     * Тестирование пагинированных вин
-     * 
-     * @return void
-     */
     public function testRequestedWines()
     {
         $count = count($this->json('POST','/api/get-requested-wines')->decodeResponseJson());

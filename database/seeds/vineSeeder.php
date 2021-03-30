@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\vine;
+use App\Vine;
 use App\country;
 use App\color;
 use App\sweet;
@@ -19,7 +19,7 @@ class vineSeeder extends Seeder
         $color = color::where(['name' => 'Красное'])->first();
         $sweet = sweet::where(['name' => 'сухое'])->first();
         $producer =  producer::where(['name'=>'Vina Garces Silva Limitada'])->first();
-        vine::create([
+        Vine::create([
             'name_rus' => 'Шато де Потенсак АОС',
             'name_en' => 'Chaute de Pantesak',
             'price' => '4897',

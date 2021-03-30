@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VinePostRequest;
-use App\vine;
+use App\Vine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Interfaces\IServices\IWineService;
@@ -82,7 +82,7 @@ class AdminController extends Controller
     public function editVine(int $id)
     {
         $dataForEdit = $this->getDataForCreateWine();
-        $vine = vine::find($id);
+        $vine = Vine::find($id);
         return view('admin.editVine', [
             'vine' => $vine,
             'countries' => $dataForEdit['countries'],

@@ -2,8 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Dto\WineDtoCreate;
-use App\vine;
+use App\Vine;
 
 /**
  * Хранилище для объектов типа "Вино"
@@ -13,15 +12,9 @@ use App\vine;
  */
 class WineRepository
 {
-    /**
-     * Добавление вина в базу
-     * 
-     * @param array $wineDtoCreate - массив с добавляемыми параметрами
-     * @return bool - Добавлен ли объект в базу
-     */
     public function createVine(array $wineDtoCreate): bool
     {
-        $wine = new vine();
+        $wine = new Vine();
         $wine->name_rus = $wineDtoCreate['name_rus'];
         if (isset($wineDtoCreate['name_en'])) $wine->name_en = $wineDtoCreate['name_en'];
         $wine->price = $wineDtoCreate['price_bottle'];
@@ -41,14 +34,7 @@ class WineRepository
         return $wine->save();
     }
 
-    /**
-     * Редактирование вина в базе
-     * 
-     * @param vine $wine - Редактируемая запись о вине
-     * @param WineDtoCreate - Массив с редактируемыми параметрами вина
-     * @return bool Результат редактирования
-     */
-    public function editVine(vine $wine, array $wineDto): bool
+    public function editVine(Vine $wine, array $wineDto): bool
     {
         $wine->name_rus = $wineDto['name_rus'];
         if (isset($wineDto['name_en'])) $wine->name_en = $wineDto['name_en'];
