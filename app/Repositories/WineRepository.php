@@ -59,4 +59,14 @@ class WineRepository
     {
         return Vine::find($id);
     }
+
+    public function getMinPrice(): int
+    {
+        return Vine::min('price');
+    }
+
+    public function getMaxPrice(): int
+    {
+        return Vine::max('price');
+    }
 }

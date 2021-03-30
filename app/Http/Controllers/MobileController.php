@@ -7,8 +7,7 @@ use App\Interfaces\IRepositories\ICountryRepository;
 use App\Repositories\ProducerRepository;
 use App\Repositories\SweetRepository;
 use App\Repositories\TypeWineRepository;
-use Illuminate\Http\Request;
-use App\Vine;
+use App\Repositories\WineRepository;
 use Illuminate\Http\JsonResponse;
 use App\Interfaces\IServices\IWineService;
 
@@ -60,14 +59,14 @@ class MobileController extends Controller
         return response()->json($allColors, JsonResponse::HTTP_OK);
     }
 
-    public function getMinPrice(): int
+    public function getMinPrice(WineRepository $wineRepository): int
     {
-        return Vine::min('price');
+        return $wineRepository->getMinPrice();
     }
 
-    public function getMaxPrice(): int
+    public function getMaxPrice(WineRepository $wineRepository): int
     {
-        return Vine::max('price');
+        return $wineRepository->getMaxPrice();
     }
 
     public function getRequestedWines(Request $request): JsonResponse
