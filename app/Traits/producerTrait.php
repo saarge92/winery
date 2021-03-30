@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\producer;
+use App\Producer;
 use Illuminate\Http\Request;
 
 /**
@@ -23,7 +23,7 @@ trait producerTrait
      */
     public function addProducer(Request $req): bool
     {
-        $producer = new producer();
+        $producer = new Producer();
         $producer->name = $req->get('name_producer');
         $result = $producer->save();
         return $result;
@@ -38,7 +38,7 @@ trait producerTrait
      */
     public function editProducerPost(Request $request, int $id): bool
     {
-        $producer = producer::find($id);
+        $producer = Producer::find($id);
         if ($producer != null) {
             $producer->name = $request->get('name_producer');
             $result = $producer->save();
@@ -56,7 +56,7 @@ trait producerTrait
      */
     public function deleteProducer(int $id): bool
     {
-        $producer = producer::find($id);
+        $producer = Producer::find($id);
         if (isset($producer)) {
             $result = $producer->delete();
             return $result;

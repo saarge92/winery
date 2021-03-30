@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use App\Vine;
-use App\country;
-use App\color;
-use App\sweet;
-use App\producer;
+use App\Country;
+use App\Color;
+use App\Sweet;
+use App\Producer;
 class vineSeeder extends Seeder
 {
     /**
@@ -15,10 +15,10 @@ class vineSeeder extends Seeder
      */
     public function run()
     {
-        $country = country::where(['name_rus' => 'Россия'])->first();
-        $color = color::where(['name' => 'Красное'])->first();
-        $sweet = sweet::where(['name' => 'сухое'])->first();
-        $producer =  producer::where(['name'=>'Vina Garces Silva Limitada'])->first();
+        $country = Country::where(['name_rus' => 'Россия'])->first();
+        $color = Color::where(['name' => 'Красное'])->first();
+        $sweet = Sweet::where(['name' => 'сухое'])->first();
+        $producer =  Producer::where(['name'=>'Vina Garces Silva Limitada'])->first();
         Vine::create([
             'name_rus' => 'Шато де Потенсак АОС',
             'name_en' => 'Chaute de Pantesak',

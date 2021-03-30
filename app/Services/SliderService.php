@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Http\Requests\SliderRequest;
 use App\Interfaces\IServices\ISliderService;
 use App\Interfaces\IRepositories\ISliderRepository;
-use App\slider;
+use App\Slider;
 use Illuminate\Http\Request;
 
 /**
@@ -50,7 +50,7 @@ class SliderService implements ISliderService
      */
     public function editSlider(Request $request, int $id): bool
     {
-        $slider = slider::find($id);
+        $slider = Slider::find($id);
         if ($slider) {
             $content = $request->get('content');
             $request->get('is_active') == "1" ? $isActive = true : $isActive = false;
@@ -80,7 +80,7 @@ class SliderService implements ISliderService
      */
     public function deleteSlider(int $id): bool
     {
-        $slider = slider::find($id);
+        $slider = Slider::find($id);
         if ($slider) {
             $deletePath = public_path() . '/storage/' . $slider->src_image;
             if (file_exists($deletePath)) {

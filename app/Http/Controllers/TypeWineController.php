@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\type_of_wine;
+use App\TypeOfWine;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ColorRequest;
 use App\Traits\typeWineTrait;
@@ -26,7 +26,7 @@ class TypeWineController extends Controller
     */
     public function index()
     {
-        $types_of_wines = type_of_wine::paginate(6);
+        $types_of_wines = TypeOfWine::paginate(6);
         return view('admin.all_types', compact('types_of_wines'));
     }
 
@@ -63,7 +63,7 @@ class TypeWineController extends Controller
     */
     public function getEditType($id)
     {
-        $tw = type_of_wine::find($id);
+        $tw = TypeOfWine::find($id);
         return view('admin.editType', ['tw' => $tw]);
     }
 

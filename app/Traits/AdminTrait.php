@@ -10,19 +10,19 @@ namespace App\Traits;
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 BarHouse
  */
-trait adminTrait
+trait AdminTrait
 {
     /**
      * Получаем необходимые данные для макета
      */
     private function getDataForAdminPage(): array
     {
-        $countries = \App\country::all();
-        $sweets = \App\sweet::all();
-        $colors = \App\color::all();
+        $countries = \App\Country::all();
+        $sweets = \App\Sweet::all();
+        $colors = \App\Color::all();
         $maxPrice = \App\Vine::max('price');
         $minPrice = \App\Vine::min('price');
-        $typeWines = \App\type_of_wine::all();
+        $typeWines = \App\TypeOfWine::all();
         return [
             'colors' => $colors,
             'countries' => $countries,
@@ -38,11 +38,11 @@ trait adminTrait
      */
     private function getDataForCreateWine(): array
     {
-        $countries = \App\country::all();
-        $colors = \App\color::all();
-        $producers = \App\producer::all();
-        $sweets = \App\sweet::all();
-        $typeWines  = \App\type_of_wine::all();
+        $countries = \App\Country::all();
+        $colors = \App\Color::all();
+        $producers = \App\Producer::all();
+        $sweets = \App\Sweet::all();
+        $typeWines  = \App\TypeOfWine::all();
         return [
             'countries' => $countries,
             'colors' => $colors,

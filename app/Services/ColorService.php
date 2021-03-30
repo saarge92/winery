@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\color;
+use App\Color;
 use App\Interfaces\IServices\IColorService;
 use App\Interfaces\IRepositories\IColorRepository;
 
@@ -14,50 +14,31 @@ use App\Interfaces\IRepositories\IColorRepository;
  */
 class ColorService implements IColorService
 {
-    private $colorRepository;
+    private IColorRepository $colorRepository;
 
     public function __construct(IColorRepository $colorRepository)
     {
         $this->colorRepository = $colorRepository;
     }
 
-    /**
-     * Добавление цвета вина в базу
-     *
-     * @param array $createParams Параметры создания
-     * @return bool - Создано ли вино
-     */
     public function addColor(array $createParams): bool
     {
         return $this->colorRepository->addColor($createParams['name']);
     }
 
-    /**
-     * Редактирование цвета
-     *
-     * @param array $updateParams
-     * @param int $id - Id цвета
-     * @return bool - Отредактирован ли запись
-     */
-    public function editColor(array $updateParams, int $id): bool
+    public function editColor(array $editParams, int $id): bool
     {
-        $color = color::find($id);
+        $color = Color::find($id);
         if ($color != null) {
-            return $this->colorRepository->editColor($color, $updateParams['name_color']);
+            return $this->colorRepository->editColor($color, $editParams['name_color']);
         }
         return false;
     }
 
-    /**
-     * Удаление цвета
-     *
-     * @param int $id - Id цвета
-     * @return bool - Удален ли цвет
-     */
     public function deleteColor(int $id): bool
     {
         $deleted = false;
-        $color = color::find($id);
+        $color = Color::find($id);
         if ($color) $deleted = $this->colorRepository->deleteColor($color);
         return $deleted;
     }

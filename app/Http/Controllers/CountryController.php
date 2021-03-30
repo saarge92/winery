@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\country;
+use App\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -31,7 +31,7 @@ class CountryController extends Controller
      */
     public function getCountries()
     {
-        $country = country::orderby('name_rus', 'asc')->paginate(6);
+        $country = Country::orderby('name_rus', 'asc')->paginate(6);
         return view('admin.countries', ['countries' => $country]);
     }
 
@@ -68,7 +68,7 @@ class CountryController extends Controller
      */
     public function startEdit(Request $request, $id)
     {
-        $country = country::find($id);
+        $country = Country::find($id);
         return view('admin.editCountry', ['country' => $country]);
     }
 

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\country;
+use App\Country;
 use App\Interfaces\IServices\ICountryService;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -40,7 +40,7 @@ class CountryServiceTest extends TestCase
     public function testEditCountry()
     {
         $countryService = $this->createCountryResolver();
-        $randomCountry = country::orderByRaw("RAND()")->first();
+        $randomCountry = Country::orderByRaw("RAND()")->first();
         $editParams = [
             'name_rus' => $this->faker->country,
             'name_en' => $this->faker->country
@@ -56,7 +56,7 @@ class CountryServiceTest extends TestCase
     public function testDeleteCountry()
     {
         $countryService = $this->createCountryResolver();
-        $randomCountry = country::orderByRaw("RAND()")->first();
+        $randomCountry = Country::orderByRaw("RAND()")->first();
         $isDeleted = $countryService->deleteCountry($randomCountry['id']);
         $this->assertSame($isDeleted, true);
     }

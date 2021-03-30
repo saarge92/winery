@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\slider;
+use App\Slider;
 use App\Traits\sliderTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,7 +33,7 @@ class SliderController extends Controller
      */
     public function allSliders()
     {
-        $sliders = slider::paginate(6);
+        $sliders = Slider::paginate(6);
         return view('admin.sliders')->with('sliders', $sliders);
     }
 
@@ -69,7 +69,7 @@ class SliderController extends Controller
      */
     public function getEditSlider(Request $request, $id)
     {
-        $slider = slider::find($id);
+        $slider = Slider::find($id);
         return view('admin.editSlider', ['slider' => $slider]);
     }
 

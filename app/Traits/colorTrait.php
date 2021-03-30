@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\color;
+use App\Color;
 use Illuminate\Http\Request;
 
 /**
@@ -23,7 +23,7 @@ trait colorTrait
      */
     public function addColor(Request $req) : bool
     {
-        $color = new color();
+        $color = new Color();
         $color->name = $req->get('name_color');
         $result = $color->save();
         return $result;
@@ -38,7 +38,7 @@ trait colorTrait
      */
     public function editColorPost(Request $request, int $id) : bool
     {
-        $color = color::find($id);
+        $color = Color::find($id);
         if ($color != null) {
             $color->name = $request->get('name_color');
             $result = $color->save();
@@ -56,7 +56,7 @@ trait colorTrait
      */
     public function deleteColor($id) : bool
     {
-        $color = color::find($id);
+        $color = Color::find($id);
         if (isset($color)) {
             $result = $color->delete();
             return $result;

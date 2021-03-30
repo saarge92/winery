@@ -2,124 +2,80 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\IRepositories\IColorRepository;
+use App\Interfaces\IRepositories\ICountryRepository;
+use App\Repositories\ProducerRepository;
+use App\Repositories\SweetRepository;
+use App\Repositories\TypeWineRepository;
 use Illuminate\Http\Request;
-use App\type_of_wine;
-use App\sweet;
-use App\producer;
-use App\country;
-use App\color;
 use App\Vine;
 use Illuminate\Http\JsonResponse;
 use App\Interfaces\IServices\IWineService;
 
 /**
  * MobileController для api запросов мобильного приложения
- * 
+ *
  * Реализация простых GET, POST запросов для api запросов
  * мобильного приложения
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
 class MobileController extends Controller
 {
-    /** @var array массив параметров json-ответа */
-    private $header_info;
-
-    private $wineService;
+    private IWineService $wineService;
 
     public function __construct(IWineService $wineService)
     {
-        $this->header_info = ['Content-Type' => 'application/json;charset=UTF-8', 'charset' => 'utf-8'];
         $this->wineService = $wineService;
     }
 
-    /**
-     * Получение списка типов вина
-     * @return JsonResponse
-     */
-    public function getAllTypes(): JsonResponse
+    public function getAllTypes(TypeWineRepository $typeWineRepository): JsonResponse
     {
-        $all_types = type_of_wine::all();
-        return response()->json($all_types, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+        $allTypes = $typeWineRepository->getAll();
+        return response()->json($allTypes, JsonResponse::HTTP_OK);
     }
 
-    /**
-     * Получение списка сладостей вина
-     * @return JsonResponse
-     */
-    public function getAllSweets()
+    public function getAllSweets(SweetRepository $sweetRepository): JsonResponse
     {
-        $all_sweets = sweet::all();
-        return response()->json($all_sweets, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+        $allSweets = $sweetRepository->findAll();
+        return response()->json($allSweets, JsonResponse::HTTP_OK);
     }
 
-    /**
-     * Получение списка производителей
-     * @return JsonResponse
-     */
-    public function getAllProducers()
+    public function getAllProducers(ProducerRepository $producerRepository): JsonResponse
     {
-        $all_producers = producer::all();
-        return response()->json($all_producers, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+        $allProducers = $producerRepository->getAll();
+        return response()->json($allProducers, JsonResponse::HTTP_OK);
     }
 
-    /**
-     * Получение списка стран вин
-     * @return JsonResponse
-     */
-    public function getAllCountries()
+    public function getAllCountries(ICountryRepository $countryRepository): JsonResponse
     {
-        $allCountries = country::all();
-        return response()->json($allCountries, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+        $allCountries = $countryRepository->getAll();
+        return response()->json($allCountries, JsonResponse::HTTP_OK);
     }
 
-    /**
-     * Получение списка цвета вин
-     * @return JsonResponse
-     */
-    public function getAllColors()
+    public function getAllColors(IColorRepository $colorRepository): JsonResponse
     {
-        $allColors = color::all();
-        return response()->json($allColors, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+        $allColors = $colorRepository->getAllColors();
+        return response()->json($allColors, JsonResponse::HTTP_OK);
     }
-    /**
-     * Получение минимальной цены вин
-     * @return int
-     */
+
     public function getMinPrice(): int
     {
-        $minPrice = Vine::min('price');
-        return $minPrice;
+        return Vine::min('price');
     }
 
-    /**
-     * Получение максимальной цены вин
-     * @return int
-     */
     public function getMaxPrice(): int
     {
-        $maxPrice = Vine::max('price');
-        return $maxPrice;
+        return Vine::max('price');
     }
 
-    /**
-     * API для получения вин
-     * 
-     * Получение вин по запросу
-     * 
-     * @param Requset $request - входной параметр
-     * @return JsonResponse
-     */
-    public function getRequestedWines(Request $request)
+    public function getRequestedWines(Request $request): JsonResponse
     {
-        /**Фильтруем вина */
         $filteredWines = $this->wineService->filterWines($request->all());
 
-        /**Текущая страница */
         isset($request['page']) ? $currentPage = $request['page'] : $currentPage = 1;
 
-        /**Результат пагинации */
         $paginatedWines = $filteredWines->paginate(12, ['*'], 'page', $currentPage);
 
         $resultFilter = $this->wineService->generateListVines($paginatedWines);
@@ -127,18 +83,12 @@ class MobileController extends Controller
             'result' => $resultFilter,
             'countPages' => $paginatedWines->lastPage()
         ];
-        return response()->json($result, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+        return response()->json($result, JsonResponse::HTTP_OK);
     }
 
-    /**
-     * API для получения вина по Id
-     * 
-     * @param $id - номер вина
-     * @return JsonResponse - вино в формате json
-     */
-    public function getWineById($id)
+    public function getWineById(int $id): JsonResponse
     {
-        $wine = Vine::find($id);
-        return response()->json($wine, 200, $this->header_info, JSON_UNESCAPED_UNICODE);
+        $wine = $this->wineService->getWineById($id);
+        return response()->json($wine, JsonResponse::HTTP_OK);
     }
 }

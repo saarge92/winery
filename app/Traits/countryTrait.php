@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\country;
+use App\Country;
 use Illuminate\Http\Request;
 
 /**
@@ -23,7 +23,7 @@ trait countryTrait
      */
     public function addCountry($req) : bool
     {
-        $result = country::create([
+        $result = Country::create([
             'name_rus' => $req->get('name_rus'),
             'name_en' => $req->get('name_en')
         ])->save();
@@ -39,7 +39,7 @@ trait countryTrait
      */
     public function editCountryPost(Request $request, int $id) : bool
     {
-        $country = country::find($id);
+        $country = Country::find($id);
         if ($country != null) {
             $country->name_rus = $request->get('name_rus');
             $country->name_en = $request->get('name_en');
@@ -58,7 +58,7 @@ trait countryTrait
      */
     public function deleteCountry(int $id) : bool
     {
-        $country = country::find($id);
+        $country = Country::find($id);
         if (isset($country)) {
             $result = $country->delete();
             return $result;

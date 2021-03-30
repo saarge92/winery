@@ -6,7 +6,7 @@ use App\Vine;
 
 /**
  * Хранилище для объектов типа "Вино"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 KremCafe
  */
@@ -53,5 +53,10 @@ class WineRepository
         if (isset($wineDto['coravin'])) $wine->is_coravin = $wineDto['coravin'] == 'on' ? true : false;
         if (isset($wineDto['imageSrc'])) $wine->image_src = $wineDto['imageSrc'];
         return $wine->save();
+    }
+
+    public function getVineById(int $id): Vine
+    {
+        return Vine::find($id);
     }
 }

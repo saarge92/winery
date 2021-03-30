@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\sweet;
+use App\Sweet;
 use Illuminate\Http\Request;
 
 /**
@@ -23,7 +23,7 @@ trait sweetTrait
      */
     public function addSweet(Request $req) : bool
     {
-        $sweet = new sweet();
+        $sweet = new Sweet();
         $sweet->name = $req->get('name_sweet');
         $result = $sweet->save();
         return $result;
@@ -38,7 +38,7 @@ trait sweetTrait
      */
     public function editSweetPost(Request $request, int $id) : bool
     {
-        $sweet = sweet::find($id);
+        $sweet = Sweet::find($id);
         if ($sweet != null) {
             $sweet->name = $request->get('name_sweet');
             $result = $sweet->save();
@@ -56,7 +56,7 @@ trait sweetTrait
      */
     public function deleteSweet(int $id)
     {
-        $sweet = sweet::find($id);
+        $sweet = Sweet::find($id);
         if (isset($sweet)) {
             $result = $sweet->delete();
             return $result;

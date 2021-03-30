@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\SweetRequest;
 use App\Http\Controllers\Controller;
-use App\sweet;
+use App\Sweet;
 use App\Traits\sweetTrait;
 use Illuminate\Support\Facades\Session;
 
@@ -26,7 +26,7 @@ class SweetController extends Controller
     */
     public function allSweets()
     {
-        $sweets = sweet::paginate(5);
+        $sweets = Sweet::paginate(5);
         return view('admin.allSweets')->with('sweets', $sweets);
     }
 
@@ -61,7 +61,7 @@ class SweetController extends Controller
     */
     public function startEditSweet(Request $request, $id)
     {
-        $sweet = sweet::find($id);
+        $sweet = Sweet::find($id);
         return view('admin.editSweet', ['sweet' => $sweet]);
     }
 

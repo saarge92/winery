@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\producer;
+use App\Producer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProducerRequest;
@@ -31,7 +31,7 @@ class ProducerController extends Controller
      */
     public function getProducers()
     {
-        $producers = producer::orderby('name', 'asc')->paginate(6);
+        $producers = Producer::orderby('name', 'asc')->paginate(6);
         return view('admin.producers', ['producers' => $producers]);
     }
 
@@ -68,7 +68,7 @@ class ProducerController extends Controller
      */
     public function startEdit(Request $request, $id)
     {
-        $producer = producer::find($id);
+        $producer = Producer::find($id);
         return view('admin.editProducer', ['producer' => $producer]);
     }
 

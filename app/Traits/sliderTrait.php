@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\slider;
+use App\Slider;
 use Illuminate\Http\Request;
 
 /**
@@ -23,7 +23,7 @@ trait sliderTrait
      */
     public function addSlider(Request $req): bool
     {
-        $slider = new slider();
+        $slider = new Slider();
         $slider->content = $req->get('content');
         $file = $req->file('src_image');
         $filename = $req->get('content') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
@@ -44,7 +44,7 @@ trait sliderTrait
      */
     public function editSlider(Request $req, int $id)
     {
-        $slider = slider::find($id);
+        $slider = Slider::find($id);
         if ($slider != null) {
             $slider->content = $req->get('content');
             $req->get('is_active') == "1" ? $slider->is_active = true : $slider->is_active = false;
@@ -74,7 +74,7 @@ trait sliderTrait
      */
     public function deleteSlider($id)
     {
-        $slider = slider::find($id);
+        $slider = Slider::find($id);
         if (isset($slider)) {
             $deletePath = public_path() . '/storage/' . $slider->src_image;
             if (file_exists($deletePath)) {

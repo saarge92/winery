@@ -13,12 +13,12 @@ use Illuminate\Http\Request;
 |
  */
 
-Route::get('/get-all-types', ['uses' => 'MobileController@getAllTypes']);
-Route::get('/get-all-sweets', ['uses' => 'MobileController@getAllSweets']);
-Route::get('/get-all-producers', ['uses' => 'MobileController@getAllProducers']);
-Route::get('/get-all-countries', ['uses' => 'MobileController@getAllCountries']);
-Route::get('/get-all-colors', ['uses' => 'MobileController@getAllColors']);
+Route::get('/types', ['uses' => 'MobileController@getAllTypes']);
+Route::get('/sweets', ['uses' => 'MobileController@getAllSweets']);
+Route::get('/producers', ['uses' => 'MobileController@getAllProducers']);
+Route::get('/countries', ['uses' => 'MobileController@getAllCountries']);
+Route::get('/colors', ['uses' => 'MobileController@getAllColors']);
 Route::get('/get-min-price', ['uses' => 'MobileController@getMinPrice']);
 Route::get('/get-max-price', ['uses' => 'MobileController@getMaxPrice']);
-Route::post('/get-requested-wines', ['uses' => 'MobileController@getRequestedWines']);
-Route::get('/getWineById/{id}', ['uses' => 'MobileController@getWineById']);
+Route::post('/wines', ['uses' => 'MobileController@getRequestedWines']);
+Route::get('/wines/{id}', ['uses' => 'MobileController@getWineById']);

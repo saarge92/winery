@@ -13,13 +13,13 @@ trait homeTrait
 {
     private function getDataForHomePage(): array
     {
-        $sliders = \App\slider::where(['is_active' => true])->get();
-        $countries = \App\country::all();
-        $sweets = \App\sweet::all();
-        $colors = \App\color::all();
+        $sliders = \App\Slider::where(['is_active' => true])->get();
+        $countries = \App\Country::all();
+        $sweets = \App\Sweet::all();
+        $colors = \App\Color::all();
         $maxPrice = \App\Vine::max('price');
         $minPrice = \App\Vine::min('price');
-        $typesForWines = \App\type_of_wine::all();
+        $typesForWines = \App\TypeOfWine::all();
         $paginators = \App\DisplayPaginator::all();
         return [
             'sliders' => $sliders,

@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Interfaces\IServices\IProducerService;
-use App\producer;
+use App\Producer;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
@@ -45,7 +45,7 @@ class ProducerServiceTest extends TestCase
     public function testEditProducer()
     {
         $producerService = $this->resolveProducerService();
-        $randomProducer = producer::orderByRaw("RAND()")->first();
+        $randomProducer = Producer::orderByRaw("RAND()")->first();
         $newName = $this->faker->company;
         $isEdited = $producerService->editProducerPost(['name_producer' => $newName], $randomProducer['id']);
         $this->assertSame($isEdited, true);
@@ -58,7 +58,7 @@ class ProducerServiceTest extends TestCase
     public function testDeleteProducer()
     {
         $producerService = $this->resolveProducerService();
-        $randomProducer = producer::orderByRaw("RAND()")->first();
+        $randomProducer = Producer::orderByRaw("RAND()")->first();
         $isDeleted = $producerService->deleteProducer($randomProducer['id']);
         $this->assertSame($isDeleted, true);
     }

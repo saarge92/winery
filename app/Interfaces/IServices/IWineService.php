@@ -2,14 +2,15 @@
 
 namespace App\Interfaces\IServices;
 
+use App\Vine;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
+
 
 interface IWineService
 {
-    public function filterWines(array $filter): Collection;
+    public function filterWines(array $filter): Vine;
 
-    public function generateListVines(Collection $vines): array;
+    public function generateListVines($vines): array;
 
     public function searchSomeWines(Request $request);
 
@@ -22,4 +23,6 @@ interface IWineService
     public function disableVine(int $id): bool;
 
     public function enableVine(int $id): bool;
+
+    public function getWineById(int $id): ?Vine;
 }

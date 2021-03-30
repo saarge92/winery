@@ -7,7 +7,7 @@ use App\Vine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Interfaces\IServices\IWineService;
-use App\Traits\adminTrait;
+use App\Traits\AdminTrait;
 
 /**
  * Контроллер для работы с личным кабинетом администратора
@@ -19,7 +19,7 @@ use App\Traits\adminTrait;
  */
 class AdminController extends Controller
 {
-    use adminTrait;
+    use AdminTrait;
 
     private IWineService $wineService;
 

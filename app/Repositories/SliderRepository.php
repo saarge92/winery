@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\slider;
+use App\Slider;
 use App\Interfaces\IRepositories\ISliderRepository;
 
 
@@ -24,7 +24,7 @@ class SliderRepository implements ISliderRepository
      */
     public function addSlider(string $content, string $imagePath, bool $isActive): bool
     {
-        $slider = new slider();
+        $slider = new Slider();
         $slider->content = $content;
         $slider->src_image = $imagePath;
         $slider->is_active = $isActive;
@@ -34,13 +34,13 @@ class SliderRepository implements ISliderRepository
     /**
      * Редактирование записи о слайдере
      * 
-     * @param slider $slider - Редактируемая запись о слайдере
+     * @param Slider $slider - Редактируемая запись о слайдере
      * @param string $content - Описание слайдера
      * @param string $imagePath - Путь, где хранится слайдер
      * @param bool $isActive - Активен ли слайдер
      * @return bool - Результат сохранения
      */
-    public function editSlider(slider $slider, string $content, string $imagePath, bool $isActive): bool
+    public function editSlider(Slider $slider, string $content, string $imagePath, bool $isActive): bool
     {
         $slider->content = $content;
         $slider->src_image = $imagePath;
@@ -51,10 +51,10 @@ class SliderRepository implements ISliderRepository
     /**
      * Удалить запись о слайдере
      * 
-     * @param slider $slider - Удаляемая запись о слайдере
+     * @param Slider $slider - Удаляемая запись о слайдере
      * @return bool результат удаления
      */
-    public function deleteSlider(slider $slider): bool
+    public function deleteSlider(Slider $slider): bool
     {
         return $slider->delete();
     }

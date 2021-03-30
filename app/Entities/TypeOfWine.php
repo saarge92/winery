@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class color extends Model
+class TypeOfWine extends Model
 {
     //
-    protected $fillable = ['name'];
-
+    protected $hidden = ['']; 
 }

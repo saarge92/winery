@@ -41,7 +41,7 @@ class WineService implements IWineService
         $this->wineRepository = $wineRepository;
     }
 
-    public function filterWines(array $filter): Collection
+    public function filterWines(array $filter): Vine
     {
         $vines = new Vine;
         $country_select = isset($filter['country']) ? $filter['country'] : [];
@@ -71,7 +71,7 @@ class WineService implements IWineService
         return $vines;
     }
 
-    public function generateListVines(Collection $vines): array
+    public function generateListVines($vines): array
     {
         $vinesForReview = array();
         foreach ($vines as $vine) {
@@ -122,7 +122,7 @@ class WineService implements IWineService
     public function updateWine(array $editWineForm): bool
     {
         $id = $editWineForm['id'];
-        $editWine = Vine::find($id);
+        $editWine = $this->wineRepository->getVineById($id);
         if ($editWine) {
             $file = isset($editWineForm['image']) ? $editWineForm['image'] : null;
             if ($file != null) {
@@ -176,5 +176,10 @@ class WineService implements IWineService
             return true;
         }
         return false;
+    }
+
+    public function getWineById(int $id): ?Vine
+    {
+        return $this->wineRepository->getVineById($id);
     }
 }

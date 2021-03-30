@@ -2,7 +2,7 @@
 
 namespace App\Interfaces\IRepositories;
 
-use App\slider;
+use App\Slider;
 
 
 /**
@@ -11,6 +11,6 @@ use App\slider;
 interface ISliderRepository
 {
     public function addSlider(string $content, string $imagePath, bool $isActive): bool;
-    public function editSlider(slider $slider, string $content, string $imagePath, bool $isActive): bool;
-    public function deleteSlider(slider $slider): bool;
+    public function editSlider(Slider $slider, string $content, string $imagePath, bool $isActive): bool;
+    public function deleteSlider(Slider $slider): bool;
 }

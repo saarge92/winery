@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Http\Requests\CountryCreateRequest;
 use App\Interfaces\IServices\ICountryService;
 use App\Interfaces\IRepositories\ICountryRepository;
-use App\country;
+use App\Country;
 
 /**
  * Сервис для работы с сущностью "Страна"
@@ -42,7 +42,7 @@ class CountryService implements ICountryService
      */
     public function editCountryPost(array $countryParams, int $id): bool
     {
-        $country = country::find($id);
+        $country = Country::find($id);
         if ($country != null) {
             return $this->countryRepository->editCountry($country, $countryParams['name_rus'], $countryParams['name_en']);
         }
@@ -58,7 +58,7 @@ class CountryService implements ICountryService
     public function deleteCountry(int $id): bool
     {
         $deleted = false;
-        $country = country::find($id);
+        $country = Country::find($id);
         if ($country) $deleted = $this->countryRepository->deleteCountry($country);
         return $deleted;
     }

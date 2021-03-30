@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\color;
+use App\Color;
 use App\Vine;
 
 /**
@@ -52,7 +52,7 @@ class MobileControllerTest extends TestCase
 
     public function testAllColors() :void
     {
-        $count = color::count();
+        $count = Color::count();
         $this->json('GET','api/get-all-colors')
         ->assertJsonCount($count);
     }

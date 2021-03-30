@@ -1,23 +1,21 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\type_of_wine;
+use App\TypeOfWine;
 
 class TypeWineSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    private array $typeWines = [
+        'Игристые вина',
+        'Десертные вина'
+    ];
+
     public function run()
     {
-        //
-        $type_of_wine = type_of_wine::create([
-            'name' => 'Игристые вина',
-        ])->save();
-        $type_of_wine = type_of_wine::create([
-            'name' => 'Десертные вина'
-        ])->save();
+        foreach ($this->typeWines as $typeWine) {
+            TypeOfWine::create([
+                'name' => $typeWine
+            ])->save();
+        }
     }
 }

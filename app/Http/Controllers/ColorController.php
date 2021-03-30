@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\color;
+use App\Color;
 use Illuminate\Http\Request;
 use App\Http\Requests\ColorRequest;
 use App\Http\Controllers\Controller;
@@ -31,7 +31,7 @@ class ColorController extends Controller
      */
     public function allColors()
     {
-        $colors = color::orderby('priority', 'asc')->paginate(5);
+        $colors = Color::orderby('priority', 'asc')->paginate(5);
         return view('admin.allColors')->with('colors', $colors);
     }
 
@@ -69,7 +69,7 @@ class ColorController extends Controller
      */
     public function startEditColor(Request $request, $id)
     {
-        $color = color::find($id);
+        $color = Color::find($id);
         return view('admin.editColor', ['color' => $color]);
     }
 

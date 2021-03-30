@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\color;
+use App\Color;
 use App\Interfaces\IServices\IColorService;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -36,7 +36,7 @@ class ColorServiceTest extends TestCase
     public function testEditColor()
     {
         $colorService = resolve(IColorService::class);
-        $randomColor = color::orderByRaw("RAND()")->first();
+        $randomColor = Color::orderByRaw("RAND()")->first();
         $editedColor = $colorService->editColor(['name_color' => $this->faker->name], $randomColor['id']);
         $this->assertSame($editedColor, true);
     }
@@ -48,7 +48,7 @@ class ColorServiceTest extends TestCase
     public function testDeleteColor()
     {
         $colorService = resolve(IColorService::class);
-        $randomColor = color::orderByRaw("RAND()")->first();
+        $randomColor = Color::orderByRaw("RAND()")->first();
         $isDeletedColor = $colorService->deleteColor($randomColor['id']);
         $this->assertSame($isDeletedColor, true);
     }

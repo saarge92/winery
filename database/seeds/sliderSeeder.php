@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\slider;
+use App\Slider;
 class sliderSeeder extends Seeder
 {
     /**
@@ -11,8 +11,8 @@ class sliderSeeder extends Seeder
      */
     public function run()
     {
-        slider::create(['src_image'=>'sliders/wine1.jpg'])->save();
-        slider::create(['src_image'=>'sliders/wine2.jpg'])->save();
-        slider::create(['src_image'=>'sliders/wine3.jpg'])->save();
+        Slider::create(['src_image'=>'sliders/wine1.jpg'])->save();
+        Slider::create(['src_image'=>'sliders/wine2.jpg'])->save();
+        Slider::create(['src_image'=>'sliders/wine3.jpg'])->save();
     }
 }

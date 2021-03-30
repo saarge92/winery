@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\color;
+use App\Color;
 class colorSeeder extends Seeder
 {
     /**
@@ -12,8 +12,8 @@ class colorSeeder extends Seeder
     public function run()
     {
         //
-        color::create(['name'=>'Красное'])->save();
-        color::create(['name'=>'Белое'])->save();
-        color::create(['name'=>'Розовое'])->save();
+        Color::create(['name'=>'Красное'])->save();
+        Color::create(['name'=>'Белое'])->save();
+        Color::create(['name'=>'Розовое'])->save();
     }
 }

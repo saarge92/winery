@@ -2,7 +2,8 @@
 
 namespace App\Interfaces\IRepositories;
 
-use App\producer;
+use App\Producer;
+use Illuminate\Support\Collection;
 
 /**
  * Интерфейс для работы репозитория, осуществляющий операции с сущностью "Страна"
@@ -10,7 +11,12 @@ use App\producer;
 interface IProducerRepository
 {
     public function addProducer(string $name): bool;
-    public function editProducer(producer $producer, string $name): bool;
-    public function deleteProducer(producer $producer): bool;
+
+    public function editProducer(Producer $producer, string $name): bool;
+
+    public function deleteProducer(Producer $producer): bool;
+
     public function getProducerName(?int $id): ?string;
+
+    public function getAll(): Collection;
 }

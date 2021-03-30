@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\type_of_wine;
+use App\TypeOfWine;
 use Illuminate\Http\Request;
 
 /**
@@ -23,7 +23,7 @@ trait typeWineTrait
      */
     public function addTypeWine(Request $req) : bool
     {
-        $tw = new type_of_wine();
+        $tw = new TypeOfWine();
         $tw->name = $req->get('name_color');
         $result = $tw->save();
         return $result;
@@ -38,7 +38,7 @@ trait typeWineTrait
      */
     public function editTypeWine(Request $request, int $id) : bool
     {
-        $tw = type_of_wine::find($id);
+        $tw = TypeOfWine::find($id);
         if ($tw != null) {
             $tw->name = $request->get('name_color');
             $result = $tw->save();
@@ -56,7 +56,7 @@ trait typeWineTrait
      */
     public function deleteTypeWine(int $id) : bool
     {
-        $tw = type_of_wine::find($id);
+        $tw = TypeOfWine::find($id);
         if (isset($tw)) {
             $result = $tw->delete();
             return $result;

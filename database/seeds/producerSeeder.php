@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\producer;
+use App\Producer;
 class producerSeeder extends Seeder
 {
     /**
@@ -12,8 +12,8 @@ class producerSeeder extends Seeder
     public function run()
     {
         //
-        producer::create(['name'=>'Vina Garces Silva Limitada'])->save();
-        producer::create(['name'=>'Лангедок-Руссийон, Кот дю Руссийон'])->save();
-        producer::create(['name'=>'Rioja/Риоха'])->save();
+        Producer::create(['name'=>'Vina Garces Silva Limitada'])->save();
+        Producer::create(['name'=>'Лангедок-Руссийон, Кот дю Руссийон'])->save();
+        Producer::create(['name'=>'Rioja/Риоха'])->save();
     }
 }
