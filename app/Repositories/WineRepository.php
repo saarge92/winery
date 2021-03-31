@@ -55,7 +55,7 @@ class WineRepository
         return $wine->save();
     }
 
-    public function getVineById(int $id): Vine
+    public function getVineById(int $id): ?Vine
     {
         return Vine::find($id);
     }
