@@ -8,6 +8,7 @@ use App\Repositories\ProducerRepository;
 use App\Repositories\SweetRepository;
 use App\Repositories\TypeWineRepository;
 use App\Repositories\WineRepository;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Interfaces\IServices\IWineService;
 
