@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Interfaces\IFileUploadService;
 use App\Services\ColorService;
 use App\Services\CountryService;
 use App\Repositories\ColorRepository;
 use App\Repositories\CountryRepository;
+use App\Services\FileUploadService;
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\IServices\IColorService;
 use App\Interfaces\IServices\ICountryService;
@@ -24,11 +26,6 @@ use App\Services\WineService;
 
 class IocServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
         $this->app->singleton(ICountryRepository::class, CountryRepository::class);
@@ -40,5 +37,6 @@ class IocServiceProvider extends ServiceProvider
         $this->app->singleton(ISliderRepository::class, SliderRepository::class);
         $this->app->singleton(ISliderService::class, SliderService::class);
         $this->app->singleton(IWineService::class, WineService::class);
+        $this->app->singleton(IFileUploadService::class, FileUploadService::class);
     }
 }

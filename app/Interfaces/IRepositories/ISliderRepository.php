@@ -3,15 +3,17 @@
 namespace App\Interfaces\IRepositories;
 
 use App\Slider;
-use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ISliderRepository
 {
-    public function addSlider(string $content, string $imagePath, bool $isActive): bool;
+    function addSlider(string $content, string $imagePath, bool $isActive): bool;
 
-    public function editSlider(Slider $slider, string $content, string $imagePath, bool $isActive): bool;
+    function editSlider(Slider $slider, ?string $content, string $imagePath, bool $isActive): bool;
 
-    public function deleteSlider(Slider $slider): bool;
+    function deleteSlider(Slider $slider): bool;
 
-    public function getSliderPaginated(): Collection;
+    function getSliderPaginated(): LengthAwarePaginator;
+
+    function getSliderById(int $id): ?Slider;
 }

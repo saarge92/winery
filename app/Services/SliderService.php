@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
-use App\Http\Requests\SliderRequest;
+use App\Interfaces\IFileUploadService;
 use App\Interfaces\IServices\ISliderService;
 use App\Interfaces\IRepositories\ISliderRepository;
 use App\Slider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 /**
  * Сервис для работы с сущностью "Слайдер"
@@ -18,43 +19,51 @@ use Illuminate\Support\Collection;
 class SliderService implements ISliderService
 {
     private ISliderRepository $sliderRepository;
+    private IFileUploadService $fileUploadService;
 
-    public function __construct(ISliderRepository $sliderRepository)
+    private const FOLDER_TO_STORE = '/storage/sliders/';
+
+    public function __construct(ISliderRepository $sliderRepository, IFileUploadService $fileUploadService)
     {
         $this->sliderRepository = $sliderRepository;
+        $this->fileUploadService = $fileUploadService;
     }
 
     public function createSlider(array $createParams): bool
     {
         $content = $createParams['content'];
-        $file = $createParams['src_image'];
-        $filename = $content . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
-        $destination = public_path() . '/storage/sliders/';
-        $file->move($destination, $filename);
-        $imagePath = 'sliders/' . $filename;
-        $createParams['is_active'] == "1" ? $isActive = true : $isActive = false;
-        return $this->sliderRepository->addSlider($content, $imagePath, $isActive);
+        $fileName = $this->fileUploadService->uploadFile($createParams['src_image'], self::FOLDER_TO_STORE, $content);
+        $imageForStore = 'sliders/' . $fileName;
+        $isActive = $createParams['is_active'] == "1";
+        return $this->sliderRepository->addSlider($content, $imageForStore, $isActive);
     }
 
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return bool
+     * @throws \Exception
+     */
     public function editSlider(Request $request, int $id): bool
     {
-        $slider = Slider::find($id);
+        $slider = $this->sliderRepository->getSliderById($id);
         if ($slider) {
             $content = $request->get('content');
-            $request->get('is_active') == "1" ? $isActive = true : $isActive = false;
+            $isActive = $request->get('is_active') == "1";
             $file = $request->file('src_image');
             $imagePath = $slider->src_image;
-            if (isset($file)) {
-                $filename = $request->get('content') . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
-                $destination = public_path() . '/storage/sliders/';
-                $file->move($destination, $filename);
-                $deletePath = public_path() . '/storage/' . $slider->src_image;
-                if (file_exists($deletePath)) {
-                    unlink($deletePath);
+            $filename = '';
+            try {
+                if (isset($file)) {
+                    $filename = $this->fileUploadService->uploadFile($file, self::FOLDER_TO_STORE, $content);
+                    $this->fileUploadService->deleteFile($slider->src_image);
+                    $imagePath = 'sliders/' . $filename;
                 }
-                $imagePath = 'sliders/' . $filename;
+                return $this->sliderRepository->editSlider($slider, $content, $imagePath, $isActive);
+            } catch (\Exception $exception) {
+                $this->fileUploadService->deleteFile($filename);
+                throw new \Exception($exception);
             }
-            return $this->sliderRepository->editSlider($slider, $content, $imagePath, $isActive);
         }
         return false;
     }
@@ -63,16 +72,13 @@ class SliderService implements ISliderService
     {
         $slider = Slider::find($id);
         if ($slider) {
-            $deletePath = public_path() . '/storage/' . $slider->src_image;
-            if (file_exists($deletePath)) {
-                unlink($deletePath);
-            }
+            $this->fileUploadService->deleteFile($slider->src_image);
             return $this->sliderRepository->deleteSlider($slider);
         }
         return false;
     }
 
-    public function getAllPaginated(): Collection
+    public function getAllPaginated(): LengthAwarePaginator
     {
         return $this->sliderRepository->getSliderPaginated();
     }

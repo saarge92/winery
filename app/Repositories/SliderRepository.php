@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Slider;
 use App\Interfaces\IRepositories\ISliderRepository;
-use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 /**
@@ -24,7 +24,7 @@ class SliderRepository implements ISliderRepository
         return $slider->save();
     }
 
-    public function editSlider(Slider $slider, string $content, string $imagePath, bool $isActive): bool
+    public function editSlider(Slider $slider, ?string $content, string $imagePath, bool $isActive): bool
     {
         $slider->content = $content;
         $slider->src_image = $imagePath;
@@ -37,8 +37,13 @@ class SliderRepository implements ISliderRepository
         return $slider->delete();
     }
 
-    public function getSliderPaginated(): Collection
+    public function getSliderPaginated(): LengthAwarePaginator
     {
         return Slider::paginate(6);
+    }
+
+    function getSliderById(int $id): ?Slider
+    {
+        return Slider::find($id);
     }
 }

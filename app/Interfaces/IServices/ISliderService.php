@@ -4,6 +4,7 @@ namespace App\Interfaces\IServices;
 
 use App\Http\Requests\SliderRequest;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 /**
@@ -20,5 +21,5 @@ interface ISliderService
 
     public function deleteSlider(int $id): bool;
 
-    public function getAllPaginated(): Collection;
+    public function getAllPaginated(): LengthAwarePaginator;
 }
