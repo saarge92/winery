@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SliderSeeder::class);
         $this->call(VineSeeder::class);
         $this->call(DisplayPaginatorSeed::class);
-        //$this->call(RoleSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(RoleUserSeeder::class);
     }
 }

@@ -9,7 +9,7 @@ class UserSeeder extends Seeder
         $emailAdmin = env('EMAIL_ADMIN');
         $userPassword = env('USER_PASSWORD');
         $userName = env('USER_NAME');
-        $hashPassword = hash('sha256', $userPassword);
+        $hashPassword = bcrypt($userPassword);
 
         \App\User::create([
             'name' => $userName,
