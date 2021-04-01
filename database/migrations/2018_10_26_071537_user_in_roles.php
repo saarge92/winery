@@ -6,28 +6,23 @@ use Illuminate\Database\Migrations\Migration;
 
 class UserInRoles extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
-    {
-        //
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
     {
         Schema::create('user_in_roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('role_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('role_id');
+
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('NO ACTION');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('NO ACTION');
+
+            $table->softDeletes();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('user_in_roles');
     }
 }

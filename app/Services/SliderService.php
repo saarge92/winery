@@ -7,6 +7,7 @@ use App\Interfaces\IServices\ISliderService;
 use App\Interfaces\IRepositories\ISliderRepository;
 use App\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 /**
  * Сервис для работы с сущностью "Слайдер"
@@ -16,19 +17,13 @@ use Illuminate\Http\Request;
  */
 class SliderService implements ISliderService
 {
-    private $sliderRepository;
+    private ISliderRepository $sliderRepository;
 
     public function __construct(ISliderRepository $sliderRepository)
     {
         $this->sliderRepository = $sliderRepository;
     }
 
-    /**
-     * Добавление слайдера
-     *
-     * @param array $createParams Параметры создания слайдера
-     * @return bool $result - Добавлен ли слайдер
-     */
     public function createSlider(array $createParams): bool
     {
         $content = $createParams['content'];
@@ -41,13 +36,6 @@ class SliderService implements ISliderService
         return $this->sliderRepository->addSlider($content, $imagePath, $isActive);
     }
 
-    /**
-     * Редактирование слайдера
-     *
-     * @param Request $request - параметры запроса
-     * @param int $id - id номер слайдера
-     * @return bool $result - Редактирован ли слайдер
-     */
     public function editSlider(Request $request, int $id): bool
     {
         $slider = Slider::find($id);
@@ -66,18 +54,11 @@ class SliderService implements ISliderService
                 }
                 $imagePath = 'sliders/' . $filename;
             }
-            $edited = $this->sliderRepository->editSlider($slider, $content, $imagePath, $isActive);
-            return $edited;
+            return $this->sliderRepository->editSlider($slider, $content, $imagePath, $isActive);
         }
         return false;
     }
 
-    /**
-     * Удаление слайдера из базы
-     *
-     * @param int $id - Id слайдера
-     * @return bool - Удален ли слайдер
-     */
     public function deleteSlider(int $id): bool
     {
         $slider = Slider::find($id);
@@ -86,9 +67,13 @@ class SliderService implements ISliderService
             if (file_exists($deletePath)) {
                 unlink($deletePath);
             }
-            $result = $this->sliderRepository->deleteSlider($slider);
-            return $result;
+            return $this->sliderRepository->deleteSlider($slider);
         }
-        return $result;
+        return false;
+    }
+
+    public function getAllPaginated(): Collection
+    {
+        return $this->sliderRepository->getSliderPaginated();
     }
 }

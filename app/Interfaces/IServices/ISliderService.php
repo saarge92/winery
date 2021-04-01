@@ -4,6 +4,7 @@ namespace App\Interfaces\IServices;
 
 use App\Http\Requests\SliderRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 /**
  * Интерфейс для работы сервиса, который осуществляет бизнес-логику с сущностью "Слайдер"
@@ -18,4 +19,6 @@ interface ISliderService
     public function editSlider(Request $request, int $id): bool;
 
     public function deleteSlider(int $id): bool;
+
+    public function getAllPaginated(): Collection;
 }

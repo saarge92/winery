@@ -6,7 +6,8 @@ use App\Country;
 use App\Color;
 use App\Sweet;
 use App\Producer;
-class vineSeeder extends Seeder
+
+class VineSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,7 +19,7 @@ class vineSeeder extends Seeder
         $country = Country::where(['name_rus' => 'Россия'])->first();
         $color = Color::where(['name' => 'Красное'])->first();
         $sweet = Sweet::where(['name' => 'сухое'])->first();
-        $producer =  Producer::where(['name'=>'Vina Garces Silva Limitada'])->first();
+        $producer = Producer::where(['name' => 'Vina Garces Silva Limitada'])->first();
         Vine::create([
             'name_rus' => 'Шато де Потенсак АОС',
             'name_en' => 'Chaute de Pantesak',
