@@ -9,14 +9,8 @@ use Illuminate\Support\Facades\Session;
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 BarHouse
  */
-trait paginateTrait
+trait PaginateTrait
 {
-    /**
-     * Функция для получения количества пагинируемых страниц
-     * 
-     * @param $request - параметр запроса
-     * @return $paginate_number - количество страниц
-     */
     public function getPaginateNumber(\Illuminate\Http\Request $request) : int
     {
         $paginate_number = \App\DisplayPaginator::where('num', '!=', 0)->min('num');

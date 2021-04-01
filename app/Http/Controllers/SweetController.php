@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SweetRequest;
 use App\Http\Controllers\Controller;
 use App\Sweet;
-use App\Traits\sweetTrait;
+use App\Traits\SweetTrait;
 use Illuminate\Support\Facades\Session;
 
 /**
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Session;
  */
 class SweetController extends Controller
 {
-    use sweetTrait;
+    use SweetTrait;
 
     /** 
     * Получение страницы со списком сладостей

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Slider;
-use App\Traits\sliderTrait;
+use App\Traits\SliderTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderRequest;

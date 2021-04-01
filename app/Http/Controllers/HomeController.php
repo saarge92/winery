@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Vine;
 use Illuminate\Http\Request;
-use App\Traits\paginateTrait;
+use App\Traits\PaginateTrait;
 use App\Interfaces\IServices\IWineService;
-use App\Traits\homeTrait;
+use App\Traits\HomeTrait;
 
 /**
  * Контроллер для работы главной (frontend) страницы
@@ -18,8 +18,8 @@ use App\Traits\homeTrait;
  */
 class HomeController extends Controller
 {
-	use paginateTrait;
-	use homeTrait;
+	use PaginateTrait;
+	use HomeTrait;
 
 	private $wineService;
 

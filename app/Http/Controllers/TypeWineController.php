@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\TypeOfWine;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ColorRequest;
-use App\Traits\typeWineTrait;
+use App\Traits\TypeWineTrait;
 
 /**
  * Контроллер для работы с типом вин
@@ -19,7 +19,7 @@ use App\Traits\typeWineTrait;
  */
 class TypeWineController extends Controller
 {
-    use typeWineTrait;
+    use TypeWineTrait;
 
     /** 
     * Получение страницы со списком типов вин

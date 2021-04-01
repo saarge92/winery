@@ -4,12 +4,11 @@ namespace App\Traits;
 
 /**
  * Trait позволяет цеплять данные для домашней страницы
-
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 BarHouse
  */
-trait homeTrait
+trait HomeTrait
 {
     private function getDataForHomePage(): array
     {

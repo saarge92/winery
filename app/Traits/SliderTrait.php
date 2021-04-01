@@ -7,20 +7,14 @@ use Illuminate\Http\Request;
 
 /**
  * Trait для работы со слайдерами на главной странице
- * 
+ *
  * Trait содержит базовые операции с сущностью "Слайдеры"
- * 
+ *
  * @author Serdar Durdyev <sarage92@mail.ru>
  * @copyright Copyright (c) 2019 BarHouse
  */
-trait sliderTrait
+trait SliderTrait
 {
-    /**
-     * Добавление слайдера
-     * 
-     * @param Request $req - список параметров
-     * @return bool $result - Добавлен ли слайдер
-     */
     public function addSlider(Request $req): bool
     {
         $slider = new Slider();
@@ -31,18 +25,10 @@ trait sliderTrait
         $file->move($destination, $filename);
         $slider->src_image = 'sliders/' . $filename;
         $req->get('is_active') == "1" ? $slider->is_active = true : $slider->is_active = false;
-        $result = $slider->save();
-        return $result;
+        return $slider->save();
     }
 
-    /**
-     * Редактирование слайдера
-     * 
-     * @param Request $request - параметры запроса
-     * @param int $id - id номер слайдера
-     * @return bool $result - Редактирован ли слайдер
-     */
-    public function editSlider(Request $req, int $id)
+    public function editSlider(Request $req, int $id): bool
     {
         $slider = Slider::find($id);
         if ($slider != null) {
@@ -59,20 +45,12 @@ trait sliderTrait
                 }
                 $slider->src_image = 'sliders/' . $filename;
             }
-            $result = $slider->save();
-            return $result;
+            return $slider->save();
         }
         return false;
     }
 
-    /**
-     * Редактирование слайдера вин
-     * 
-     * @param Request $request - параметры запроса
-     * @param int $id - id номер слайдера
-     * @return bool $result - Редактирован ли слайдер
-     */
-    public function deleteSlider($id)
+    public function deleteSlider($id): bool
     {
         $slider = Slider::find($id);
         if (isset($slider)) {
@@ -80,9 +58,8 @@ trait sliderTrait
             if (file_exists($deletePath)) {
                 unlink($deletePath);
             }
-            $result = $slider->delete();
-            return $result;
+            return $slider->delete();
         }
-        return $result;
+        return false;
     }
 }

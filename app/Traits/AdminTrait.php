@@ -12,9 +12,6 @@ namespace App\Traits;
  */
 trait AdminTrait
 {
-    /**
-     * Получаем необходимые данные для макета
-     */
     private function getDataForAdminPage(): array
     {
         $countries = \App\Country::all();
@@ -33,9 +30,6 @@ trait AdminTrait
         ];
     }
 
-    /**
-     * Получение данных для Get-страницы на создания вина
-     */
     private function getDataForCreateWine(): array
     {
         $countries = \App\Country::all();
