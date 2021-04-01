@@ -70,7 +70,7 @@ class SliderService implements ISliderService
 
     public function deleteSlider(int $id): bool
     {
-        $slider = Slider::find($id);
+        $slider = $this->sliderRepository->getSliderById($id);
         if ($slider) {
             $this->fileUploadService->deleteFile($slider->src_image);
             return $this->sliderRepository->deleteSlider($slider);
