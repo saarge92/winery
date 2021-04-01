@@ -33,13 +33,13 @@ class AdminController extends Controller
         $dataForAdminPage = $this->getDataForAdminPage();
         $vines = $this->wineService->filterWines($request->all());
         $vines = $vines->orderby('price', 'desc')->paginate(12);
-        $vines_for_review = $this->wineService->generateListVines($vines);
+        $vineForReviews = $this->wineService->generateListVines($vines);
         return view(
             'admin.index',
             [
                 'vines' => $vines,
                 'countries' => $dataForAdminPage['countries'],
-                'vines_for_review' => collect($vines_for_review),
+                'vineForReviews' => collect($vineForReviews),
                 'colors' => $dataForAdminPage['colors'],
                 'sweets' => $dataForAdminPage['sweets'],
                 'max_price' => $dataForAdminPage['maxPrice'],
@@ -52,8 +52,8 @@ class AdminController extends Controller
     public function searchAdminWines(Request $request)
     {
         $vines = $this->wineService->searchSomeWines($request)->orderby('price', 'desc');
-        $vines_for_review = collect($this->wineService->generateListVines($vines->get()));
-        return view('admin.searchResult', ['vines_for_review' => $vines_for_review, 'vines' => $vines->paginate(12)]);
+        $vinesForReview = collect($this->wineService->generateListVines($vines->get()));
+        return view('admin.searchResult', ['vinesForReview' => $vinesForReview, 'vines' => $vines->paginate(12)]);
     }
 
     public function createVine()
