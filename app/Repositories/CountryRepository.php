@@ -56,4 +56,9 @@ class CountryRepository implements ICountryRepository
     {
         return Country::all();
     }
+
+    public function getById(int $id): ?Country
+    {
+        return Country::find($id);
+    }
 }

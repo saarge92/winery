@@ -10,15 +10,17 @@ use Illuminate\Support\Collection;
  */
 interface ICountryRepository
 {
-    public function getCountryNameRusById(?int $id): ?string;
+    function getCountryNameRusById(?int $id): ?string;
 
-    public function getCountryNameEnById(?int $id): ?string;
+    function getCountryNameEnById(?int $id): ?string;
 
-    public function addCountry(string $nameRus, ?string $nameEn): bool;
+    function addCountry(string $nameRus, ?string $nameEn): bool;
 
-    public function editCountry(Country &$country, string $nameRus, ?string $nameEn): bool;
+    function editCountry(Country &$country, string $nameRus, ?string $nameEn): bool;
 
-    public function deleteCountry(Country &$country): bool;
+    function deleteCountry(Country &$country): bool;
 
-    public function getAll(): Collection;
+    function getAll(): Collection;
+
+    function getById(int $id): ?Country;
 }
