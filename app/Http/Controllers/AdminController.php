@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VinePostRequest;
-use App\Vine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Interfaces\IServices\IWineService;
@@ -53,7 +52,7 @@ class AdminController extends Controller
     {
         $vines = $this->wineService->searchSomeWines($request)->orderby('price', 'desc');
         $vinesForReview = collect($this->wineService->generateListVines($vines->get()));
-        return view('admin.searchResult', ['vinesForReview' => $vinesForReview, 'vines' => $vines->paginate(12)]);
+        return view('admin.searchResult', ['vines_for_review' => $vinesForReview, 'vines' => $vines->paginate(12)]);
     }
 
     public function createVine()
@@ -82,7 +81,7 @@ class AdminController extends Controller
     public function editVine(int $id)
     {
         $dataForEdit = $this->getDataForCreateWine();
-        $vine = Vine::find($id);
+        $vine = $this->wineService->getWineById($id);
         return view('admin.editVine', [
             'vine' => $vine,
             'countries' => $dataForEdit['countries'],

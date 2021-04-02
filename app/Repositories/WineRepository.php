@@ -51,7 +51,7 @@ class WineRepository
         $wine->id_type = $wineDto['type_wine'];
         if (isset($wineDto['region_name'])) $wine->region_name = $wineDto['region_name'];
         if (isset($wineDto['coravin'])) $wine->is_coravin = $wineDto['coravin'] == 'on' ? true : false;
-        if (isset($wineDto['imageSrc'])) $wine->image_src = $wineDto['imageSrc'];
+        if (isset($wineDto['image_src'])) $wine->image_src = $wineDto['image_src'];
         return $wine->save();
     }
 
@@ -68,5 +68,11 @@ class WineRepository
     public function getMaxPrice(): int
     {
         return Vine::max('price');
+    }
+
+    public function searchWinesByName(string $name, bool $isActive = true)
+    {
+        return Vine::where('is_active', $isActive)->where('name_rus', 'LIKE', '%' . $name . '%')
+            ->orWhere('name_en', 'LIKE', '%' . $name . '%');
     }
 }

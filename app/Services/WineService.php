@@ -107,8 +107,7 @@ class WineService implements IWineService
 
     public function searchSomeWines(Request $request)
     {
-        return Vine::where('is_active', true)->where('name_rus', 'LIKE', '%' . $request->get('wine_name') . '%')
-            ->orWhere('name_en', 'LIKE', '%' . $request->get('wine_name') . '%');
+        return $this->wineRepository->searchWinesByName($request->get('wine_name'));
     }
 
     public function addWine(array $wineForm): bool
@@ -129,14 +128,9 @@ class WineService implements IWineService
             $file = isset($editWineForm['image']) ? $editWineForm['image'] : null;
             if ($file != null) {
                 if ($editWine->image_src != null) {
-                    $delete_path = public_path() . '/storage/' . $editWine->image_src;
-                    if (file_exists($delete_path)) {
-                        unlink($delete_path);
-                    }
+                    $this->fileUploadService->deleteFile($editWine->image_src);
                 }
-                $filename = $editWineForm['name_rus'] . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
-                $destination = public_path() . '/storage/wines/';
-                $file->move($destination, $filename);
+                $filename = $this->fileUploadService->uploadFile($file, self::FOLDER_UPLOAD, $editWineForm['name_rus']);
                 $editWineForm['imageSrc'] = 'wines/' . $filename;
             }
             return $this->wineRepository->editVine($editWine, $editWineForm);
@@ -146,13 +140,10 @@ class WineService implements IWineService
 
     public function deleteWine(int $id): bool
     {
-        $deletedVine = Vine::find($id);
+        $deletedVine = $this->wineRepository->getVineById($id);
         if ($deletedVine != null) {
             if ($deletedVine->image_src != null) {
-                $delete_file = public_path() . '/storage/' . $deletedVine->image_src;
-                if (file_exists($delete_file)) {
-                    unlink($delete_file);
-                }
+                $this->fileUploadService->deleteFile($deletedVine->image_src);
             }
             return $deletedVine->delete();
         }
@@ -171,7 +162,7 @@ class WineService implements IWineService
 
     public function enableVine(int $id): bool
     {
-        $vine = Vine::find($id);
+        $vine = $this->wineRepository->getVineById($id);
         if ($vine != null) {
             $vine->is_active = true;
             $vine->save();
