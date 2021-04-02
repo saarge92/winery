@@ -30,7 +30,7 @@ class WineRepository
         $wine->id_type = $wineDtoCreate['type_wine'];
         if (isset($wineDtoCreate['region_name'])) $wine->region_name = $wineDtoCreate['region_name'];
         if (isset($wineDtoCreate['coravin'])) $wine->is_coravin = $wineDtoCreate['coravin'] == 'on' ? true : false;
-        if (isset($wineDtoCreate['imageSrc'])) $wine->image_src = $wineDtoCreate['imageSrc'];
+        if (isset($wineDtoCreate['image_src'])) $wine->image_src = $wineDtoCreate['image_src'];
         return $wine->save();
     }
 

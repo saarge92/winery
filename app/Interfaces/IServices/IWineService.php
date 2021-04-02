@@ -8,21 +8,21 @@ use Illuminate\Http\Request;
 
 interface IWineService
 {
-    public function filterWines(array $filter): Vine;
+    function filterWines(array $filter): object;
 
-    public function generateListVines($vines): array;
+    function generateListVines($vines): array;
 
-    public function searchSomeWines(Request $request);
+    function searchSomeWines(Request $request);
 
-    public function addWine(array $wineForm): bool;
+    function addWine(array $wineForm): bool;
 
-    public function updateWine(array $editWineForm): bool;
+    function updateWine(array $editWineForm): bool;
 
-    public function deleteWine(int $id): bool;
+    function deleteWine(int $id): bool;
 
-    public function disableVine(int $id): bool;
+    function disableVine(int $id): bool;
 
-    public function enableVine(int $id): bool;
+    function enableVine(int $id): bool;
 
-    public function getWineById(int $id): ?Vine;
+    function getWineById(int $id): ?Vine;
 }

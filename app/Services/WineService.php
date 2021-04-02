@@ -2,17 +2,16 @@
 
 namespace App\Services;
 
+use App\Interfaces\IFileUploadService;
 use App\Vine;
 use Illuminate\Http\Request;
 use App\Repositories\SweetRepository;
-use App\Http\Requests\VinePostRequest;
 use App\Repositories\TypeWineRepository;
 use App\Interfaces\IServices\IWineService;
 use App\Interfaces\IRepositories\IColorRepository;
 use App\Interfaces\IRepositories\ICountryRepository;
 use App\Interfaces\IRepositories\IProducerRepository;
 use App\Repositories\WineRepository;
-use Illuminate\Support\Collection;
 
 /**
  * Сервис для обработки запросов,
@@ -29,9 +28,13 @@ class WineService implements IWineService
     private IProducerRepository $producerRepository;
     private TypeWineRepository $typeWineRepository;
     private WineRepository $wineRepository;
+    private IFileUploadService $fileUploadService;
+    private const FOLDER_UPLOAD = '/storage/wines/';
 
-
-    public function __construct(ICountryRepository $countryRepository, IColorRepository $colorRepository, SweetRepository $sweetRepository, IProducerRepository $producerRepository, TypeWineRepository $typeWineRepository, WineRepository $wineRepository)
+    public function __construct(ICountryRepository $countryRepository, IColorRepository $colorRepository,
+                                SweetRepository $sweetRepository, IProducerRepository $producerRepository,
+                                TypeWineRepository $typeWineRepository, WineRepository $wineRepository,
+                                IFileUploadService $fileUploadService)
     {
         $this->countryRepository = $countryRepository;
         $this->colorRepository = $colorRepository;
@@ -39,9 +42,10 @@ class WineService implements IWineService
         $this->producerRepository = $producerRepository;
         $this->typeWineRepository = $typeWineRepository;
         $this->wineRepository = $wineRepository;
+        $this->fileUploadService = $fileUploadService;
     }
 
-    public function filterWines(array $filter): Vine
+    public function filterWines(array $filter): object
     {
         $vines = new Vine;
         $country_select = isset($filter['country']) ? $filter['country'] : [];
@@ -111,9 +115,7 @@ class WineService implements IWineService
     {
         $file = isset($wineForm['image']) ? $wineForm['image'] : null;
         if ($file != null) {
-            $filename = $wineForm['name_rus'] . '_' . date('Y_m_d H_i_s') . '.' . $file->getClientOriginalExtension();
-            $destination = public_path() . '/storage/wines/';
-            $file->move($destination, $filename);
+            $filename = $this->fileUploadService->uploadFile($file, self::FOLDER_UPLOAD, $wineForm['name_rus']);
             $wineForm['image_src'] = 'wines/' . $filename;
         }
         return $this->wineRepository->createVine($wineForm);
@@ -159,7 +161,7 @@ class WineService implements IWineService
 
     public function disableVine(int $id): bool
     {
-        $vine = Vine::find($id);
+        $vine = $this->wineRepository->getVineById($id);
         if ($vine != null) {
             $vine->is_active = false;
             return $vine->save();
