@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Color;
 use App\Interfaces\IServices\IColorService;
 use App\Interfaces\IRepositories\IColorRepository;
 
