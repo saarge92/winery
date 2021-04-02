@@ -49,7 +49,7 @@ class HomeControllerTest extends TestCase
      */
     public function testAutocomplete()
     {
-        $this->call('GET', '/autocomplete', ['wine_name' => 'Кли'])->assertJsonStructure([
+        $this->call('GET', '/autocomplete')->assertJsonStructure([
             "wines" => [[
                 'id',
                 'name_rus'

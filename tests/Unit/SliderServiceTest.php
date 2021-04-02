@@ -27,7 +27,7 @@ class SliderServiceTest extends TestCase
     {
         $sliderService = $this->getSliderService();
         $createParams = [
-            'content' => $this->faker->text,
+            'content' => 'fake',
             'src_image' => UploadedFile::fake()->image('sliders/wine1.jpg'),
             'is_active' => true
         ];
