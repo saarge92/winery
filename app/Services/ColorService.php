@@ -28,8 +28,8 @@ class ColorService implements IColorService
 
     public function editColor(array $editParams, int $id): bool
     {
-        $color = Color::find($id);
-        if ($color != null) {
+        $color = $this->colorRepository->getById($id);
+        if ($color) {
             return $this->colorRepository->editColor($color, $editParams['name_color']);
         }
         return false;
@@ -38,7 +38,7 @@ class ColorService implements IColorService
     public function deleteColor(int $id): bool
     {
         $deleted = false;
-        $color = Color::find($id);
+        $color = $this->colorRepository->getById($id);
         if ($color) $deleted = $this->colorRepository->deleteColor($color);
         return $deleted;
     }

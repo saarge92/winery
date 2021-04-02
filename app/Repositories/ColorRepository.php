@@ -50,4 +50,9 @@ class ColorRepository implements IColorRepository
     {
         return Color::all();
     }
+
+    public function getById(int $id): ?Color
+    {
+        return Color::find($id);
+    }
 }
